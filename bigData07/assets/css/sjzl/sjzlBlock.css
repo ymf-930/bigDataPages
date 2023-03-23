@@ -1,0 +1,34 @@
+.sjzl-block {
+  height: 454px;
+}
+
+.sjzl-block-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.sjzl-block-title {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  font-size: 16px;
+  color: #ffffff;
+  background-image: url(../../img/sjzl/sjzl-t-bg.png);
+  background-repeat: no-repeat;
+}
+
+.sjzl-block-num {
+  margin-bottom: 10px;
+}
+
+.sjzl-block-line {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed rgba(71, 183, 207, 1);
+}

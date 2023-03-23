@@ -1,0 +1,69 @@
+.layout {
+  height: 1080px;
+  border-bottom: 1px solid #ffffff;
+}
+
+.global-head {
+  position: relative;
+  height: 98px;
+  width: 100%;
+  background-image: url(../../img/common/layout/global-head.png);
+  background-repeat: no-repeat;
+}
+
+.nav-con {
+  position: absolute;
+  top: 45px;
+  right: 50%;
+  transform: translateX(50%);
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-sapce {
+  width: 645px;
+}
+
+.nav-btn {
+  height: 48px;
+  width: 203px;
+  cursor: pointer;
+}
+
+.nav-sjzl {
+  background-image: url(../../img/common/layout/sjzl.png);  
+}
+
+.nav-sjzl-s {
+  background-image: url(../../img/common/layout/sjzl-s.png);  
+}
+
+.nav-xycn {
+  background-image: url(../../img/common/layout/xycn.png);
+}
+
+.nav-xycn-s {
+  background-image: url(../../img/common/layout/xycn-s.png);
+}
+
+.nav-htly {
+  background-image: url(../../img/common/layout/htly.png);
+}
+
+.nav-htly-s {
+  background-image: url(../../img/common/layout/htly-s.png);
+}
+
+.nav-sxzl {
+  background-image: url(../../img/common/layout/sxzl.png);
+}
+
+.nav-sxzl-s {
+  background-image: url(../../img/common/layout/sxzl-s.png);
+}
+
+.content {
+  margin-top: 20px;
+  padding: 0 16px;
+  height: calc(100% - 118px);
+}

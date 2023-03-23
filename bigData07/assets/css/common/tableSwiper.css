@@ -1,0 +1,98 @@
+.table-box{
+    margin: 0;
+    /*border: 1px solid #fff;*/
+}
+.table-container {
+    height: 175px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.head {
+    display: flex;
+    align-items: center;
+    border-bottom: none;
+    height: 35px;
+    line-height: 35px;
+    background-color: rgb(11 49 96);
+    position: relative;
+}
+.head .img-top{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.head .img-bottom{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.head span {
+    padding-left: 67px;
+    flex: 1;
+    color: #fff;
+    border-right: 0.2px solid rgba(8, 48, 91, 1);
+    border-bottom: 0.2px solid rgba(8, 48, 91, 1);
+}
+.table-container .swiper-wrapper {
+    padding: 0;
+    margin: 0;
+}
+.table-container .swiper-wrapper .li{
+    display: flex;
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    background-color: #0b2b57;
+    cursor: pointer;
+}
+.table-container .swiper-wrapper .li:hover{
+    background-color: #1089ff80;
+}
+.table-container .swiper-wrapper .li.noHover{
+    pointer-events: none;
+}
+.table-container .swiper-wrapper .li:nth-child(even){
+    background-color: rgb(11 49 96);
+}
+.table-container .swiper-wrapper .li:nth-child(even):hover{
+    background-color: #0b2b57;
+}
+.table-container .swiper-wrapper .li .span{
+    flex: 1;
+    font-size: 16px;
+    color: #fff;
+    border-left: 1px solid rgba(8, 48, 91, 1);
+    border-bottom: 1px solid rgba(8, 48, 91, 1);
+    position: relative;
+}
+.table-container .swiper-wrapper .li .span0{
+    color: rgba(0, 214, 249, 1);
+}
+.table-container .swiper-wrapper .li .span1{
+    color: rgba(51, 232, 111, 1);
+}
+.table-container .swiper-wrapper .li .span2{
+    color: rgba(206, 199, 95, 1);
+}
+.table-container .swiper-wrapper .li .span3{
+    color: rgba(228, 156, 45, 1);
+}
+.table-container .swiper-wrapper .li .span4{
+    color: rgba(199, 147, 139, 1);
+}
+.table-container .swiper-wrapper .li .span .img-top{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.table-container .swiper-wrapper .li .span .img-bottom{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.table-container .swiper-wrapper .li .span:nth-child(1){
+    border-left: none;
+}
+.table-container .swiper-wrapper .li .span:last-child{
+    border-right: none;
+}

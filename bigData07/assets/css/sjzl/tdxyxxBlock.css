@@ -1,0 +1,28 @@
+.tdxyxx-block {
+  height: 312px;
+}
+
+.tdxyxx-block-data-wrap {
+  display: flex;
+  justify-content: space-around;
+}
+
+.tdxyxx-block-data-con {
+  width: 99px;
+  text-align: center;
+}
+
+.tdxyxx-block-data-title {
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.tdxyxx-block-data-num {
+  font-size: 22px;
+  color: #64ecfd;
+}
+
+.tdxyxx-block-bottom {
+  height: 24px;
+  width: 409px;
+}

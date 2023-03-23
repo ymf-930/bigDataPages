@@ -1,0 +1,14 @@
+html,body {
+  /* height: 1080px; */
+  height: 100%;
+  width: 1920px;
+  margin: 0px;
+}
+
+body {
+  background-color: rgba(15, 31, 61, 100);
+}
+
+#app {
+  height: 100%;
+}

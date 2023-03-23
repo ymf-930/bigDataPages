@@ -1,0 +1,49 @@
+.count{
+    height: 78px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.block-list{
+    width: 100%;
+}
+
+.sul-ev{
+    position: relative;
+    cursor: pointer;
+}
+
+.sul-ev img{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    display: none;
+}
+
+.sul-ev .isActive{
+    display: block;
+}
+
+.block-main{
+    height: 100%;
+}
+
+.sul-word{
+    color: rgba(255, 255, 255, 1);
+    font-size: 14px;
+    line-height: 150%;
+}
+
+.sul-number{
+    font-size: 18px;
+    line-height: 150%;
+}
+
+.sul-table{
+    margin-top: 16px;
+}
+
+.bottom{
+    margin-top: 24px;
+}

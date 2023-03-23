@@ -1,0 +1,92 @@
+.xycn-center {
+    width: 100%;
+}
+
+.xycn-center .center-container {
+    margin: 0 14px;
+    width: 950px;
+}
+
+.xycn-center .center-container .center-top {
+    padding: 40px;
+    background-color: #0b264c;
+    margin-bottom: 20px;
+}
+
+.xycn-center .center-container .center-top .line-box {
+    width: 100%;
+    padding-bottom: 40px;
+}
+
+.xycn-center .center-container .center-top .line-box .block-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.xycn-center .center-container .center-top .line-box .block-box .left {
+    padding-right: 20px;
+}
+.xycn-center .center-container .center-top .line-box .block-box .right {
+    min-width: 200px;
+}
+.xycn-center .center-container .center-top .line-box .block-box .num-box .number {
+    font-size: 32px;
+    color: #43b6fc;
+}
+
+
+.xycn-center .center-container .center-top .line-box .block-box .num-box .num1 {
+    color: #1089ff;
+}
+
+.xycn-center .center-container .center-top .line-box .block-box .num-box .num2 {
+    color: #00baad;
+}
+
+.xycn-center .center-container .center-top .line-box .block-box .num-box .num3 {
+    color: #00b8f8;
+}
+
+.xycn-center .center-container .center-top .line-box .block-box .num-box .num4 {
+    color: #7948ea;
+}
+
+.xycn-center .center-container .center-top .line-box .block-box .num-box .unit {
+    font-size: 14px;
+    color: #fff;
+    padding-left: 5px;
+}
+
+.xycn-center .center-container .center-top .line-box .text {
+    font-size: 14px;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.xycn-center .center-container .center-top .line-box:nth-child(1) {
+    padding-bottom: 92px;
+}
+
+.bottom-img {
+    width: 100%;
+    height: 30px;
+    background: url("../../img/xycn/bottom-img.png") center no-repeat;
+    background-size: 100%;
+    margin: 20px 0 10px;
+}
+
+#pieChart1 {
+    width: 100%;
+    height: 370px;
+}
+
+#pieChart2 {
+    width: 100%;
+    height: 370px;
+}
+
+#lineChart1 {
+    width: 100%;
+    height: 430px;
+}

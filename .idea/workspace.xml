@@ -1,94 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6f83221-bb1c-4584-91c6-486c485dd8e7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Screenshot/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Screenshot/img_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Screenshot/img_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Screenshot/img_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Screenshot/img_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Screenshot/img_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Screenshot/img_6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Screenshot/img_7.png" afterDir="false" />
+    <list default="true" id="e6f83221-bb1c-4584-91c6-486c485dd8e7" name="Changes" comment="删除英文readme文件">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023_3_23_21_55__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2023_3_23_21_55__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/black-md.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/black-md.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/border-bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/border-bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/bottom-bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/bottom-bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/center-bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/center-bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/center-data-bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/center-data-bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/center-data-bg2.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/center-data-bg2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/header-bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/header-bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/hmd.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/hmd.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/map/ds.json" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/map/ds.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/model-bottom.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/model-bottom.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/num-bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/num-bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/sxgr.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/sxgr.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/sxqy.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/sxqy.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/title-bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/title-bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/title-bg2.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/title-bg2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/images/water-cicle-bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/images/water-cicle-bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/js/charts/systemCharts.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/js/charts/systemCharts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/js/charts/systemCity.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/js/charts/systemCity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/js/components/base-count-data.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/js/components/base-count-data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/js/components/base-info-card.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/js/components/base-info-card.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/js/components/base-info-water-card.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/js/components/base-info-water-card.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/js/components/base-layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/js/components/base-layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/js/components/base-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/js/components/base-table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/js/components/base-title-box.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/js/components/base-title-box.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/js/time.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/js/time.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/pages/system.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/pages/system.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/styles/base-info-card.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/styles/base-info-card.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/styles/base-info-water-card.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/styles/base-info-water-card.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/styles/base-layout.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/styles/base-layout.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/styles/base-table.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/styles/base-table.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/styles/base-title.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/styles/base-title.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/styles/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/styles/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/styles/system/center.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/styles/system/center.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/styles/system/left.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/styles/system/left.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/styles/system/reset.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/styles/system/reset.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/styles/system/right.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/styles/system/right.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/axios.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/axios.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/bin-ui@3.8.0/bin-ui.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/bin-ui@3.8.0/bin-ui.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/bin-ui@3.8.0/styles/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/bin-ui@3.8.0/styles/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/bin-ui@3.8.0/styles/fonts/iconfont.eot" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/bin-ui@3.8.0/styles/fonts/iconfont.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/bin-ui@3.8.0/styles/fonts/iconfont.svg" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/bin-ui@3.8.0/styles/fonts/iconfont.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/bin-ui@3.8.0/styles/fonts/iconfont.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/bin-ui@3.8.0/styles/fonts/iconfont.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/bin-ui@3.8.0/styles/fonts/iconfont.woff" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/bin-ui@3.8.0/styles/fonts/iconfont.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/bin-ui@3.8.0/styles/fonts/iconfont.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/bin-ui@3.8.0/styles/fonts/iconfont.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/bin-ui@3.8.0/styles/icon.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/bin-ui@3.8.0/styles/icon.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/bin-ui@3.8.0/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/bin-ui@3.8.0/styles/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/echarts/echarts-wordcloud.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/echarts/echarts-wordcloud.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/echarts/echarts.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/echarts/echarts.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/echarts/extension/bmap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/echarts/extension/bmap.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/echarts/geoCoordMap.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/echarts/geoCoordMap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/echarts/map/china.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/echarts/map/china.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/echarts/v-charts/index.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/echarts/v-charts/index.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/echarts/v-charts/style.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/echarts/v-charts/style.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/element-ui@2.9.1/fonts/element-icons.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/element-ui@2.9.1/fonts/element-icons.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/element-ui@2.9.1/fonts/element-icons.woff" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/element-ui@2.9.1/fonts/element-icons.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/element-ui@2.9.1/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/element-ui@2.9.1/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/element-ui@2.9.1/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/element-ui@2.9.1/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/es6-promise.auto.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/es6-promise.auto.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/jquery/jquery-3.2.1.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/jquery/jquery-3.2.1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/jquery/jquery-3.2.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/jquery/jquery-3.2.1.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/jquery/jquery-3.2.1.min.map" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/jquery/jquery-3.2.1.min.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/jquery/jquery-x.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/jquery/jquery-x.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/lodash.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/lodash.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/mixin.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/mixin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/mock.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/mock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/swiper/swiper.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/swiper/swiper.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/swiper/swiper.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/swiper/swiper.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/velocity.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/velocity.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/vue-count-to/vue-count-to.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/vue-count-to/vue-count-to.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/vue-count-to/vue-count-to.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/vue-count-to/vue-count-to.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigdata01/utils/lib/vue.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData01/utils/lib/vue.min.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="develop" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -125,7 +48,8 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Screenshot" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ymf-test" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="TaskManager">
     <servers />

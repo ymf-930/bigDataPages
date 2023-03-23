@@ -1,0 +1,41 @@
+.data-box{
+    margin: auto;
+    min-width: 390px;
+    position: relative;
+}
+
+.data-box .num-box{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.data-box .num-box .num-item{
+    width: 42px;
+    height: 52px;
+    background-image: url("../../img/common/num-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    font-size: 28px;
+    color: #fff;
+    margin-right: 10px;
+}
+.data-box .num-box .num-item-no{
+    margin-right: 0;
+}
+.data-box .num-box .num{
+    position: absolute;
+    left: 54.1%;
+    transform: translate(-50%, 0);
+    top:10px;
+    font-size: 28px;
+    color: #fff;
+    letter-spacing: 37px;
+}
+.data-box .num-box .num .unit{
+    font-size: 12px;
+    color: #fff;
+    position: absolute;
+    right: -35px;
+    bottom: 0;
+}

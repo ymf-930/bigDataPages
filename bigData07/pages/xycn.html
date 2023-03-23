@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <link rel="icon" href="/favicon.ico"/>
+  <link rel="stylesheet" type="text/css" href="/assets/lib/bin-ui@3.8.0/styles/index.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/xycn/index.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/common/layout.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/common/titleCon.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/common/colorBlock.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/common/tableSwiper.css">
+
+  <script src="/assets/lib/vue.min.js"></script>
+  <script src="/assets/lib/axios.min.js"></script>
+  <script src="/assets/lib/swiper/swiper.min.js"></script>
+  <script src="/assets/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+  <script src="/assets/lib/echarts/echarts.min.js"></script>
+  <title>信用承诺</title>
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <layout page-name="xycn">
+    <div class="xycn-center" flex="main:justify">
+      <div class="left-container">
+        <title-con title="市场主体亮承诺" :style="{marginBottom: '20px'}">
+          <table-swiper
+                  :columns="lcnColumns"
+                  :table-data="lcnData"
+                  :height="275"
+                  :line-height="55"
+                  :head-font-size="16"
+                  show-colors="true"
+          />
+        </title-con>
+        <title-con title="法人信用承诺分类统计">
+          <div id="pieChart1"></div>
+          <div class="bottom-img"></div>
+        </title-con>
+      </div>
+      <div class="center-container">
+        <div class="center-top">
+          <div class="line-box" flex="main:justify">
+            <color-block
+                    width="48%"
+                    s-color="rgba(48, 148, 196, 0.6)"
+                    e-color="rgba(48, 148, 196, 0)"
+            >
+              <div class="block-box">
+                <div class="left">
+                  <img src="../assets/img/xycn/01.png"/>
+                </div>
+                <div class="right">
+                  <div class="num-box"
+                       flex="cross:baseline">
+                    <div class="number num1">{{centerData[0].number}}</div>
+                    <div class="unit">{{centerData[0].unit}}</div>
+                  </div>
+                  <div class="text">{{centerData[0].text}}</div>
+                </div>
+              </div>
+            </color-block>
+            <color-block
+                    width="48%"
+                    s-color="rgba(28, 172, 156, 0.6)"
+                    e-color="rgba(28, 172, 156, 0)"
+            >
+              <div class="block-box">
+                <div class="left">
+                  <img src="../assets/img/xycn/02.png"/>
+                </div>
+                <div class="right">
+                  <div class="num-box"
+                       flex="cross:baseline"
+                  >
+                    <div class="number num2">{{centerData[1].number}}</div>
+                    <div class="unit">{{centerData[1].unit}}</div>
+                  </div>
+                  <div class="text">{{centerData[1].text}}</div>
+                </div>
+              </div>
+            </color-block>
+          </div>
+          <div class="line-box" flex="main:justify">
+            <color-block
+                    width="48%"
+                    s-color="rgba(20, 156, 228, 0.6)"
+                    e-color="rgba(20, 156, 228, 0)"
+            >
+              <div class="block-box">
+                <div class="left">
+                  <img src="../assets/img/xycn/03.png"/>
+                </div>
+                <div class="right">
+                  <div class="num-box"
+                       flex="cross:baseline">
+                    <div class="number num3">{{centerData[2].number}}</div>
+                    <div class="unit">{{centerData[2].unit}}</div>
+                  </div>
+                  <div class="text">{{centerData[2].text}}</div>
+                </div>
+              </div>
+
+            </color-block>
+            <color-block
+                    width="48%"
+                    s-color="rgba(108, 76, 236, 0.6)"
+                    e-color="rgba(108, 76, 236, 0)"
+            >
+              <div class="block-box">
+                <div class="left">
+                  <img src="../assets/img/xycn/04.png"/>
+                </div>
+                <div class="right">
+                  <div class="num-box"
+                       flex="cross:baseline">
+                    <div class="number num4">{{centerData[3].number}}</div>
+                    <div class="unit">{{centerData[3].unit}}</div>
+                  </div>
+                  <div class="text">{{centerData[3].text}}</div>
+                </div>
+              </div>
+
+            </color-block>
+          </div>
+        </div>
+        <title-con title="月报送折线图" width="100%">
+          <div>
+            <div id="lineChart1"></div>
+          </div>
+        </title-con>
+      </div>
+      <div class="right-container">
+        <title-con title="市场主体重践诺" :style="{marginBottom: '20px'}">
+          <table-swiper
+                  :columns="zjnColumns"
+                  :table-data="zjnData"
+                  :head-font-size="16"
+                  :height="275"
+                  :line-height="55"
+                  show-colors="true"
+          />
+        </title-con>
+        <title-con title="法人履约践诺分类统计">
+          <div id="pieChart2"></div>
+          <div class="bottom-img"></div>
+        </title-con>
+      </div>
+    </div>
+  </layout>
+</div>
+
+<script src="/components/common/layout.js"></script>
+<script src="/components/common/titleCon.js"></script>
+<script src="/components/common/colorBlock.js"></script>
+<script src="/components/common/tableSwiper.js"></script>
+
+
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        // 市场主体亮承诺列表
+        lcnColumns: [
+          {
+            title: '企业名称',
+            key: 'name',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          }
+        ],
+        // 市场主体亮承诺表格数据
+        lcnData: [
+          {
+            name: '周口市风顺汽车服务有限公司'
+          },
+          {
+            name: '商丘市万宝汽车运输有限公司'
+          },
+          {
+            name: '禹州市宏进运输有限公司'
+          },
+          {
+            name: '众电建设工程有限公司'
+          },
+          {
+            name: '河南省大河基础建设工程有限公司'
+          }
+        ],
+        // 市场主体重践诺列表
+        zjnColumns: [
+          {
+            title: '企业名称',
+            key: 'name',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          }
+        ],
+        // 市场主体重践诺表格数据
+        zjnData: [
+          {
+            name: '周口市风顺汽车服务有限公司'
+          },
+          {
+            name: '商丘市万宝汽车运输有限公司'
+          },
+          {
+            name: '禹州市宏进运输有限公司'
+          },
+          {
+            name: '众电建设工程有限公司'
+          },
+          {
+            name: '河南省大河基础建设工程有限公司'
+          }
+        ],
+        // 中间数据
+        centerData: [
+          {
+            number: 2041698,
+            text: '法人信用承诺',
+            unit: '条'
+          },
+          {
+            number: 988851,
+            text: '自然人信用承诺',
+            unit: '条'
+          },
+          {
+            number: 153565,
+            text: '法人承诺履约',
+            unit: '条'
+          },
+          {
+            number: 46435,
+            text: '自然人承诺履约',
+            unit: '条'
+          }
+        ]
+      }
+    },
+    created() {
+      console.log('in vue')
+    },
+    methods: {}
+  })
+</script>
+
+<script src="/components/xycn/pieCahrts.js"></script>
+</body>
+
+</html>

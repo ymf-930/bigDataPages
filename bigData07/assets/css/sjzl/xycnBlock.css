@@ -1,0 +1,18 @@
+.xycn-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 312px;
+}
+
+.xycn-block-chart {
+  margin-bottom: 25px;
+  width: 420px;
+  height: 260px
+}
+
+.xycn-block-bottom {
+  height: 24px;
+  width: 409px;
+}

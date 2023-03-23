@@ -1,0 +1,34 @@
+.count-data-evo {
+  position: relative;
+  display: flex;
+}
+
+.count-data-evo-num {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 52px;
+  background-image: url("../../img/common/num-bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.count-data-evo-num + .count-data-evo-num {
+  margin-left: 10px;
+}
+
+.count-data-evo-zero {
+  font-size: 28px;
+  color: #fff;
+}
+
+.count-data-evo-comp {
+  position: absolute;
+  top: 8px;
+  right: -23px;
+  font-size: 28px;
+  color: #fff;
+  text-align: right;
+  letter-spacing: 36px;
+}

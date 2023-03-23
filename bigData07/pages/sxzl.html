@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/assets/lib/bin-ui@3.8.0/styles/index.css">
+
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/common/layout.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/common/titleCon.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/common/tableSwiper.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/common/countDataEvo.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/sxzl/index.css">
+  <script src="/assets/lib/vue.min.js"></script>
+  <script src="/assets/lib/axios.min.js"></script>
+  <script src="/assets/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script src="/assets/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+  <script src="/assets/lib/swiper/swiper.min.js"></script>
+  <script src="/assets/lib/vue-count-to/vue-count-to.min.js"></script>
+
+
+  <title>失信治理</title>
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <layout page-name="sxzl">
+      <div flex="main:justify">
+        <div class="left-box">
+          <title-con title="市场主体亮承诺" style="margin-bottom: 20px;">
+            <table-swiper :columns="lcnColumns" :table-data="lcnData" :show-colors="true" :line-height="45"></table-swiper>
+          </title-con>
+          <title-con title="法人信用承诺分类统计" :padding="'20px 5px'">
+            <div class="fltj-box" flex="wrap:wrap">
+              <div class="item-box" flex="main:justify cross:center" v-for="(item,index) in xyclList" :key="index">
+                <div class="name">{{item.title}}</div>
+                <count-to class='num' :start-val='0' separator :end-val='item.num' :duration='2000'></count-to>
+              </div>
+            </div>
+            <img class="bottom-img" src="../assets/img/sxzl/con-bottom.png" width="409" height="24" alt="" style="margin-top: 10px;">
+          </title-con>
+        </div>
+        <div class="center-box">
+          <div class="info-box" flex="main:center">
+            <div class="count-item" style="margin-right: 40px;">
+              <img src="../assets/img/sxzl/sxzl.png" width="151" height="21" alt="">
+              <count-data-evo :num="823363" :length="7"></count-data-evo>
+              <span class="unit">条</span>
+            </div>
+            <div class="count-item">
+              <img src="../assets/img/sxzl/sxxs.png" width="151" height="21" alt="">
+              <count-data-evo :num="423390" :length="7"></count-data-evo>
+              <span class="unit">条</span>
+            </div>
+          </div>
+          <div class="chart-box">
+            <div style="width: 80%;height: 634px;margin: auto;" id="mapChart"></div>
+            <!-- <img src="../assets/img/sxzl/chart-img.png" width="642" height="634" alt="" style="margin-bottom: 74px;"> -->
+          </div>
+        </div>
+        <div class="right-box">
+          <title-con title="市场主体重践诺" style="padding-bottom: 25px;">
+            <div class="rank-box" flex="cross:center main:justify" v-for="(item,index) in xyclList" :key="index">
+              <div class="rank-left" flex="cross:center">
+                <div class="rank-num">{{index+1}}</div>
+                <div class="rank-title">{{item.title}}</div>
+              </div>
+              <count-to class='num' :start-val='0' separator :end-val='item.num' :duration='2000'></count-to>
+            </div>
+            <img class="bottom-img" src="../assets/img/sxzl/con-bottom.png" width="409" height="24" alt="">
+          </title-con>
+        </div>
+      </div>
+    </layout>
+  </div>
+
+  <script src="/components/common/layout.js"></script>
+  <script src="/components/common/titleCon.js"></script>
+  <script src="/components/common/colorBlock.js"></script>
+  <script src="/components/common/tableSwiper.js"></script>
+  <script src="/components/common/countDataEvo.js"></script>
+
+
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          lcnColumns: [
+            {
+              title: '企业名称',
+              key: 'name',
+              align: 'left',
+              tooltip: true
+            }
+          ],
+          lcnData: [
+            {
+              name: '周口市通港汽车运输有限公司',
+            },
+            {
+              name: '河南春天物流运输有限公司',
+            },
+            {
+              name: '河南中汇实业集团有限公司',
+            },
+            {
+              name: '河南汉王珠宝有限公司',
+            },
+            {
+              name: '周口博雅地产有限公司',
+            }
+          ],
+          xyclList: [
+            {
+              title: '电信网络诈骗专项治理行动',
+              num: 3787
+            },
+            {
+              title: '互联网信息服务领域专项治理',
+              num: 32435
+            },
+            {
+              title: '全国防疫物资产品质量和市场秩序专项治理',
+              num: 6767856
+            },
+            {
+              title: '扶贫脱贫失信问题专项治理',
+              num: 1323
+            },
+            {
+              title: '国家考试作弊专项治理',
+              num: 8577
+            },
+            {
+              title: '交通领域失信问题专项治理',
+              num: 37667
+            },
+            {
+              title: '骗取社会保险专项治理',
+              num: 1234
+            },
+            {
+              title: '法院判决不执行问题专项治理',
+              num: 78899
+            },
+            {
+              title: '金融领域失信问题专项治理',
+              num: 37547
+            },
+            {
+              title: '生态环境保护失信问题专项治理',
+              num: 99493
+            }
+          ],
+          zjnList: [
+            {
+              title: '电信网络诈骗专项治理行动',
+              num: 99493
+            },
+            {
+              title: '互联网信息服务领域专项治理',
+              num: 99493
+            },
+            {
+              title: '全国防疫物资产品质量和市场秩序专项治理',
+              num: 99493
+            },
+            {
+              title: '扶贫脱贫失信问题专项治理',
+              num: 99493
+            },
+            {
+              title: '国家考试作弊专项治理',
+              num: 99493
+            },
+            {
+              title: '交通领域失信问题专项治理',
+              num: 99493
+            },
+            {
+              title: '骗取社会保险专项治理',
+              num: 99493
+            },
+            {
+              title: '法院判决不执行问题专项治理',
+              num: 99493
+            },
+            {
+              title: '金融领域失信问题专项治理',
+              num: 99493
+            },
+            {
+              title: '生态环境保护失信问题专项治理',
+              num: 99493
+            },
+          ]
+
+        }
+      },
+      created() {
+        console.log('in vue')
+      },
+      methods: {
+
+      }
+    })
+  </script>
+  </script>
+  <!--echarts-->
+  <script src="https://cdn.bootcss.com/echarts/5.3.2/echarts.min.js"></script>
+
+  <!-- 图表 -->
+  <script src="../components/sxzl/chart.js"></script>
+
+</body>
+
+</html>

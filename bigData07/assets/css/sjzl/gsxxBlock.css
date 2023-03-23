@@ -1,0 +1,19 @@
+.gsxx-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 454px;
+
+}
+
+.gsxx-block-chart {
+  /* margin-bottom: 25px; */
+  width: 420px;
+  height: 400px
+}
+
+.gsxx-block-bottom {
+  height: 24px;
+  width: 409px;
+}

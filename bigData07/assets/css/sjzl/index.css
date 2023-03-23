@@ -1,0 +1,23 @@
+@import './sjzlBlock.css';
+@import './xycnBlock.css';
+@import './gsxxBlock.css';
+@import './tdxyxxBlock.css';
+@import './imgBlock.css';
+
+.sjzl-page {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.left {
+
+}
+
+.center {
+  margin: 0 14px;
+}
+
+.right {
+
+}
