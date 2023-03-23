@@ -1,0 +1,33 @@
+.page-container {
+  height: 100%;
+}
+.page-container .page-title {
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  background-image: url("../images/title_bg_page.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.page-container .page-title .text-gradient {
+  height: 100px;
+  line-height: 90px;
+  font-size: 30px;
+  color: #30c1ff;
+  letter-spacing: 18px;
+}
+.page-container .page-title .user-bar {
+  font-size: 14px;
+  position: absolute;
+  width: 245px;
+  top: 41px;
+  right: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+.page-container .page-title .user-bar .login-time {
+  color: #2ba828;
+}

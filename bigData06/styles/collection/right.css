@@ -1,0 +1,27 @@
+.right-box{
+    width: 100%;
+    height: 100%;
+    padding: 15px 30px;
+}
+.right-box .data-btn{
+    width: 138px;
+    height: 40px;
+    background-color: rgba(60, 144, 247, 0.8);
+    color: #fff;
+    font-size: 14px;
+    border-radius: 20px;
+    margin: auto;
+    text-align: center;
+    line-height: 40px;
+}
+.right-box .line-box{
+    width: 115%;
+    height: auto;
+    background-image: url("../../images/model-bottom.png");
+    background-size: 95% 8%;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+    margin-left: -30px;
+}

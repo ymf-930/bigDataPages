@@ -1,0 +1,39 @@
+.info-card-box{
+    width: 199px;
+    height: 100px;
+    background-image: url("../images/data-list-bg.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    font-size: 17px;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.info-card-box:hover{
+    background-image: url("../images/data-list-bg-active.png");
+    transition: width 0.4s;
+    font-weight: bold;
+}
+.info-card-box .active{
+    color: #03afed;
+    font-weight: bold;
+    /*background-image: url("../images/data-list-bg-active.png");*/
+    /*transition: width 0.4s;*/
+}
+.value-box{
+    color: #fff;
+}
+.value-box .value{
+
+}
+.value-box .unit{
+
+}
+.value-box:hover{
+    font-weight: bold;
+}

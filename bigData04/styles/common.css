@@ -1,0 +1,201 @@
+#app {
+  position: relative;
+}
+.page-container {
+  background: url("../images/ankang/beijing.png") center no-repeat;
+  background-size: 100% 100%;
+}
+.page-container .page-title {
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  background-image: url("../images/ankang/toubu1.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 118px;
+  position: relative;
+}
+.page-container .page-title .text-gradient {
+  position: absolute;
+  width: 640px;
+  height: 48px;
+  left: 640px;
+  top: 38px;
+  letter-spacing: 10px;
+  color: #30c1ff;
+  font-size: 30px;
+  line-height: 150%;
+  text-align: center;
+  font-weight: bold;
+}
+.page-container .page-title .header-line {
+  position: absolute;
+  left: 670px;
+  text-align: center;
+  top: 105px;
+  width: 580px;
+  height: 3px;
+  background: url("../images/ankang/toubu01.png") center no-repeat;
+  background-size: 100%;
+}
+.page-container .page-title .left-bg {
+  position: absolute;
+  left: 200px;
+  text-align: center;
+  top: 68px;
+  width: 329px;
+  height: 19px;
+  background: url("../images/ankang/left.png") center no-repeat;
+  background-size: 100%;
+}
+.page-container .page-title .right-bg {
+  position: absolute;
+  right: 200px;
+  text-align: center;
+  top: 68px;
+  width: 329px;
+  height: 19px;
+  background: url("../images/ankang/right.png") center no-repeat;
+  background-size: 100%;
+}
+.page-container .page-title .user-bar {
+  position: absolute;
+  width: 245px;
+  height: 20px;
+  left: 1595px;
+  top: 15px;
+  color: #43cf7c;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: center;
+}
+.page-container .page-title .title-container {
+  position: absolute;
+  width: 128px;
+  top: 68px;
+  margin-left: 10px;
+}
+.page-container .page-title .title-container .title-content {
+  color: #fff;
+  font-size: 12px;
+  width: 100%;
+  height: 100%;
+  background: none;
+  color: #fff;
+  padding: 5px 0;
+}
+.page-container .main {
+  position: relative;
+  height: calc(1080px - 118px);
+}
+.page-container .main .left-side .panel:last-child,
+.page-container .main .right-side .panel:last-child {
+  margin-bottom: 0;
+}
+.page-container .main .left-side {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 505px;
+  padding: 0 20px;
+}
+.page-container .main .right-side {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 505px;
+  padding: 0 20px;
+}
+.page-container .main .right-side .btn-box {
+  position: absolute;
+  z-index: 6;
+  right: 20px;
+  top: 45px;
+  width: 200px;
+}
+.page-container .main .right-side .btn-box .bin-dropdown-menu {
+  text-align: center;
+  background-color: #fff;
+}
+.page-container .main .right-side .btn-box .dropBtn {
+  width: 85px;
+  background: unset;
+  color: #fff;
+  border-radius: 20px;
+  border-color: #168cd2;
+  height: 32px;
+  line-height: 30px;
+  padding: 0 10px;
+}
+.page-container .main .right-side .btn-box .dropBtn span {
+  color: #168cd2;
+}
+.page-container .main .card-container {
+  height: 100%;
+  position: relative;
+}
+.page-container .main .card-container .panel {
+  box-shadow: 0px 0px 5px #3a3baf inset;
+  padding: 15px;
+  position: relative;
+  background: url("../images/ankang/juxing01.png") no-repeat;
+  background-size: 100%;
+}
+.page-container .main .card-container .panel::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-left: 2px solid #0ff;
+  border-top: 2px solid #0ff;
+  content: '';
+}
+.page-container .main .card-container .panel::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #0ff;
+  border-top: 2px solid #0ff;
+  content: '';
+}
+.page-container .main .card-container .panel .panel-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.page-container .main .card-container .panel .panel-footer::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-left: 2px solid #0ff;
+  border-bottom: 2px solid #0ff;
+  content: '';
+}
+.page-container .main .card-container .panel .panel-footer::after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #0ff;
+  border-bottom: 2px solid #0ff;
+  content: '';
+}
+.page-container .main .card-container .panel .title-container {
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+}
+.page-container .main .card-container .panel .title-container .title-content {
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 2px;
+  padding-bottom: 10px;
+}

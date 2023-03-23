@@ -1,0 +1,70 @@
+.page-container .page-title {
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  background-image: url("../images/title_bg_page.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 90px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.page-container .page-title .text-gradient {
+  display: inline-block;
+  font-size: 27px;
+  line-height: 120px;
+  color: #fff;
+}
+.page-container .page-title .user-bar {
+  font-size: 12px;
+  position: absolute;
+  width: 300px;
+  top: 25px;
+  right: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.page-container .page-title .user-bar .user-info {
+  flex: 1;
+  color: #168cd2;
+}
+.page-container .page-title .user-bar .user-info span {
+  color: #d9d826;
+}
+.page-container .page-title .user-bar .login-time {
+  color: #2ba828;
+}
+.page-container .page-title .title-container {
+  position: absolute;
+  width: 128px;
+  top: 68px;
+  margin-left: 10px;
+}
+.page-container .page-title .title-container .title-content {
+  color: #fff;
+  font-weight: 500;
+  font-size: 12px;
+  width: 100%;
+  height: 100%;
+  background: none;
+  color: #fff;
+  padding: 5px 0;
+}
+.page-container .page-title .title-container .title-content .icon-idcard {
+  width: 20px;
+  height: 20px;
+  color: #fff;
+}
+.page-container .page-title .title-container .title-content .b-dropdown .bin-select-dropdown {
+  background-color: #fff;
+  z-index: 2;
+}
+.page-container .page-title .title-container .title-content .b-dropdown button {
+  border: 1px solid #3b5ace;
+  background-color: transparent;
+}
+.page-container .page-title .title-container .title-content .b-dropdown button i {
+  width: 16px;
+  height: 16px;
+  color: #fff;
+}

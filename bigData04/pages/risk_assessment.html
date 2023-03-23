@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>企业信用评价分析系统</title>
+  <link rel="stylesheet" href="../styles/reset.css">
+  <!--bin-ui-->
+  <link rel="stylesheet" href="../js/lib/bin-ui/styles/index.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/common.css">
+  <link rel="stylesheet" href="../styles/assessment.css">
+  <!--js-->
+  <script src="../js/vue.min.js"></script>
+  <script src="../js/lib/bin-ui/bin-ui.min.js"></script>
+  <script src="../js/lib/three.min.js"></script>
+  <script src="../js/lib/swiper/swiper.min.js"></script>
+  <!-- 引入 ECharts 文件 -->
+  <script src="../js/lib/echarts/echarts.min.js"></script>
+  <script src="../js/ankang.js"></script>
+</head>
+
+<body>
+<div id="app" v-cloak>
+
+  <div class="page-container" flex="dir:column">
+    <!-- 页面头部-->
+
+    <div class="page-title">
+      <span class="text-gradient">企业信用评价分析系统</span>
+      <div class="header-line"></div>
+      <div class="left-bg"></div>
+      <div class="right-bg"></div>
+      <div class="user-bar">
+        <span class="showTime">{{dataNow}}</span>
+      </div>
+    </div>
+
+    <!-- 页面主体-->
+    <div class="page-content">
+      <div class="main">
+        <!-- 页面左侧-->
+        <div class="left-side">
+          <div class="card-container" flex="dir:column space:between">
+            <div flex-box="1" flex="dir:column" class="panel panel-box1">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>企业信用风险评价分析</i>
+                  <img src="../images/ankang/tu3.png" alt="">
+                </div>
+              </div>
+              <div class="head">
+                <span v-for="(item,index) in columns">{{item.title}}</span>
+              </div>
+              <div class="table-container">
+                <ul class="swiper-wrapper" flex="dir:column space:around">
+                  <li class="swiper-slide" v-for="(item,index) in comData" >
+                    <img :src=item.cImage>
+                    <span>{{ item.legal }}</span>
+                    <span>{{ item.rCapital }}</span>
+                   <span><progress :value=item.bAddress max="100" class="progress-list"></progress></span>
+                  </li>
+                </ul>
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+            <div flex-box="1" flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>各类信息归集量</i>
+                  <img src="../images/ankang/tu3.png" alt="">
+                </div>
+              </div>
+              <div id="pieChart1"></div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+        </div>
+        <!-- 中间部分-->
+        <div class="info-bar">
+          <div class="card-container" flex="dir:column space:between">
+            <!-- 数据归集/总量区域-->
+            <div class="num-bar">
+              <div class="num-title">
+                <img src="../images/ankang/tuxing5.png">
+                <span>市场主体总数</span>
+              </div>
+              <div class="num-box">
+                <div class="num-list" flex="space:around">
+                  <span v-for="(item, index) in numList" :class="'num-bg-'+item"></span>
+                  <div class="unit">条</div>
+                </div>
+              </div>
+            </div>
+            <!-- 地图区域-->
+            <div class="cir-container" flex-box="5">
+              <div id="mapBox" class="centerItem"></div>
+            </div>
+            <!-- 市场主体行业分布统计-->
+            <div flex-box="3" class="center-bottom">
+              <div class="panel footer-box">
+                <div class="card-container" flex="dir:column space:between">
+                  <div class="header">
+                    <span>市场主体行业分布统计</span>
+                  </div>
+                  <div id="barChart1"></div>
+                </div>
+                <div class="panel-footer"></div>
+              </div>
+            </div>
+            <!-- 按钮切换区域-->
+            <div class="tab-boxes">
+              <div class="tab-box" v-for="(item,index) in tabItem" :class="{active:currentIndex === index}"
+                   @click="tabChange(index)" :key="index"><a :href="item.link"><span>{{item.name}}</span></a></div>
+            </div>
+            <div class="footer-bg">
+              <img src="../images/ankang/dibu.png" alt="">
+            </div>
+          </div>
+        </div>
+        <!-- 页面右侧-->
+        <div class="right-side">
+          <div class="card-container" flex="dir:column space:between">
+            <div flex-box="1" flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>企业信用风险评级结果公布</i>
+                  <img src="../images/ankang/tu3.png" alt="">
+                </div>
+              </div>
+              <div id="lineChart1"></div>
+              <div class="panel-footer"></div>
+            </div>
+            <div flex-box="1" flex="dir:column" class="panel panel-box2">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>红名单行业分布</i>
+                  <img src="../images/ankang/tu3.png" alt="">
+                </div>
+              </div>
+              <div id="pieChart2"></div>
+              <div class="panel-footer"></div>
+            </div>
+            <div flex-box="1" flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>黑名单行业分布</i>
+                  <img src="../images/ankang/tu3.png" alt="">
+                </div>
+              </div>
+              <div id="pieChart3"></div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        dataNow: '2021年07月15日 星期四  13:49:32',
+        // 数字
+        // numList: [1, 5, 3, 4, 7],
+        numList:[],
+        numl:81653,
+
+        columns: [
+          {
+            title: '信用等级',
+            key: 'cImage',
+            align: 'center',
+            width: 220
+          },
+          {
+            title: '信用描述',
+            key: 'legal',
+            align: 'center'
+          },
+          {
+            title: '企业数量（个）',
+            key: 'rCapital',
+            align: 'center',
+            width: 140
+          },
+          {
+            title: '企业占比',
+            key: 'bAddress',
+            align: 'center',
+            tooltip: true,
+            width: 260
+          }
+        ],
+        // 表格公司信息数据
+        comData: [
+          {
+            cImage: '../images/ankang/tubiao05.png',
+            legal: '信用良好',
+            rCapital: 6000,
+            bAddress: 80
+          },
+          {
+            cImage: '../images/ankang/tubiao03.png',
+            legal: '守信',
+            rCapital: 2000,
+            bAddress: 70
+          },
+          {
+            cImage: '../images/ankang/tubiao01.png',
+            legal: '信用一般',
+            rCapital: 1000,
+            bAddress: 50
+          },
+          {
+            cImage: '../images/ankang/tubiao02.png',
+            legal: '失信',
+            rCapital: 20,
+            bAddress: 30
+          },
+          {
+            cImage: '../images/ankang/tubiao04.png',
+            legal: '严重失信',
+            rCapital: 1,
+            bAddress: 20
+          }
+        ],
+        currentIndex:0,
+        tabItem: [
+          {id: '1', name: '评价分析'  ,link:'risk_assessment.html' },
+          {id: '2', name: '风险预警分析',link:'risk _early_warning.html'},
+          {id: '3', name: '示范街区分析',link:'good_faith.html'},
+        ],
+        // 下拉菜单年份数据
+        yearData: [
+          {id: 1, value: '2021'},
+          {id: 2, value: '2020'},
+          {id: 3, value: '2019'},
+          {id: 3, value: '2018'},
+          {id: 3, value: '2017'},
+          {id: 4, value: '2016'}
+        ]
+      }
+    },
+    created: function () {
+    },
+    mounted: function () {
+      this.numChange(this.numList)
+      this.getDateNow()
+    },
+    methods: {
+      getDateNow() {
+        var t = null;
+        t = setTimeout(time, 1000); //開始运行
+        function time() {
+          clearTimeout(t); //清除定时器
+          dt = new Date();
+          var y = dt.getFullYear();
+          var mt = dt.getMonth() + 1;
+          var day = dt.getDate();
+          var h = dt.getHours(); //获取时
+          var m = dt.getMinutes(); //获取分
+          var s = dt.getSeconds(); //获取秒
+          document.querySelector(".showTime").innerHTML =
+              y +
+              "年" +
+              mt +
+              "月" +
+              day +
+              "日" +
+              " " +
+              h +
+              ":" +
+              m +
+              ":" +
+              s;
+          t = setTimeout(time, 1000); //设定定时器，循环运行
+        }
+      },
+      tabChange(index){
+        this.currentIndex = index
+      },
+      //选择部门事件
+      changeDept(item) {
+        this.$message("id:" + item.id + " 名称:" + item.name)
+      },
+      // 数字条动态方法
+      numChange(num) {
+        let newNum = this.numl.toString().split('').map(Number)
+        let copy = JSON.parse(JSON.stringify(newNum))
+        let change = setInterval(() => {
+          let arr = []
+          newNum.forEach(() => {
+            arr.push(parseInt(Math.random() * 10))
+          })
+          num.splice(0, 8)
+          num.push(...arr)
+        }, 100)
+        setTimeout(() => {
+          window.clearInterval(change)
+          num.splice(0, 8)
+          num.push(...copy)
+        }, 1000)
+      },
+
+    }
+  })
+
+</script>
+<script>
+  // 基于准备好的dom，初始化echarts实例
+  var mapBoxEchart = echarts.init(document.getElementById('mapBox'));
+  var geoCoordMap = { //可以在地图上显示的城市的坐标信息
+    '安康市政府': [109.035784,32.691166],
+    '汉滨区': [109.029098, 32.690817],
+    '汉阴县': [108.510946, 32.891121],
+    '石泉县': [108.250512, 33.038512],
+    '宁陕县': [108.313714, 33.312184],
+    '紫阳县': [108.438364, 32.44357],
+    '岚皋县': [108.900663, 32.31069],
+    '平利县': [109.361865, 32.387933],
+    '镇坪县': [109.526437, 31.883395],
+    '旬阳市': [109.368149, 32.833567],
+    '白河县': [110.114186, 32.809484],
+  };
+  var AKData = [ // 数据中name的城市名称必须与geoCoordMap中城市名称一致, 不然关联不上
+    [{name: '安康市政府'}, {name: '宁陕县',value: 66}],
+    [{name: '安康市政府'}, {name: '白河县',value: 66}],
+    [{name: '安康市政府'}, {name: '镇坪县',value: 66}],
+    [{name: '安康市政府'}, {name: '安康市政府',value: 118}],
+  ];
+  var planePath = 'arrow'; // 箭头的svg
+  // push进去线路开始-结束地点-经纬度
+  var convertData = function(data) {
+    var res = [];
+    for (var i = 0; i < data.length; i++) {
+      var dataItem = data[i];
+      var fromCoord = geoCoordMap[dataItem[0].name];
+      var toCoord = geoCoordMap[dataItem[1].name];
+      if (fromCoord && toCoord) {
+        res.push([{
+          coord: fromCoord
+        }, {
+          coord: toCoord
+        }]);
+      }
+    }
+    return res;
+  };
+  var color = ['#fff', '#FFFFA8', '#46bee9']; //圆圈和字的颜色，线的颜色，箭头颜色
+  // 数据
+  var series = [];
+  // 遍历由安康市政府到其他城市的线路
+  [
+    ['安康市', AKData]
+  ].forEach(function(item, i) {
+    // 配置
+    series.push({
+      // 系列名称，用于tooltip的显示
+      name: item[0],
+      type: 'lines',
+      zlevel: 1, // 用于 Canvas 分层，不同zlevel值的图形会放置在不同的 Canvas 中
+      // effect出发到目的地 的白色尾巴线条
+      // 线特效的配置
+      effect: {
+        show: true,
+        period: 6, // 特效动画的时间，单位为 s
+        trailLength: 0.1, // 特效尾迹的长度。取从 0 到 1 的值，数值越大尾迹越长
+        color: '#46bee9', // 移动箭头颜色
+        symbol: planePath,
+        symbolSize: 6 // 特效标记的大小
+      },
+      // lineStyle出发到目的地 的线条颜色
+      lineStyle: {
+        normal: {
+          color: color[i],
+          width: 0,
+          curveness: 0.2 //幅度
+        }
+      },
+      data: convertData(item[1]) //开始到结束数据
+    }, {
+      //出发地信息
+      name: item[0],
+      type: 'lines',
+      zlevel: 2,
+      effect: {
+        show: true,
+        period: 6,
+        trailLength: 0,
+        symbol: planePath,
+        symbolSize: 6
+      },
+      lineStyle: {
+        normal: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+            offset: 0,
+            color: '#FFFFA8' // 出发
+          }, {
+            offset: 1,
+            color: '#58B3CC ' // 结束 颜色
+          }], false),
+          width: 1.5,
+          opacity: 0.4,
+          curveness: 0.2
+        }
+      },
+
+      data: convertData(item[1]),
+    }, {
+      // 目的地信息
+      name: item[0],
+      type: 'effectScatter',
+      coordinateSystem: 'geo',
+      zlevel: 2,
+      rippleEffect: {
+        brushType: 'stroke'
+      },
+      label: {
+        normal: {
+          show: true,
+          position: 'right',
+          color:'#fff',
+          formatter: '{b}'
+        }
+      },
+      symbolSize: function(val) {
+        return val[2] / 8;
+      },
+      itemStyle: {
+        normal: {
+          color: color[i]
+        }
+      },
+      data: item[1].map(function(dataItem) {
+        return {
+          name: dataItem[1].name,
+          value: geoCoordMap[dataItem[1].name].concat([dataItem[1].value])
+        };
+      })
+    });
+  });
+
+  // 指定相关的配置项和数据
+  var mapBoxOption = {
+    geo: {
+      map: 'ankang',
+      roam: false, // 是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
+      aspectScale: 0.75,
+      zoom: 1.20,
+      label: {
+        normal: {
+          show: false,
+          textStyle: {
+            color: '#00a0c9'
+          }
+        },
+        emphasis: { // 对应的鼠标悬浮效果
+          show: false,
+          textStyle: {
+            color: "#00a0c9"
+          }
+        }
+      },
+      itemStyle: {
+        normal: {
+          areaColor: '#0696C8',
+          borderColor: '#0696C8'
+        },
+        emphasis: {
+          borderWidth: 0,
+          borderColor: '#0066ba',
+          areaColor: "#0494e1",
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      },
+      regions: [      //对不同的区块进行着色
+        {
+          name: '石泉县',
+          itemStyle: {
+            normal: {
+              areaColor: '#035DB4'
+            }
+          }
+        },
+        {
+          name: '宁陕县',
+          itemStyle: {
+            normal: {
+              areaColor: '#035DB4'
+            }
+          }
+        },
+        {
+          name: '紫阳县',
+          itemStyle: {
+            normal: {
+              areaColor: '#043B79'
+            }
+          }
+        },
+        {
+          name: '岚皋县',
+          itemStyle: {
+            normal: {
+              areaColor: '#043B79'
+            }
+          }
+        },
+        {
+          name: '平利县',
+          itemStyle: {
+            normal: {
+              areaColor: '#075BAA'
+            }
+          }
+        },
+        {
+          name: '镇坪县',
+          itemStyle: {
+            normal: {
+              areaColor: '#075BAA'
+            }
+          }
+        },
+        {
+          name: '旬阳市',
+          itemStyle: {
+            normal: {
+              areaColor: '#043B79'
+            }
+          }
+        },
+        {
+          name: '白河县',
+          itemStyle: {
+            normal: {
+              areaColor: '#043B79'
+            }
+          }
+        },
+        {
+          name: '汉滨区',
+          itemStyle: {
+            normal: {
+              areaColor: '#043B79'
+            }
+          }
+        },
+        {
+          name: '汉阴县',
+          itemStyle: {
+            normal: {
+              areaColor: '#035DB4'
+            }
+          }
+        },
+        {
+          name: '安康市政府',
+          itemStyle: {
+            normal: {
+              areaColor: '#043B79'
+            }
+          }
+        }]
+    },
+    series: series
+  };
+  // 使用制定的配置项和数据显示图表
+  mapBoxEchart.setOption(mapBoxOption);
+
+</script>
+<!--echarts-->
+<script src="../js/lib/echarts/echarts.min.js"></script>
+<!--echarts相关配置数据-->
+<script src="../js/chart-data-source1.js"></script>
+
+</body>
+
+</html>

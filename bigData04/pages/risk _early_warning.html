@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>企业信用风险预警及闭环管理系统</title>
+  <link href="../styles/reset.css" rel="stylesheet">
+  <!--bin-ui-->
+  <link href="../js/lib/bin-ui/styles/index.css" rel="stylesheet">
+  <link href="../styles/base.css" rel="stylesheet">
+  <link href="../styles/common.css" rel="stylesheet">
+  <link href="../styles/earlyWarning.css" rel="stylesheet">
+  <!--js-->
+  <script src="../js/vue.min.js"></script>
+  <script src="../js/lib/bin-ui/bin-ui.min.js"></script>
+  <script src="../js/lib/three.min.js"></script>
+  <script src="../js/lib/swiper/swiper.min.js"></script>
+  <!--echarts-->
+  <script src="../js/lib/echarts/echarts.min.js"></script>
+  <!--liquidfill-->
+  <script src="../js/lib/echarts/echarts-liquidfill.min.js"></script>
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <div class="page-container" flex="dir:column">
+    <!-- 页面头部-->
+    <div class="page-title">
+      <span class="text-gradient">企业信用风险预警及闭环管理系统</span>
+      <div class="header-line"></div>
+      <div class="left-bg"></div>
+      <div class="right-bg"></div>
+      <div class="user-bar">
+        <span class="showTime">{{dataNow}}</span>
+      </div>
+    </div>
+
+    <!-- 页面主体-->
+    <div class="page-content">
+      <div class="main">
+        <!-- 页面左侧-->
+        <div class="left-side">
+          <div class="card-container" flex="dir:column space:between">
+            <div class="panel" flex="dir:column" flex-box="1">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>采集数据分类统计</i>
+                  <img alt="" src="../images/ankang/tu3.png">
+                </div>
+              </div>
+              <!--              <div id="barChart1"></div>-->
+              <div class="side-inner" flex="dir:column space:between" flex-box="1">
+                <div class="chart-container" flex="dir:column space:between" flex-box="1">
+                  <div class="progress" v-for="(item, index) in dataClassificationList">
+                    <div class="progress-title" flex="space:between">
+                      <i>{{item.label}}</i>
+                      <i>{{item.value}}</i>
+                    </div>
+                    <b-progress :color="item.color"
+                                :percent="item.value * 100/(listSum(dataClassificationList))"
+                                :show-text="false"></b-progress>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+            <div class="panel panel-box2" flex="dir:column" flex-box="1">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>高风险企业预警</i>
+                  <img alt="" src="../images/ankang/tu3.png">
+                </div>
+              </div>
+              <div class="head">
+                <span v-for="(item,index) in columns1">{{item.title}}</span>
+              </div>
+              <div class="swiper-container item_swiper" id="item-container">
+                <ul class="swiper-wrapper">
+                  <li class="swiper-slide" v-for="(item,index) in comData1">
+                    <span>{{ item.cName }}</span>
+                    <span>{{ item.legal }}</span>
+                    <span>{{ item.rCapital }}</span>
+                    <span>{{ item.score }}</span>
+                    <span>{{ item.level }}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+        </div>
+        <!-- 中间部分-->
+        <div class="info-bar">
+          <div class="card-container" flex="dir:column space:between">
+            <!-- 数据归集/总量区域-->
+            <div class="num-boxes">
+              <div class="num-bar">
+                <div class="num-title">
+                  <span>归集企业信息</span>
+                </div>
+                <div class="num-box">
+                  <div class="num-list" flex="space:center">
+                    <span :class="'num-bg-'+item" v-for="(item, index) in comList"></span>
+                    <div class="unit">条</div>
+                  </div>
+                </div>
+              </div>
+              <div class="num-bar">
+                <div class="num-title">
+                  <span>归集信息数量</span>
+                </div>
+                <div class="num-box">
+                  <div class="num-list" flex="space:around">
+                    <span :class="'num-bg-'+item" v-for="(item, index) in infoList"></span>
+                    <div class="unit">条</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 顶部tab切换区域-->
+            <div class="tab-top">
+              <div :class="{active:currentTopIndex === index}" :key="index"
+                   @click="tabTopChange(index)"
+                   class="tab-top-item" v-for="(item,index) in tabTopItem"><span>{{item.name}}</span></div>
+            </div>
+            <!-- 专项预警地图区域-->
+            <div class="earth-wrapper" flex-box="1" v-show="zliquidFillShow">
+              <img alt="" src="../images/ankang/tuxing2.png">
+              <div class="cir-1"></div>
+              <div class="cir-2"></div>
+              <div class="cir-3"></div>
+              <div class="cir-4"></div>
+              <div class="cir-5"></div>
+              <div class="cir-6"></div>
+              <div class="cir-7"></div>
+              <div class="cir-8"></div>
+              <div class="cir-9 rotate">
+                <!--  专项预警水球-->
+                <div class="rotate-inner">
+                  <div :key="index" class="rotate-inner-item"
+                       v-for="(item, index) in chartRotateList1">
+                    <div class="cir-bg">
+                      <div :id="item.chartId"></div>
+                      <div class="inner-item-text">
+                        <p class="text-title">{{item.title}}</p>
+                        <p class="text-count"><i>{{item.count}}</i><i class="unit-font">(家)</i>
+                        </p>
+                        <p class="text-percent">
+                          <i style="white-space: nowrap; width: auto;">{{item.percent}}</i>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <!--  常规预警地图区域-->
+            <div class="earth-wrapper" flex-box="1" v-show="cliquidFillShow">
+              <img alt="" src="../images/ankang/tuxing2.png">
+              <div class="cir-1"></div>
+              <div class="cir-2"></div>
+              <div class="cir-3"></div>
+              <div class="cir-4"></div>
+              <div class="cir-5"></div>
+              <div class="cir-6"></div>
+              <div class="cir-7"></div>
+              <div class="cir-8"></div>
+              <div class="cir-9 rotate1">
+                <!--  常规预警水球-->
+                <div class="rotate-inner">
+                  <div :key="index" class="rotate-inner-item"
+                       v-for="(item, index) in chartRotateList2">
+                    <div class="cir-bg">
+                      <div :id="item.chartId"></div>
+                      <div class="inner-item-text">
+                        <p class="text-title">{{item.title}}</p>
+                        <p class="text-count"><i>{{item.count}}</i><i class="unit-font">(家)</i>
+                        </p>
+                        <p class="text-percent">
+                          <i style="white-space: nowrap; width: auto;">{{item.percent}}</i>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 闭环管理地图区域-->
+            <div class="cir-container" flex-box="5" v-show="allShow">
+<!--              <div class="section">-->
+<!--                <div class="bg">-->
+<!--                  <div class="loop-run">-->
+<!--                    <div v-for="(item,index) in tabCenterItem"-->
+<!--                         :class="[item.circlass,{active:currentCenterIndex === index}]" @click="centerTabChange(index)"-->
+<!--                         class="circle">-->
+<!--                      <div class="title">{{item.title}}</div>-->
+<!--                      <div class="count">{{item.count}}</div>-->
+<!--                      <img class="bottom-img" :src="item.bgImg"/>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+              <div class="bg">
+                <div class="cir-9 rotate2">
+                  <!--  常规预警水球-->
+                  <div class="rotate-inner">
+                    <div :key="index" class="rotate-inner-item"
+                         v-for="(item, index) in tabCenterItem"
+                         :class="[item.circlass]"
+                         @click="centerTabChange(index)">
+                      <div class="cir-bg">
+                        <div class="inner-item-text">
+                          <p class="text-title">{{item.title}}</p>
+                          <p class="text-count"><i>{{item.count}}</i></p>
+                          <img class="bottom-img" :src="item.bgImg"/>
+                        </div>
+                        <div :class="{active:currentCenterIndex === index}"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="center-bottom" flex-box="3" v-show="allShow">
+              <!-- 发起预警表格区域-->
+              <div class="panel footer-box" v-show="fTableShow">
+                <div class="card-container" flex="dir:column space:between">
+                  <div class="header">
+                    <span>发起预警</span>
+                  </div>
+                  <div class="head">
+                    <span v-for="(item,index) in fcolumns2">{{item.title}}</span>
+                  </div>
+                  <div class="swiper-container tab_swiper" id="ftable-container">
+                    <ul class="swiper-wrapper">
+                      <li class="swiper-slide" v-for="(item,index) in fcomData2">
+                        <span>{{ item.cName }}</span>
+                        <span>{{ item.legal }}</span>
+                        <span>{{ item.rCapital }}</span>
+                        <span>{{ item.bAddress }}</span>
+                        <span>{{ item.score }}</span>
+                        <span>{{ item.level }}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="panel-footer"></div>
+              </div>
+              <!-- 结果归集表格区域-->
+              <div class="panel footer-box" v-show="gTableShow">
+                <div class="card-container" flex="dir:column space:between">
+                  <div class="header">
+                    <span>结果归集</span>
+                  </div>
+                  <div class="head">
+                    <span v-for="(item,index) in jcolumns2">{{item.title}}</span>
+                  </div>
+                  <div class="swiper-container tab_swiper" id="jtable-container">
+                    <ul class="swiper-wrapper">
+                      <li class="swiper-slide" v-for="(item,index) in jcomData2">
+                        <span>{{ item.cName }}</span>
+                        <span>{{ item.legal }}</span>
+                        <span>{{ item.rCapital }}</span>
+                        <span>{{ item.bAddress }}</span>
+                        <span>{{ item.score }}</span>
+                        <span>{{ item.level }}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="panel-footer"></div>
+              </div>
+              <!-- 监管推送表格区域-->
+              <div class="panel footer-box" v-show="jTableShow">
+                <div class="card-container" flex="dir:column space:between">
+                  <div class="header">
+                    <span>监管推送</span>
+                  </div>
+                  <div class="head">
+                    <span v-for="(item,index) in gcolumns2">{{item.title}}</span>
+                  </div>
+                  <div class="swiper-container tab_swiper" id="gtable-container">
+                    <ul class="swiper-wrapper">
+                      <li class="swiper-slide" v-for="(item,index) in gcomData2">
+                        <span>{{ item.cName }}</span>
+                        <span>{{ item.code }}</span>
+                        <span>{{ item.legal }}</span>
+                        <span>{{ item.reason }}</span>
+                        <span>{{ item.dept }}</span>
+                        <span>{{ item.result }}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="panel-footer"></div>
+              </div>
+            </div>
+            <div class="tab-boxes">
+              <div :class="{active:currentIndex === index}" :key="index"
+                   class="tab-box"
+                   v-for="(item,index) in tabItem"><a :href="item.link"><span
+                      @click="tabChange(index)">{{item.name}}</span></a>
+              </div>
+            </div>
+            <div class="footer-bg">
+              <img alt="" src="../images/ankang/dibu.png">
+            </div>
+          </div>
+        </div>
+        <!-- 页面右侧-->
+        <div class="right-side">
+          <div class="card-container" flex="dir:column space:between">
+            <div class="panel" flex="dir:column" flex-box="1">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>黑名单行业分布</i>
+                  <img alt="" src="../images/ankang/tu3.png">
+                </div>
+              </div>
+              <div id="pieChart1"></div>
+              <div class="panel-footer"></div>
+            </div>
+            <div class="panel panel-box2" flex="dir:column" flex-box="1">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>信用预警企业数量</i>
+                  <img alt="" src="../images/ankang/tu3.png">
+                </div>
+              </div>
+              <div class="btn-box">
+                <b-button @click="changeBarData(5)" round transparent type="primary">
+                  <b-icon color="#AF0D51" name="favorfill"></b-icon>
+                  <b-icon color="#AF0D51" name="favorfill"></b-icon>
+                  <b-icon color="#AF0D51" name="favorfill"></b-icon>
+                  <b-icon color="#AF0D51" name="favorfill"></b-icon>
+                  <b-icon color="#AF0D51" name="favorfill"></b-icon>
+                </b-button>
+                <b-button @click="changeBarData(0)" class="one-star-style" round transparent
+                          type="primary">
+                  <img alt="" src="../images/star-blue.png">
+                </b-button>
+              </div>
+              <div id="lineChart1"></div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+  new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        dataNow: '2021年07月15日 星期四  13:49:32',
+        dataType: 0,
+        // 归集企业信息
+        comList:[],
+        // 归集信息数量
+        infoList:[],
+        comNum: 16254,
+        infoNum: 15347,
+        chartRotateList1: [
+          {chartId: 'zliquidFill1', percent: '0%', count: 0, title: '重大食品安全'},
+          {chartId: 'zliquidFill2', percent: '21%', count: 0, title: '许可即将到期'},
+          {chartId: 'zliquidFill3', percent: '32%', count: 3, title: '高危行业'},
+          {chartId: 'zliquidFill4', percent: '0%', count: 0, title: '非法集资'},
+          {chartId: 'zliquidFill5', percent: '12%', count: 6, title: '虚假广告'},
+          {chartId: 'zliquidFill6', percent: '10%', count: 2, title: '校外培训'},
+          // {chartId:'#liquidFill7',percent: '36%', count: 8, title: '网络电商'}
+        ],
+        chartRotateList2: [
+          {chartId: 'cliquidFill1', percent: '0%', count: 0, title: '失信被执行人企业'},
+          {chartId: 'cliquidFill2', percent: '21%', count: 0, title: '行政处罚'},
+          {chartId: 'cliquidFill3', percent: '32%', count: 3, title: '企业黑名单'},
+          {chartId: 'cliquidFill4', percent: '0%', count: 0, title: '严重违法失信企业'},
+          {chartId: 'cliquidFill5', percent: '12%', count: 6, title: '企业信用评级为D'},
+        ],
+        rotateList: [
+          {percent: '0%', count: 0, title: '重大食品安全'},
+          {percent: '21%', count: 0, title: '许可即将到期'},
+          {percent: '32%', count: 3, title: '高危行业'},
+          {percent: '0%', count: 0, title: '非法集资'},
+          {percent: '12%', count: 6, title: '虚假广告'},
+          {percent: '10%', count: 2, title: '校外培训'},
+          {percent: '36%', count: 8, title: '网络电商'}
+        ],
+        dataClassificationList: [
+          {label: '行政许可', value: 10518, color: "#054aca"},
+          {label: '行政处罚', value: 6852, color: "#5a00dc"},
+          {label: '荣誉信息', value: 4150, color: "#d09a03"},
+          {label: '抽检信息', value: 1250, color: "#4dab73"},
+          {label: '投诉信息', value: 802, color: "#ee6666"},
+          {label: '舆情信息', value: 308, color: "#ea7ccc"},
+          {label: '异常名录', value: 95, color: "#66d9ff"}
+        ],
+        // 高风险企业信息数据
+        columns1: [
+          {
+            title: '企业名称',
+            key: 'cName',
+            align: 'center',
+            width: 220
+          },
+          {
+            title: '法定代表人',
+            key: 'legal',
+            align: 'center'
+          },
+          {
+            title: '注册资本',
+            key: 'rCapital',
+            align: 'center',
+            width: 140
+          },
+          {
+            title: '评分',
+            key: 'score',
+            align: 'center',
+            width: 90
+          },
+          {
+            title: '等级',
+            key: 'level',
+            align: 'center',
+            width: 90
+          }
+        ],
+        comData1: [
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            score: '90',
+            level: 'A'
+          }
+        ],
+
+        // 发起预警表格信息数据
+        fcolumns2: [
+          {
+            title: '企业名称',
+            key: 'cName',
+            align: 'center',
+            width: 220
+          },
+          {
+            title: '法定代表人',
+            key: 'legal',
+            align: 'center'
+          },
+          {
+            title: '注册资本',
+            key: 'rCapital',
+            align: 'center',
+            width: 140
+          },
+          {
+            title: '经营地址',
+            key: 'bAddress',
+            align: 'center',
+            tooltip: true,
+            width: 260
+          },
+          {
+            title: '评分',
+            key: 'score',
+            align: 'center',
+            width: 90
+          },
+          {
+            title: '等级',
+            key: 'level',
+            align: 'center',
+            width: 90
+          }
+        ],
+        fcomData2: [
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          }, {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          }, {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          }, {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          }
+        ],
+
+        // 结果归集表格信息数据
+        gcolumns2: [
+          {
+            title: '企业名称',
+            key: 'cName',
+            align: 'center',
+            width: 220
+          },
+          {
+            title: '统一社会信用代码',
+            key: 'legal',
+            align: 'center'
+          },
+          {
+            title: '法定代表人',
+            key: 'rCapital',
+            align: 'center',
+            width: 140
+          },
+          {
+            title: '预警原因',
+            key: 'bAddress',
+            align: 'center',
+            tooltip: true,
+            width: 260
+          },
+          {
+            title: '监管部门',
+            key: 'score',
+            align: 'center',
+            width: 90
+          },
+          {
+            title: '检查结果',
+            key: 'level',
+            align: 'center',
+            width: 90
+          }
+        ],
+        gcomData2: [
+          {
+            cName: '黎伞电子科技有限公司',
+            code: '12309875MBO956',
+            legal: '张三',
+            reason: '企业污水处理未达标',
+            dept: '环保局',
+            result: '-'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            code: '12309875MBO956',
+            legal: '张三',
+            reason: '企业污水处理未达标',
+            dept: '环保局',
+            result: '-'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            code: '12309875MBO956',
+            legal: '张三',
+            reason: '企业污水处理未达标',
+            dept: '环保局',
+            result: '-'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            code: '12309875MBO956',
+            legal: '张三',
+            reason: '企业污水处理未达标',
+            dept: '环保局',
+            result: '-'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            code: '12309875MBO956',
+            legal: '张三',
+            reason: '企业污水处理未达标',
+            dept: '环保局',
+            result: '-'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            code: '12309875MBO956',
+            legal: '张三',
+            reason: '企业污水处理未达标',
+            dept: '环保局',
+            result: '-'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            code: '12309875MBO956',
+            legal: '张三',
+            reason: '企业污水处理未达标',
+            dept: '环保局',
+            result: '-'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            code: '12309875MBO956',
+            legal: '张三',
+            reason: '企业污水处理未达标',
+            dept: '环保局',
+            result: '-'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            code: '12309875MBO956',
+            legal: '张三',
+            reason: '企业污水处理未达标',
+            dept: '环保局',
+            result: '-'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            code: '12309875MBO956',
+            legal: '张三',
+            reason: '企业污水处理未达标',
+            dept: '环保局',
+            result: '-'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            code: '12309875MBO956',
+            legal: '张三',
+            reason: '企业污水处理未达标',
+            dept: '环保局',
+            result: '-'
+          },
+        ],
+
+        // 监管推送表格信息数据
+        jcolumns2: [
+          {
+            title: '企业名称',
+            key: 'cName',
+            align: 'center',
+            width: 220
+          },
+          {
+            title: '法定代表人',
+            key: 'legal',
+            align: 'center'
+          },
+          {
+            title: '注册资本',
+            key: 'rCapital',
+            align: 'center',
+            width: 140
+          },
+          {
+            title: '经营地址',
+            key: 'bAddress',
+            align: 'center',
+            tooltip: true,
+            width: 260
+          },
+          {
+            title: '评分',
+            key: 'score',
+            align: 'center',
+            width: 90
+          },
+          {
+            title: '等级',
+            key: 'level',
+            align: 'center',
+            width: 90
+          }
+        ],
+        jcomData2: [
+          {
+            cName: 'j黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: 'j黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: 'j黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: 'j黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: 'j黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          }, {
+            cName: 'j黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          }, {
+            cName: 'j黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          }, {
+            cName: 'j黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: 'j黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: '20万',
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          }
+        ],
+
+        //记录当前专项预警/常规预警/闭环管理tab选项
+        currentTopIndex: 2,
+        tabTopItem: [
+          {id: '1', name: '专项预警'},
+          {id: '2', name: '常规预警'},
+          {id: '3', name: '闭环管理'},
+        ],
+        //记录发起预警/结果归集/监管推送tab选项
+        currentCenterIndex: 0,
+        tabCenterItem: [
+          {id: '1', title: '发起预警(条)', count: 8165, circlass: 'circle1', bgImg: '../images/ankang/tuxing3.png'},
+          {id: '2', title: '结果归集(条)', count: 8165, circlass: 'circle3', bgImg: '../images/ankang/tuxing3.png'},
+          {id: '3', title: '监管推送(条)', count: 8165, circlass: 'circle5', bgImg: '../images/ankang/tuxing3.png'},
+          // {id: '1', title: '发起预警(条)', count: 8165, circlass: 'circle1', bgImg: '../images/ankang/tuxing3.png'},
+          // {id: '2', title: '', count: null, circlass: 'circle2', bgImg: '../images/ankang/yuan1.png'},
+          // {id: '3', title: '结果归集(条)', count: 8165, circlass: 'circle3', bgImg: '../images/ankang/tuxing3.png'},
+          // {id: '4', title: '', count: null, circlass: 'circle4', bgImg: '../images/ankang/yuan1.png'},
+          // {id: '5', title: '监管推送(条)', count: 8165, circlass: 'circle5', bgImg: '../images/ankang/tuxing3.png'},
+        ],
+
+        //记录当前评价分析/风险预警分析/示范街区分析tab选项
+        currentIndex: 1,
+        tabItem: [
+          {id: '1', name: '评价分析', link: 'risk_assessment.html'},
+          {id: '2', name: '风险预警分析', link: 'risk _early_warning.html'},
+          {id: '3', name: '示范街区分析', link: 'good_faith.html'},
+        ],
+
+      }
+    },
+    computed: {
+
+      zliquidFillShow: function () {
+        return this.currentTopIndex === 0
+      },
+      cliquidFillShow: function () {
+        return this.currentTopIndex === 1
+      },
+      allShow: function () {
+        console.log("******", this.currentTopIndex === 1);
+        return this.currentTopIndex === 2
+      },
+      //发起预警表格显示隐藏
+      fTableShow: function () {
+        return this.currentCenterIndex === 0
+      },
+      //结果归集表格显示隐藏
+      gTableShow: function () {
+        return this.currentCenterIndex === 1
+      },
+      //监管推送表格显示隐藏
+      jTableShow: function () {
+        return this.currentCenterIndex === 2
+      },
+    },
+    created: function () {
+
+    },
+    updated: function () {
+      this.scollTab()
+    },
+    mounted: function () {
+      // 列表滚动
+      var swiper1 = new Swiper('.item_swiper', {
+        direction: 'vertical',//滚动方向，垂直滚动
+        slidesPerView: 9,//设置slider容器能够同时显示的slides数量,显示5行
+        spaceBetween: 0,//间距为0
+        loop: true,//循环滚动
+        autoplay: {//匀速滚动
+          delay: 1000//间隔时间1000毫秒
+        }
+      })
+      this.scollTab()
+      this.numChangeOne(this.comList)
+      this.numChangeTwo(this.infoList)
+      this.getDateNow()
+    },
+    methods: {
+      // 表格滚动
+      scollTab(){
+        var swiper2 = new Swiper('#ftable-container', {
+          direction: 'vertical',//滚动方向，垂直滚动
+          slidesPerView: 6,//设置slider容器能够同时显示的slides数量,显示5行
+          spaceBetween: 0,//间距为0
+          loop: true,//循环滚动
+          autoplay: {//匀速滚动
+            delay: 1000//间隔时间1000毫秒
+          }
+        })
+        var swiper3 = new Swiper('#jtable-container', {
+          direction: 'vertical',//滚动方向，垂直滚动
+          slidesPerView: 6,//设置slider容器能够同时显示的slides数量,显示5行
+          spaceBetween: 0,//间距为0
+          loop: true,//循环滚动
+          autoplay: {//匀速滚动
+            delay: 1000//间隔时间1000毫秒
+          }
+        })
+        var swiper4 = new Swiper('#gtable-container', {
+          direction: 'vertical',//滚动方向，垂直滚动
+          slidesPerView: 6,//设置slider容器能够同时显示的slides数量,显示5行
+          spaceBetween: 0,//间距为0
+          loop: true,//循环滚动
+          autoplay: {//匀速滚动
+            delay: 1000//间隔时间1000毫秒
+          }
+        })
+      },
+      //获取当前时间
+      getDateNow() {
+        var t = null;
+        t = setTimeout(time, 1000); //開始运行
+        function time() {
+          clearTimeout(t); //清除定时器
+          dt = new Date();
+          var y = dt.getFullYear();
+          var mt = dt.getMonth() + 1;
+          var day = dt.getDate();
+          var h = dt.getHours(); //获取时
+          var m = dt.getMinutes(); //获取分
+          var s = dt.getSeconds(); //获取秒
+          document.querySelector(".showTime").innerHTML =
+              y +
+              "年" +
+              mt +
+              "月" +
+              day +
+              "日" +
+              " " +
+              h +
+              ":" +
+              m +
+              ":" +
+              s;
+          t = setTimeout(time, 1000); //设定定时器，循环运行
+        }
+      },
+
+      // getList(list){
+      //   if(list.length===3){
+      //     return[
+      //       {title:'',num:10,display:'none'},
+      //       {title:list[0].title,num:10,display:'block'},
+      //       {title:'',num:10,display:'none'},
+      //       {title:list[1].title,num:10,display:'block'},
+      //       {title:'',num:10,display:'none'},
+      //       {title:list[2].title,num:10,display:'block'}
+      //     ]
+      //   }
+      // },
+      listSum(list) {
+        let sum = 0
+        list.forEach(item => sum += item.value)
+        return sum
+      },
+      //选择星级点击事件
+      changeBarData(i) {
+        this.$message("选择了" + i + "星的商户")
+      },
+      tabTopChange(index) {
+        this.currentTopIndex = index
+        if (this.currentTopIndex!=2){
+          this.currentCenterIndex = ''
+        }else {
+          this.currentCenterIndex = index
+        }
+      },
+      tabChange(index) {
+        this.currentIndex = index
+      },
+      centerTabChange(index) {
+        this.currentCenterIndex = index
+      },
+      // 数字条动态方法1
+      numChangeOne(num) {
+        let newNum = this.comNum.toString().split('').map(Number)
+        let copy = JSON.parse(JSON.stringify(newNum))
+        let change = setInterval(() => {
+          let arr = []
+          newNum.forEach(() => {
+            arr.push(parseInt(Math.random() * 10))
+          })
+          num.splice(0, 8)
+          num.push(...arr)
+        }, 100)
+        setTimeout(() => {
+          window.clearInterval(change)
+          num.splice(0, 8)
+          num.push(...copy)
+        }, 1000)
+      },
+      // 数字条动态方法2
+      numChangeTwo(num) {
+        let newNum = this.infoNum.toString().split('').map(Number)
+        let copy = JSON.parse(JSON.stringify(newNum))
+        let change = setInterval(() => {
+          let arr = []
+          newNum.forEach(() => {
+            arr.push(parseInt(Math.random() * 10))
+          })
+          num.splice(0, 8)
+          num.push(...arr)
+        }, 100)
+        setTimeout(() => {
+          window.clearInterval(change)
+          num.splice(0, 8)
+          num.push(...copy)
+        }, 1000)
+      },
+    }
+  })
+
+</script>
+
+
+<!--echarts相关配置数据-->
+<script src="../js/chart-data-source2.js"></script>
+
+</body>
+
+</html>

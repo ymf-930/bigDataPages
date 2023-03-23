@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>东昌府数据可视化-数据归集</title>
+    <!--bin-ui-->
+    <link rel="stylesheet" href="../utils/lib/bin-ui@3.8.0/styles/index.css">
+
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/base-layout.css">
+    <link rel="stylesheet" href="../styles/base-title.css">
+    <link rel="stylesheet" href="../styles/collection/left.css">
+    <link rel="stylesheet" href="../styles/collection/center.css">
+    <link rel="stylesheet" href="../styles/collection/right.css">
+    <link rek="stylesheet" href="../styles/base-num.css">
+    <link rel="stylesheet" href="../styles/base-table.css">
+    <link rel="stylesheet" href="../styles/base-info-card2.css">
+    <link rel="stylesheet" href="../styles/characteristic/reset.css">
+
+    <script src="../utils/lib/vue.min.js"></script>
+    <script src="../utils/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+    <script src="../utils/lib/swiper/swiper.min.js"></script>
+    <script src="../utils/lib/vue-count-to/vue-count-to.min.js"></script>
+
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <v-base-layout title="数据归集专题" left-title="系统概况专题" right-title="特色领域专题" :page-name1="'./system.html'"
+            :page-name2="'./characteristic.html'">
+            <template v-slot:left>
+                <div class="left-box">
+                    <v-base-title-box title="本月数据分析">
+                        <div class="mb-20">
+                            <v-base-count-data2 title="归集数据量（区直部门）" :num="num"></v-base-count-data2>
+                            <v-base-count-data2 title="归集数据总量（镇街）" :num="num2"></v-base-count-data2>
+                        </div>
+                    </v-base-title-box>
+                    <v-base-title-box title="部门数据归集分析">
+                        <div class="btn-box" flex="main:right">
+                            <div class="btn" :class="selectType===item.value?'btn-active':''"
+                                v-for="(item,index) in typeList" :key="index" @click="chooseType(item.value)">
+                                {{item.name}}</div>
+                        </div>
+                        <v-base-table :columns="bmsjColumns" :table-data="bmsjData" :slides-num="3" :line-height="55">
+                        </v-base-table>
+                    </v-base-title-box>
+                    <v-base-title-box title="村、社区数据分析">
+                        <div class="btn-box" flex="main:right">
+                            <div class="btn" :class="selectVillageType===item.value?'btn-active':''"
+                                v-for="(item,index) in typeList" :key="index" @click="chooseCsType(item.value)">
+                                {{item.name}}</div>
+                        </div>
+                        <v-base-table :columns="cssjColumns" :table-data="cssjData" :slides-num="3" :line-height="55">
+                        </v-base-table>
+                    </v-base-title-box>
+
+                </div>
+            </template>
+            <template v-slot:center>
+                <div class="center-box">
+                    <div class="center-center">
+                        <div class="bg-style"></div>
+                        <img src="../images/center-img.png" width="254" height="226" alt="">
+                        <div class="item-box">
+                            <div class="data-item" :class="`data-item-`+index" v-for="(item,index) in totalList"
+                                :key="index">
+                                <v-base-info-card2 :title="item.title" :value="info[item.num]" unit="个"
+                                    :value-style="valueStyle2">
+                                </v-base-info-card2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="center-bottom">
+                        <v-base-title-box2 title="数据归集趋势">
+                            <div style="width: 100%;height: 239px;margin: auto;padding-bottom: 20px;" id="TrendChart">
+                            </div>
+                        </v-base-title-box2>
+                    </div>
+                </div>
+            </template>
+            <template v-slot:right>
+                <div class="right-box">
+                    <v-base-title-box title="数据归集统计分析">
+                        <v-base-table table-name="sjgj" :columns="tjfxColumns" :table-data="tjfxData" :slides-num="3"
+                            :line-height="55" @select="ChooseOne" :disabled="true" :disabled-hover="false">
+                        </v-base-table>
+                        <div class="data-btn">{{tjfxTitle}}</div>
+                        <div class="line-box">
+                            <div style="width: 100%;height: 268px;margin: auto;" id="lineChart"></div>
+                        </div>
+                    </v-base-title-box>
+                    <v-base-title-box title="最新归集数据部门">
+                        <v-base-table :columns="newColumns" :table-data="newData" :slides-num="3" :line-height="55">
+                        </v-base-table>
+                    </v-base-title-box>
+                </div>
+            </template>
+        </v-base-layout>
+        <!-- 数据归集趋势-弹窗 -->
+        <b-modal v-model="showModal" :title="modalTitle" width="925" top="500px" footer-hide append-to-body>
+            <b-table :columns="modalColumns" :data="modalData" border></b-table>
+        </b-modal>
+    </div>
+    <script src="../js/components/base-layout.js"></script>
+    <script src="../js/components/base-title-box.js"></script>
+    <script src="../js/components/base-count-data.js"></script>
+    <script src="../js/components/base-count-data2.js"></script>
+    <script src="../js/components/base-table.js"></script>
+    <script src="../js/components/base-info-card2.js"></script>
+    <script src="../js/components/base-title-box2.js"></script>
+
+    <script src="../js/time.js"></script>
+    <script>
+        var vm = new Vue({
+            // mixins: [mixin],
+            el: '#app',
+            data: function () {
+                return {
+                    // 卡片值样式
+                    valueStyle2: {
+                        fontWeight: '500',
+                        fontSize: '18px',
+                        color: 'rgba(0, 222, 255, 1)',
+                        lineHeight: '24px'
+                    },
+                    num: '759486859',
+                    num2: '874634',
+                    // 部门数据归集分析
+                    bmsjColumns: [
+                        {
+                            title: '部门名称',
+                            key: 'title',
+                            align: 'center',
+                            minWidth: 200,
+                            tooltip: true
+                        },
+                        {
+                            title: '归集数量',
+                            key: 'count',
+                            align: 'center'
+                        }
+                    ],
+                    bmsjData: [
+                        {
+                            title: '公安部',
+                            count: 12345678
+                        },
+                        {
+                            title: '住房和建设局',
+                            count: 12345678
+                        },
+                        {
+                            title: '公安部2',
+                            count: 12345678
+                        }
+                    ],
+                    typeList: [
+                        { name: '本月', value: 'month' },
+                        { name: '本年', value: 'year' }
+                    ],
+                    selectType: 'year',
+                    selectVillageType: 'year',
+                    // 村、社区数据分析
+                    cssjColumns: [
+                        {
+                            title: '村、社名称',
+                            key: 'title',
+                            align: 'center',
+                            minWidth: 200,
+                            tooltip: true
+                        },
+                        {
+                            title: '归集数量',
+                            key: 'count',
+                            align: 'center'
+                        }
+                    ],
+                    cssjData: [
+                        {
+                            title: 'xx村',
+                            count: 12345678
+                        },
+                        {
+                            title: 'xx社区',
+                            count: 12345678
+                        },
+                        {
+                            title: 'xx社区2',
+                            count: 12345678
+                        }
+                    ],
+                    // 数据归集统计分析
+                    tjfxColumns: [
+                        {
+                            title: '组织名称',
+                            key: 'title',
+                            align: 'center',
+                            minWidth: 200,
+                            tooltip: true
+                        },
+                        {
+                            title: '归集数量',
+                            key: 'count',
+                            align: 'center'
+                        }
+                    ],
+                    tjfxData: [
+                        {
+                            title: '公安部',
+                            count: 12345678
+                        },
+                        {
+                            title: '住房建设局',
+                            count: 12345678
+                        },
+                        {
+                            title: '公安部2',
+                            count: 12345678
+                        }
+                    ],
+                    newColumns: [
+                        {
+                            title: '组织名称',
+                            key: 'title',
+                            align: 'center',
+                            minWidth: 130,
+                            tooltip: true
+                        },
+                        {
+                            title: '归集目录',
+                            key: 'contents',
+                            align: 'center',
+                            minWidth: 130,
+                            tooltip: true
+                        },
+                        {
+                            title: '归集数量',
+                            key: 'count',
+                            minWidth: 130,
+                            align: 'center'
+                        }
+                    ],
+                    newData: [
+                        {
+                            title: '公安部',
+                            contents: '123234',
+                            count: 12345678
+                        },
+                        {
+                            title: '住房建设局',
+                            contents: '123234',
+                            count: 12345678
+                        },
+                        {
+                            title: '公安部2',
+                            contents: '123234',
+                            count: 12345678
+                        }
+                    ],
+                    tjfxTitle: '',
+                    // 总量数据
+                    totalList: [
+                        { title: '数据归集总量', num: 'num1' },
+                        { title: '自然人数据总量', num: 'num2' },
+                        { title: '重点人群数据总量', num: 'num3' },
+                        { title: '本月归集数据量', num: 'num4' },
+                        { title: '法人数据总量', num: 'num5' }
+                    ],
+                    // 总量数据-模拟动态数据
+                    info: {
+                        num1: 1234453,
+                        num2: 4939599,
+                        num3: 4399690,
+                        num4: 9986859,
+                        num5: 9986859
+                    },
+                    showModal: false,
+                    modalTitle: '标题', // 弹窗标题
+                    modalColumns: [
+                        {
+                            title: '姓名',
+                            key: 'name',
+                            align: 'center',
+                            minWidth: 100,
+                            tooltip: true
+                        },
+                        {
+                            title: '身份证号',
+                            key: 'IdNum',
+                            align: 'center'
+                        },
+                        {
+                            title: '分数',
+                            key: 'score',
+                            align: 'center'
+                        }
+                    ], // 弹窗表格数据
+                    modalData: [], // 弹窗数据
+                    // 自然人加分减分数据
+                    natGradeData: [
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        },
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        },
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        },
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        },
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        },
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        },
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        },
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        }
+                    ],
+                    // 法人加减分数据
+                    letGradeData: [
+                        {
+                            name: '法人',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        },
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        },
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        },
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        },
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        },
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        },
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        },
+                        {
+                            name: '张三',
+                            IdNum: '320302*******1298',
+                            score: 90
+                        }
+                    ],
+
+                }
+            },
+            created: function () {
+
+            },
+            mounted: function () {
+                this.tjfxTitle = this.tjfxData[0].title
+            },
+            methods: {
+                handleNum(num) {
+                    var str = num + ""
+                    var arr = []
+                    str.split("").forEach(function (item) {
+                        arr.push(parseInt(item));
+                    })
+                    return arr
+                },
+                // 部门数据归集，年月状态切换
+                chooseType(val) {
+                    this.selectType = val
+                },
+                // 村、社年月状态切换
+                chooseCsType(val) {
+                    this.selectVillageType = val
+                },
+                ChooseOne(val) {
+                    this.tjfxTitle = val.title
+                    initChartData()
+                }
+
+            }
+        })
+  // 浏览器尺寸发生变化刷新页面（会重新加载所有数据，页面会卡）
+  // window.onresize = function(){
+  //   location.reload(true);
+  // }
+    </script>
+    <!--echarts-->
+    <script src="../utils/lib/echarts/echarts.min.js"></script>
+    <script src="https://cdn.bootcss.com/echarts/5.3.2/echarts.min.js"></script>
+
+
+    <script src="../js/charts/collectionChart.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>信易+专题</title>
+  <link rel="stylesheet" href="./styles/reset.css">
+  <!--bin-ui-->
+  <link rel="stylesheet" href="./js/lib/bin-ui/styles/index.css">
+  <link rel="stylesheet" href="./styles/base.css">
+  <link rel="stylesheet" href="./styles/header.css">
+  <link rel="stylesheet" href="./styles/main.css">
+  <!--js-->
+  <script src="./js/vue.min.js"></script>
+  <script src="./js/lib/bin-ui/bin-ui.min.js"></script>
+  <!--echarts-->
+  <script src="./js/lib/echarts/echarts.min.js"></script>
+  <!--liquidfill-->
+  <script src="./js/lib/echarts/echarts-liquidfill.min.js"></script>
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <div class="page-container" flex="dir:column">
+    <!-- 页面头部-->
+    <div class="page-title">
+      <span class="text-gradient">信易+专题</span>
+      <div class="user-bar">
+        <div class="login-time">[{{loginTime}}]</div>
+      </div>
+    </div>
+
+    <!-- 页面主体-->
+    <div class="page-content" flex-box="1">
+      <div class="main">
+        <!-- 页面左侧-->
+        <div class="left-side">
+          <div class="card-container" flex="dir:column space:between">
+            <div flex="dir:column" class="panel level-panel">
+              <div class="info-container">
+                <div class="level-tag tag1">
+                  <div>信用等级A及以上</div>
+                </div>
+                <p>1.优先调查、优先审批、限时放贷等“绿色通道”。</p>
+                <p>2.执行对应信贷产品的最低利率执行标准，且享受贷款期限最低为1年。</p>
+                <div class="level-tag tag2">
+                  <div>信用等级A+及以上</div>
+                </div>
+                <p>1.县农商银行将主动协调相关部门优先帮助办理。</p>
+                <p>2.可享受同档次贷款利率基础上下浮10个基点。</p>
+
+                <div class="level-tag tag3">
+                  <div>信用等级AA</div>
+                </div>
+                <p>可享受同档次贷款利率基础上下浮15个基点。</p>
+
+                <div class="level-tag tag4">
+                  <div>信用等级AAA</div>
+                </div>
+                <p>可享受同档次贷款利率基础上下浮20个基点。</p>
+
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+            <div flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>信用预警企业数量</i>
+                </div>
+                <img src="./images/title-bg.png" alt="">
+                <div class="card-line"></div>
+              </div>
+              <div id="lineChart1" flex-box="1"></div>
+              <div class="panel-footer"></div>
+            </div>
+            <div flex="dir:column" class="panel">
+              <div class="card-container" flex="dir:column space:between">
+                <div class="title-container">
+                  <div class="title-content">
+                    <i>贷款金额Top5名单</i>
+                  </div>
+                  <img src="./images/title-bg.png" alt="">
+                  <div class="card-line"></div>
+                </div>
+                <div class="btn-box">
+                  <span v-show="showChart" class="btn-change" @click="changePanel">财税银</span>
+                  <span v-show="showTable" class="btn-change" @click="changePanel">贷款Top5</span>
+                </div>
+                <div class="table-top5" v-show="showTable">
+                  <div class="head">
+                    <span v-for="(item,index) in columns">{{item.title}}</span>
+                  </div>
+                  <div class="table-container">
+                    <ul class="swiper-wrapper">
+                      <li class="swiper-slide" v-for="(item,index) in comData">
+                        <span>{{ item.rank }}</span>
+                        <span>{{ item.uName }}</span>
+                        <span>{{ item.rCapital }}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div v-show="showChart" id="barChart1" flex-box="1"></div>
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+        </div>
+        <!-- 中间部分-->
+        <div class="info-bar">
+          <div class="card-container" flex="dir:column space:between">
+            <!-- 地图区域-->
+            <div class="earth-wrapper" flex-box="1">
+              <img alt="" src="./images/tuxing2.png">
+              <div class="cir-1"></div>
+              <div class="cir-2"></div>
+              <div class="cir-3"></div>
+              <div class="cir-4"></div>
+              <div class="cir-5"></div>
+              <div class="cir-6"></div>
+              <div class="cir-7"></div>
+              <div class="cir-8"></div>
+              <div class="cir-9 rotate">
+                <!--  专项预警水球-->
+                <div class="rotate-inner">
+                  <div :key="index" class="rotate-inner-item"
+                       v-for="(item, index) in chartRotateList">
+                    <div class="cir-bg">
+                      <div :id="item.chartId"></div>
+                      <div class="inner-item-text">
+                        <p class="text-title">{{item.title}}</p>
+                        </p>
+                        <p class="text-percent">
+                          <i style="white-space: nowrap; width: auto;">{{item.percent}}</i>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <!-- 底部等级区域-->
+            <div flex="dir:column" class="panel">
+              <div class="footer-box">
+                <div class="left-container">
+                  <img src="./images/left-img.png" alt="">
+                </div>
+                <div class="info-container">
+                  <div class="level-tag tag1">
+                    <div>信用等级A及以上</div>
+                  </div>
+                  <p>办理诚信公交乘车卡享受充值乘车费用全免优惠，办理诚信共享单车卡享受充值乘车费用5折优惠。</p>
+                  <div class="level-tag tag2">
+                    <div>信用等级AAA</div>
+                  </div>
+                  <p>可给予专人全程帮办等便利服务措施。</p>
+                  <div class="level-tag tag3">
+                    <div>信用等级B及以下</div>
+                  </div>
+                  <p>行政审批部门暂停适用容缺受理、告知承诺、帮办代办等便利措施并加强材料审查力度。</p>
+
+                </div>
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+            <!-- 底部图片-->
+            <div class="footer-bg">
+              <img src="./images/dibu.png" alt="">
+            </div>
+          </div>
+        </div>
+        <!-- 页面右侧-->
+        <div class="right-side">
+          <div class="card-container" flex="dir:column space:between">
+            <div flex="dir:column" class="panel level-panel">
+              <div class="info-container">
+                <div class="level-tag tag1">
+                  <div>信用等级AAA</div>
+                </div>
+                <p>办理诚信公交乘车卡享受充值乘车费用全免优惠，办理诚信共享单车卡享受充值乘车费用5折优惠。</p>
+                <div class="level-tag tag2">
+                  <div>信用等级AA</div>
+                </div>
+                <p>办理诚信公交乘车卡享受充值乘车费用5折优惠，办理诚信共享单车卡享受充值乘车费用7折优惠。</p>
+
+                <div class="level-tag tag3">
+                  <div>信用等级A+</div>
+                </div>
+                <p>办理诚信公交乘车卡享受充值乘车费用8折优惠，办理诚信共享单车卡享受充值乘车费用8.5折优惠。</p>
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+            <div flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>信易行诚信城市卡办理使用统计表</i>
+                </div>
+                <img src="./images/title-bg.png" alt="">
+                <div class="card-line"></div>
+              </div>
+              <div id="barChart2" flex-box="1"></div>
+              <div class="panel-footer"></div>
+            </div>
+            <div flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>信用预警企业数量</i>
+                </div>
+                <img src="./images/title-bg.png" alt="">
+                <div class="card-line"></div>
+              </div>
+              <div id="barChart3" flex-box="1"></div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        loginTime: '2021年07月15日 星期四  13:49:32',
+        //水球图
+        chartRotateList: [
+          {chartId: 'zliquidFill1', percent: '0%', title: '信易贷'},
+          {chartId: 'zliquidFill2', percent: '21%', title: '信易批'},
+          {chartId: 'zliquidFill3', percent: '32%', title: '信易行'}
+        ],
+        //控制表格与面板切换的显示
+        showChart:false,
+        showTable:true,
+        columns: [
+          {
+            title: '排名',
+            key: 'rank',
+            align: 'center'
+          },
+          {
+            title: '姓名',
+            key: 'uName',
+            align: 'center'
+          },
+          {
+            title: '贷款金额(万元)',
+            key: 'rCapital',
+            align: 'center'
+          }
+        ],
+        // 表格贷款金额Top5数据
+        comData: [
+          {
+            rank: '1',
+            uName: '许晓静',
+            rCapital: 42.5
+          },
+          {
+            rank: '2',
+            uName: '朱新发',
+            rCapital: 40
+          },
+          {
+            rank: '3',
+            uName: '厉金梁',
+            rCapital: 35.9
+          },
+          {
+            rank: '4',
+            uName: '陈洪福',
+            rCapital: 31.5
+          },
+          {
+            rank: '5',
+            uName: '宋时峰',
+            rCapital: 30
+          }
+        ],
+      }
+    },
+    mounted:function() {
+      // 初始化echarts图表
+      this.getLineChart1()
+      this.getZliquidFill1()
+      this.getZliquidFill2()
+      this.getZliquidFill3()
+      this.getBarChart1()
+      this.getBarChart2()
+      this.getBarChart3()
+    },
+    methods:{
+      // 面板切换
+      changePanel() {
+        this.showChart = !this.showChart
+        this.showTable = !this.showTable
+      },
+      getLineChart1(){
+        // 实例化对象
+        var dom = document.getElementById("lineChart1");
+        var myChart = echarts.init(dom);
+
+        var option = {
+          title: {
+            text: ''
+          },
+          color: ["#eb5e4b", "#f79d00"],
+          grid: {
+            left: "0",
+            top: "40",
+            right: "15",
+            bottom: "0",
+            containLabel: true
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross',
+              label: {
+                backgroundColor: '#1891d8'
+              }
+            }
+          },
+          legend: {
+            top: 0,
+            right: 0,
+            itemGap: 30, // 间隔
+            itemWidth: 8,
+            itemHeight: 8,
+            textStyle: {
+              fontSize: 12,
+              color: ['#fff'],
+              padding: [0, 5],
+            },
+            data: [
+              {icon: 'circle', name: '数量'},
+              {icon: 'circle', name: '金额'},
+            ],
+          },
+
+          xAxis: [
+            {
+              type: 'category',
+              data: ['房屋装修', '旅游消费', '耐用品消费', '消费额度', '其他经营性'],
+              // 设置x轴标签文字样式
+              // x轴的文字颜色和大小
+              axisLabel: {
+                color: "rgba(255,255,255,0.8)",
+                fontSize: "11"
+              },
+              //分割线设置
+              splitLine: {
+                show: true,
+                lineStyle:{
+                  color:'rgba(255,255,255,0.1)'
+                }
+              }
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value',
+              name: '数量',
+              nameLocation: 'end',
+              nameGap: 15,
+              nameTextStyle: {
+                color: 'rgba(255, 255, 255, 0.8)',
+                fontSize: 12, // 大小
+                padding: [0, 0, 0, -30]
+              },
+              axisLabel: {
+                color: "rgba(255,255,255,.8)",
+                fontSize: "12"
+              },
+              axisLine: {
+                // 如果想要设置单独的线条样式
+                lineStyle: {
+                  color: "rgba(255,255,255,.1)",
+                  width: 1,
+                  type: "solid"
+                }
+              },
+              // y轴分割线的颜色
+              splitLine: {
+                lineStyle: {
+                  color: "rgba(255,255,255,0.1)"
+                }
+              }
+            }
+          ],
+          series: [
+            {
+              name: '数量',
+              type: 'line',
+              stack: '总量',
+              emphasis: {
+                focus: 'series'
+              },
+              data: [759, 400, 570, 200, 1127],
+            },
+            {
+              name: '金额',
+              type: 'line',
+              stack: '总量',
+              emphasis: {
+                focus: 'series'
+              },
+              data: [10038, 480, 458, 420, 1208],
+            }
+
+          ]
+        };
+
+        // 把配置给实例对象
+        if (option && typeof option === 'object') {
+          myChart.setOption(option);
+        }
+      },
+      getBarChart1(){
+        // 实例化对象
+        var dom = document.getElementById("barChart1");
+        var myChart = echarts.init(dom);
+
+        var option = {
+          color: ["#00baad", "#1e65e4"],
+          grid: {
+            left: "0%",
+            top: "10",
+            right: "5",
+            bottom: "14%",
+            containLabel: true
+          },
+          legend: {
+            bottom: 0,
+            left: 'center',
+            itemGap: 30, // 间隔
+            itemWidth: 8,
+            itemHeight: 8,
+            textStyle: {
+              fontSize: 12,
+              color: ['#fff'],
+              padding: [0, 5],
+            },
+            data: [
+              {icon: 'circle', name: '企业数量'},
+              {icon: 'circle', name: '贷款总额'}
+            ],
+          },
+          series: [
+            {
+              name: '企业数量',
+              data: [520, 400, 100],
+              type: 'bar',
+              barWidth: "18%"
+            },
+            {
+              name: '贷款总额',
+              data: [750, 820, 300],
+              type: 'bar',
+              barWidth: "18%"
+            }
+          ],
+          xAxis: {
+            type: 'category',
+            data: ["产品1", "产品2", "产品3"],
+            // 设置x轴标签文字样式
+            // x轴的文字颜色和大小
+            axisLabel: {
+              color: "rgba(255,255,255,0.8)",
+              fontSize: "12"
+            },
+            //分割线设置
+            splitLine: {
+              show: true,
+              lineStyle:{
+                color:'rgba(255,255,255,0.1)'
+              }
+            }
+          },
+          yAxis: {
+            type: 'value',
+            axisLabel: {
+              color: "rgba(255,255,255,.8)",
+              fontSize: "12"
+            },
+            axisLine: {
+              // 如果想要设置单独的线条样式
+              lineStyle: {
+                color: "rgba(255,255,255,.1)",
+                width: 1,
+                type: "solid"
+              }
+            },
+            // y轴分割线的颜色
+            splitLine: {
+              lineStyle: {
+                color: "rgba(255,255,255,0.1)"
+              }
+            }
+          },
+        };
+
+        // 把配置给实例对象
+        if (option && typeof option === 'object') {
+          myChart.setOption(option);
+        }
+      },
+      getBarChart2(){
+        // 实例化对象
+        var dom = document.getElementById("barChart2");
+        var myChart = echarts.init(dom);
+
+        var option = {
+          color: ["#1890ff", "#005bff", "#00baad"],
+          grid: {
+            left: "0%",
+            top: "35",
+            right: "5",
+            bottom: "0",
+            containLabel: true
+          },
+          legend: {
+            top: 0,
+            left: 'center',
+            itemGap: 30, // 间隔
+            itemWidth: 8,
+            itemHeight: 8,
+            textStyle: {
+              fontSize: 12,
+              color: ['#fff'],
+              padding: [0, 5],
+            },
+            data: [
+              {icon: 'circle', name: '人数'},
+              {icon: 'circle', name: '人次'},
+              {icon: 'circle', name: '优惠总金额'}
+            ],
+          },
+          series: [
+            {
+              name: '人数',
+              data: [520, 400],
+              type: 'bar',
+              barWidth: "18%"
+            },
+            {
+              name: '人次',
+              data: [750, 820],
+              type: 'bar',
+              barWidth: "18%"
+            },
+            {
+              name: '优惠总金额',
+              data: [600, 320],
+              type: 'bar',
+              barWidth: "18%"
+            }
+          ],
+          xAxis: {
+            type: 'category',
+            data: ["城市共享单车卡", "城市共享单车卡"],
+            // 设置x轴标签文字样式
+            // x轴的文字颜色和大小
+            axisLabel: {
+              color: "rgba(255,255,255,0.8)",
+              fontSize: "12"
+            },
+            //分割线设置
+            splitLine: {
+              show: true,
+              lineStyle:{
+                color:'rgba(255,255,255,0.1)'
+              }
+            }
+          },
+          yAxis: {
+            type: 'value',
+            axisLabel: {
+              color: "rgba(255,255,255,.8)",
+              fontSize: "12"
+            },
+            axisLine: {
+              // 如果想要设置单独的线条样式
+              lineStyle: {
+                color: "rgba(255,255,255,.1)",
+                width: 1,
+                type: "solid"
+              }
+            },
+            // y轴分割线的颜色
+            splitLine: {
+              lineStyle: {
+                color: "rgba(255,255,255,0.1)"
+              }
+            }
+          },
+        };
+
+        // 把配置给实例对象
+        if (option && typeof option === 'object') {
+          myChart.setOption(option);
+        }
+      },
+      getBarChart3(){
+        // 实例化对象
+        var dom = document.getElementById("barChart3");
+        var myChart = echarts.init(dom);
+
+        var option = {
+          color: ["#00baad", "#1e65e4"],
+          grid: {
+            left: "0%",
+            top: "35",
+            right: "5",
+            bottom: "14%",
+            containLabel: true
+          },
+          legend: {
+            bottom: 0,
+            left: 'center',
+            itemGap: 30, // 间隔
+            itemWidth: 8,
+            itemHeight: 8,
+            textStyle: {
+              fontSize: 12,
+              color: ['#fff'],
+              padding: [0, 5],
+            },
+            data: [
+              {icon: 'circle', name: '企业数量'},
+              {icon: 'circle', name: '贷款总额'}
+            ],
+          },
+          series: [
+            {
+              name: '企业数量',
+              data: [520, 400, 100],
+              type: 'bar',
+              barWidth: "18%"
+            },
+            {
+              name: '贷款总额',
+              data: [750, 820, 300],
+              type: 'bar',
+              barWidth: "18%"
+            }
+          ],
+          xAxis: {
+            type: 'category',
+            data: ["产品1", "产品2", "产品3"],
+            // 设置x轴标签文字样式
+            // x轴的文字颜色和大小
+            axisLabel: {
+              color: "rgba(255,255,255,0.8)",
+              fontSize: "12"
+            },
+            //分割线设置
+            splitLine: {
+              show: true,
+              lineStyle:{
+                color:'rgba(255,255,255,0.1)'
+              }
+            }
+          },
+          yAxis: {
+            type: 'value',
+            axisLabel: {
+              color: "rgba(255,255,255,.8)",
+              fontSize: "12"
+            },
+            axisLine: {
+              // 如果想要设置单独的线条样式
+              lineStyle: {
+                color: "rgba(255,255,255,.1)",
+                width: 1,
+                type: "solid"
+              }
+            },
+            // y轴分割线的颜色
+            splitLine: {
+              lineStyle: {
+                color: "rgba(255,255,255,0.1)"
+              }
+            }
+          },
+        };
+
+        // 把配置给实例对象
+        if (option && typeof option === 'object') {
+          myChart.setOption(option);
+        }
+      },
+      getZliquidFill1() {
+        // 实例化对象
+        var dom = document.getElementById("zliquidFill1");
+        var myChart = echarts.init(dom);
+        var option = {
+          backgroundColor: '',
+          series: [{
+            type: 'liquidFill',
+            radius: '80%',
+            data: [0.4],
+            backgroundStyle: {
+              color: {
+                type: 'radial',
+                x: 0.5,
+                y: 0.5,
+                r: 0.5,
+                colorStops: [{
+                  offset: 0,
+                  color: 'rgba(0,24,55, 0)'
+                },
+                  {
+                    offset: 0.75,
+                    color: 'rgba(0,24,55, 0)'
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgba(37,237,259, 1)'
+                  }],
+                globalCoord: false
+              },
+            },
+            outline: {
+              borderDistance: 0,
+              itemStyle: {
+                borderWidth: 0,
+                borderColor: {
+                  type: 'linear',
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [{
+                    offset: 0,
+                    color: 'rgba(50,115,256, 1)'
+                  }, {
+                    offset: 0.5,
+                    color: 'rgba(50,115,233, .75)'
+                  }, {
+                    offset: 1,
+                    color: 'rgba(50,115,233, 1)'
+                  }],
+                  globalCoord: false
+                },
+              }
+            },
+            color: ['#0493c7'],
+            label: {
+              normal: {
+                formatter: '',
+              },
+            },
+          }]
+        };
+        if (option && typeof option === 'object') {
+          myChart.setOption(option);
+        }
+      },
+      getZliquidFill2() {
+        // 实例化对象
+        var dom = document.getElementById("zliquidFill2");
+        var myChart = echarts.init(dom);
+        var option = {
+          backgroundColor: '',
+          series: [{
+            type: 'liquidFill',
+            radius: '80%',
+            data: [0.4],
+            backgroundStyle: {
+              color: {
+                type: 'radial',
+                x: 0.5,
+                y: 0.5,
+                r: 0.5,
+                colorStops: [{
+                  offset: 0,
+                  color: 'rgba(0,24,55, 0)'
+                },
+                  {
+                    offset: 0.75,
+                    color: 'rgba(0,24,55, 0)'
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgba(37,237,259, 1)'
+                  }],
+                globalCoord: false
+              },
+            },
+            outline: {
+              borderDistance: 0,
+              itemStyle: {
+                borderWidth: 0,
+                borderColor: {
+                  type: 'linear',
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [{
+                    offset: 0,
+                    color: 'rgba(50,115,256, 1)'
+                  }, {
+                    offset: 0.5,
+                    color: 'rgba(50,115,233, .75)'
+                  }, {
+                    offset: 1,
+                    color: 'rgba(50,115,233, 1)'
+                  }],
+                  globalCoord: false
+                },
+              }
+            },
+            color: ['#0493c7'],
+            label: {
+              normal: {
+                formatter: '',
+              },
+            },
+          }]
+        };
+        if (option && typeof option === 'object') {
+          myChart.setOption(option);
+        }
+      },
+      getZliquidFill3() {
+        // 实例化对象
+        var dom = document.getElementById("zliquidFill3");
+        var myChart = echarts.init(dom);
+        var option = {
+          backgroundColor: '',
+          series: [{
+            type: 'liquidFill',
+            radius: '80%',
+            data: [0.4],
+            backgroundStyle: {
+              color: {
+                type: 'radial',
+                x: 0.5,
+                y: 0.5,
+                r: 0.5,
+                colorStops: [{
+                  offset: 0,
+                  color: 'rgba(0,24,55, 0)'
+                },
+                  {
+                    offset: 0.75,
+                    color: 'rgba(0,24,55, 0)'
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgba(37,237,259, 1)'
+                  }],
+                globalCoord: false
+              },
+            },
+            outline: {
+              borderDistance: 0,
+              itemStyle: {
+                borderWidth: 0,
+                borderColor: {
+                  type: 'linear',
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [{
+                    offset: 0,
+                    color: 'rgba(50,115,256, 1)'
+                  }, {
+                    offset: 0.5,
+                    color: 'rgba(50,115,233, .75)'
+                  }, {
+                    offset: 1,
+                    color: 'rgba(50,115,233, 1)'
+                  }],
+                  globalCoord: false
+                },
+              }
+            },
+            color: ['#0493c7'],
+            label: {
+              normal: {
+                formatter: '',
+              },
+            },
+          }]
+        };
+        if (option && typeof option === 'object') {
+          myChart.setOption(option);
+        }
+      },
+    }
+  })
+
+</script>
+
+</body>
+
+</html>

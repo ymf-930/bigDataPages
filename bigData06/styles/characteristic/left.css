@@ -1,0 +1,21 @@
+.left-box {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+}
+
+#pieChart1 {
+    width: 100%;
+    height: 280px;
+}
+
+#pieChart2 {
+    width: 100%;
+    height: 280px;
+}
+
+#lineChart1 {
+    width: 100%;
+    height: 280px;
+}
+

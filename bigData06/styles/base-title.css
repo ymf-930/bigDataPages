@@ -1,0 +1,188 @@
+.one-box{
+    width: 100%;
+    height: auto;
+}
+
+.one-box .title-box{
+    width: 100%;
+    height: 34px;
+    background-image: url("../images/title-bg.png");
+    background-position: left bottom;
+    background-size: 90% 50%;
+    background-repeat: no-repeat;
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+    line-height: 27px;
+    padding: 0 0 0 20px;
+}
+
+.one-box .title-box .button{
+    width: 72px;
+    height: 30px;
+    background-color: rgba(19, 54, 110, 0.54);
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 18px;
+    font-weight: 500;
+}
+.one-box .title-box .button:hover{
+    background-color: #98a5ba8a;
+}
+
+.one-box2{
+    width: 100%;
+    min-height: 210px;
+    background-image: url("../images/border-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.one-box2 .left-top{
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid rgba(60, 144, 247, 1);
+    border-left: 1px solid rgba(60, 144, 247, 1);
+    top: 0;
+    left: 0;
+}
+.one-box2 .left-bottom{
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-left: 1px solid rgba(60, 144, 247, 1);
+    border-bottom: 1px solid rgba(60, 144, 247, 1);
+    bottom: 0;
+    left: 0;
+}
+.one-box2 .right-top{
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid rgba(60, 144, 247, 1);
+    border-right: 1px solid rgba(60, 144, 247, 1);
+    top: 0;
+    right: 0;
+}
+.one-box2 .right-bottom{
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-bottom: 1px solid rgba(60, 144, 247, 1);
+    border-right: 1px solid rgba(60, 144, 247, 1);
+    bottom: 0;
+    right: 0;
+}
+.one-box2 .title-box{
+    width: 267px;
+    height: 36px;
+    background-image: url("../images/title-bg2.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin: auto;
+    text-align: center;
+    line-height: 36px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.data-box{
+    margin: auto;
+    width: 782px;
+    height: 97px;
+    background-image: url("../images/center-data-bg2.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.data-box .data-title{
+    font-size: 22px;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 5px;
+    margin-right: 20px;
+}
+.data-box .num-box .num-item{
+    width: 42px;
+    height: 52px;
+    background-image: url("../images/num-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    font-size: 28px;
+    color: #fff;
+    margin-right: 20px;
+}
+.data-box .num-box .num{
+    position: absolute;
+    left: 62.2%; 
+    transform: translate(-50%, 0);
+    top:30px;
+    font-size: 28px;
+    color: #fff;
+    letter-spacing: 47px;
+}
+.data-box .data-dw{
+    font-size: 16px;
+    color: #fff;
+}
+
+.data-box2{
+    margin: auto;
+    width: 100%;
+    height: auto; 
+    position: relative;
+}
+.data-box2 .data-title-box{
+    width: 287px;
+    border-bottom: 1px dashed #fff;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-align: center;
+    line-height: 35px;
+    padding-bottom: 5px;
+    margin: auto;
+}
+
+.data-box2 .num-box{
+    width: 100%;
+    height: 51px;
+    margin: auto;
+    background-image: url("../images/center-data-bg2.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin-top: 10px;
+}
+
+.data-box2 .num-box .num-item{
+    width: 30px;
+    height: 37px;
+    background-image: url("../images/num-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    font-size: 20px;
+    color: #fff;
+    margin-right: 10px;
+}
+.data-box2 .num-box .num{
+    position: absolute;
+    left: 48%; 
+    transform: translate(-50%, 0);
+    top: 56px;
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 29px;
+}
+.data-box2 .data-dw{
+    font-size: 12px;
+    color: #fff;
+    margin-top: 20px;
+}
+

@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>综合执法监管大数据分析系统</title>
+  <link rel="stylesheet" href="../styles/reset.css">
+  <link rel="stylesheet" href="../js/lib/bin-ui/styles/index.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/index2.css">
+  <script src="../js/lib/vue.min.js"></script>
+  <script src="../js/lib/bin-ui/bin-ui.min.js"></script>
+  <script src="../js/lib/three.min.js"></script>
+  <script src="../js/lib/echarts/echarts.min.js"></script>
+  <script src="../js/lib/swiper/swiper.min.js"></script>
+  <!--  公共头部样式-->
+  <link rel="stylesheet" href="../styles/header.css">
+
+</head>
+<body>
+<div id="app">
+  <div class="page-container" flex="dir:column">
+    <!-- 页面头部-->
+    <div class="page-title">
+      <span class="text-gradient">综合执法监管大数据分析系统</span>
+      <div class="user-bar">
+        <div class="user-info">[欢迎您，<span>{{this.userName}}</span>]</div>
+        <div class="login-time">[登录时间：{{this.dateNow}}]</div>
+      </div>
+      <div class="title-container">
+        <div class="title-content">
+          <b-dropdown class="b-dropdown" @click="changeDept">
+            <b-button type="primary">
+              <b-icon name="ios-list-box"></b-icon>
+              选择部门
+            </b-button>
+            <b-dropdown-menu slot="list" v-for="item in deptList" key="item">
+              <b-dropdown-item :name="item">{{item.name}}</b-dropdown-item>
+            </b-dropdown-menu>
+          </b-dropdown>
+        </div>
+      </div>
+    </div>
+    <!--    页面主体  -->
+    <div class="page-content">
+      <div class="main">
+        <div class="left-side">
+          <div class="card-container" flex="dir:column space:between">
+            <div flex-box="1" flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>&nbsp;商户信用分布统计</i>
+                </div>
+                <img src="../images/title-bg.png" alt="">
+                <div class="card-line"></div>
+              </div>
+              <div id="container-one"></div>
+              <div class="panel-footer"></div>
+            </div>
+            <div flex-box="1" flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>&nbsp;执法情况统计</i>
+                </div>
+                <img src="../images/title-bg.png" alt="">
+                <div class="card-line"></div>
+              </div>
+              <div id="container-two"></div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+        </div>
+        <div class="center-side">
+          <div class="card-container" flex="dir:column space:between">
+            <div class="num-bar" flex-box="2">
+              <div class="num-bar-title">
+                <div><span class="title-inner">商户基本信息</span></div>
+                <div><span class="title-inner">归集总量</span></div>
+              </div>
+              <div class="num-box">
+                <div class="num-list" flex="space:around">
+                  <span v-for="(item, index) in numList" :class="'num-bg-'+item"></span>
+                </div>
+                <div class="corner"></div>
+                <div class="corner"></div>
+                <div class="corner"></div>
+                <div class="corner"></div>
+              </div>
+            </div>
+            <div class="second-block" flex-box="4">
+              <div class="second-block-one">
+                <img src="../images/icon1.png" alt="图片1"/>
+                <p class="big-font">{{zhifaCount}}<span>(次)</span></p>
+                <p class="small-font">本月执法次数</p>
+                <img src="../images/tablenumbg2.png" alt="图片2">
+              </div>
+              <div class="second-block-two">
+                <img src="../images/icon2.png" alt="图片1"/>
+                <p class="big-font">{{fiveStarCount}}<span>(个)</span></p>
+                <p class="small-font">
+                  <img src="../images/star-red.png" alt="" width="20" height="20">
+                  <img src="../images/star-red.png" alt="" width="20" height="20">
+                  <img src="../images/star-red.png" alt="" width="20" height="20">
+                  <img src="../images/star-red.png" alt="" width="20" height="20">
+                  <img src="../images/star-red.png" alt="" width="20" height="20">
+                  <span>商户数量</span>
+                </p>
+                <img src="../images/tablenumbg2.png" alt="图片2">
+              </div>
+              <div class="second-block-three">
+                <img src="../images/icon3.png" alt="图片1"/>
+                <p class="big-font">{{zeroStarCount}}<span>(个)</span></p>
+                <p class="small-font">
+                  <img src="../images/star-blue.png" alt="" width="20" height="20">
+                  <span>商户数量</span>
+                </p>
+                <img src="../images/tablenumbg2.png" alt="图片2">
+              </div>
+            </div>
+            <div class="panel footer-box" flex-box="4">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>&nbsp;重点关注商户名单统计</i>
+                </div>
+                <img src="../images/title-bg.png" alt="">
+                <div class="card-line"></div>
+              </div>
+              <div class="button-group">
+                <b-button type="primary" round transparent @click="changeTableData(5)">
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                </b-button>
+                <b-button type="primary" round transparent class="one-star-style"
+                          @click="changeTableData(0)">
+                  <img src="../images/star-blue.png" alt="" width="20" height="20">
+                </b-button>
+              </div>
+              <div class="head">
+                <span v-for="(item,index) in columns">{{item.title}}</span>
+              </div>
+              <div class="table-container">
+                <ul class="swiper-wrapper">
+                  <li class="swiper-slide" v-for="(item,index) in tableData">
+                    <span>{{ item.name }}</span><span>{{ item.people }}</span><span>{{ item.orgInstCode }}</span>
+                    <span>{{ item.area }}</span><span>{{ item.score }}</span><span>{{ item.grade }}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+        </div>
+        <div class="right-side">
+          <div class="card-container" flex="dir:column space:between">
+            <div flex-box="1" flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>&nbsp;重点关注商户数量趋势图</i>
+                </div>
+                <img src="../images/title-bg.png" alt="">
+                <div class="card-line"></div>
+              </div>
+              <div class="button-group" style="margin-top: 0.1rem;">
+                <b-button type="primary" round transparent @click="changeLineData(5)">
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                </b-button>
+                <b-button type="primary" round transparent class="one-star-style"
+                          @click="changeLineData(0)">
+                  <img src="../images/star-blue.png" alt="" width="20" height="20">
+                </b-button>
+              </div>
+              <div id="container-three"></div>
+              <div class="panel-footer"></div>
+            </div>
+            <div flex-box="1" flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>&nbsp;执法大队重点关注商户TOP5</i>
+                </div>
+                <img src="../images/title-bg.png" alt="">
+                <div class="card-line"></div>
+              </div>
+              <div class="button-group" style="margin-top: 0.1rem;">
+                <b-button type="primary" round transparent @click="changeBarData(5)">
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                  <b-icon name="favorfill" color="#AF0D51"></b-icon>
+                </b-button>
+                <b-button type="primary" round transparent class="one-star-style"
+                          @click="changeBarData(0)">
+                  <img src="../images/star-blue.png" alt="" width="20" height="20">
+                </b-button>
+              </div>
+              <div id="container-four" class="card-bar"></div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        zhifaCount: 0,//本月执法次数
+        fiveStarCount: 0,//五星商户数量
+        zeroStarCount: 0,//零星商户数量
+        deptList: [],
+        numList: [3, 9, 6, 3, 6, 0, 5, 8],//大屏商户基础信息归集总量数字卡片组
+        columns: [
+          {title: '商户名称', key: 'name', width: '180'},
+          {title: '法定代表人', key: 'people', align: 'center', width: '120'},
+          {title: '统一社会信用代码', key: 'orgInstCode', align: 'center', width: '200'},
+          {title: '经营地址', key: 'area', width: '220', align: 'center'},
+          {title: '评分', key: 'score', width: '90', align: 'center'},
+          {title: '等级', key: 'grade', width: '70', align: 'center'}
+        ],//重点关注商户名单统计表格表头
+        tableData: [
+          {
+            id: 0,
+            name: '黎伞电子科技有限公司',
+            people: '张三',
+            orgInstCode: '11230500MB011149',
+            area: '济宁市任城区(环城西路口',
+            score: '100',
+            grade: 'A'
+          },
+          {
+            id: 1,
+            name: '黎伞电子科技有限公司',
+            people: '张三',
+            orgInstCode: '11230500MB011149',
+            area: '济宁市任城区(环城西路口',
+            score: '90',
+            grade: 'A'
+          },
+          {
+            id: 2,
+            name: '黎伞电子科技有限公司',
+            people: '张三',
+            orgInstCode: '11230500MB011149',
+            area: '济宁市任城区(环城西路口',
+            score: '90',
+            grade: 'A'
+          },
+          {
+            id: 3,
+            name: '黎伞电子科技有限公司',
+            people: '张三',
+            orgInstCode: '11230500MB011149',
+            area: '济宁市任城区(环城西路口',
+            score: '90',
+            grade: 'A'
+          },
+          {
+            id: 4,
+            name: '黎伞电子科技有限公司',
+            people: '张三',
+            orgInstCode: '11230500MB011149',
+            area: '济宁市任城区(环城西路口',
+            score: '90',
+            grade: 'A'
+          },
+          {
+            id: 5,
+            name: '黎伞电子科技有限公司',
+            people: '张三',
+            orgInstCode: '11230500MB011149',
+            area: '济宁市任城区(环城西路口',
+            score: '90',
+            grade: 'A'
+          },
+          {
+            id: 6,
+            name: '黎伞电子科技有限公司',
+            people: '张三',
+            orgInstCode: '11230500MB011149',
+            area: '济宁市任城区(环城西路口',
+            score: '90',
+            grade: 'A'
+          },
+          {
+            id: 7,
+            name: '黎伞电子科技有限公司',
+            people: '张三',
+            orgInstCode: '11230500MB011149',
+            area: '济宁市任城区(环城西路口',
+            score: '90',
+            grade: 'A'
+          },
+          {
+            id: 8,
+            name: '黎伞电子科技有限公司',
+            people: '张三',
+            orgInstCode: '11230500MB011149',
+            area: '济宁市任城区(环城西路口',
+            score: '90',
+            grade: 'A'
+          },
+          {
+            id: 9,
+            name: '黎伞电子科技有限公司',
+            people: '张三',
+            orgInstCode: '11230500MB011149',
+            area: '济宁市任城区(环城西路口',
+            score: '90',
+            grade: 'A'
+          },
+          {
+            id: 10,
+            name: '黎伞电子科技有限公司',
+            people: '张三',
+            orgInstCode: '11230500MB011149',
+            area: '济宁市任城区(环城西路口',
+            score: '90',
+            grade: 'A'
+          },
+        ],
+        pieOneData: [],//商户信用分布统计数据
+        pieTwoData: [],//执法情况统计数据
+        lineOneDataH: [],//重点关注商户数量趋势图数据(高)
+        lineOneDataL: [],//重点关注商户数量趋势图数据(低)
+        barOneData: [],//执法大队重点关注商户TOP5数据
+        dateNow: "",
+        userName: "",
+      }
+    },
+    mounted: function () {
+      // 列表滚动
+      var swiper = new Swiper('.table-container', {
+        direction: 'vertical',//滚动方向，垂直滚动
+        slidesPerView: 10,//设置slider容器能够同时显示的slides数量,显示5行
+        spaceBetween: 0,//间距为0
+        loop: true,//循环滚动
+        autoplay: {//匀速滚动
+          delay: 1000//间隔时间1000毫秒
+        }
+      })
+      this.numChange(this.numList)
+      this.getCenterData()
+      this.getDeptList()
+      this.getPieOneData()
+      this.getPieTwoData()
+      this.getLineOneData()
+      this.getBarOneData()
+      this.getPieOne()
+      this.getPieTwo()
+      this.getLineOne()
+      this.getBarOne()
+      this.getDateNow()
+      this.getUserName()
+    },
+    methods: {
+      //获取大屏中间数据
+      getCenterData() {
+        this.zhifaCount = 12000
+        this.fiveStarCount = 12000
+        this.zeroStarCount = 5000
+      },
+      //获取当前日期
+      getDateNow() {
+        let yy = new Date().getFullYear();
+        let mm = new Date().getMonth() + 1;
+        let dd = new Date().getDate();
+        this.dateNow = yy + '-' + mm + '-' + dd;
+      },
+      //获取用户名
+      getUserName() {
+        let name = "admin"
+        this.userName = name;
+      },
+      //获取部门列表
+      getDeptList() {
+        var temp = [
+          {id: '1', name: '运营部'},
+          {id: '2', name: '测试部'},
+          {id: '3', name: '开发部'},
+          {id: '4', name: '运维部'},
+        ]
+        this.deptList = temp;
+      },
+      //获取商户信用分布统计数据
+      getPieOneData() {
+        var temp = [
+          {name: "★★★★★商户", value: '100'},
+          {name: "★★★★商户", value: '20'},
+          {name: "★★★商户", value: '600'},
+          {name: "★★商户", value: '90'},
+          {name: "★商户", value: '852'},
+          {name: "☆商户", value: '300'}
+        ]
+        this.pieOneData = temp;
+      },
+      //获取执法情况统计数据
+      getPieTwoData() {
+        var temp = [
+          {name: "正面信息执法情况", value: '40'},
+          {name: "负面信息执法情况", value: '40'},
+          {name: "其他信息执法情况", value: '20'}
+        ]
+        this.pieTwoData = temp;
+      },
+      //获取重点关注商户数量趋势图数据
+      getLineOneData() {
+        var tempH = [210, 160, 170, 175, 185, 175, 45, 45, 45, 45, 45, 45]
+        var tempL = [180, 130, 140, 145, 155, 145, 15, 15, 15, 15, 15, 15]
+        this.lineOneDataH = tempH;
+        this.lineOneDataL = tempL;
+      },
+      //获取执法大队重点关注商户TOP5数据
+      getBarOneData() {
+        var temp = [800, 700, 600, 500, 400]
+        this.barOneData = temp;
+      },
+      // 饼图
+      getPieOne() {
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('container-one'));
+        // 绘制图表，this.echarts1_option是数据
+        myChart.setOption({
+          title: {
+            text: '',
+            subtext: '',
+            x: 'center'
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: "比例：{d}% <br/>数量：{c}（个）"
+          },
+          legend: {
+            bottom: 'bottom',
+            formatter: '{a|{name}}',
+            itemGap: 10,
+            left: 'center',
+            data: ["★★★★★商户", "★★★★商户", "★★★商户", "★★商户", "★商户", "☆商户"],
+            textStyle: {
+              color: "#fff",
+              padding: [0, 0, 0, 0],
+              rich: {
+                a: {
+                  width: (1000 - 200) / 10,
+                  height: 10,
+                  fontSize: 12
+                },
+              }
+            },
+          },
+          color: ['rgb(179, 15, 86)', 'rgb(215, 128, 0)', 'rgb(21, 181, 137)', 'rgb(1, 155, 205)', 'rgb(1, 79, 205)', 'rgb(2, 24, 205)'],
+          series: {
+            name: '123',
+            type: 'pie',
+            center: ["50%", "40%"],
+            radius: '50%',  //图的大小
+            startAngle: 0,              //起始角度，支持范围[0, 360]。
+            minAngle: 30,
+            label: {                      //图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等，
+              color: '#fff',
+              position: 'left',
+              formatter: '比例：{d}%',
+            },
+            textStyle: {       //这只是为了让文字居中而已
+              align: "left",            //水平对齐方式可选left，right，center
+              baseline: "top",　　　　//垂直对齐方式可选top，bottom，middle
+            },
+            data: this.pieOneData
+          }
+        });
+        window.addEventListener("resize", function () {
+          myChart.resize();
+        });
+      }
+      ,
+      getPieTwo() {
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('container-two'));
+        // 绘制图表，this.echarts1_option是数据
+        myChart.setOption({
+          title: {
+            text: '',
+            subtext: '',
+            x: 'center'
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: "比例：{d}% <br/>次数：{c}（次）"
+          },
+          legend: [
+            {
+              bottom: '10',
+              textStyle: {color: '#fff'},
+              data: ["正面信息执法情况", "负面信息执法情况", "其他信息执法情况"]
+            },
+          ],
+          color: ['rgb(179, 15, 86)', 'rgb(215, 128, 0)', 'rgb(21, 181, 137)'],
+          series: [
+            {
+              name: '123',
+              type: 'pie',
+              center: ["50%", "40%"],
+              radius: '50%',  //图的大小
+              startAngle: 0,              //起始角度，支持范围[0, 360]。
+              minAngle: 10,
+              label: {                      //图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等，
+                color: '#fff',
+                position: 'left',
+                formatter: '比例：{d}%',
+              },
+              data: this.pieTwoData
+            }
+          ]
+        });
+        window.addEventListener("resize", function () {
+          myChart.resize();
+        });
+      }
+      ,
+      //折线图
+      getLineOne() {
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('container-three'));
+        // 绘制图表，this.echarts1_option是数据
+        myChart.setOption({
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross',
+              label: {
+                backgroundColor: '#6a7985'
+              }
+            }
+          },
+
+          grid: {
+            left: "10",
+            top: "50",
+            right: "15",
+            bottom: "0",
+            containLabel: true
+          },
+          xAxis: [
+            {
+              type: 'category',
+              boundaryGap: false,
+              axisLabel: {
+                textStyle: {
+                  color: '#fff',
+                }
+              },
+              axisLine: {
+                lineStyle: {
+                  type: 'solid',
+                  color: '#282C4F',//左边线的颜色
+                  width: '1'//坐标线的宽度
+                }
+              },
+              data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+            }
+          ],
+          yAxis: [
+            {
+              interval: 25,
+              name: '数量 (个)',
+              type: 'value',
+              nameTextStyle: {
+                fontSize: 12,
+                color: '#fff',
+              },
+              axisLine: {
+                textStyle: {
+                  color: '#fff'
+                },
+                lineStyle: {
+                  type: 'solid',
+                  color: '#282C4F',//左边线的颜色
+                  width: '1'//坐标线的宽度
+                }
+              },
+              splitLine: {
+                show: true,
+                lineStyle: {
+                  color: ['#282C4F'],
+                  width: 1,
+                  type: 'solid'
+                }
+              },
+              axisLabel: {
+                textStyle: {
+                  color: '#fff',
+                }
+              }
+            }
+          ],
+          series: [
+            {
+              name: '1',
+              type: 'line',
+              symbolSize: 8,
+              areaStyle: {},
+              emphasis: {
+                focus: 'series'
+              },
+              itemStyle: {
+                color: {
+                  type: 'linear',
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [{
+                    offset: 0, color: '#1EB1DD' // 0% 处的颜色
+                  }, {
+                    offset: 1, color: 'rgba(255,255,255,.0)' // 100% 处的颜色
+                  }],
+                  global: false // 缺省为 false
+                },
+                lineStyle: {
+                  color: '#1EB1DD'
+                }
+              },
+              lineStyle: {
+                color: {
+                  type: 'linear',
+                  x: 0,
+                  y: 0,
+                  x2: 1,
+                  y2: 1,
+                  colorStops: [{
+                    offset: 0, color: '#1EB1DD' // 0% 处的颜色
+                  }, {
+                    offset: 0.5, color: '#1EB1DD' // 0% 处的颜色
+                  }, {
+                    offset: 1, color: '#1EB1DD' // 100% 处的颜色
+                  }],
+                  global: false // 缺省为 false
+                }
+              },
+              data: this.lineOneDataH
+            },
+            {
+              name: '2',
+              type: 'line',
+              symbolSize: 8,
+              areaStyle: {},
+              emphasis: {
+                focus: 'series'
+              },
+              itemStyle: {
+                color: {
+                  type: 'linear',
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [{
+                    offset: 0, color: '#AC39AE' // 0% 处的颜色
+                  }, {
+                    offset: 0.8, color: 'rgba(255,255,255,.0)' // 100% 处的颜色
+                  }],
+                  global: false // 缺省为 false
+                },
+                lineStyle: {
+                  color: '#AC39AE'
+                }
+              },
+              lineStyle: {
+                color: {
+                  type: 'linear',
+                  x: 0,
+                  y: 0,
+                  x2: 1,
+                  y2: 1,
+                  colorStops: [{
+                    offset: 0, color: '#AC39AE' // 0% 处的颜色
+                  }, {
+                    offset: 0.5, color: '#AC39AE' // 0% 处的颜色
+                  }, {
+                    offset: 1, color: '#AC39AE' // 100% 处的颜色
+                  }],
+                  global: false // 缺省为 false
+                }
+              },
+              data: this.lineOneDataL
+            },
+
+          ]
+        });
+        window.addEventListener("resize", function () {
+          myChart.resize();
+        });
+      }
+      ,
+      //柱形图
+      getBarOne() {
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = echarts.init(document.getElementById('container-four'));
+        // 绘制图表，this.echarts1_option是数据
+        myChart.setOption({
+          tooltip: {
+            trigger: 'axis',
+            formatter: "{b} : {c}",
+            axisPointer: {
+              type: 'shadow'
+            }
+          },
+          grid: {
+            left: "10",
+            top: "50",
+            right: "15",
+            bottom: "0",
+            containLabel: true
+          },
+          xAxis: {
+            type: 'category',
+            axisLabel: {
+              interval: 0, rotate: 30,
+              textStyle: {color: '#fff'}
+            },
+            axisLine: {
+              lineStyle: {
+                type: 'solid',
+                color: '#282C4F',//左边线的颜色
+                width: '.5'//坐标线的宽度
+              }
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ['#282C4F'],
+                width: 1,
+                type: 'solid'
+              }
+            },
+            data: ['商户一', '商户二', '商户三', '商户四', '商户五']
+          },
+          yAxis: {
+            interval: 100,
+            name: '数量 (个)',
+            type: 'value',
+            nameTextStyle: {
+              fontSize: 12,
+              color: '#fff',
+            },
+            axisLabel: {
+              textStyle: {
+                color: '#fff',
+              }
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ['#282C4F'],
+                width: 1,
+                type: 'solid'
+              }
+            },
+            axisLine: {
+              textStyle: {
+                color: '#fff',
+              },
+              lineStyle: {
+                type: 'solid',
+                color: '#282C4F',//左边线的颜色
+                width: '.5'//坐标线的宽度
+              }
+            },
+          },
+          series: [{
+            type: 'bar',
+            barWidth: 37,
+            itemStyle: {
+              normal: {
+                borderWidth: 1,
+                borderColor: '#18CEE2',
+                barBorderRadius: 28,
+                color: new echarts.graphic.LinearGradient(
+                    0, 0, 1, 0,
+                    [
+                      {offset: 0, color: '#3E8BF7'},
+                      {offset: 1, color: 'rgba(255,255,255,.1)'}
+                    ]
+                )
+              },
+              emphasis: {
+                barBorderRadius: 13,
+                shadowBlur: 18,
+                shadowColor: 'rgba(218,170, 58, 0.7)'
+              }
+            },
+            data: this.barOneData
+          },
+
+
+            {
+              name: 'a',
+              tooltip: {
+                show: false
+              },
+              type: 'pictorialBar',
+              itemStyle: {
+                normal: {
+                  color: new echarts.graphic.LinearGradient(
+                      0, 0, 1, 0,
+                      [
+                        {offset: 0, color: '#78AFFF'},
+                        {offset: 1, color: '#78AFFF'}
+                      ]
+                  ),
+                  borderWidth: 1,
+                  borderColor: '#18CEE2'
+                }
+              },
+              symbol: 'circle',
+              symbolSize: ['38', '22'],
+              symbolPosition: 'end',
+              data: this.barOneData,
+              z: 3
+            },
+            {
+              name: 'b',
+              tooltip: {
+                show: false
+              },
+              type: 'pictorialBar',
+              itemStyle: {
+                normal: {
+                  color: new echarts.graphic.LinearGradient(
+                      0, 0, 1, 0,
+                      [
+                        {offset: 0, color: '#0847B9'},
+                        {offset: 1, color: '#0847B9'}
+                      ]
+                  ),
+                  borderWidth: 1,
+                  borderColor: '#18CEE2'
+                }
+              },
+              symbol: 'circle',
+              symbolSize: ['38', '22'],
+              data: this.barOneData,
+              z: 3
+            }
+
+          ]
+        });
+        window.addEventListener("resize", function () {
+          myChart.resize();
+        });
+      }
+      ,
+      // 数字条动态方法
+      numChange(num) {
+        let copy = JSON.parse(JSON.stringify(num))
+        let change = setInterval(() => {
+          let arr = []
+          num.forEach(() => {
+            arr.push(parseInt(Math.random() * 10))
+          })
+          num.splice(0, 8)
+          num.push(...arr)
+        }, 100)
+        setTimeout(() => {
+          window.clearInterval(change)
+          num.splice(0, 8)
+          num.push(...copy)
+        }, 1000)
+      }
+      ,
+      //选择部门事件
+      changeDept(item) {
+        this.$message("id:" + item.id + " 名称:" + item.name)
+      }
+      ,
+      //重点关注商户名单表格数据按钮点击事件
+      changeTableData(i) {
+        this.$message("选择了" + i + "星的商户名单")
+      }
+      ,
+      //重点关注商户数量折线图数据按钮点击事件
+      changeLineData(i) {
+        this.$message("选择了" + i + "星的商户")
+      }
+      ,
+      //执法大队重点关注商户柱状图数据按钮点击事件
+      changeBarData(i) {
+        this.$message("选择了" + i + "星的商户")
+      }
+      ,
+    },
+  })
+</script>
+</body>
+</html>

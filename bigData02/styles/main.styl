@@ -1,0 +1,612 @@
+#app {
+  position relative;
+}
+
+.page-container {
+  height: 100%;
+  position: relative;
+  z-index: 8;
+
+  .main {
+    background-color: #090d30;
+    position: relative;
+    height: 970px;
+
+    .left-side, .right-side {
+      .btn-box {
+        text-align: right;
+
+        .bin-button {
+          line-height: 25px;
+        }
+
+        .active {
+          padding: 0 20px;
+          border-radius: 20px;
+          border: 1px solid #168cd2;
+
+          span {
+            color: #168cd2 !important;
+          }
+        }
+      }
+
+      .info-container {
+        height: 307px;
+      }
+    }
+
+    .left-side {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 500px;
+      padding: 0 20px;
+      color: #fff;
+      height: 100%;
+
+      .card-container {
+        .head {
+          display: flex;
+          border: 1px solid #168cd2;
+          border-bottom: none;
+          height: 30px;
+          line-height: 30px;
+          background-color: #093c95;
+
+          span {
+            text-align: center;
+            flex: 1;
+            color: #fff;
+          }
+
+          span:nth-child(1) {
+            flex: 1;
+          }
+
+          span:nth-child(2) {
+            flex: 1.5;
+          }
+
+          span:nth-child(3) {
+            flex: 1.5;
+          }
+        }
+
+        .table-container {
+          height: 150px;
+          overflow: hidden;
+          box-sizing: border-box;
+          border: 1px solid #168cd2;
+
+          .swiper-wrapper {
+            width: 100%;
+
+            li {
+              display: flex;
+              width: 100%;
+              height: 30px;
+              line-height: 30px;
+
+              span {
+                text-align: center;
+                flex: 1;
+                color: #fff;
+                border-right: 1px solid #168cd2;
+                border-bottom: 1px solid #168cd2;
+              }
+
+              span:nth-child(1) {
+                flex: 1;
+              }
+
+              span:nth-child(2) {
+                flex: 1.5;
+              }
+
+              span:nth-child(3) {
+                flex: 1.5;
+              }
+
+              span:last-child {
+                border-right: none;
+              }
+            }
+          }
+
+        }
+      }
+
+    }
+
+    //中间部分样式
+    .info-bar {
+      width: calc(100vw - 1000px);
+      height: 100%;
+      display: block;
+      margin: 0 auto;
+      clear: both;
+
+      .card-container {
+        .panel {
+          padding 18px;
+        }
+      }
+
+      .footer-box {
+        display: flex;
+        height: 244px;
+        padding: 10px;
+
+        .left-container {
+          width 202px;
+          height 202px;
+          margin-top: 20px;
+          background: url(../images/img-bg.png) no-repeat center;
+          background-size: 100%;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 203px;
+            height: 167px;
+            margin-top: 50px;
+            z-index :3;
+          }
+        }
+      }
+
+      .footer-bg {
+        width 900px;
+        left 50%;
+        transform translateX(-50%);
+        bottom: 0;
+        position: absolute;
+
+        img {
+          width 900px;
+          height 100px;
+        }
+      }
+    }
+
+    .right-side {
+      position: absolute;
+      height: 100%;
+      right: 0;
+      top: 0;
+      width: 500px;
+      padding: 0 20px;
+    }
+
+
+    //公共的信用等级样式
+
+    .info-container {
+      display flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .level-tag {
+        padding-left: 10px;
+        height: 29px;
+        width: 140px;
+        line-height: 29px;
+        font-size: 14px;
+        color: #fff;
+        border-radius: 15px;
+      }
+
+      .tag1 {
+        background-color: #1890ff;
+      }
+
+      .tag2 {
+        background-color: #005bff;
+      }
+
+      .tag3 {
+        background-color: #00baad;
+      }
+
+      .tag4 {
+        background-color: #008aba;
+      }
+
+      p {
+        color: #fff;
+        padding-left: 10px;
+        font-size: 14px;
+        line-height: 25px;
+      }
+    }
+  }
+
+}
+
+.card-container {
+  height: 100%;
+
+  .panel {
+    height: 280px;
+    box-shadow: 0 0 5px #3a3baf inset;
+    border: 1px solid #3a3baf;
+    padding: 15px;
+    margin-bottom: 10px;
+    position: relative;
+    background: url('../images/panel-bg.png') no-repeat;
+    background-size: 100%;
+    //设置边框小脚
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      border-left: 2px solid #3b4eb7;
+      border-top: 2px solid #3b4eb7;
+      content: '';
+    }
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid #3b4eb7;
+      border-top: 2px solid #3b4eb7;
+      content: '';
+    }
+
+    .panel-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+
+      &::before {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 8px;
+        height: 8px;
+        border-left: 2px solid #3b4eb7;
+        border-bottom: 2px solid #3b4eb7;
+        content: '';
+      }
+
+      &::after {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 8px;
+        height: 8px
+        border-right: 2px solid #3b4eb7;
+        border-bottom: 2px solid #3b4eb7;
+        content: '';
+      }
+    }
+
+    .btn-box {
+      text-align: right;
+      padding: 0 0 10px 0;
+
+      span {
+        font-size: 12px;
+        width: 60px;
+        height: 22px;
+        line-height: 22px;
+        border-radius: 10px;
+        color: #fff;
+        background-color: #1890ff;
+        padding: 3px 10px;
+        cursor: pointer;
+      }
+    }
+
+    .title-container {
+      display: flex;
+      align-items: flex-end;
+      color: #fff;
+
+      .title-content {
+        color: #fff;
+        font-weight: 700;
+        font-size: 18px;
+        margin-bottom: 2px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #4E5371;
+      }
+
+      .card-line {
+        flex: 1;
+        height: 17px;
+        width: 100%;
+        border-top: 1px solid #4E5371;
+        border-image: linear-gradient(to right, #4E5371, rgba(255, 255, 255, 0)) 1 10;
+      }
+    }
+  }
+
+  .level-panel {
+    height: 371px;
+  }
+}
+
+//echarts面板样式
+#lineChart1 {
+  width: 428px;
+  height: 210px;
+}
+
+#barChart1 {
+  width: 428px;
+  height: 202px;
+}
+
+#barChart2 {
+  width: 428px;
+  height: 234px;
+}
+
+#barChart3 {
+  width: 428px;
+  height: 234px;
+}
+
+//旋转地球样式
+$p = 140
+$itemW = 134
+$itemH = 134
+$rotateW = 4 * $p
+$rotateH = 3.46 * $p
+.rotate
+  position absolute
+  margin 0 auto
+  top 50%
+  left 50%
+  width ($rotateW) px
+  height: ($rotateH) px
+  transform-style preserve-3d
+  // transform rotateX(-10deg)
+  // background-color: #fff
+  animation rotate3d linear 30s infinite
+  z-index 92
+
+  &:hover
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+
+    .rotate-inner
+      .rotate-inner-item
+        animation-play-state: paused;
+        -webkit-animation-play-state: paused;
+
+  .rotate-inner
+    position relative
+    width: 100%
+    height: 100%
+    color #fff
+
+    .rotate-inner-item
+      animation rotate3dOpposite linear infinite 30s
+      text-align center
+      width: ($itemW) px
+      height: ($itemH) px
+      position relative
+
+      &:nth-child(1)
+        position absolute
+        top: (0 - $itemH/ 2) px
+        left: ($p - $itemW/ 2) px
+
+
+      &:nth-child(2)
+        position absolute
+        top: ($rotateH/ 2 - $itemH/ 2) px
+        left: ($p* 4 - $itemW/ 2) px
+
+
+      &:nth-child(3)
+        position absolute
+        top: ($rotateH - $itemH/ 2) px
+        left: ($p - $itemW/ 2) px
+
+
+      .cir-bg
+        position absolute
+        left: 50%
+        top: 50%
+        width: 90px
+        height: 90px
+        text-align center
+        transform translate(-50%, -50%) rotateX(70deg) scaleY(7)
+        background-position: center bottom
+        -webkit-background-size: 100% 100%
+        background-size: 100% 100%
+        background-repeat: no-repeat
+
+        .inner-item-text
+          position absolute
+          top 28px
+          width: 100%
+          //padding-top: 30px
+
+          p
+            font-size: 16px
+            text-align center
+
+          .text-title
+            font-size: 10px
+            text-align center
+            width: 100%
+
+          .text-count
+            font-weight: 700
+            font-size: 10px
+
+            .unit-font
+              font-size: 12px
+
+          .text-percent
+            position absolute
+            bottom: -40px
+            left: 35px
+            font-weight: 700
+            color #fbc606
+
+
+.earth-wrapper
+  position relative
+
+  .title-count
+    position absolute
+    top: 35%
+    left: 50%
+    transform translateX(-50%)
+    color: #fff
+    text-align center
+    z-index 100
+    font-size: 18px
+
+    i
+      text-shadow 0 0 4px #1b131a
+
+    .num
+      font-size: 28px
+
+  img
+    position absolute
+    left: 50%
+    top: 50%
+    transform translate(-50%, -50%)
+    z-index 90
+
+  .cir-1
+    position absolute
+    left: 50%
+    top: 50%
+    width: 600px
+    height: 600px
+    transform translate(-50%, -35%) scale(0.7) rotateX(70deg)
+    border: 4px solid #3f96e0
+    -webkit-border-radius: 50%
+    -moz-border-radius: 50%
+    border-radius: 50%
+
+  .cir-2
+    @extend .cir-1
+    z-index 10
+    background-color: rgba(5, 26, 77, 0.8)
+    border-color: transparent
+    transform translate(-50%, -48%) scale(0.48) rotateX(0)
+
+  .cir-3
+    @extend .cir-1
+    transform translate(-50%, -35%) scale(0.75) rotateX(70deg)
+
+  .cir-4
+    @extend .cir-1
+    transform translate(-50%, -35%) scale(0.9) rotateX(70deg)
+    border-color transparent
+    box-shadow 0 0 70px rgba(2, 176, 240, 1) inset
+
+  .cir-5
+    @extend .cir-1
+    width: 50px
+    height: 50px
+    border: 1px dotted rgba(60, 150, 224, 0.4)
+    transform translate(-50%, 132%) scale(12) rotateX(70deg)
+    animation rotate-cir-5 infinite 120s
+
+  .cir-6
+    @extend .cir-1
+    width: 100px
+    height: 100px
+    border: 1px dashed rgba(60, 150, 224, 0.5)
+    transform translate(-50%, 42%) scale(7) rotateX(70deg)
+    animation rotate-cir-6 infinite 120s
+
+  .cir-7
+    @extend .cir-1
+    background-image: url(../images/yuan01.png)
+    width: 59px
+    height: 56px
+    -webkit-background-size: cover
+    background-size: cover
+    background-repeat: no-repeat
+    animation rotate-cir-7 infinite 120s
+    border-color transparent
+
+  .cir-8
+    @extend .cir-1
+    width: 50px
+    height: 50px
+    background-image: url(../images/yuan02.png)
+    background-repeat: no-repeat
+    border-color transparent
+    animation rotate-cir-7 infinite 120s
+
+@keyframes rotate-cir-5
+  0% {
+    transform: translate(-50%, 132%) scale(12) rotateX(70deg) rotateZ(0)
+  }
+  50% {
+    transform: translate(-50%, 132%) scale(12) rotateX(70deg) rotateZ(0.5turn)
+  }
+  100% {
+    transform: translate(-50%, 132%) scale(12) rotateX(70deg) rotateZ(1turn)
+  }
+
+@keyframes rotate-cir-6
+  0% {
+    transform: translate(-50%, 42%) scale(7) rotateX(70deg) rotateZ(0)
+  }
+  50% {
+    transform: translate(-50%, 42%) scale(7) rotateX(70deg) rotateZ(-0.5turn)
+  }
+  100% {
+    transform: translate(-50%, 42%) scale(7) rotateX(70deg) rotateZ(-1turn)
+  }
+
+@keyframes rotate-cir-7
+  0% {
+    transform: translate(-50%, 140%) scale(18) rotateX(70deg) rotateZ(0)
+  }
+  50% {
+    transform: translate(-50%, 140%) scale(18) rotateX(70deg) rotateZ(-0.5turn)
+  }
+  100% {
+    transform: translate(-50%, 140%) scale(18) rotateX(70deg) rotateZ(-1turn)
+  }
+
+@keyframes rotate3d {
+  0% {
+    transform: translate(-50%, -50%) rotateX(65deg) rotateZ(0) scale(1.4)
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateX(65deg) rotateZ(1turn) scale(1.4)
+  }
+}
+
+@keyframes rotate3dOpposite {
+  0% {
+    transform: rotateZ(0)
+  }
+  100% {
+    transform: rotateZ(-1turn)
+  }
+}
+
+//水球图高度设置
+#zliquidFill1, #zliquidFill2, #zliquidFill3 {
+  height: 90px;
+  width: 90px;
+}
+
+#cliquidFill1, #cliquidFill2, #cliquidFill3 {
+  height: 90px;
+  width: 90px;
+}

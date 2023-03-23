@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>信用大数据专题</title>
+  <link rel="stylesheet" href="../styles/reset.css">
+  <!--bin-ui-->
+  <link rel="stylesheet" href="../js/lib/bin-ui/styles/index.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/header.css">
+  <link rel="stylesheet" href="../styles/index.css">
+  <!--js-->
+  <script src="../js/vue.min.js"></script>
+  <script src="../js/lib/bin-ui/bin-ui.min.js"></script>
+  <script src="../js/lib/three.min.js"></script>
+  <script src="../js/lib/swiper/swiper.min.js"></script>
+  <script src="../js/lib/swiper/swiper.min.js"></script>
+
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <div class="page-container" flex="dir:column">
+    <!-- 页面头部-->
+    <div class="page-title">
+      <span class="text-gradient">任城区社会成员信用管理大数据分析系统</span>
+      <div class="user-bar">
+        <div class="user-info">[欢迎您，<span>{{userName}}</span>]</div>
+        <div class="login-time">[登录时间：{{loginTime}}]</div>
+      </div>
+      <!--      <div class="title-container">-->
+      <!--        <div class="title-content">-->
+      <!--          <b-dropdown class="b-dropdown" @click="changeDept">-->
+      <!--            <b-button type="primary">-->
+      <!--              <b-icon name="ios-list-box"></b-icon>-->
+      <!--              选择部门-->
+      <!--            </b-button>-->
+      <!--            <b-dropdown-menu slot="list" v-for="item in deptList" key="item">-->
+      <!--              <b-dropdown-item :name="item">{{item.name}}</b-dropdown-item>-->
+      <!--            </b-dropdown-menu>-->
+      <!--          </b-dropdown>-->
+      <!--        </div>-->
+      <!--      </div>-->
+    </div>
+
+    <!-- 页面主体-->
+    <div class="page-content">
+      <div class="main">
+        <!-- 页面左侧-->
+        <div class="left-side">
+          <div class="card-container" flex="dir:column space:between">
+            <div flex-box="1" flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>自然人信用分布</i>
+                </div>
+                <img src="../images/rencheng/title-bg.png" alt="">
+                <div class="card-line"></div>
+              </div>
+              <!--              <div class="btn-box">-->
+              <!--                <b-button type="text" size="small" text-color="#fff" :class="{active:zshow==1}" @click="zShow1()">农村-->
+              <!--                </b-button>-->
+              <!--                <b-button type="text" size="small" text-color="#fff" :class="{active:zshow==2}" @click="zShow2()">城市-->
+              <!--                </b-button>-->
+              <!--              </div>-->
+              <div id="pieChart1"></div>
+              <div class="panel-footer"></div>
+            </div>
+            <div flex-box="1" flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>志愿服务活动类型分布</i>
+                </div>
+                <img src="../images/rencheng/title-bg.png" alt="">
+                <div class="card-line"></div>
+              </div>
+              <div id="pieChart2"></div>
+              <div class="panel-footer"></div>
+            </div>
+            <div flex-box="1" flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>志愿服务活动趋势</i>
+                </div>
+                <img src="../images/rencheng/title-bg.png" alt="">
+                <div class="card-line"></div>
+              </div>
+              <div id="lineChart1"></div>
+              <div class="panel-footer"></div>
+            </div>
+            <div class="panel footer-box" flex-box="1">
+              <div class="card-container" flex="dir:column space:between">
+                <div class="title-container">
+                  <div class="title-content">
+                    <i>自然人信用加分名单</i>
+                  </div>
+                  <img src="../images/rencheng/title-bg.png" alt="">
+                  <div class="card-line"></div>
+                </div>
+                <div class="btn-box" style="position: relative; top: -12px;">
+                  <b-button transparent round size="small" class="whiteBtn" @click="leftBtn">严重失信名单</b-button>
+                </div>
+                <div class="head">
+                  <span v-for="(item,index) in lcolumns">{{item.title}}</span>
+                </div>
+                <div class="table-container">
+                  <ul class="swiper-wrapper">
+                    <li class="swiper-slide" v-for="(item,index) in lcomData">
+                      <span t-ellipsis>{{ item.cName }}</span>
+                      <span>{{ item.legal }}</span>
+                      <span>{{ item.rCapital }}</span>
+                      <span>{{ item.score }}</span>
+                      <span>{{ item.level }}</span>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+            <b-modal v-model="modal1" title="自然人信用加分名单" width="925" footer-hide>
+              <b-table :columns="lcolumns" :data="lcomData" border></b-table>
+            </b-modal>
+          </div>
+        </div>
+        <!-- 中间部分-->
+        <div class="info-bar">
+          <div class="card-container" flex="dir:column space:between">
+            <!-- 数据归集/总量区域-->
+            <div class="num-bar" flex-box="1">
+              <div class="num-bar-title">
+                <div><span class="title-inner">数据归集</span></div>
+                <div><span class="title-inner">总量</span></div>
+              </div>
+              <div class="num-box">
+                <div class="num-list" flex="space:around">
+                  <span v-for="(item, index) in numList" :class="'num-bg-'+item"></span>
+                </div>
+                <div class="corner"></div>
+                <div class="corner"></div>
+                <div class="corner"></div>
+                <div class="corner"></div>
+              </div>
+            </div>
+            <!-- 信息条数区域-->
+            <div class="info-boxes" flex-box="2">
+              <div class="info-box" v-for="(item, index) in numData">
+                <p class="info-num">{{item.value}}(条)</p>
+                <p class="info-text">{{item.name}}</p>
+              </div>
+            </div>
+            <!-- 地图区域-->
+            <div class="cir-container" flex-box="4">
+              <div class="earth-bg">
+                <div ref="modelContainer" class="model-container">
+                </div>
+              </div>
+            </div>
+            <!--  底部折线图区域-->
+            <div class="center-box" flex="dir:row">
+              <div flex-box="1" flex="dir:column" class="panel">
+                <div class="title-container">
+                  <div class="title-content">
+                    <i>自然人信用加分趋势</i>
+                  </div>
+                  <img src="../images/rencheng/title-bg.png" alt="">
+                  <div class="card-line"></div>
+                </div>
+                <div id="lineChart2"></div>
+                <div class="panel-footer"></div>
+              </div>
+              <div flex-box="1" flex="dir:column" class="panel">
+                <div class="title-container">
+                  <div class="title-content">
+                    <i>企业加分趋势</i>
+                  </div>
+                  <img src="../images/rencheng/title-bg.png" alt="">
+                  <div class="card-line"></div>
+                </div>
+                <div id="lineChart3"></div>
+                <div class="panel-footer"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- 页面右侧-->
+        <div class="right-side">
+          <div class="card-container" flex="dir:column space:between">
+            <div flex-box="1" flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>企业法人信用分布</i>
+                </div>
+                <img src="../images/rencheng/title-bg.png" alt="">
+                <div class="card-line"></div>
+              </div>
+              <!--              <div class="btn-box">-->
+              <!--                <b-dropdown trigger="click">-->
+              <!--                  <b-button class="dropBtn">-->
+              <!--                    2021年-->
+              <!--                    <b-icon class="b-iconfont b-icon-down"></b-icon>-->
+              <!--                  </b-button>-->
+              <!--                  <b-dropdown-menu slot="list">-->
+              <!--                    <b-dropdown-item v-for="(item,index) in yearData">{{item.value}}</b-dropdown-item>-->
+              <!--                  </b-dropdown-menu>-->
+              <!--                </b-dropdown>-->
+              <!--              </div>-->
+              <div id="pieChart3"></div>
+              <div class="panel-footer"></div>
+            </div>
+            <div flex-box="1" flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>企业加分信息类型分布</i>
+                </div>
+                <img src="../images/rencheng/title-bg.png" alt="">
+                <div class="card-line"></div>
+              </div>
+              <div id="pieChart4"></div>
+              <div class="panel-footer"></div>
+            </div>
+            <div class="panel footer-box" flex-box="1">
+              <div class="card-container" flex="dir:column space:between">
+                <div class="title-container">
+                  <div class="title-content">
+                    <i>企业法人信用加分名单</i>
+                  </div>
+                  <img src="../images/rencheng/title-bg.png" alt="">
+                  <div class="card-line"></div>
+                </div>
+                <div class="btn-box" style="position: relative; top: -12px;">
+                  <b-button transparent round size="small" class="whiteBtn" @click="rightBtn">严重失信名单</b-button>
+                </div>
+                <div class="head">
+                  <span v-for="(item,index) in rcolumns">{{item.title}}</span>
+                </div>
+                <div class="table-container">
+                  <ul class="swiper-wrapper">
+                    <li class="swiper-slide" v-for="(item,index) in rcomData">
+                      <span t-ellipsis>{{ item.cName }}</span>
+                      <span>{{ item.legal }}</span>
+                      <span>{{ item.rCapital }}</span>
+                      <span>{{ item.score }}</span>
+                      <span>{{ item.level }}</span>
+                    </li>
+                  </ul>
+                </div>
+                <b-modal v-model="modal2" title="自然人信用加分名单" width="925" footer-hide>
+                  <b-table :columns="rcolumns" :data="rcomData" border></b-table>
+                </b-modal>
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+            <div flex-box="1" flex="dir:column" class="panel">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>信用信息提报TOP5</i>
+                </div>
+                <img src="../images/rencheng/title-bg.png" alt="">
+                <div class="card-line"></div>
+              </div>
+              <div id="barChart"></div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <b-modal v-model="modal" title="通用弹窗" width="925" footer-hide>
+    <b-table :columns="rcolumns" :data="rcomData" border></b-table>
+  </b-modal>
+</div>
+<!--echarts-->
+<script src="../js/lib/echarts/echarts.min.js"></script>
+<script>
+
+  new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        // canvas地球相关
+        scene: null,
+        camera: null,
+        renderer: null,
+        clock: null,
+        control: null,
+        axes: null,
+        earthParticles: null,
+        options: {
+          CITY_RADIUS: 100,
+          CITY_MARGIN: 1,
+          BLINT_SPEED: 0.05,
+          HEXAGON_RADIUS: 5,
+          radius: 100
+        },
+
+        userName: 'admin',
+        loginTime: '2021-7-7',
+        selected: '',
+        // 按钮相关
+        zshow: 1,
+        sshow: 1,
+        show3: 1,
+        // 数字
+        numList: [1, 5, 3, 4, 7, 6, 2, 8],
+        numData: [
+          {id: 1, value: '13580', name: '自然人基本信息'},
+          {id: 2, value: '12070', name: '社会组织基本信息'},
+          {id: 3, value: '11540', name: '自然人信用信息'},
+          {id: 4, value: '6854', name: '社会组织信用信息'}
+        ],
+        lcolumns: [
+          {
+            title: '企业名称',
+            key: 'cName',
+            align: 'center',
+            width: 220
+          },
+          {
+            title: '法定代表人',
+            key: 'legal',
+            align: 'center'
+          },
+          {
+            title: '注册资本',
+            key: 'rCapital',
+            align: 'center',
+            width: 140
+          },
+          {
+            title: '评分',
+            key: 'score',
+            align: 'center',
+            width: 90
+          },
+          {
+            title: '等级',
+            key: 'level',
+            align: 'center',
+            width: 90
+          }
+        ],
+        // 表格数据
+        lcomData: [
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: 20,
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: 20,
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: 20,
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: 20,
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: 20,
+            bAddress: '济宁市任城区（环城西路口）',
+            score: '90',
+            level: 'A'
+          }
+        ],
+        rcolumns: [
+          {
+            title: '企业名称',
+            key: 'cName',
+            align: 'center',
+            width: 220
+          },
+          {
+            title: '法定代表人',
+            key: 'legal',
+            align: 'center'
+          },
+          {
+            title: '注册资本',
+            key: 'rCapital',
+            align: 'center',
+            width: 140
+          },
+          {
+            title: '评分',
+            key: 'score',
+            align: 'center',
+            width: 90
+          },
+          {
+            title: '等级',
+            key: 'level',
+            align: 'center',
+            width: 90
+          }
+        ],
+        // 表格数据
+        rcomData: [
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: 20,
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: 20,
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: 20,
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: 20,
+            score: '90',
+            level: 'A'
+          },
+          {
+            cName: '黎伞电子科技有限公司',
+            legal: '张三',
+            rCapital: 20,
+            score: '90',
+            level: 'A'
+          }
+        ],
+        // 下拉菜单部门数据
+        deptList: [
+          {id: 1, name: '部门1'},
+          {id: 2, name: '部门2'},
+          {id: 3, name: '部门3'},
+          {id: 4, name: '部门4'}
+        ],
+        // 下拉菜单年份数据
+        yearData: [
+          {id: 1, value: '2021'},
+          {id: 2, value: '2020'},
+          {id: 3, value: '2019'},
+          {id: 3, value: '2018'},
+          {id: 3, value: '2017'},
+          {id: 4, value: '2016'}
+        ],
+        modal: false,
+        obj: { value: '' },
+        modal1: false,
+        modal2: false,
+      }
+    },
+    created: function () {
+
+    },
+    mounted: function () {
+
+      // 列表滚动
+      var swiper = new Swiper('.table-container', {
+        direction: 'vertical',//滚动方向，垂直滚动
+        slidesPerView: 5,//设置slider容器能够同时显示的slides数量,显示5行
+        spaceBetween: 0,//间距为0
+        loop: true,//循环滚动
+        autoplay: {//匀速滚动
+          delay: 1000//间隔时间1000毫秒
+        }
+      })
+      this.init()
+      this.numChange(this.numList)
+
+      this.initLineChart2()
+      this.initLineChart3()
+    },
+    methods: {
+      leftBtn: function () {
+        this.modal1 = true;
+      },
+      rightBtn: function () {
+        this.modal2 = true;
+      },
+      // //选择部门事件
+      // changeDept(item) {
+      //   this.$message("id:" + item.id + " 名称:" + item.name)
+      // },
+      // 数字条动态方法
+      numChange: function (num) {
+        let copy = JSON.parse(JSON.stringify(num))
+        let change = setInterval(() => {
+          let arr = []
+          num.forEach(() => {
+            arr.push(parseInt(Math.random() * 10))
+          })
+          num.splice(0, 8)
+          num.push(...arr)
+        }, 100)
+        setTimeout(() => {
+          window.clearInterval(change)
+          num.splice(0, 8)
+          num.push(...copy)
+        }, 1000)
+      },
+      // // 切换按钮改变样式
+      // zShow1() {
+      //   this.zshow = 1
+      // },
+      // zShow2() {
+      //   this.zshow = 2
+      // },
+      // // 农村/城市切换
+      // sShow1() {
+      //   this.sshow = 1
+      // },
+      // sShow2() {
+      //   this.sshow = 2
+      // },
+      // // 本月/本年切换
+      // mShow() {
+      //   this.show3 = 1
+      // },
+      // yShow() {
+      //   this.show3 = 2
+      // },
+      init: function () {
+        document.createElement('img')
+        var img = new Image()
+        img.src = '../images/rencheng/earth.jpg'
+        var cvs = document.createElement('canvas')
+        var ctx = cvs.getContext('2d')
+        var _self = this
+        img.onload = function () {
+          cvs.width = img.width
+          cvs.height = img.height
+          ctx.drawImage(img, 0, 0, cvs.width, cvs.height)
+          var imgData = ctx.getImageData(0, 0, cvs.width, cvs.height)
+          _self.createBasicScene() // 基本渲染容器
+          _self.createEarthParticles(img, imgData) // 渲染地球粒子
+          _self.animate()
+        }
+      },
+      createBasicScene: function (){
+        let width = this.$refs.modelContainer.offsetWidth
+        let height = this.$refs.modelContainer.offsetHeight
+        this.scene = new THREE.Scene()
+        this.camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 10000)
+        this.camera.position.z = 280
+        this.renderer = new THREE.WebGLRenderer({alpha: true})
+        this.renderer.setSize(width, height)
+        this.renderer.setClearColor(0xEEEEEE, 0.0)
+        this.renderer.autoClearColor = new THREE.Color(1, 0, 0, 0)
+        this.$refs.modelContainer.appendChild(this.renderer.domElement)
+        this.clock = new THREE.Clock()
+        this.axes = new THREE.AxesHelper(this.options.CITY_RADIUS + 10)
+        this.earthParticles = new THREE.Object3D()
+      },
+      createEarthParticles: function (img, imgData) {
+        let positions = []
+        let materials = []
+        let sizes = []
+        for (let i = 0; i < 2; i++) {
+          positions[i] = {
+            positions: []
+          }
+          sizes[i] = {
+            sizes: []
+          }
+          let mat = new THREE.PointsMaterial()
+          mat.size = 5
+          mat.color = new THREE.Color('#079cd1')
+          let img = '../images/rencheng/dot.png'
+          mat.map = new THREE.TextureLoader().load(img)
+          mat.depthWrite = false
+          mat.transparent = true
+          mat.opacity = 0
+          mat.side = THREE.FrontSide
+          mat.blending = THREE.AdditiveBlending
+          let n = i / 2
+          mat.t_ = n * Math.PI * 2
+          mat.speed_ = this.options.BLINT_SPEED
+          mat.min_ = 0.2 * Math.random() + 0.5
+          mat.delta_ = 0.1 * Math.random() + 0.1
+          mat.opacity_coef_ = 1
+          materials.push(mat)
+        }
+        var spherical = new THREE.Spherical()
+        spherical.radius = this.options.radius
+        var step = 250
+        for (let i = 0; i < step; i++) {
+          let vec = new THREE.Vector3()
+          let radians = step * (1 - Math.sin(i / step * Math.PI)) / step + 0.5
+          for (let j = 0; j < step; j += radians) {
+            let c = j / step
+            let f = i / step
+            let index = Math.floor(2 * Math.random())
+            let pos = positions[index]
+            let size = sizes[index]
+            let n = parseInt(img.width * c) // 根据横纵百分比计算图象坐标系中的坐标
+            let o = parseInt(img.height * f) // 根据横纵百分比计算图象坐标系中的坐标
+            // 根据横纵百分比判断在底图中的像素值
+            var isLandByUV = imgData.data[4 * (o * imgData.width + n)] === 0
+
+            if (isLandByUV) {
+              spherical.theta = c * Math.PI * 2 - Math.PI / 2 // 横纵百分比转换为theta和phi夹角
+              spherical.phi = f * Math.PI // 横纵百分比转换为theta和phi夹角
+              vec.setFromSpherical(spherical) // 夹角转换为世界坐标
+              pos.positions.push(vec.x)
+              pos.positions.push(vec.y)
+              pos.positions.push(vec.z)
+              if (j % 3 === 0) {
+                size.sizes.push(6.0)
+              }
+            }
+          }
+        }
+        for (let i = 0; i < positions.length; i++) {
+          let pos = positions[i]
+          let size = sizes[i]
+          let bufferGeom = new THREE.BufferGeometry()
+          let typedArr1 = new Float32Array(pos.positions.length)
+          let typedArr2 = new Float32Array(size.sizes.length)
+          for (let j = 0; j < pos.positions.length; j++) {
+            typedArr1[j] = pos.positions[j]
+          }
+          for (let j = 0; j < size.sizes.length; j++) {
+            typedArr2[j] = size.sizes[j]
+          }
+          bufferGeom.setAttribute('position', new THREE.BufferAttribute(typedArr1, 3))
+          bufferGeom.setAttribute('size', new THREE.BufferAttribute(typedArr2, 1))
+          bufferGeom.computeBoundingSphere()
+          let particle = new THREE.Points(bufferGeom, materials[i])
+          this.earthParticles.add(particle)
+        }
+        this.scene.add(this.earthParticles)
+      },
+      animate: function () {
+        requestAnimationFrame(this.animate)
+        // 球面粒子闪烁
+        let objects = this.earthParticles.children
+        objects.forEach(obj => {
+          let material = obj.material
+          material.t_ += material.speed_
+          material.opacity = (Math.sin(material.t_) * material.delta_ + material.min_) * material.opacity_coef_
+          material.needsUpdate = true
+        })
+        this.earthParticles.rotation.y += 0.005
+        this.renderer.render(this.scene, this.camera)
+      },
+      initLineChart2: function () {
+        var _self = this
+        // 实例化对象
+        var dom = document.getElementById("lineChart2");
+        var myChart = echarts.init(dom);
+
+        var option = {
+          color: ['#1891d8'],
+          grid: {
+            left: "0",
+            top: "40",
+            right: "15",
+            bottom: "4",
+            containLabel: true
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross',
+              label: {
+                backgroundColor: '#1891d8'
+              }
+            }
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            // 设置x轴标签文字样式
+            // x轴的文字颜色和大小
+            axisLabel: {
+              color: "rgba(255,255,255,0.8)",
+              fontSize: "12"
+            },
+          },
+          yAxis: {
+            type: 'value',
+            name: '数量',
+            nameLocation: 'end',
+            nameGap: 20,
+            nameTextStyle: {
+              color: 'rgba(255, 255, 255, 0.8)',
+              fontSize: 12, // 大小
+              padding: [0, 0, 0, -30]
+            },
+            axisLabel: {
+              color: "rgba(255,255,255,.8)",
+              fontSize: "12",
+            },
+            axisLine: {
+              // 如果想要设置单独的线条样式
+              lineStyle: {
+                color: "rgba(255,255,255,.1)",
+                width: 1,
+                type: "solid"
+              }
+            },
+            // y轴分割线的颜色
+            splitLine: {
+              lineStyle: {
+                color: "rgba(255,255,255,0.1)"
+              }
+            }
+          },
+          series: [{
+            data: [150, 100, 105, 110, 125, 100, 0, 0, 0, 0, 0, 0],
+            type: 'line',
+            areaStyle: {
+              // 线性渐变，多用于折线柱形图，前四个参数分别是 x0, y0, x2, y2, 范围从 0 - 1，相当于在图形包围盒中的百分比，如果 globalCoord 为 `true`，则该四个值是绝对的像素位置
+              color: {
+                type: 'linear',
+                x: 1,                 // 左上角x
+                y: 1,                 // 左上角y
+                x2: 1,                // 右下角x
+                y2: 0.2,                // 右下角y
+                colorStops: [{
+                  offset: 0, color: 'rgba(255,255,255,0.1)' // 0% 处的颜色
+                }, {
+                  offset: 1, color: 'rgba(24,145,216,0.8)' // 100% 处的颜色
+                }],
+                global: false // 缺省为 false
+              },
+            },
+            symbolSize: 6,//设置点的大小
+            smooth: true//设置线为曲线
+          }]
+        };
+
+        myChart.setOption(option);
+        myChart.on('click', function (params) {
+          // 控制台打印数据的名称
+          console.log(params.name);
+
+          _self.obj.value = params.name
+          _self.modal = true
+        });
+      },
+      initLineChart3: function () {
+        var _self = this
+        // 实例化对象
+        var dom = document.getElementById("lineChart3");
+        var myChart = echarts.init(dom);
+
+        var option = {
+          color: ['#1891d8'],
+          grid: {
+            left: "0",
+            top: "40",
+            right: "15",
+            bottom: "4",
+            containLabel: true
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross',
+              label: {
+                backgroundColor: '#1891d8'
+              }
+            }
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            // 设置x轴标签文字样式
+            // x轴的文字颜色和大小
+            axisLabel: {
+              color: "rgba(255,255,255,0.8)",
+              fontSize: "12"
+            },
+          },
+          yAxis: {
+            type: 'value',
+            name: '数量',
+            nameLocation: 'end',
+            nameGap: 20,
+            nameTextStyle: {
+              color: 'rgba(255, 255, 255, 0.8)',
+              fontSize: 12, // 大小
+              padding: [0, 0, 0, -30]
+            },
+            axisLabel: {
+              color: "rgba(255,255,255,.8)",
+              fontSize: "12",
+            },
+            axisLine: {
+              // 如果想要设置单独的线条样式
+              lineStyle: {
+                color: "rgba(255,255,255,.1)",
+                width: 1,
+                type: "solid"
+              }
+            },
+            // y轴分割线的颜色
+            splitLine: {
+              lineStyle: {
+                color: "rgba(255,255,255,0.1)"
+              }
+            }
+          },
+          series: [{
+            data: [150, 100, 105, 110, 125, 100, 0, 0, 0, 0, 0, 0],
+            type: 'line',
+            areaStyle: {
+              // 线性渐变，多用于折线柱形图，前四个参数分别是 x0, y0, x2, y2, 范围从 0 - 1，相当于在图形包围盒中的百分比，如果 globalCoord 为 `true`，则该四个值是绝对的像素位置
+              color: {
+                type: 'linear',
+                x: 1,                 // 左上角x
+                y: 1,                 // 左上角y
+                x2: 1,                // 右下角x
+                y2: 0.2,                // 右下角y
+                colorStops: [{
+                  offset: 0, color: 'rgba(255,255,255,0.1)' // 0% 处的颜色
+                }, {
+                  offset: 1, color: 'rgba(24,145,216,0.8)' // 100% 处的颜色
+                }],
+                global: false // 缺省为 false
+              },
+            },
+            symbolSize: 6,
+            smooth: true
+          }]
+        };
+
+        myChart.setOption(option);
+        myChart.on('click', function (params) {
+          // 控制台打印数据的名称
+          console.log(params.name);
+          console.log(_self);
+          _self.obj.value = params.name
+          _self.modal = true
+        });
+      }
+    }
+  })
+</script>
+<!--echarts相关配置数据-->
+<script src="../js/chart-data01.js"></script>
+
+</body>
+
+</html>

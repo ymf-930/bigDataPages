@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>诚信示范园区大数据展示</title>
+  <link href="../styles/reset.css" rel="stylesheet">
+  <!--bin-ui-->
+  <link href="../js/lib/bin-ui/styles/index.css" rel="stylesheet">
+  <link href="../styles/base.css" rel="stylesheet">
+  <link href="../styles/common.css" rel="stylesheet">
+  <link href="../styles/goodFaith.css" rel="stylesheet">
+  <!--js-->
+  <script src="../js/vue.min.js"></script>
+  <script src="../js/lib/bin-ui/bin-ui.min.js"></script>
+  <script src="../js/lib/three.min.js"></script>
+  <script src="../js/lib/swiper/swiper.min.js"></script>
+
+  <!--echarts-->
+  <script src="../js/lib/echarts/echarts.min.js"></script>
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <div class="page-container" flex="dir:column">
+    <!-- 页面头部-->
+    <div class="page-title">
+      <span class="text-gradient">诚信示范园区大数据展示</span>
+      <div class="header-line"></div>
+      <div class="left-bg"></div>
+      <div class="right-bg"></div>
+      <div class="user-bar">
+        <span class="showTime">{{dataNow}}</span>
+      </div>
+    </div>
+
+    <!-- 页面主体-->
+    <div class="page-content">
+      <div class="main">
+        <!-- 页面左侧-->
+        <div class="left-side">
+          <div class="card-container" flex="dir:column space:between">
+            <div class="panel" flex="dir:column" flex-box="1">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>诚信示范商户</i>
+                  <img alt="" src="../images/ankang/tu3.png">
+                </div>
+              </div>
+              <div class="head">
+                <span :key="index" :style="{'width': item.width}"
+                      v-for="(item,index) in honestCompanyHead">{{item.title}}
+                </span>
+              </div>
+              <div class="table-container swiper-container" id="swiper-container1">
+                <ul class="swiper-wrapper">
+                  <li :key="index" class="swiper-slide"
+                      v-for="(item,index) in honestCompanyData">
+                    <div :style="{'width': honestCompanyHead[0].width}">{{item.companyName}}</div>
+                    <div :style="{'width': honestCompanyHead[1].width}">{{ item.contact }}</div>
+                    <div :style="{'width': honestCompanyHead[2].width}">{{ item.phone }}</div>
+                    <div :style="{'width': honestCompanyHead[3].width}">{{ item.creditDesc }}</div>
+                    <div :style="{'width': honestCompanyHead[4].width}">{{ item.creditLevel }}</div>
+                  </li>
+                </ul>
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+
+            <div class="panel" flex="dir:column" flex-box="1" style="margin-top: 30px;">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>食品安全星级商户</i>
+                  <img alt="" src="../images/ankang/tu3.png">
+                </div>
+              </div>
+              <div class="head">
+                <span :key="index" :style="{'width': item.width}"
+                      v-for="(item,index) in foodSecurityStarCompanyHead">{{item.title}}
+                </span>
+              </div>
+              <div class="swiper-container item_swiper" id="swiper-container2">
+                <ul class="swiper-wrapper">
+                  <li :key="index" class="swiper-slide"
+                      v-for="(item,index) in foodSecurityStarCompanyData">
+                    <div :style="{'width': foodSecurityStarCompanyHead[0].width}">
+                      {{item.companyName}}
+                    </div>
+                    <div :style="{'width': foodSecurityStarCompanyHead[1].width}">{{ item.contact
+                      }}
+                    </div>
+                    <div :style="{'width': foodSecurityStarCompanyHead[2].width}">{{ item.phone }}
+                    </div>
+                    <div :style="{'width': foodSecurityStarCompanyHead[3].width}">
+                      <i class="bin-rate__icon iconfont icon-favorfill"
+                         style="color: #e60012"
+                         v-for="n in item.fSecurity"></i>
+                    </div>
+                    <div :style="{'width': foodSecurityStarCompanyHead[4].width}">{{ item.count }}
+                    </div>
+                    <div :style="{'width': foodSecurityStarCompanyHead[5].width}">{{ item.result
+                      }}
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+        </div>
+        <!-- 中间部分-->
+        <div class="info-bar">
+          <div class="card-container" flex="dir:column space:between">
+            <div class="content" flex="dir:column">
+              <div class="tab-top">
+                <div class="tab-top-item" v-for="(item,index) in tabTopItem" :class="{active:currentTopIndex === index}"
+                     @click="tabTopChange(index)" :key="index"><span>{{item.name}}</span></div>
+              </div>
+              <div class="info-main-wrapper">
+                <div class="big-data-charts">
+                  <div class="chassis"></div>
+                  <div class="data-content">
+                    <img alt="" src="../images/ankang/tuxing1.png">
+                    <div class="ceng">
+                      <span @click="changeLevelData(3)">三层</span>
+                      <span @click="changeLevelData(2)">二层</span>
+                      <span @click="changeLevelData(1)">一层</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="company-card" v-for="(item,index) in dataList"  :class="[item.class,{cardActive:currentTopIndex2 === index}]"   @click="changeCompanyInfo(index)">
+                  <img alt="" class="bg" src="../images/ankang/tuxing9.png">
+                  <img alt="" class="circle" src="../images/ankang/tuxing8.png">
+                  <div class="company-title" style="font-size: 20px;">{{item.title}}</div>
+                  <div class="company-desc" style="font-size: 14px;">信用等级：{{item.level}}</div>
+                  <img alt="" class="level-icon" src="../images/ankang/tubiao05.png">
+                </div>
+
+                <div class="company-detail-card">
+                  <div class="hd">商户信息</div>
+                  <div class="bd">
+                    <img class="company-img" height="95" :src="companyDataDemo.companyImg" width="110"/>
+                    <h3 class="company-title">{{companyDataDemo.companyName}}</h3>
+                    <div class="company-details">
+                      <div class="detail-item">
+                        <div class="key">联系人</div>
+                        <div class="value">{{companyDataDemo.contact}}</div>
+                      </div>
+                      <div class="detail-item">
+                        <div class="key">联系电话</div>
+                        <div class="value">{{companyDataDemo.phone}}</div>
+                      </div>
+                      <div class="detail-item">
+                        <div class="key">信用等级</div>
+                        <div class="value">{{companyDataDemo.companyLevel}}</div>
+                      </div>
+                      <div class="detail-item">
+                        <div class="key">信用描述</div>
+                        <div class="value">{{companyDataDemo.companyDesc}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-boxes">
+              <div class="tab-box" v-for="(item,index) in tabItem" :class="{active:currentIndex === index}"
+                    :key="index"><a :href="item.link"><span @click="tabChange(index)">{{item.name}}</span></a></div>
+            </div>
+            <div class="footer-bg">
+              <img alt="" src="../images/ankang/dibu.png">
+            </div>
+          </div>
+        </div>
+        <!-- 页面右侧-->
+        <div class="right-side">
+          <div class="card-container" flex="dir:column space:between">
+            <div class="panel" flex="dir:column" flex-box="1">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>企业信用风险评级结果公布</i>
+                  <img alt="" src="../images/ankang/tu3.png">
+                </div>
+              </div>
+              <div id="lineChart1"></div>
+              <div class="panel-footer"></div>
+            </div>
+            <div class="panel panel-box2" flex="dir:column" flex-box="1">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>信用等级对应信用分值</i>
+                  <img alt="" src="../images/ankang/tu3.png">
+                </div>
+              </div>
+              <div class="panel-content">
+                <ul class="level-wrapper">
+                  <li :key="index" class="level-item" flex=""
+                      v-for="(levelItem, index) in levelScoreMappingData">
+                    <div class="level-title">{{levelItem.name}}</div>
+                    <b-progress
+                            :color="levelItem.color"
+                            :percent="levelItem.percent"
+                            :show-text="false"
+                            :stroke-width="20"
+                            bg-color="rgba(255, 255, 255, .5)"
+                    ></b-progress>
+                    <div class="level-num" v-html="levelItem.range"></div>
+                  </li>
+
+                </ul>
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+            <div class="panel" flex="dir:column" flex-box="1">
+              <div class="title-container">
+                <div class="title-content">
+                  <i>示范园评级结果展示</i>
+                  <img alt="" src="../images/ankang/tu3.png">
+                </div>
+              </div>
+              <div id="barChart1"></div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+
+  new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        /*页面中间商户卡片显示信息*/
+        companyDataDemo:{
+          companyName: '黎伞电子科技有限公司',
+          companyImg:'../images/company.jpg',
+          contact: '张三',
+          phone: '12345678910',
+          companyDesc: 'A+',
+          companyLevel:'优+'
+        },
+        dataNow: '2021年07月15日 星期四  13:49:32',
+        //记录当前tab选项
+        currentIndex: 2,
+        tabItem: [
+          {id: '1', name: '评价分析', link: 'risk_assessment.html'},
+          {id: '2', name: '风险预警分析', link: 'risk _early_warning.html'},
+          {id: '3', name: '示范街区分析', link: 'good_faith.html'},
+        ],
+        currentTopIndex: 0,
+        currentTopIndex2: 0,
+        tabTopItem: [
+          {id: '1', name: '餐饮'},
+          {id: '2', name: '教育培训'},
+          {id: '3', name: '商超零食'},
+        ],
+        query:{
+          type: '餐饮',
+          level: 1,
+        },
+        dataList:[],
+        bigData:[
+        [
+          {
+            id:0,
+            class:'card1',
+            img:'../images/company.jpg',
+            title: '小五凉皮',
+            people:'张三',
+            phone:'1368523861',
+            level: 'A级',
+            desc:'优+'
+          },
+          {
+            id:1,
+            class:'card2',
+            img:'../images/company.jpg',
+            title: '肉夹馍',
+            people:'张三',
+            phone:'1368523861',
+            level: 'A级',
+            desc:'优+'
+          },
+          {
+            id:2,
+            class:'card3',
+            img:'../images/company.jpg',
+            title: '麻辣小龙虾',
+            people:'张三',
+            phone:'1368523861',
+            level: 'A级',
+            desc:'优+'
+          },
+          {
+            id:3,
+            class:'card4',
+            img:'../images/company.jpg',
+            title: '味千拉面',
+            people:'张三',
+            phone:'1368523861',
+            level: 'A级',
+            desc:'优+'
+          },
+          {
+            id:4,
+            class:'card5',
+            img:'../images/company.jpg',
+            title: '瑞幸咖啡',
+            people:'张三',
+            phone:'1368523861',
+            level: 'A级',
+            desc:'优+'
+          }
+        ],
+        [
+          {
+            id:0,
+            class:'card1',
+            img:'../images/company.jpg',
+            title: '培训机构1',
+            people:'张三',
+            phone:'1368523861',
+            level: 'A级',
+            desc:'优+'
+          },
+          {
+            id:1,
+            class:'card2',
+            img:'../images/company.jpg',
+            title: '培训机构2',
+            people:'张三',
+            phone:'1368523861',
+            level: 'A级',
+            desc:'优+'
+          },
+          {
+            id:2,
+            class:'card3',
+            img:'../images/company.jpg',
+            title: '培训机构3',
+            people:'张三',
+            phone:'1368523861',
+            level: 'A级',
+            desc:'优+'
+          },
+          {
+            id:3,
+            class:'card4',
+            img:'../images/company.jpg',
+            title: '培训机构4',
+            people:'张三',
+            phone:'1368523861',
+            level: 'A级',
+            desc:'优+'
+          },
+          {
+            id:4,
+            class:'card5',
+            img:'../images/company.jpg',
+            title: '培训机构5',
+            people:'张三',
+            phone:'1368523861',
+            level: 'A级',
+            desc:'优+'
+          }
+        ],
+        [
+          {
+            id:0,
+            class:'card1',
+            img:'../images/company.jpg',
+            title: '商超零食1',
+            people:'李四',
+            phone:'1368523861',
+            level: 'B级',
+            desc:'优+'
+          },
+          {
+            id:1,
+            class:'card2',
+            img:'../images/company.jpg',
+            title: '商超零食2',
+            people:'李四',
+            phone:'1368523861',
+            level: 'B级',
+            desc:'优+'
+          },
+          {
+            id:2,
+            class:'card3',
+            img:'../images/company.jpg',
+            title: '商超零食3',
+            people:'李四',
+            phone:'1368523861',
+            level: 'B级',
+            desc:'优+'
+          },
+          {
+            id:3,
+            class:'card4',
+            img:'../images/company.jpg',
+            title: '商超零食4',
+            people:'李四',
+            phone:'1368523861',
+            level: 'B级',
+            desc:'优+'
+          },
+          {
+            id:4,
+            class:'card5',
+            img:'../images/company.jpg',
+            title: '商超零食5',
+            people:'李四',
+            phone:'1368523861',
+            level: 'B级',
+            desc:'优+'
+          }
+        ]
+        ],
+        // 诚信示范商户
+        honestCompanyHead: [
+          {
+            title: '店铺',
+            key: 'companyName',
+            align: 'center',
+            width: '34%'
+          },
+          {
+            title: '联系人',
+            key: 'contact',
+            align: 'center',
+            width: '10%'
+          },
+          {
+            title: '联系电话',
+            key: 'phone',
+            align: 'center',
+            width: '30%'
+          },
+          {
+            title: '信用描述',
+            key: 'creditDesc',
+            align: 'center',
+            tooltip: true,
+            width: '13%'
+          },
+          {
+            title: '信用评级',
+            key: 'creditLevel',
+            align: 'center',
+            tooltip: true,
+            width: '13%'
+          }
+        ],
+        // 诚信示范商户数据
+        honestCompanyData: [
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            creditDesc: '优+',
+            creditLevel: 'A'
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            creditDesc: '优+',
+            creditLevel: 'A'
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            creditDesc: '优+',
+            creditLevel: 'A'
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            creditDesc: '优+',
+            creditLevel: 'A'
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            creditDesc: '优+',
+            creditLevel: 'A'
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            creditDesc: '优+',
+            creditLevel: 'A'
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            creditDesc: '优+',
+            creditLevel: 'A'
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            creditDesc: '优+',
+            creditLevel: 'A'
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            creditDesc: '优+',
+            creditLevel: 'A'
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            creditDesc: '优+',
+            creditLevel: 'A'
+          },
+
+        ],
+        // 食品安全星级商户
+        foodSecurityStarCompanyHead: [
+          {
+            title: '店铺',
+            key: 'company',
+            align: 'center',
+            tooltip: true,
+            width: '30%'
+          },
+          {
+            title: '联系人',
+            key: 'contact',
+            align: 'center',
+            tooltip: true,
+            width: '10%'
+          },
+          {
+            title: '联系电话',
+            key: 'phone',
+            align: 'center',
+            tooltip: true,
+            width: '21%'
+          },
+          {
+            title: '食品安全',
+            key: 'fSecurity',
+            align: 'center',
+            tooltip: true,
+            width: '13%'
+          },
+          {
+            title: '抽检次数',
+            key: 'count',
+            align: 'center',
+            tooltip: true,
+            width: '13%'
+          },
+          {
+            title: '抽检结果',
+            key: 'result',
+            align: 'center',
+            tooltip: true,
+            width: '13%'
+          },
+        ],
+        // 食品安全星级商户数据
+        foodSecurityStarCompanyData: [
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            fSecurity: 5,
+            count: 1,
+            result: 1
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            fSecurity: 1,
+            count: 1,
+            result: 1
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            fSecurity: 1,
+            count: 1,
+            result: 1
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            fSecurity: 1,
+            count: 1,
+            result: 1
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            fSecurity: 1,
+            count: 1,
+            result: 1
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            fSecurity: 1,
+            count: 1,
+            result: 1
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            fSecurity: 1,
+            count: 1,
+            result: 1
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            fSecurity: 1,
+            count: 1,
+            result: 1
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            fSecurity: 1,
+            count: 1,
+            result: 1
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            fSecurity: 1,
+            count: 1,
+            result: 1
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            fSecurity: 1,
+            count: 1,
+            result: 1
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            fSecurity: 1,
+            count: 1,
+            result: 1
+          },
+          {
+            companyName: '黎伞电子科技有限公司',
+            contact: '张三',
+            phone: '12345678910',
+            fSecurity: 1,
+            count: 1,
+            result: 1
+          },
+        ],
+        // 信用等级对应信用分值数据
+        levelScoreMappingData: [
+          {
+            'name': '优+',
+            'percent': 90,
+            'color': '#0085f6',
+            'range': '&ge;900'
+          },
+          {
+            'name': '优',
+            'percent': 80,
+            'color': '#00f4f7',
+            'range': '&ge;700&lt;900'
+          },
+          {
+            'name': '良',
+            'percent': 70,
+            'color': '#009445',
+            'range': '&ge;550&lt;700'
+          },
+          {
+            'name': '中',
+            'percent': 60,
+            'color': '#e06642',
+            'range': '&ge;350&lt;550'
+          },
+          {
+            'name': '差',
+            'percent': 50,
+            'color': '#d70419',
+            'range': '&ge;700&lt;900'
+          }
+        ],
+        // 示范园评级结果展示数据
+        barChartOption: {
+          color: ['#4263ea'],
+          grid: {
+            left: "20",
+            top: "10",
+            right: "20",
+            bottom: "0",
+            containLabel: true
+          },
+          series: [{
+            data: [3800, 7800, 2800, 1800, 800],
+            type: 'bar',
+            barWidth: "25%",
+            itemStyle: {
+              emphasis: {
+                barBorderRadius: 7
+              },
+              normal: {
+                barBorderRadius: 7,
+                color: new echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,		//0010从左至右渐变，0001从上至下渐变
+                    [
+                      {offset: 0, color: '#344c9c'},
+                      {offset: 1, color: '#4263ea'}
+                    ])
+              },
+            }
+          }],
+          xAxis: {
+            type: 'category',
+            data: ["A+", "A", "B", "C", "D"],
+            // 设置x轴标签文字样式
+            // x轴的文字颜色和大小
+            axisLabel: {
+              textStyle: {
+                color: function (param, index) {
+                  let colors = ["#1d2088", "#0000ff", "#009944", "#ec6941", "#de0218"];
+                  return colors[index];
+                },
+                fontSize: "12"
+              }
+            },
+          },
+          yAxis: {
+            type: 'value',
+            axisLabel: {
+              color: "rgba(255,255,255,.8)",
+              fontSize: "12"
+            },
+            axisLine: {
+              // 如果想要设置单独的线条样式
+              lineStyle: {
+                color: "rgba(255,255,255,.1)",
+                width: 1,
+                type: "solid"
+              }
+            },
+            // y轴分割线的颜色
+            splitLine: {
+              lineStyle: {
+                color: "rgba(255,255,255,0.1)"
+              }
+            }
+          },
+        }
+      }
+    },
+    created: function () {
+
+    },
+    mounted: function () {
+      // 列表滚动
+      var swiper1 = new Swiper('#swiper-container1', {
+        direction: 'vertical',//滚动方向，垂直滚动
+        slidesPerView: 10,//设置slider容器能够同时显示的slides数量,显示5行
+        spaceBetween: 0,//间距为0
+        loop: true,//循环滚动
+        autoplay: {//匀速滚动
+          delay: 1000,
+          disableOnInteraction: false
+        },
+
+      });
+      // 列表滚动
+      var swiper2 = new Swiper('#swiper-container2', {
+        direction: 'vertical',//滚动方向，垂直滚动
+        slidesPerView: 9,//设置slider容器能够同时显示的slides数量,显示5行
+        spaceBetween: 0,//间距为0
+        loop: true,//循环滚动
+        autoplay: {//匀速滚动
+          delay: 1000,
+          disableOnInteraction: false
+        },
+        autoplayDisableOnInteraction: false
+      });
+      this.getDateNow();
+      this.tabTopChange(0);
+
+    },
+    methods: {
+      /*根据商户id获取商户详细信息*/
+      changeCompanyInfo(index){
+        this.currentTopIndex2 = index
+        var temp={companyName: index+'公司',companyImg:'../images/company.jpg',contact: '李四',phone: '147258369',companyDesc: 'C+',companyLevel:'差'}
+        this.companyDataDemo=temp;
+      },
+      //获取当前时间
+      getDateNow() {
+        var t = null;
+        t = setTimeout(time, 1000); //開始运行
+        function time() {
+          clearTimeout(t); //清除定时器
+          dt = new Date();
+          var y = dt.getFullYear();
+          var mt = dt.getMonth() + 1;
+          var day = dt.getDate();
+          var h = dt.getHours(); //获取时
+          var m = dt.getMinutes(); //获取分
+          var s = dt.getSeconds(); //获取秒
+          document.querySelector(".showTime").innerHTML =
+              y +
+              "年" +
+              mt +
+              "月" +
+              day +
+              "日" +
+              " " +
+              h +
+              ":" +
+              m +
+              ":" +
+              s;
+          t = setTimeout(time, 1000); //设定定时器，循环运行
+        }
+      },
+      //选择星级点击事件
+      tabTopChange(index) {
+        this.currentTopIndex = index
+        this.dataList=this.bigData[index]
+      },
+      tabChange(index) {
+        this.currentIndex = index
+      },
+      changeLevelData(index){
+        this.$message("选择了第"+index+"层的数据")
+      }
+
+    }
+  })
+
+</script>
+<!--echarts相关配置数据-->
+<script src="../js/chart-data-source3.js"></script>
+
+</body>
+
+</html>

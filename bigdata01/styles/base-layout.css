@@ -1,0 +1,107 @@
+.page-content{
+    height: 100%;
+    background-image: url("../images/bottom-bg.png");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% 20%;
+} 
+.page-content .header{
+    width: 100%;
+    height: 80px;
+    background-image: url("../images/header-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.page-content .header .header-tab{
+    width: 167px;
+    height: 33px;
+    text-align: center;
+    line-height: 33px;
+    font-size: 14px;
+    color: rgba(1, 190, 232, 1);
+    font-weight: bold;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin-top: 54px;
+}
+.page-content .header .tab-left{
+    cursor: pointer;
+    background-image: url("../images/tab-bg.png"); 
+}
+.page-content .header .tab-center{
+    font-size: 28px;
+    color: rgba(0, 211, 255, 1);
+    font-weight: bold;
+    letter-spacing: 20px;
+    width: 37.5%;
+    line-height: 42px;
+    padding: 18px 0;
+    text-align: center;
+}
+.page-content .header .tab-right{
+    cursor: pointer;
+    background-image: url("../images/tab-bg2.png");
+}
+.page-content .header .time{
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    color: rgba(0, 222, 255, 1);
+    text-align: right;
+    line-height: 30px;
+    font-size: 18px;
+
+}
+.page-content .center{
+    width: 100%;
+    height: calc(100% - 80px);
+    padding: 10px 20px 20px 20px;
+}
+.page-content .center .con-bg{
+    width: 24%;
+    min-height: 100%;
+    background-image: url("../images/border-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.page-content .center .con-bg .left-top{
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid rgba(60, 144, 247, 1);
+    border-left: 1px solid rgba(60, 144, 247, 1);
+    top: 0;
+    left: 0;
+}
+.page-content .center .con-bg .left-bottom{
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-left: 1px solid rgba(60, 144, 247, 1);
+    border-bottom: 1px solid rgba(60, 144, 247, 1);
+    bottom: 0;
+    left: 0;
+}
+.page-content .center .con-bg .right-top{
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid rgba(60, 144, 247, 1);
+    border-right: 1px solid rgba(60, 144, 247, 1);
+    top: 0;
+    right: 0;
+}
+.page-content .center .con-bg .right-bottom{
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-bottom: 1px solid rgba(60, 144, 247, 1);
+    border-right: 1px solid rgba(60, 144, 247, 1);
+    bottom: 0;
+    right: 0;
+}
+.center-center{
+    width: 52%;
+}

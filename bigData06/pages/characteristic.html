@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>东昌府数据可视化-特色领域</title>
+  <!--bin-ui-->
+  <link rel="stylesheet" href="../utils/lib/bin-ui@3.8.0/styles/index.css">
+
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/base-layout.css">
+  <link rel="stylesheet" href="../styles/base-title.css">
+  <link rel="stylesheet" href="../styles/base-info-card.css">
+  <link rel="stylesheet" href="../styles/base-table.css">
+  <link rel="stylesheet" href="../styles/base-rank.css">
+  <link rel="stylesheet" href="../styles/characteristic/left.css">
+  <link rel="stylesheet" href="../styles/characteristic/center.css">
+  <link rel="stylesheet" href="../styles/characteristic/right.css">
+  <link rel="stylesheet" href="../styles/characteristic/reset.css">
+  <link rek="stylesheet" href="../styles/base-num.css">
+
+
+  <script src="../utils/lib/vue.min.js"></script>
+  <script src="../utils/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+  <script src="../utils/lib/swiper/swiper.min.js"></script>
+  <script src="../utils/lib/vue-count-to/vue-count-to.min.js"></script>
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <v-base-layout title="特色领域专题" left-title="系统概况专题" right-title="数据归集专题" :page-name1="'./system.html'"
+                 :page-name2="'./collection.html'">
+    <template v-slot:left>
+      <div class="left-box">
+        <v-base-title-box title="自然人信用分布">
+          <div id="pieChart1"></div>
+        </v-base-title-box>
+        <v-base-title-box title="企业法人信用分布">
+          <div id="pieChart2"></div>
+        </v-base-title-box>
+        <v-base-title-box title="正负面数据总量趋势对比">
+          <div id="lineChart1"></div>
+        </v-base-title-box>
+      </div>
+    </template>
+    <template v-slot:center>
+      <div class="center-box">
+        <v-base-count-data :num="num"></v-base-count-data>
+        <div class="center-card-list-box">
+          <div flex v-for="(item,index) in jbInfoList">
+            <div class="item" @click="jbTabChange(index)">
+              <v-base-info-card
+                      :title="item.title"
+                      :value="item.value"
+                      :value-style="valueStyle"
+                      :active-index="index"
+                      :cur-active-index="jbCurrentIndex">
+              </v-base-info-card>
+            </div>
+          </div>
+          <div flex v-for="(item,index) in xyInfoList">
+            <div class="item" @click="xyTabChange(index)">
+              <v-base-info-card
+                      :title="item.title"
+                      :value="item.value"
+                      :value-style="valueStyle"
+                      :active-index="index"
+                      :cur-active-index="xyCurrentIndex">
+              </v-base-info-card>
+            </div>
+          </div>
+        </div>
+        <div class="center-rank-box">
+          <v-base-rank :rank-data="currentJbRank"></v-base-rank>
+          <v-base-rank :rank-data="currentXyRank"></v-base-rank>
+        </div>
+        <div class="center-bottom-box">
+          <v-base-title-box2 title="自然人信用加减分趋势对比" class="item-box">
+            <div id="lineChart2"></div>
+          </v-base-title-box2>
+          <v-base-title-box2 title="企业法人信用加减分趋势对比" class="item-box">
+            <div id="lineChart3"></div>
+          </v-base-title-box2>
+        </div>
+      </div>
+    </template>
+    <template v-slot:right>
+      <div class="right-box">
+        <v-base-title-box title="信用+政务领域" show-btn="true" @detail="goDetail(0)">
+          <v-base-table :columns="zwlyColumns" :table-data="zwlyData" :flag="activeDetailIndex === 0"></v-base-table>
+        </v-base-title-box>
+        <v-base-title-box title="信用+基层治理" show-btn="true" @detail="goDetail(1)">
+          <v-base-table :columns="zwlyColumns" :table-data="zwlyData" :flag="activeDetailIndex === 1"></v-base-table>
+        </v-base-title-box>
+        <v-base-title-box title="信用+城市管理" show-btn="true" @detail="goDetail(2)">
+          <v-base-table :columns="zwlyColumns" :table-data="zwlyData" :flag="activeDetailIndex === 2"></v-base-table>
+        </v-base-title-box>
+        <v-base-title-box title="信用+乡村振兴" show-btn="true" @detail="goDetail(3)">
+          <v-base-table :columns="zwlyColumns" :table-data="zwlyData" :flag="activeDetailIndex === 3"></v-base-table>
+        </v-base-title-box>
+        <v-base-title-box title="信用+企业监管" show-btn="true" @detail="goDetail(4)">
+          <v-base-table :columns="zwlyColumns" :table-data="zwlyData" :flag="activeDetailIndex === 4"></v-base-table>
+        </v-base-title-box>
+      </div>
+    </template>
+  </v-base-layout>
+  <b-modal v-model="modal" :title="modalTitle" width="925" top="500px" footer-hide append-to-body>
+    <b-table :columns="modalColumns" :data="modalData" border></b-table>
+  </b-modal>
+</div>
+<script src="../js/components/base-layout.js"></script>
+<script src="../js/components/base-title-box.js"></script>
+<script src="../js/components/base-title-box2.js"></script>
+<script src="../js/components/base-count-data.js"></script>
+<script src="../js/components/base-info-card.js"></script>
+<script src="../js/components/base-rank.js"></script>
+<script src="../js/components/base-table.js"></script>
+
+<!-- <script src="../utils/lib/axios.min.js"></script> -->
+<script src="../js/time.js"></script>
+<script>
+  var vm = new Vue({
+    // mixins: [mixin],
+    el: '#app',
+    data: function () {
+      return {
+        leftTitle: '',
+        rightTitle: '',
+        title: '',
+        num: '67367478',
+        modal: false,
+        obj: {value: ''},
+        jbInfoList: [
+          {title: '自然人基本信息', value: 10212},
+          {title: '法人基本信息', value: 10212}
+        ],
+        xyInfoList: [
+          {title: '自然人信用信息', value: 3424},
+          {title: '法人信用信息', value: 4222}
+        ],
+        currentJbRank: [],
+        currentXyRank: [],
+        jbRankList: [
+          {
+            title: '自然人基本信息报送总量排行',
+            data: [
+              {
+                sort: 1,
+                rankTitle: '住房和城乡建设局',
+                percent: 50,
+                value: 12876
+              },
+              {
+                sort: 2,
+                rankTitle: '公安局',
+                percent: 30,
+                value: 12876
+              },
+              {
+                sort: 3,
+                rankTitle: '住房和城乡建设局',
+                percent: 20,
+                value: 12876
+              },
+              {
+                sort: 4,
+                rankTitle: '住房和城乡建设局',
+                percent: 40,
+                value: 12876
+              },
+              {
+                sort: 5,
+                rankTitle: '住房和城乡建设局',
+                percent: 60,
+                value: 12876
+              }
+            ]
+          },
+          {
+            title: '法人基本信息报送总量排行',
+            data: [
+              {
+                sort: 1,
+                rankTitle: '住房和城乡建设局',
+                percent: 50,
+                value: 12876
+              },
+              {
+                sort: 2,
+                rankTitle: '公安局',
+                percent: 20,
+                value: 12876
+              },
+              {
+                sort: 3,
+                rankTitle: '住房和城乡建设局',
+                percent: 50,
+                value: 12876
+              },
+              {
+                sort: 4,
+                rankTitle: '公安局',
+                percent: 20,
+                value: 12876
+              },
+              {
+                sort: 5,
+                rankTitle: '住房和城乡建设局',
+                percent: 50,
+                value: 12876
+              }
+            ]
+          }
+        ],
+        xyRankList: [
+          {
+            title: '自然人信用信息报送总量排行',
+            data: [
+              {
+                sort: 1,
+                rankTitle: '住房和城乡建设局',
+                percent: 50,
+                value: 12876
+              },
+              {
+                sort: 2,
+                rankTitle: '公安局',
+                percent: 30,
+                value: 12876
+              },
+              {
+                sort: 3,
+                rankTitle: '住房和城乡建设局',
+                percent: 20,
+                value: 12876
+              },
+              {
+                sort: 4,
+                rankTitle: '住房和城乡建设局',
+                percent: 40,
+                value: 12876
+              },
+              {
+                sort: 5,
+                rankTitle: '住房和城乡建设局',
+                percent: 60,
+                value: 12876
+              }
+            ]
+          },
+          {
+            title: '法人信用信息报送总量排行',
+            data: [
+              {
+                sort: 1,
+                rankTitle: '住房和城乡建设局',
+                percent: 50,
+                value: 12876
+              },
+              {
+                sort: 2,
+                rankTitle: '公安局',
+                percent: 20,
+                value: 12876
+              },
+              {
+                sort: 3,
+                rankTitle: '住房和城乡建设局',
+                percent: 50,
+                value: 12876
+              },
+              {
+                sort: 4,
+                rankTitle: '公安局',
+                percent: 20,
+                value: 12876
+              },
+              {
+                sort: 5,
+                rankTitle: '住房和城乡建设局',
+                percent: 50,
+                value: 12876
+              }
+            ]
+          }
+        ],
+        jbCurrentIndex: 0,
+        xyCurrentIndex: 0,
+        valueStyle: {
+          fontWeight: 'bold',
+          fontSize: '26px',
+          color: '#03afed'
+        },
+
+        // 信用+政务领域列表
+        zwlyColumns: [
+          {
+            title: '组织名称',
+            key: 'name',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: 'A+以上',
+            key: 'value',
+            align: 'center'
+          },
+          {
+            title: '数据总量',
+            key: 'count',
+            align: 'center'
+          }
+        ],
+        // 信用+政务领域表格数据
+        zwlyData: [
+          {
+            name: '古楼街道下辖社区1',
+            value: 12564,
+            count: 78513
+          },
+          {
+            name: '古楼街道下辖社区2',
+            value: 12564,
+            count: 78513
+          },
+          {
+            name: '古楼街道下辖社区3',
+            value: 12564,
+            count: 78513
+          },
+          {
+            name: '古楼街道下辖社区4',
+            value: 12564,
+            count: 78513
+          },
+          {
+            name: '古楼街道下辖社区3',
+            value: 12564,
+            count: 78513
+          },
+          {
+            name: '古楼街道下辖社区4',
+            value: 12564,
+            count: 78513
+          }
+        ],
+        modalTitle: '标题', // 弹窗标题
+        modalColumns: [], // 弹窗列表
+        modalData: [], // 弹窗数据
+        // 自然人加减分列表
+        zrrColumns: [
+          {
+            title: '姓名',
+            key: 'name',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: '身份证号',
+            key: 'IdNum',
+            align: 'center'
+          },
+          {
+            title: '分数',
+            key: 'score',
+            align: 'center'
+          }
+        ],
+        // 自然人加減分表格数据
+        zrrScoreData: [
+          {
+            name: '张三',
+            IdNum: '320302*******1298',
+            score: 90
+          },
+          {
+            name: '张三',
+            IdNum: '320302*******1298',
+            score: 90
+          },
+          {
+            name: '张三',
+            IdNum: '320302*******1298',
+            score: 90
+          },
+          {
+            name: '张三',
+            IdNum: '320302*******1298',
+            score: 90
+          },
+          {
+            name: '张三',
+            IdNum: '320302*******1298',
+            score: 90
+          },
+          {
+            name: '张三',
+            IdNum: '320302*******1298',
+            score: 90
+          },
+          {
+            name: '张三',
+            IdNum: '320302*******1298',
+            score: 90
+          },
+          {
+            name: '张三',
+            IdNum: '320302*******1298',
+            score: 90
+          }
+        ],
+        // 法人加减分列表
+        frColumns: [
+          {
+            title: '姓名',
+            key: 'name',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: '身份证号',
+            key: 'IdNum',
+            align: 'center'
+          },
+          {
+            title: '分数',
+            key: 'score',
+            align: 'center'
+          }
+        ],
+        // 法人加減分表格数据
+        frScoreData: [
+          {
+            name: '李四',
+            IdNum: '320302*******1298',
+            score: 90
+          },
+          {
+            name: '李四',
+            IdNum: '320302*******1298',
+            score: 90
+          },
+          {
+            name: '李四',
+            IdNum: '320302*******1298',
+            score: 90
+          },
+          {
+            name: '李四',
+            IdNum: '320302*******1298',
+            score: 90
+          },
+          {
+            name: '李四',
+            IdNum: '320302*******1298',
+            score: 90
+          },
+          {
+            name: '李四',
+            IdNum: '320302*******1298',
+            score: 90
+          },
+          {
+            name: '李四',
+            IdNum: '320302*******1298',
+            score: 90
+          },
+          {
+            name: '李四',
+            IdNum: '320302*******1298',
+            score: 90
+          }
+        ],
+        activeDetailIndex: 0 // 当前选中详情索引
+      }
+    },
+    created: function () {
+      this.currentJbRank = this.jbRankList[0]
+      this.currentXyRank = this.xyRankList[0]
+    },
+    mounted: function () {
+
+    },
+    methods: {
+      handleNum(num) {
+        var str = num + ''
+        var arr = []
+        str.split('').forEach(function (item) {
+          arr.push(parseInt(item));
+        })
+        return arr
+      },
+      jbTabChange(index) {
+        this.jbCurrentIndex = index
+        this.currentJbRank = this.jbRankList[index]
+      },
+      xyTabChange(index) {
+        this.xyCurrentIndex = index
+        this.currentXyRank = this.xyRankList[index]
+      },
+      goDetail(val) {
+        this.activeDetailIndex = val
+        // 模拟根据val获取的数据
+        const data = {
+          pieData1: [
+            {icon: 'circle', name: 'AAA', percent: 23.60, value: 32},
+            {icon: 'circle', name: 'AA', percent: 12.63, value: 6},
+            {icon: 'circle', name: 'A+', percent: 45.28, value: 3113},
+            {icon: 'circle', name: 'A', percent: 53.25, value: 3567},
+            {icon: 'circle', name: 'A-', percent: 6.24, value: 232}
+          ],
+          pieData2: [
+            {icon: 'circle', name: 'AAA', percent: 12.60, value: 6676},
+            {icon: 'circle', name: 'AA', percent: 46.32, value: 352},
+            {icon: 'circle', name: 'A+', percent: 14.28, value: 2556},
+            {icon: 'circle', name: 'A', percent: 3.25, value: 14},
+            {icon: 'circle', name: 'A-', percent: 74.13, value: 1356}
+          ],
+          lineData1: {
+            xData: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            yData: [
+              {
+                name: '正面',
+                data: [35, 11, 42, 35, 13, 15, 66, 13, 14, 34, 13, 14]
+              },
+              {
+                name: '负面',
+                data: [56, 35, 24, 56, 72, 25, 15, 77, 21, 24, 12, 25]
+              }
+            ]
+          },
+          lineData2: {
+            xData: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            yData: [
+              {
+                name: '正面',
+                data: [25, 35, 40, 30, 35, 40, 25, 35, 40, 30, 35, 30]
+              },
+              {
+                name: '负面',
+                data: [20, 30, 35, 28, 30, 35, 20, 30, 35, 28, 30, 25]
+              }
+            ]
+          },
+          lineData3: {
+            xData: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+            yData: [
+              {
+                name: '正面',
+                data: [25, 35, 40, 30, 35, 40, 25, 35, 40, 30, 35, 30]
+              },
+              {
+                name: '负面',
+                data: [20, 30, 35, 28, 30, 35, 20, 30, 35, 28, 30, 25]
+              }
+            ]
+          }
+        }
+        changeData(data)
+      }
+    }
+  })
+  // 浏览器尺寸发生变化刷新页面（会重新加载所有数据，页面会卡）
+  // window.onresize = function(){
+  //   location.reload(true);
+  // }
+</script>
+<!--echarts-->
+<script src="../utils/lib/echarts/echarts.min.js"></script>
+<!--<script src="https://cdn.bootcss.com/echarts/5.3.2/echarts.min.js"></script>-->
+
+
+<script src="../js/charts/characteristicCharts.js"></script>
+
+</body>
+
+</html>

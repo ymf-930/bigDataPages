@@ -1,0 +1,58 @@
+.bin-modal-header {
+    border-bottom: 1px solid #323792
+}
+
+.bin-modal-header .bin-modal-header-inner {
+    color: #fff;
+}
+
+
+/*.bin-modal-footer {*/
+/*    border-top: 1px solid #3a3baf;*/
+/*    padding: 10px 16px;*/
+/*    text-align: right;*/
+/*}*/
+
+.bin-modal-content {
+    background-color: rgba(5, 15, 38, 0.8);
+}
+
+.bin-table th {
+    background-color: #022f67;
+    color: #fff;
+    border-bottom: 1px solid #3772ad;
+}
+
+.bin-table td {
+    background-color: #0a213d;
+    color: #fff;
+    border-bottom: 1px solid #3772ad;
+    border-right: none;
+}
+
+.bin-table-cell {
+    color: #fff;
+}
+
+.bin-modal-close .icon-close {
+    color: #fff;
+}
+
+.bin-table-border td, .bin-table-border th {
+    color: #168cd2;
+}
+
+.bin-table:after, .bin-table:before, .bin-table-wrapper-with-border:after, .bin-table-wrapper-with-border:before {
+    background-color: #3772ad;
+}
+
+.bin-table-border th {
+    border-right: none;
+}
+
+tr.bin-table-row-hover td{
+    background-color: rgba(10, 33, 61, 0.9);
+}
+.bin-modal-close .icon-close:hover{
+    color: #fff;
+}

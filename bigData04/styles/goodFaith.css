@@ -1,0 +1,498 @@
+#app {
+  position: relative;
+}
+.page-container .main {
+  position: relative;
+  height: calc(1080px - 118px);
+}
+.page-container .main .left-side .panel {
+  margin-bottom: 0;
+  padding: 15px 0 10px 0;
+}
+.page-container .main .left-side .panel .title-container {
+  padding: 0 15px;
+  padding-bottom: 9px;
+}
+.page-container .main .left-side .panel-box2 {
+  margin: 21 0px;
+}
+.page-container .main .left-side .head {
+  display: flex;
+  border-top: 1px solid #168cd2;
+  border-bottom: 1px solid #168cd2;
+  height: 40px;
+  line-height: 40px;
+  background-color: rgba(3,61,124,0.5);
+}
+.page-container .main .left-side .head span {
+  text-align: center;
+  flex: 1;
+  color: #fff;
+}
+.page-container .main .left-side .head span:nth-child(1) {
+  flex: 2.2;
+}
+.page-container .main .left-side .head span:nth-child(2) {
+  flex: 1;
+}
+.page-container .main .left-side .head span:nth-child(3) {
+  flex: 1.3;
+}
+.page-container .main .left-side .swiper-container {
+  height: 340px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.page-container .main .left-side .swiper-container .swiper-wrapper {
+  padding-bottom: 26px;
+  margin-bottom: 20px;
+  height: 330px;
+}
+.page-container .main .left-side .swiper-container .swiper-wrapper .swiper-slide {
+  display: flex;
+  flex-direction: row;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+}
+.page-container .main .left-side .swiper-container .swiper-wrapper .swiper-slide div i {
+  font-size: 12px;
+  margin: 0;
+}
+.page-container .main .left-side .btn-box,
+.page-container .main .right-side .btn-box {
+  text-align: right;
+  padding: 10px 10px 0;
+}
+.page-container .main .left-side .btn-box .bin-button,
+.page-container .main .right-side .btn-box .bin-button {
+  line-height: 25px;
+}
+.page-container .main .left-side .btn-box .bin-button :hover,
+.page-container .main .right-side .btn-box .bin-button :hover {
+  background-color: rgba(255,255,255,0.2);
+}
+.page-container .main .info-bar {
+  width: calc(100% - 1030px);
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+  clear: both;
+  position: relative;
+}
+.page-container .main .info-bar .content {
+  height: 100%;
+  width: 100%;
+}
+.page-container .main .info-bar .content .tab-top {
+  width: 150px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.page-container .main .info-bar .content .tab-top .tab-top-item {
+  width: 141px;
+  height: 54px;
+  background: url("../images/ankang/anniu03.png") no-repeat;
+  background-size: 100%;
+  text-align: center;
+  padding: 7px;
+  z-index: 2;
+}
+.page-container .main .info-bar .content .tab-top .tab-top-item span {
+  color: #fff;
+  font-size: 20px;
+  height: 35px;
+  line-height: 38px;
+}
+.page-container .main .info-bar .content .tab-top .active {
+  background: url("../images/ankang/anniu04.png");
+  background-size: 100%;
+}
+.page-container .main .info-bar .content .info-main-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.page-container .main .info-bar .content .info-main-wrapper .big-data-charts {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.page-container .main .info-bar .content .info-main-wrapper .big-data-charts .chassis {
+  position: absolute;
+  left: calc(50% - 381px);
+  bottom: 0;
+  width: 782px;
+  height: 228px;
+  margin-bottom: 60px;
+  background-image: url("../images/ankang/tuxing7.png");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+.page-container .main .info-bar .content .info-main-wrapper .big-data-charts .data-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.page-container .main .info-bar .content .info-main-wrapper .big-data-charts .data-content img {
+  position: absolute;
+  left: calc(50% - 185px);
+  bottom: 190px;
+}
+.page-container .main .info-bar .content .info-main-wrapper .big-data-charts .data-content .ceng {
+  display: flex;
+  flex-direction: column;
+}
+.page-container .main .info-bar .content .info-main-wrapper .big-data-charts .data-content .ceng span {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-40px);
+  font-size: 24px;
+  color: #fff;
+  font-weight: 700;
+  padding: 30px 50px;
+}
+.page-container .main .info-bar .content .info-main-wrapper .big-data-charts .data-content .ceng span:nth-child(1) {
+  bottom: 390px;
+}
+.page-container .main .info-bar .content .info-main-wrapper .big-data-charts .data-content .ceng span:nth-child(2) {
+  bottom: 310px;
+}
+.page-container .main .info-bar .content .info-main-wrapper .big-data-charts .data-content .ceng span:nth-child(3) {
+  bottom: 210px;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-card {
+  position: absolute;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-card .company-title {
+  position: absolute;
+  top: 18%;
+  left: 23.513%;
+  font-size: 25px;
+  font-weight: bold;
+  color: #fff;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-card .company-desc {
+  position: absolute;
+  top: 60%;
+  left: 25%;
+  font-size: 14px;
+  color: #28b0f3;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-card .level-icon {
+  position: absolute;
+  top: 12%;
+  right: 15%;
+  padding: 4% 3%;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background-color: #001c58;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-card .bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 90%;
+  width: 86%;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-card .circle {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 45%;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-card:hover {
+  opacity: 1 !important;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-card.reverse .company-title {
+  left: unset;
+  right: 23.513%;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-card.reverse .company-desc {
+  left: unset;
+  right: 25%;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-card.reverse .level-icon {
+  position: absolute;
+  top: 12%;
+  left: 15%;
+  right: unset;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-card.reverse .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(180deg);
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-card.reverse .circle {
+  left: unset;
+  right: 0;
+}
+.page-container .main .info-bar .content .info-main-wrapper .cardActive {
+  width: 300px !important;
+  height: 90px !important;
+  opacity: 1 !important;
+}
+.page-container .main .info-bar .content .info-main-wrapper .card1 {
+  width: 268px;
+  height: 86px;
+  opacity: 60%;
+  top: 87px;
+  right: 0;
+}
+.page-container .main .info-bar .content .info-main-wrapper .card2 {
+  width: 268px;
+  height: 86px;
+  opacity: 60%;
+  right: 74px;
+  top: 223px;
+}
+.page-container .main .info-bar .content .info-main-wrapper .card3 {
+  width: 268px;
+  height: 86px;
+  opacity: 60%;
+  right: 0px;
+  top: 315px;
+}
+.page-container .main .info-bar .content .info-main-wrapper .card4 {
+  width: 268px;
+  height: 86px;
+  opacity: 60%;
+  left: 222px;
+  top: 105px;
+}
+.page-container .main .info-bar .content .info-main-wrapper .card5 {
+  width: 268px;
+  height: 86px;
+  opacity: 60%;
+  left: 65px;
+  top: 367px;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-detail-card {
+  position: absolute;
+  right: 22px;
+  bottom: 66px;
+  width: 286px;
+  height: 281px;
+  border-radius: 8px;
+  background-color: rgba(5,26,59,0.7);
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-detail-card .hd {
+  height: 36px;
+  width: 100%;
+  line-height: 36px;
+  color: #fff;
+  text-align: center;
+  font-size: 17px;
+  background-image: url("../images/ankang/tuxing6.png");
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-detail-card .bd {
+  position: relative;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-detail-card .bd .company-img {
+  position: absolute;
+  top: 11px;
+  right: 18px;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-detail-card .bd .company-title {
+  padding-top: 31px;
+  padding-left: 25px;
+  width: 160px;
+  font-size: 19px;
+  color: #00bffe;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-detail-card .bd .company-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-detail-card .bd .company-details .detail-item {
+  display: flex;
+  padding: 10px 0;
+  font-size: 14px;
+  color: #fff;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-detail-card .bd .company-details .detail-item .key {
+  width: 88px;
+  margin-left: 25px;
+}
+.page-container .main .info-bar .content .info-main-wrapper .company-detail-card .bd .company-details .detail-item .value {
+  flex: 1;
+}
+.page-container .main .info-bar .num-boxes {
+  width: calc(100vw - 1030px);
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.page-container .main .info-bar .num-boxes .num-bar {
+  flex: 1;
+  border: 1px solid #0e7be5;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.page-container .main .info-bar .num-boxes .num-bar .num-title {
+  height: 50px;
+  line-height: 50px;
+  display: flex;
+}
+.page-container .main .info-bar .num-boxes .num-bar .num-title img {
+  height: 46px;
+  width: 46px;
+}
+.page-container .main .info-bar .num-boxes .num-bar .num-title span {
+  padding-left: 20px;
+  color: #fff;
+  font-size: 24px;
+  height: 38px;
+  line-height: 38px;
+}
+.page-container .main .info-bar .num-boxes .num-bar .num-box {
+  width: 435px;
+  margin-bottom: 10px;
+}
+.page-container .main .info-bar .tab-top {
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+  position: absolute;
+  right: 0;
+  top: 160px;
+}
+.page-container .main .info-bar .tab-top .tab-top-item {
+  width: 141px;
+  height: 54px;
+  background: url("../images/ankang/anniu03.png") no-repeat;
+  background-size: 100%;
+  text-align: center;
+  padding: 7px;
+  z-index: 2;
+}
+.page-container .main .info-bar .tab-top .tab-top-item span {
+  color: #fff;
+  font-size: 20px;
+  height: 35px;
+  line-height: 38px;
+}
+.page-container .main .info-bar .tab-top .active {
+  background: url("../images/ankang/anniu04.png");
+  background-size: 100%;
+}
+.page-container .main .info-bar .cir-container {
+  background: url("../images/ankang/tuoyuan2.png") center no-repeat;
+  background-size: 100%;
+  margin-top: 20px;
+  position: relative;
+}
+.page-container .main .info-bar .cir-container .earth-bg {
+  position: absolute;
+  top: -10px;
+  left: 60px;
+  z-index: 0;
+}
+.page-container .main .info-bar .center-bottom {
+  margin-bottom: 50px;
+}
+.page-container .main .info-bar .tab-boxes {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 45px;
+}
+.page-container .main .info-bar .tab-boxes .tab-box {
+  width: 200px;
+  height: 69px;
+  background: url("../images/ankang/anniu01.png") no-repeat;
+  background-size: 100%;
+  text-align: center;
+  padding: 15px;
+  z-index: 2;
+}
+.page-container .main .info-bar .tab-boxes .tab-box span {
+  color: #fff;
+  font-size: 22px;
+  height: 35px;
+  line-height: 38px;
+}
+.page-container .main .info-bar .tab-boxes .active {
+  background: url("../images/ankang/anniu02.png");
+  background-size: 100%;
+}
+.page-container .main .info-bar .footer-bg {
+  width: 1000px;
+  height: 63px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  position: absolute;
+}
+.page-container .main .info-bar .footer-bg img {
+  width: 1000px;
+  height: 63px;
+}
+.page-container .main .right-side .panel {
+  margin: 0;
+}
+.page-container .main .right-side .panel-box2 {
+  margin: 21px 0;
+}
+.page-container .main .right-side .panel-content {
+  padding: 5px 30px 0px 23px;
+}
+.page-container .main .right-side .panel-content .level-wrapper {
+  padding-top: 10px;
+}
+.page-container .main .right-side .panel-content .level-wrapper .level-item {
+  position: relative;
+  height: 23px;
+  margin-bottom: 20px;
+}
+.page-container .main .right-side .panel-content .level-wrapper .level-item .level-title {
+  width: 36px;
+  font-size: 16px;
+  color: #fff;
+}
+.page-container .main .right-side .panel-content .level-wrapper .level-item .bin-progress {
+  flex: 1;
+}
+.page-container .main .right-side .panel-content .level-wrapper .level-item .bin-progress .bin-progress-bar {
+  padding-right: 0;
+}
+.page-container .main .right-side .panel-content .level-wrapper .level-item .level-num {
+  position: absolute;
+  right: 30px;
+  width: 40px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #01b9ee;
+}
+#lineChart1 {
+  width: 100%;
+  height: 230px;
+}
+#barChart1 {
+  width: 100%;
+  height: 230px;
+}
+#barChart2 {
+  width: 100%;
+  height: 230px;
+}

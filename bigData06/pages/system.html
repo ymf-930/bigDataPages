@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>东昌府数据可视化-系统概况</title>
+    <!--bin-ui-->
+    <link rel="stylesheet" href="../utils/lib/bin-ui@3.8.0/styles/index.css">
+
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/base-layout.css">
+    <link rel="stylesheet" href="../styles/base-title.css">
+    <link rek="stylesheet" href="../styles/base-num.css">
+    <link rel="stylesheet" href="../styles/system/left.css">
+    <link rel="stylesheet" href="../styles/system/center.css">
+    <link rel="stylesheet" href="../styles/system/right.css">
+    <link rel="stylesheet" href="../styles/base-info-card.css">
+    <link rel="stylesheet" href="../styles/base-info-card2.css">
+
+    <script src="../utils/lib/vue.min.js"></script>
+    <script src="../utils/lib/axios.min.js"></script>
+    <script src="../utils/lib/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../utils/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+    <script src="../utils/lib/vue-count-to/vue-count-to.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="app" v-cloak>
+        <v-base-layout title="系统概况专题" left-title="数据归集专题" right-title="特色领域专题" :page-name1="'./collection.html'"
+            :page-name2="'./characteristic.html'">
+            <template v-slot:left>
+                <div class="left-box">
+                    <v-base-title-box title="部门数据统计">
+                        <div class="datas-box mb-10" flex="wrap:wrap">
+                            <div class="datas-item" v-for="(item,index) in branchInfoList" :index="item" flex="cross:center">
+                                <div class="data-title">{{item.title}}：</div>
+                                <div class="data-data">{{info[item.num]}} <span>条</span> </div>
+                            </div>
+                        </div>
+                        <div style="width: 100%;height: 197px;" id="barChart1"></div>
+                    </v-base-title-box>
+                    <v-base-title-box title="绩效数据统计">
+                        <div class="datas-box mb-10" flex="wrap:wrap">
+                            <div class="datas-item" v-for="(item,index) in meritsinfoList" :index="item" flex="cross:center">
+                                <div class="data-title">{{item.title}}：</div>
+                                <div class="data-data">{{info[item.num]}} <span>条</span> </div>
+                            </div>
+                        </div>
+                        <div style="width: 100%;height: 197px;" id="barChart2"></div>
+                    </v-base-title-box>
+                    <v-base-title-box title="村、社区数据统计">
+                        <div class="datas-box mb-10" flex="wrap:wrap">
+                            <div class="datas-item" v-for="(item,index) in villageInfoList" :index="item" flex="cross:center">
+                                <div class="data-title">{{item.title}}：</div>
+                                <div class="data-data">{{info[item.num]}} <span>条</span> </div>
+                            </div>
+                        </div>
+                        <div style="width: 100%;height: 197px;" id="barChart3"></div>
+                    </v-base-title-box>
+                </div>
+            </template>
+            <template v-slot:center>
+                <div class="center-box">
+                    <v-base-count-data :num="num"></v-base-count-data>
+                    <div class="bg-box">
+                        <div style="width: 80%;height: 577px;margin: auto;" id="mapChart"></div>
+                    </div>
+                    <div class="item-list">
+                        <div class="data-item" :class="`data-item-`+index" v-for="(item,index) in infoList"
+                            :key="index">
+                            <v-base-info-card2 :title="item.title" :value="info[item.num]" unit="个"
+                                :value-style="valueStyle2">
+                            </v-base-info-card2>
+                        </div>
+                    </div>
+                    <div class="card-list-box" flex="wrap:wrap">
+                        <div class="card-item" v-for="(item,index) in creditList" :key="index">
+                            <div style="width: 131px; height: 67px;" @click="ChooseOne(index)">
+                                <v-base-info-card :title="item.title" :value="info[item.num]" unit="条"
+                                    :value-style="valueStyle" :select-status="selectIndex===index?true:false"
+                                    :title-style="titleStyle" width-value="100%" height-value="100%">
+                                </v-base-info-card>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <template v-slot:right>
+                <div class="right-box">
+                    <v-base-title-box title="资源信息分类统计">
+                        <div class="info-box" flex="main:justify cross:center">
+                            <b-select style="width:200px" v-model="select" @change="handleSelect($event)">
+                                <b-option v-for="item in typeList" :key="item.value" :label="item.label"
+                                    :value="item.value"></b-option>
+                            </b-select>
+                            <div class="num">共10234567条</div>
+                        </div>
+                        <div style="width: 100%;height: 286px;" id="barChart4"></div>
+                    </v-base-title-box>
+                    <v-base-title-box title="信用报告趋势分析">
+                        <div class="btn-box" flex="main:justify cross:center">
+                            <div class="btn" :class="yearStatus?'':'btn-active'"
+                                @click="()=> yearStatus=handleStatus(yearStatus)">
+                                本月</div>
+                            <div class="btn" :class="yearStatus?'btn-active':''"
+                                @click="()=> yearStatus= handleStatus(yearStatus)">
+                                本年</div>
+                        </div>
+                        <div class="des">历史信用报告查询次数：1024次</div>
+                        <div style="width: 100%;height: 322px;" id="lineChart"></div>
+                    </v-base-title-box>
+                </div>
+            </template>
+        </v-base-layout>
+    </div>
+    <script src="../js/components/base-layout.js"></script>
+    <script src="../js/components/base-title-box.js"></script>
+    <script src="../js/components/base-count-data.js"></script>
+    <script src="../js/components/base-title-box2.js"></script>
+    <script src="../js/components/base-info-card.js"></script>
+    <script src="../js/components/base-info-card2.js"></script>
+
+    <script src="../js/time.js"></script>
+    <script>
+        var vm = new Vue({
+            // mixins: [mixin],
+            el: '#app',
+            data: function () {
+                return {
+                    leftTitle: '',
+                    rightTitle: '',
+                    title: '',
+                    num: '67362345',
+                    // 模拟动态数据
+                    info: {
+                        num1: 1234453,
+                        num2: 4939599,
+                        num3: 4399690,
+                        num4: 9986859,
+                        num5: 1234453,
+                        num6: 4939599,
+                        num7: 4399690,
+                        num8: 9986859,
+                    },
+                    // 部门信息
+                    branchInfoList: [
+                        { title: '交换数据总量', num: 'num1' },
+                        { title: '归集数据总量', num: 'num2' },
+                        { title: '已对接部门', num: 'num3' },
+                        { title: '共享数据总量', num: 'num4' },
+                    ],
+                    meritsinfoList: [
+                        { title: '交换数据总量', num: 'num1' },
+                        { title: '归集数据总量', num: 'num2' },
+                        { title: '已对接部门', num: 'num3' },
+                        { title: '共享数据总量', num: 'num4' },
+                    ],
+                    villageInfoList: [
+                        { title: '交换数据总量', num: 'num1' },
+                        { title: '归集数据总量', num: 'num2' },
+                        { title: '已对接部门', num: 'num3' },
+                        { title: '共享数据总量', num: 'num4' },
+                    ],
+                    // 资源信息分类
+                    typeList: [
+                        { value: 'nat', label: '自然人基本信息', },
+                        { value: 'leg', label: '法人基本信息', },
+                        { value: 'credit', label: '信用信息', }
+                    ],
+                    // 选择类别
+                    select: 'nat',
+                    // 报告信息趋势类别
+                    yearStatus: false,
+                    titleStyle: {
+                        fontSize: '16px',
+                        color: '#fff'
+                    },
+                    valueStyle: {
+                        fontSize: '16px',
+                        color: '#fff',
+                        lineHeight: '28px'
+                    },
+                    valueStyle2: {
+                        fontWeight: '500',
+                        fontSize: '18px',
+                        color: 'rgba(0, 222, 255, 1)',
+                        lineHeight: '24px'
+                    },
+                    zrrjbValue: 854756988,
+                    // 信用信息
+                    infoList: [
+                        { title: '自然人基础信息', num: 'num1' },
+                        { title: '自然人信用信息', num: 'num2' },
+                        { title: '自然人人均信息', num: 'num3' },
+                        { title: '法人基础信息', num: 'num4' },
+                        { title: '法人信用信息', num: 'num5' },
+                        { title: '法人人均信息', num: 'num6' },
+                    ],
+                    creditList: [
+                        { title: '诚信示范企业', num: 'num1' },
+                        { title: '诚信示范个人', num: 'num2' },
+                        { title: '严重失信企业', num: 'num3' },
+                        { title: '严重失信个人', num: 'num4' },
+                        { title: 'A级纳税人', num: 'num5' },
+                        { title: '优秀志愿者', num: 'num6' },
+                        { title: '红名单', num: 'num3' },
+                        { title: '黑名单', num: 'num4' },
+                    ],
+                    selectIndex: 0,
+                }
+            },
+            created: function () {
+
+            },
+            mounted: function () {
+
+
+            },
+            methods: {
+                handleNum(num) {
+                    var str = num + ""
+                    var arr = []
+                    str.split("").forEach(function (item) {
+                        arr.push(parseInt(item));
+                    })
+                    return arr
+                },
+                ChooseOne(index) {
+                    this.selectIndex = index
+                }
+
+
+
+
+            }
+        })
+  // 浏览器尺寸发生变化刷新页面（会重新加载所有数据，页面会卡）
+  // window.onresize = function(){
+  //   location.reload(true);
+  // }
+    </script>
+    <!--echarts-->
+    <script src="https://cdn.bootcss.com/echarts/5.3.2/echarts.min.js"></script>
+
+    <!-- 图表 -->
+    <script src="../js/charts/systemCity.js"></script>
+    <script src="../js/charts/systemCharts.js"></script>
+
+
+
+
+</body>
+
+</html>

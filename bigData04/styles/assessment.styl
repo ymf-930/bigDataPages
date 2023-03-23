@@ -1,0 +1,413 @@
+#app {
+  position relative
+}
+
+.page-container {
+  .main {
+    position: relative;
+    height: calc(1080px - 118px);
+
+    .left-side {
+      .panel {
+        margin-bottom: 0;
+
+      }
+
+      .panel:nth-child(1) {
+        padding: 15px 0;
+
+        .title-container {
+          padding: 0 15px;
+        }
+      }
+
+      .panel-box1 {
+        margin-bottom: 30px;
+
+        .head {
+          display: flex;
+          border-top: 1px solid #168cd2;
+          border-bottom: 1px solid #168cd2;
+          height: 40px;
+          line-height: 40px;
+          background-color: rgba(3, 61, 124, 0.5);
+          //margin-top: 16px;
+
+          span {
+            text-align: center;
+            flex: 1;
+            color: #fff;
+          }
+        }
+
+        .table-container {
+          box-sizing: border-box;
+          height: 344px;
+          //border: 1px solid #168cd2;
+          //margin-bottom: 20px;
+
+          .swiper-wrapper {
+            width: 100%;
+            height: 100%;
+            margin-top 25px;
+
+            li {
+              display: flex;
+              width: 100%;
+              height: 60px;
+              line-height: 40px;
+
+              img {
+                height: 40px;
+                width: 40px
+                margin: 0px 20px 0px 30px;
+              }
+
+              .progress-list {
+                max-width: 80px;
+                margin-left: -30px;
+                margin-top 5px;
+                height: 15px;
+                background: rgba(255, 255, 255, .2);
+                border-radius: 10px;
+                border: none;
+              }
+              progress:
+
+              :-moz-progress-bar {
+                background: #0DB1E2;
+                border-radius: 10px;
+              }
+              progress:
+
+              :-webkit-progress-bar {
+                background: rgba(255, 255, 255, .2);
+                border-radius: 10px;
+              }
+              progress:
+
+              :-webkit-progress-value {
+                background: #0DB1E2;
+                border-radius: 10px;
+              }
+
+              span {
+                text-align: left;
+                flex: 1;
+                color: #fff;
+                margin-left 50px;
+                //border-right: 1px solid #168cd2;
+                //border-bottom: 1px solid #168cd2;
+              }
+
+              span:first-child {
+                padding: 10px 0;
+              }
+
+              span:last-child {
+                border-right: none;
+              }
+            }
+
+          }
+
+        }
+      }
+    }
+
+    .left-side, .right-side {
+      .btn-box {
+        text-align: right;
+        padding: 10px 10px 0;
+
+        .bin-button {
+          line-height: 25px;
+        }
+
+        .bin-button :hover {
+          background-color: rgba(255, 255, 255, .2)
+        }
+
+      }
+    }
+
+
+    .info-bar {
+      width: calc(100vw - 1030px);
+      //height: calc(100% - 37px);
+      height: 100%;
+
+      display: block;
+      margin: 0 auto;
+      clear: both;
+
+      .num-bar {
+        margin: 0 auto;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: absolute;
+        right: 0;
+        top: 45px;
+
+        .num-title {
+          height: 50px;
+          line-height: 50px;
+          display: flex;
+
+          img {
+            height 46px;
+            width: 46px;
+          }
+
+          span {
+            padding-left 20px;
+            color: #fff;
+            font-size: 24px;
+            height: 38px;
+            line-height: 38px;
+          }
+        }
+
+        .num-box {
+          width: 435px;
+          padding: 10px 0;
+          background: url(../images/ankang/num-bg.png) center no-repeat;
+          background-size: 100%;
+        }
+
+      }
+
+
+      .cir-container {
+        background: url(../images/ankang/tuoyuan2.png) no-repeat;
+        background-size: 60%;
+        background-position: center bottom;
+        margin-top: 20px;
+        position: relative;
+
+        .centerItem {
+          width: 856px;
+          height: 450px;
+          position: absolute;
+          left: -100px;
+        }
+
+      }
+
+      .center-bottom {
+        margin-bottom: 50px;
+
+        .footer-box {
+          //width: calc(100vw - 1010px);
+          z-index: 10;
+          align-items: flex-end;
+          margin-bottom: 0;
+          padding: 0;
+
+
+          .header {
+            height: 36px;
+            width: 267px;
+            margin: 0 auto;
+            background: url(../images/ankang/tuxing6.png) center no-repeat;
+            background-size: 100%;
+            text-align: center;
+
+            span {
+              height: 36px;
+              color: rgba(255, 255, 255, 1);
+              font-size: 18px;
+              line-height: 150%;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+
+      .tab-boxes {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-around;
+        align-items: center;
+        padding-bottom: 45px;
+
+        .tab-box {
+          width: 200px;
+          height: 69px;
+          background: url('../images/ankang/anniu01.png') no-repeat;
+          background-size: 100%;
+          text-align: center;
+          padding: 15px;
+          z-index: 2;
+
+          span {
+            color: #fff;
+            font-size: 22px;
+            height 35px;
+            line-height: 38px;
+          }
+        }
+
+        .active {
+          background: url("../images/ankang/anniu02.png");
+          background-size: 100%;
+        }
+      }
+
+      .footer-bg {
+        width 1000px;
+        height 63px;
+        left 50%;
+        transform translateX(-50%);
+        bottom: 0;
+        position: absolute;
+
+        img {
+          width 1000px;
+          height 63px;
+        }
+      }
+    }
+
+    .right-side {
+      position: absolute;
+      //height: 100%;
+      right: 0;
+      top: 0;
+      width: 505px;
+
+      .btn-box {
+        position: absolute;
+        z-index: 6;
+        right: 20px;
+        top: 45px;
+        width: 200px;
+
+        .bin-dropdown-menu {
+          text-align: center;
+          background-color: #fff;
+        }
+
+        .dropBtn {
+          width: 85px;
+          background: unset;
+          color: #fff;
+          border-radius: 20px;
+          border-color: #168cd2;
+          height: 32px;
+          line-height: 30px;
+          padding: 0 10px;
+
+          span {
+            color: #168cd2;
+          }
+        }
+
+      }
+
+      .panel-box2 {
+        margin: 21px 0;
+      }
+
+    }
+
+  }
+
+}
+
+//echarts面板样式
+
+
+#pieChart1 {
+  width: 100%
+  height: 384px;
+}
+
+#lineChart1 {
+  width: 100%
+  height: 230px;
+}
+
+#pieChart2 {
+  width: 100%
+  height: 230px;
+}
+
+#pieChart3 {
+  width: 100%
+  height: 230px;
+}
+
+#barChart1 {
+  width: 100%
+  height: 230px;
+}
+
+//大屏数字样式
+
+.num-list {
+  display flex;
+  flex-direction: row;
+  padding: 0 20px;
+  align-items: flex-end;
+
+  span {
+    display: inline-block;
+    flex: 1;
+    width: 60px;
+    height: 70px;
+    margin: 0 10px;
+    background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+  }
+
+  .unit {
+    color: #fff;
+    font-size: 20px;
+    height: 24px;
+
+  }
+
+  .num-bg-0 {
+    background-image: url(../images/num/0.png)
+  }
+
+  .num-bg-1 {
+    background-image: url(../images/num/1.png)
+  }
+
+  .num-bg-2 {
+    background-image: url(../images/num/2.png)
+  }
+
+  .num-bg-3 {
+    background-image: url(../images/num/3.png)
+  }
+
+  .num-bg-4 {
+    background-image: url(../images/num/4.png)
+  }
+
+  .num-bg-5 {
+    background-image: url(../images/num/5.png)
+  }
+
+  .num-bg-6 {
+    background-image: url(../images/num/6.png)
+  }
+
+  .num-bg-7 {
+    background-image: url(../images/num/7.png)
+  }
+
+  .num-bg-8 {
+    background-image: url(../images/num/8.png)
+  }
+
+  .num-bg-9 {
+    background-image: url(../images/num/9.png)
+  }
+}

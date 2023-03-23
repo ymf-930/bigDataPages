@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>砀山大数据分析系统</title>
+  <!--bin-ui-->
+  <link rel="stylesheet" href="../utils/lib/bin-ui@3.8.0/styles/index.css">
+
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/base-layout.css">
+  <link rel="stylesheet" href="../styles/base-title.css">
+  <link rel="stylesheet" href="../styles/system/left.css">
+  <link rel="stylesheet" href="../styles/system/center.css">
+  <link rel="stylesheet" href="../styles/system/right.css">
+  <link rel="stylesheet" href="../styles/system/reset.css">
+  <link rel="stylesheet" href="../styles/base-info-card.css">
+  <link rel="stylesheet" href="../styles/base-info-water-card.css">
+
+  <script src="../utils/lib/vue.min.js"></script>
+  <script src="../utils/lib/axios.min.js"></script>
+  <script src="../utils/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../utils/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+  <script src="../utils/lib/vue-count-to/vue-count-to.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="app" v-cloak>
+  <v-base-layout title="系统概况专题">
+    <template v-slot:left>
+      <div class="left-box">
+        <v-base-title-box title="双公示行政许可统计(本年)">
+          <div class="datas-box mb-10" flex="wrap:wrap">
+            <div class="datas-item" v-for="(item,index) in xzxkInfoList" :index="item" flex="cross:center">
+              <div class="data-title" :title="item.title">{{item.title}}：</div>
+              <div class="data-data">{{info[item.num]}} <span>{{item.unit}}</span></div>
+            </div>
+          </div>
+          <div style="width: 100%;height: 197px;" id="barChart1"></div>
+        </v-base-title-box>
+        <v-base-title-box title="双公示行政处罚统计(本年)">
+          <div class="datas-box mb-10" flex="wrap:wrap">
+            <div class="datas-item" v-for="(item,index) in xzcfInfoList" :index="item" flex="cross:center">
+              <div class="data-title" :title="item.title">{{item.title}}：</div>
+              <div class="data-data">{{info[item.num]}} <span>{{item.unit}}</span></div>
+            </div>
+          </div>
+          <div style="width: 100%;height: 197px;" id="barChart2"></div>
+        </v-base-title-box>
+        <v-base-title-box title="双公示统计(总量)">
+          <div class="datas-box mb-10" flex="wrap:wrap">
+            <div class="datas-item" v-for="(item,index) in tjInfoList" :index="item" flex="cross:center">
+              <div class="data-title" :title="item.title">{{item.title}}：</div>
+              <div class="data-data">{{info[item.num]}} <span>{{item.unit}}</span></div>
+            </div>
+          </div>
+          <div style="width: 100%;height: 197px;" id="barChart3"></div>
+        </v-base-title-box>
+      </div>
+    </template>
+    <template v-slot:center>
+      <div class="center-box">
+        <v-base-count-data :num="num"></v-base-count-data>
+        <div class="bg-box">
+          <div style="width: 80%;height: 577px;margin: auto;" id="mapChart"></div>
+        </div>
+        <div class="item-list">
+          <div class="data-item" :class="`data-item-`+index" v-for="(item,index) in infoList"
+               :key="index">
+            <v-base-info-card
+                    :title="item.title"
+                    :value="info[item.num]"
+                    unit="个"
+                    :value-style="valueStyle2"
+            >
+            </v-base-info-card>
+          </div>
+        </div>
+        <div class="water-card-box">
+          <div class="card-list-box" flex="wrap:wrap">
+            <div class="card-item" v-for="(item,index) in creditList" :key="index" @click="ChooseOne(item)">
+              <v-base-info-water-card
+                      :title="item.title"
+                      :value="info[item.num]"
+                      unit="条"
+                      :img-path="item.imgPath"
+                      :value-style="valueStyle"
+                      :select-status="selectIndex===index?true:false"
+                      :title-style="titleStyle"
+                      width-value="100%"
+                      height-value="100%">
+              </v-base-info-water-card>
+            </div>
+          </div>
+          <div class="bottom-img"></div>
+        </div>
+      </div>
+    </template>
+    <template v-slot:right>
+      <div class="right-box">
+        <v-base-title-box title="资源信息分类统计（本年）">
+          <div class="datas-box mb-10" flex="wrap:wrap">
+            <div class="datas-item" v-for="(item,index) in flInfoList" :index="item" flex="cross:center">
+              <div class="data-title" :title="item.title">{{item.title}}：</div>
+              <div class="data-data">{{info[item.num]}} <span>{{item.unit}}</span></div>
+            </div>
+          </div>
+          <div style="width: 100%;height: 322px;" id="pieChart1"></div>
+          <div class="bottom-img"></div>
+        </v-base-title-box>
+        <v-base-title-box title="双公示数据趋势分析">
+          <div class="btn-box" flex="main:justify cross:center">
+            <div class="btn" :class="yearStatus?'':'btn-active'"
+                 @click="()=> yearStatus=handleStatus(yearStatus)">
+              本月
+            </div>
+            <div class="btn" :class="yearStatus?'btn-active':''"
+                 @click="()=> yearStatus= handleStatus(yearStatus)">
+              本年
+            </div>
+          </div>
+          <div style="width: 100%;height: 322px;" id="lineChart"></div>
+          <div class="bottom-img"></div>
+        </v-base-title-box>
+      </div>
+    </template>
+  </v-base-layout>
+  <b-modal v-model="modal" :title="modalTitle" width="925" footer-hide append-to-body>
+    <b-table :columns="modalColumns" :data="modalData" border></b-table>
+  </b-modal>
+</div>
+<script src="../js/components/base-layout.js"></script>
+<script src="../js/components/base-title-box.js"></script>
+<script src="../js/components/base-count-data.js"></script>
+<script src="../js/components/base-info-card.js"></script>
+<script src="../js/components/base-info-water-card.js"></script>
+
+<script src="../js/time.js"></script>
+<script>
+  var vm = new Vue({
+    // mixins: [mixin],
+    el: '#app',
+    data: function () {
+      return {
+        title: '',
+        num: '67362345', // 数据归集总量
+        // 模拟动态数据
+        info: {
+          num1: 1234453,
+          num2: 4939599,
+          num3: 4399690,
+          num4: 9986859,
+          num5: 1234453,
+          num6: 4939599,
+          num7: 4399690,
+          num8: 9986859
+        },
+        // 双公示行政许可统计
+        xzxkInfoList: [
+          {title: '行政许可总量', unit: '条', num: 'num1'},
+          {title: '已对接部门', unit: '个', num: 'num2'},
+          {title: '自然人行政许可数量', unit: '条', num: 'num3'},
+          {title: '法人行政许可数量', unit: '条', num: 'num4'}
+        ],
+        // 双公示行政处罚统计
+        xzcfInfoList: [
+          {title: '行政处罚总量', unit: '条', num: 'num1'},
+          {title: '已对接部门', unit: '个', num: 'num2'},
+          {title: '自然人行政处罚数量', unit: '条', num: 'num3'},
+          {title: '法人行政处罚数量', unit: '条', num: 'num4'}
+        ],
+        // 双公示统计
+        tjInfoList: [
+          {title: '行政许可总量', unit: '条', num: 'num1'},
+          {title: '行政处罚总量', unit: '条', num: 'num2'},
+          {title: '本月新增行政许可数量', unit: '条', num: 'num3'},
+          {title: '本月新增行政处罚数量', unit: '条', num: 'num4'}
+        ],
+        // 资源信息分类统计
+        flInfoList: [
+          {title: '自然人基本信息', unit: '条', num: 'num1'},
+          {title: '法人基本信息', unit: '条', num: 'num2'}
+        ],
+        // 双公示数据趋势分析类别
+        yearStatus: false,
+        titleStyle: {
+          fontSize: '19px',
+          color: '#fff'
+        },
+        valueStyle: {
+          fontSize: '26px',
+          color: '#fff',
+          lineHeight: '28px'
+        },
+        valueStyle2: {
+          fontWeight: '500',
+          fontSize: '18px',
+          color: 'rgba(0, 222, 255, 1)',
+          lineHeight: '24px'
+        }, // 地图周围卡片数据样式
+        // 信用信息
+        infoList: [
+          {title: '自然人基础信息', num: 'num1'},
+          {title: '行政许可自然人信息', num: 'num2'},
+          {title: '行政处罚自然人信息', num: 'num3'},
+          {title: '法人基础信息', num: 'num4'},
+          {title: '行政许可法人信息', num: 'num5'},
+          {title: '行政处罚法人信息', num: 'num6'}
+        ],
+        creditList: [
+          {title: '红名单', imgPath: '../images/hmd.png', num: 'num3'},
+          {title: '黑名单', imgPath: '../images/black-md.png', num: 'num4'},
+          {title: '严重失信企业', imgPath: '../images/sxqy.png', num: 'num3'},
+          {title: '严重失信个人', imgPath: '../images/sxgr.png', num: 'num4'}
+        ],
+        selectIndex: 0,
+        modal: false, // 弹窗状态
+        modalTitle: '标题', // 弹窗标题
+        modalColumns: [
+          {
+            title: '企业名称',
+            key: 'name',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: '统一社会信用代码',
+            key: 'uscCode',
+            align: 'center'
+          },
+          {
+            title: '数量',
+            key: 'num',
+            align: 'center'
+          }
+        ], // 弹窗列表
+        modalData: [], // 弹窗数据
+        // 红名单表格数据
+        hmdData: [
+          {
+            name: '企业1',
+            uscCode: '91110000802100433B',
+            num: 10212
+          },
+          {
+            name: '企业2',
+            uscCode: '91110000802100433B',
+            num: 10212
+          },
+          {
+            name: '企业3',
+            uscCode: '91110000802100433B',
+            num: 10212
+          },
+          {
+            name: '企业4',
+            uscCode: '91110000802100433B',
+            num: 10212
+          },
+          {
+            name: '企业5',
+            uscCode: '91110000802100433B',
+            num: 10212
+          }
+        ]
+        // ...其他数据
+      }
+    },
+    created: function () {
+
+    },
+    mounted: function () {
+
+
+    },
+    methods: {
+      ChooseOne(item) {
+        this.modal = true
+        this.modalTitle = item.title
+        // 点击tab获取不同的数据
+        this.modalData = this.hmdData
+        // this.selectIndex = index
+      }
+    }
+  })
+  // 浏览器尺寸发生变化刷新页面（会重新加载所有数据，页面会卡）
+  // window.onresize = function(){
+  //   location.reload(true);
+  // }
+</script>
+<!--echarts-->
+<script src="https://cdn.bootcss.com/echarts/5.3.2/echarts.min.js"></script>
+
+<!-- 图表 -->
+<script src="../js/charts/systemCity.js"></script>
+<script src="../js/charts/systemCharts.js"></script>
+
+</body>
+
+</html>

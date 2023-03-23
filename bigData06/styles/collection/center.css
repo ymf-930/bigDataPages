@@ -1,0 +1,78 @@
+.center-box {
+    width: 100%;
+    height: 100%;
+    padding-top: 45px;
+}
+
+.center-box .center-center {
+    width: 860px;
+    height: 649px;
+    margin: auto;
+    background-image: url("../../images/center-bg2.png");
+    background-size: 100% 112%;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.center-box .center-center .bg-style {
+    width: 860px;
+    height: 649px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #050a1f95;
+    z-index: 1;
+}
+
+.center-box .center-center img {
+    z-index: 2;
+    position: absolute;
+    left: 35%;
+    top: 10%;
+}
+
+.center-box .center-center .item-box {
+    width: 834px;
+    height: 384px;
+    z-index: 3;
+    position: absolute;
+    top: 117px;
+    left: 26px;
+}
+
+.center-box .center-center .item-box .data-item {
+    width: 145px;
+    height: 51px;
+}
+
+.center-box  .center-center .item-box .data-item-0 {
+    position: relative;
+    top: 14px;
+    left: 142px;
+}
+
+.center-box  .center-center .item-box .data-item-1 {
+    position: relative;
+    top: 119px;
+    left: 20px;
+}
+
+.center-box  .center-center .item-box .data-item-2 {
+    position: relative;
+    top: 83px;
+    left: 333px;
+}
+
+.center-box  .center-center .item-box .data-item-3 {
+    position: relative;
+    bottom: 134px;
+    left: 533px;
+}
+.center-box  .center-center .item-box .data-item-4 {
+    position: relative;
+    bottom: 28px;
+    left: 636px;
+}
+.center-box .center-bottom{
+    padding: 0px 30px;
+}
