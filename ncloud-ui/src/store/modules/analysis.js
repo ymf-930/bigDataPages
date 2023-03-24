@@ -79,52 +79,19 @@ export default {
     // 方式分析
     fsfx: [
       {
-        name: '平台',
-        data: [{
-          name: '',
-          value: 37,
-          count: 0,
-          itemStyle: {
-            borderWidth: 0
-          }
-        }, {
-          name: '平台',
-          label: '',
-          value: 63,
-          count: 319
-        }]
+        name: "平台",
+        count: 4018,
+        value: 99.9
       },
       {
-        name: '小程序',
-        data: [{
-          name: '',
-          value: 37,
-          count: 0,
-          itemStyle: {
-            borderWidth: 0
-          }
-        }, {
-          name: '小程序',
-          label: '',
-          value: 63,
-          count: 710
-        }]
+        name: "小程序",
+        count: 5,
+        value: 0.1
       },
       {
-        name: '累计放款',
-        data: [{
-          name: '',
-          value: 20,
-          count: 0,
-          itemStyle: {
-            borderWidth: 0
-          }
-        }, {
-          name: '累计放款',
-          label: '',
-          value: 80,
-          count: 710
-        }]
+        name: "累计放款",
+        count: 896,
+        value: 22.27
       }
     ],
     // 进度分析

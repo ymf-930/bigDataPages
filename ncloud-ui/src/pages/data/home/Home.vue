@@ -12,24 +12,29 @@
     <div class="earth-wrapper">
       <div class="light">
         <div class="rotate">
-          <img src="../../../assets/images/home-example/earth2.png" alt="" />
-          <!--<div class="star" v-for="(item,index) in starList"
-               :style="{top:item.y+'px',left:item.x+'px',animationDelay:parseInt(index%8) + 's'}"></div>-->
+          <img src="../../../assets/images/home-example/earth2.png" alt=""/>
+          <div class="star" v-for="(item,index) in starList"
+               :style="{top:item.y+'px',left:item.x+'px',animationDelay:parseInt(index%8) + 's'}"></div>
         </div>
       </div>
     </div>
     <div class="center-wrapper">
       <div class="title">
-        <img src="../../../assets/images/home-example/title.png" alt="" />
+        <img src="../../../assets/images/home-example/title.png" alt=""/>
       </div>
       <div class="links">
         <router-link to="/overview">信用系统概况</router-link>
         <router-link to="/evaluation">信用评价专题</router-link>
         <router-link to="/application">信用应用专题</router-link>
         <router-link to="/summary">信用数据归集</router-link>
-<!--        <router-link to="/public">双公示专题</router-link>-->
         <router-link to="/xyd">信易贷数据分析</router-link>
-        <!-- <router-link to="/union">联合奖惩专题</router-link> -->
+      </div>
+      <div class="links">
+        <router-link to="/affair">政务诚信专题</router-link>
+        <router-link to="/public">双公示专题</router-link>
+        <router-link to="/union">联合奖惩专题</router-link>
+        <router-link to="/map">区域数据归集</router-link>
+        <router-link to="/home2">(首页2)</router-link>
       </div>
     </div>
   </div>
@@ -40,7 +45,7 @@ import * as Three from 'three'
 /* eslint-disable */
 export default {
   name: 'Home',
-  data: function() {
+  data: function () {
     return {
       particleJson: {
         particles: {
@@ -48,26 +53,26 @@ export default {
             value: 60, // 数量
             density: {
               enable: true, // 启用粒子的稀密程度
-              value_area: 800, // 区域散布密度大小
-            },
+              value_area: 800 // 区域散布密度大小
+            }
           },
           color: {
-            value: '#00aeff', // 原子的颜色
+            value: '#00aeff' // 原子的颜色
           },
           shape: {
             type: 'circle', // 原子的形状 "circle" ,"edge" ,"triangle" ,"polygon" ,"star" ,"image" ,["circle", "triangle", "image"]
             stroke: {
               width: 0, // 原子的宽度
-              color: '#362cff', // 原子颜色
+              color: '#362cff' // 原子颜色
             },
             polygon: {
-              nb_sides: 5, // 原子的多边形边数
+              nb_sides: 5 // 原子的多边形边数
             },
             image: {
               src: 'img/github.svg', // 原子的图片可以使用自定义图片 "assets/img/yop.svg" , "http://mywebsite.com/assets/img/yop.png"
               width: 100, // 图片宽度
-              height: 100, // 图片高度
-            },
+              height: 100 // 图片高度
+            }
           },
           opacity: {
             value: 1, // 不透明度
@@ -76,8 +81,8 @@ export default {
               enable: true, // 渐变动画
               speed: 1, // 渐变动画速度
               opacity_min: 0, // 渐变动画不透明度
-              sync: true,
-            },
+              sync: true
+            }
           },
           size: {
             value: 3, // 原子大小
@@ -86,15 +91,15 @@ export default {
               enable: false, // 原子渐变
               speed: 4, // 原子渐变速度
               size_min: 0.3,
-              sync: false,
-            },
+              sync: false
+            }
           },
           line_linked: {
             enable: false, // 连接线
             distance: 150, // 连接线距离
             color: 'transparent', // 连接线颜色
             opacity: 0.4, // 连接线不透明度
-            width: 1, // 连接线的宽度
+            width: 1 // 连接线的宽度
           },
           move: {
             enable: true, // 原子移动
@@ -107,61 +112,61 @@ export default {
             attract: {
               enable: false, // 原子之间吸引
               rotateX: 600, // 原子之间吸引X水平距离
-              rotateY: 600, // 原子之间吸引Y水平距离
-            },
-          },
+              rotateY: 600 // 原子之间吸引Y水平距离
+            }
+          }
         },
         interactivity: {
           detect_on: 'canvas', // 原子之间互动检测 "canvas", "window"
           events: {
             onhover: {
               enable: true, // 悬停
-              mode: 'bubble', // 悬停模式      "grab"抓取临近的,"bubble"泡沫球效果,"repulse"击退效果,["grab", "bubble"]
+              mode: 'bubble' // 悬停模式      "grab"抓取临近的,"bubble"泡沫球效果,"repulse"击退效果,["grab", "bubble"]
             },
             onclick: {
               enable: false, // 点击效果
-              mode: 'repulse', // 点击效果模式   "push" ,"remove" ,"bubble" ,"repulse" ,["push", "repulse"]
+              mode: 'repulse' // 点击效果模式   "push" ,"remove" ,"bubble" ,"repulse" ,["push", "repulse"]
             },
-            resize: true, // 互动事件调整
+            resize: true // 互动事件调整
           },
           modes: {
             grab: {
               distance: 100, // 原子互动抓取距离
               line_linked: {
-                opacity: 0.8, // 原子互动抓取距离连线不透明度
-              },
+                opacity: 0.8 // 原子互动抓取距离连线不透明度
+              }
             },
             bubble: {
               distance: 250, // 原子抓取泡沫效果之间的距离
               size: 4, // 原子抓取泡沫效果之间的大小
               duration: 2, // 原子抓取泡沫效果之间的持续事件
               opacity: 1, // 原子抓取泡沫效果透明度
-              speed: 1,
+              speed: 1
             },
             repulse: {
               distance: 400, // 击退效果距离
-              duration: 0.4, // 击退效果持续事件
+              duration: 0.4 // 击退效果持续事件
             },
             push: {
-              particles_nb: 2, // 粒子推出的数量
+              particles_nb: 2 // 粒子推出的数量
             },
             remove: {
-              particles_nb: 2,
-            },
-          },
+              particles_nb: 2
+            }
+          }
         },
-        retina_detect: true,
+        retina_detect: true
       },
       starList: [
-        { x: 610, y: 570 },
-        { x: 440, y: 600 },
-        { x: 320, y: 450 },
-        { x: 260, y: 350 },
-        { x: 310, y: 440 },
-        { x: 420, y: 510 },
-        { x: 780, y: 500 },
-        { x: 680, y: 640 },
-      ],
+        {x: 610, y: 570},
+        {x: 440, y: 600},
+        {x: 320, y: 450},
+        {x: 260, y: 350},
+        {x: 310, y: 440},
+        {x: 420, y: 510},
+        {x: 780, y: 500},
+        {x: 680, y: 640}
+      ]
     }
   },
   mounted() {
@@ -169,10 +174,10 @@ export default {
     for (var i = 0; i < 100; i++) {
       var x = Math.random() * 600 + 200
       var y = Math.random() * 600 + 200
-      this.starList.push({ x, y })
+      this.starList.push({x, y})
     }
     window.particlesJS('particlesId', this.particleJson)
-  },
+  }
 }
 </script>
 
@@ -205,12 +210,15 @@ canvas
     background-image: url('~@/assets/images/home-example/light2.png')
     background-position: left bottom;
     background-size: cover;
+
     .rotate
       position relative
       animation rotate linear infinite 60s
+
       img
         width: 1000px
         height: auto
+
   /*.star
     background-image: radial-gradient(#fff 5%, rgba(10,80,150,0.8) 50%, transparent 60%);
     width: 10px
@@ -219,6 +227,7 @@ canvas
     opacity 0
     position absolute
     animation star-shine infinite linear 10s*/
+
   .center-wrapper
     position absolute
     top: 50%
@@ -227,6 +236,7 @@ canvas
 
     .title
       text-align center
+
       img
         width 1000px
         height: auto
@@ -290,6 +300,7 @@ canvas
     opacity: 0.9
   }
 }
+
 /*@keyframes star-shine{
   0% {opacity:0}
   25% {opacity:0.1}

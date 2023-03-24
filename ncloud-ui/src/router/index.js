@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import BinUI from 'bin-ui'
 
 const Home = () => import('../pages/data/home/Home')
+const Home2 = () => import('../pages/data/home/Home2')
 const Overview = () => import('../pages/data/overview/Overview')
 const Evaluation = () => import('../pages/data/evaluation/evaluation')
 const Application = () => import('../pages/data/app/application')
@@ -11,7 +12,7 @@ const SummaryMap = () => import('../pages/data/summary/SummaryCopy')
 const Public = () => import('../pages/data/public/Public')
 const Union = () => import('../pages/data/union/Union')
 const Affair = () => import('../pages/data/map/Affair')
-const Xyd = () => import('../pages/data/analysis/Analysis')
+const Analysis = () => import('../pages/data/analysis/Analysis')
 // const Map = () => import('../pages/data/map/Map')
 
 Vue.use(BinUI)
@@ -20,13 +21,17 @@ Vue.use(VueRouter)
 
 const router = new VueRouter({
   routes: [
-    // {
-    //   path: '/test',
-    //   component: () => import('../pages/test.vue'),
-    // },
+/*    {
+      path: '/test',
+      component: () => import('../pages/test.vue'),
+    },*/
     {
       path: '/home',
       component: Home,
+    },
+    {
+      path: '/home2',
+      component: Home2,
     },
     {
       path: '/overview',
@@ -62,7 +67,7 @@ const router = new VueRouter({
     },
     {
       path: '/xyd',
-      component: Xyd,
+      component: Analysis,
     },
     {
       path: '/',

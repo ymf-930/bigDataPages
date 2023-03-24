@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e6f83221-bb1c-4584-91c6-486c485dd8e7" name="Changes" comment="新增bigData07大数据页面">
+    <list default="true" id="e6f83221-bb1c-4584-91c6-486c485dd8e7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ncloud-ui/src/pages/data/home/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/ncloud-ui/src/pages/data/home/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ncloud-ui/src/pages/data/overview/Overview2.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ncloud-ui/src/pages/data/summary/Summary1.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ncloud-ui/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ncloud-ui/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ncloud-ui/src/store/modules/analysis.js" beforeDir="false" afterPath="$PROJECT_DIR$/ncloud-ui/src/store/modules/analysis.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,12 +15,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="develop" />
+    <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -30,12 +34,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1679585228" />
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1679650331" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="develop" />
-                    <option name="lastUsedInstant" value="1679585164" />
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1679585228" />
                   </RecentBranch>
                 </list>
               </option>
@@ -54,7 +58,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../webprojects" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -90,6 +94,7 @@
       <updated>1679584780691</updated>
       <workItem from="1679584783003" duration="575000" />
       <workItem from="1679642713005" duration="978000" />
+      <workItem from="1679667366828" duration="4737000" />
     </task>
     <task id="LOCAL-00001" summary="新增bigData07大数据页面">
       <created>1679585208730</created>
