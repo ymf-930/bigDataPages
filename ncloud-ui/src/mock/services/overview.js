@@ -18,7 +18,7 @@ const overview = (options) => {
 
   return builder({
     'id': Mock.mock('@guid'),
-    'name': '王彬',
+    'name': 'ymf',
     'username': 'admin',
     'password': '',
     'status': 1,

@@ -7,120 +7,208 @@ import {
 
 export default {
   state: {
-    mapData: [
-      [{
-        name: '龙口市',
-        value: {
-          size: 0,
-          nat: 20,
-          leg: 200
-        }
-      }]
-    ],
-    union: {
-      memoCount: 2,
-      measureCount: 44,
-      deptCount: 55,
-      chartData: {
-        inner: [
-          { value: 0, name: '惩戒' },
-          { value: 0, name: '激励' }
-        ],
-        outer: [
-          { value: 0, name: '法人惩戒' },
-          { value: 0, name: '自然人惩戒' },
-          { value: 0, name: '法人激励' },
-          { value: 0, name: '自然人激励' }
-        ]
-      }
+    subDepart: [
+      {
+      'name': '龙口市',
+      'count': 23234234,
+      'percent': 10
     },
-    exchangeData: {
-      // total: 8848,
-      getIn: 0,
-      getInCorrect: '0%',
-      getOut: 0,
-      getOutCorrect: '0%',
-      dockedNormal: 79,
-      dockedAbnormal: 1,
-      chartData: [
-        ['product', '归集', '输出'],
-        ['1月', 0, 0],
-        ['2月', 0, 0],
-        ['3月', 0, 0],
-        ['4月', 0, 0],
-        ['5月', 0, 0],
-        ['6月', 0, 0],
-        ['7月', 0, 0],
-        ['8月', 0, 0],
-        ['9月', 0, 0],
-        ['10月', 0, 0],
-        ['11月', 0, 0],
-        ['12月', 0, 0]
+      {
+        'name': '大数据服务中心',
+        'count': 54232345,
+        'percent': 10
+      },
+      {
+        'name': '卫生局',
+        'count': 23452345,
+        'percent': 20
+      },
+      {
+        'name': '自然资源和规划局',
+        'count': 2345,
+        'percent': 30
+      },
+      {
+        'name': '住建局',
+        'count': 62346,
+        'percent': 50
+      },
+      {
+        'name': '市场监督局',
+        'count': 3263246,
+        'percent': 20
+      },
+      {
+        'name': '交通局',
+        'count': 23455,
+        'percent': 10
+      }
+    ],
+    leftData: {
+      'webCount1': '212123',
+      'data3': [{
+        'unit': '家',
+        'count': 21782,
+        'title': '企业法人'
+      },
+        {
+          'unit': '家',
+          'count': 88123,
+          'title': '个体工商户'
+        },
+        {
+          'unit': '家',
+          'count': 328,
+          'title': '其他'
+        }
+      ],
+      'webCount2': '420240',
+      'data2': [{
+        'unit': '个',
+        'count': 14,
+        'title': '本市镇街数量'
+      },
+        {
+          'unit': '个',
+          'count': 522,
+          'title': '村居社区数量'
+        }
+      ],
+      'data1': [{
+        'unit': '个',
+        'count': 634121,
+        'title': '本地人口'
+      },
+        {
+          'unit': '个',
+          'count': 182365,
+          'title': '外来人口'
+        },
+        {
+          'unit': '个',
+          'count': 102684,
+          'title': '其他人口'
+        }
+      ],
+      'legCount': '110233',
+      'totalCount': '919170'
+    },
+    centerData: {
+      'legCreditNum': 5930,
+      'natCreditNum': 16206,
+      'legPerNum': 56651,
+      'natBaseNum': 919170,
+      'legBaseNum': 110233,
+      'natPerNum': 22379
+    },
+    report: {
+      'xData': [
+        '2021-09',
+        '2021-10',
+        '2021-11',
+        '2021-12',
+        '2022-01',
+        '2022-02'
+      ],
+      'yData': [
+        500000,
+        400000,
+        378000,
+        123022,
+        1212,
+        0
       ]
     },
-    countNumList: [0], // 归集总量
-    rbNameList: {
-      redList: [],
-      blackList: []
+    redBlack: {
+      'blackCount': '101234',
+      'blackData': [{
+        'unit': '个',
+        'count': 5,
+        'title': '税务黑名单'
+      },
+        {
+          'unit': '个',
+          'count': 30,
+          'title': '市场监管局黑名单'
+        },
+        {
+          'unit': '个',
+          'count': 10,
+          'title': '海关黑名单'
+        },
+        {
+          'unit': '个',
+          'count': 10,
+          'title': ''
+        }
+      ],
+      'redCount': '101234',
+      'redData': [{
+        'unit': '个',
+        'count': '5',
+        'title': 'A级别纳税人'
+      },
+        {
+          'unit': '个',
+          'count': '30',
+          'title': '工程建设红名单'
+        },
+        {
+          'unit': '个',
+          'count': '10',
+          'title': '市场监管红名单'
+        },
+        {
+          'unit': '个',
+          'count': '10',
+          'title': '海关红名单'
+        }
+      ]
     },
-    classStatistic: {
-      lv1: 8,
-      lv2: 40,
-      resourceCount: 57,
-      deptCount: 55,
-      chartData: {
-        outer: [
-          { value: 0, name: '门户' },
-          { value: 0, name: '小程序' },
-          { value: 0, name: '平台' }
+    countNumList: [0, 0, 2, 0, 2, 9, 0, 1, 5, 6],
+    fltj: {
+      'chartData': {
+        'xData': [
+          80,
+          100,
+          20,
+          300,
+          400,
+          500,
+          600,
+          700
         ],
-        inner: [
-          { value: 0, name: '查询次数' }
+        'yData': [
+          '基础信息',
+          '业务信息',
+          '司法信息',
+          '行政执法信息',
+          '公共事业信息',
+          '信用评级信息',
+          '其他信息'
         ]
       },
-      chartData2: {
-        outer: [
-          { value: 0, name: '门户' },
-          { value: 0, name: '小程序' },
-          { value: 0, name: '平台' }
-        ],
-        inner: [
-          { value: 0, name: '查询次数' }
-        ]
-      }
-    },
-    xybgAllCount: 0,
-    // 资源信息分类统计
-    trendAnalysis: [
-      { product: '1月', count: 0 },
-      { product: '2月', count: 0 },
-      { product: '3月', count: 0 },
-      { product: '4月', count: 0 },
-      { product: '5月', count: 0 },
-      { product: '6月', count: 0 },
-      { product: '7月', count: 0 },
-      { product: '8月', count: 0 },
-      { product: '9月', count: 0 },
-      { product: '10月', count: 0 },
-      { product: '11月', count: 0 },
-      { product: '12月', count: 0 }
-    ], // 信用报告查询趋势
-    submitDeptList: [
-      { name: '镇江市', count: 6834299, percent: '78%' },
-      { name: '扬中市人社局', count: 1883650, percent: '22%' },
-      { name: '市编办', count: 2067, percent: '0%' },
-      { name: '市农业农村局', count: 0, percent: '0%' },
-      { name: '市教育局', count: 0, percent: '0%' },
-      { name: '市卫健委', count: 0, percent: '0%' },
-      { name: '市审计局', count: 0, percent: '0%' },
-      { name: '市政务服务办', count: 0, percent: '0%' },
-      { name: '市市场监督管理局', count: 0, percent: '0%' }
-    ] // 数据提报部门
-  },
-  actions: {
-    async getOverviewData({ commit }) {
-      const result = await reqOverviewData()
-      commit(OverviewData, { result })
+      'topData': [{
+        'unit': '个',
+        'count': 12412,
+        'title': '一级分类'
+      },
+        {
+          'unit': '个',
+          'count': 41244,
+          'title': '二级分类'
+        },
+        {
+          'unit': '条',
+          'count': 1214,
+          'title': '资源数'
+        },
+        {
+          'unit': '个',
+          'count': 1214,
+          'title': '部门数'
+        }
+      ]
     }
   },
   mutations: {
@@ -129,6 +217,12 @@ export default {
       for (let key in data) {
         state[key] = data[key]
       }
+    }
+  },
+  actions: {
+    async getOverviewData({ commit }) {
+      const result = await reqOverviewData()
+      commit(OverviewData, { result })
     }
   }
 }

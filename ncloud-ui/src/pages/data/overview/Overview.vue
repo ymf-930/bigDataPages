@@ -42,13 +42,13 @@ export default {
   components: { Panel, RedBlack, CenterBox, LeftBox, ReportChart, Fltj, SubDepart },
   computed: {
     ...mapState({
-      redBlack: state => state.overviewNew.redBlack,
-      countNumList: state => state.overviewNew.countNumList,
-      leftData: state => state.overviewNew.leftData,
-      centerData: state => state.overviewNew.centerData,
-      report: state => state.overviewNew.report,
-      fltj: state => state.overviewNew.fltj,
-      subDepart: state => state.overviewNew.subDepart
+      redBlack: state => state.overview.redBlack,
+      countNumList: state => state.overview.countNumList,
+      leftData: state => state.overview.leftData,
+      centerData: state => state.overview.centerData,
+      report: state => state.overview.report,
+      fltj: state => state.overview.fltj,
+      subDepart: state => state.overview.subDepart
     }),
   },
   created() {
@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     initData() {
-      this.$store.dispatch('getOverviewNewData')
+      this.$store.dispatch('getOverviewData')
     },
   },
 }
