@@ -24,7 +24,7 @@ const router = new VueRouter({
 /*    {
       path: '/test',
       component: () => import('../pages/test.vue'),
-    },*/
+    }, */
     {
       path: '/home',
       component: Home,
