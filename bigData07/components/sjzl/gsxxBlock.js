@@ -4,7 +4,7 @@ Vue.component('gsxx-block', {
       <div class="gsxx-block">
         <div id="gsxxChart" class="gsxx-block-chart"></div>
 
-        <img class="gsxx-block-bottom" src="/assets/img/sjzl/xycn-bottom.png" />
+        <img class="gsxx-block-bottom" src="../assets/img/sjzl/xycn-bottom.png" />
       </div>
     </title-con>
   `,

@@ -5,21 +5,21 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
-  <link rel="stylesheet" type="text/css" href="/assets/css/htly/index.css">
-  <link rel="stylesheet" type="text/css" href="/assets/css/common/layout.css">
-  <link rel="stylesheet" type="text/css" href="/assets/css/common/titleCon.css">
-  <link rel="stylesheet" type="text/css" href="/assets/css/common/titleCircle.css">
-  <link rel="stylesheet" type="text/css" href="/assets/css/common/tableSwiper.css">
-  <link rel="stylesheet" type="text/css" href="/assets/css/common/colorBlock.css">
-  <link rel="stylesheet" type="text/css" href="/assets/lib/bin-ui@3.8.0/styles/index.css">
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="stylesheet" type="text/css" href="../assets/css/index.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/htly/index.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/common/layout.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/common/titleCon.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/common/titleCircle.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/common/tableSwiper.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/common/colorBlock.css">
+  <link rel="stylesheet" type="text/css" href="../assets/lib/bin-ui@3.8.0/styles/index.css">
 
-  <script src="/assets/lib/vue.min.js"></script>
-  <script src="/assets/lib/axios.min.js"></script>
-  <script src="/assets/lib/swiper/swiper.min.js"></script>
-  <script src="/assets/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
-  <script src="/assets/lib/echarts/echarts.min.js"></script>
+  <script src="../assets/lib/vue.min.js"></script>
+  <script src="../assets/lib/axios.min.js"></script>
+  <script src="../assets/lib/swiper/swiper.min.js"></script>
+  <script src="../assets/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+  <script src="../assets/lib/echarts/echarts.min.js"></script>
   <title>合同履约</title>
 </head>
 
@@ -48,7 +48,7 @@
                   </span>
                 </div>
               </color-block>
-              <img src="/assets/img/htly/point.png" :class="{'isActive':index === selected}"/>
+              <img src="../assets/img/htly/point.png" :class="{'isActive':index === selected}"/>
             </div>
           </div>
           <div class="sul-table">
@@ -67,11 +67,11 @@
     </layout>
   </div>
 
-  <script src="/components/common/layout.js"></script>
-  <script src="/components/common/titleCon.js"></script>
-  <script src="/components/common/titleCircle.js"></script>
-  <script src="/components/common/colorBlock.js"></script>
-  <script src="/components/common/tableSwiper.js"></script>
+  <script src="../components/common/layout.js"></script>
+  <script src="../components/common/titleCon.js"></script>
+  <script src="../components/common/titleCircle.js"></script>
+  <script src="../components/common/colorBlock.js"></script>
+  <script src="../components/common/tableSwiper.js"></script>
 
   <script>
 
@@ -175,11 +175,11 @@
             },
           ],
           titleCount: [
-            { text: '累计合同总量', value: 200, unit:'条', img: '/assets/img/htly/pic01.png' },
-            { text: '累计合同金额', value: 285.07, unit:'万元', img: '/assets/img/htly/pic02.png' },
-            { text: '累计跟踪数量', value: 111, unit:'条', img: '/assets/img/htly/pic03.png' },
-            { text: '正在跟踪数量', value: 6, unit:'条', img: '/assets/img/htly/pic04.png' },
-            { text: '正在跟踪数量', value: 4.44, unit:'条', img: '/assets/img/htly/pic05.png' },
+            { text: '累计合同总量', value: 200, unit:'条', img: '../assets/img/htly/pic01.png' },
+            { text: '累计合同金额', value: 285.07, unit:'万元', img: '../assets/img/htly/pic02.png' },
+            { text: '累计跟踪数量', value: 111, unit:'条', img: '../assets/img/htly/pic03.png' },
+            { text: '正在跟踪数量', value: 6, unit:'条', img: '../assets/img/htly/pic04.png' },
+            { text: '正在跟踪数量', value: 4.44, unit:'条', img: '../assets/img/htly/pic05.png' },
           ],
           blockList: [
             { text: '执行中', value: 4, color: 'rgba(40, 150, 192, 0.7)' },
@@ -201,7 +201,7 @@
   </script>
 
 
-  <script src="/components/htly/barCharts.js"></script>
+  <script src="../components/htly/barCharts.js"></script>
 </body>
 
 </html>

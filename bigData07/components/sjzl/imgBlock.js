@@ -6,7 +6,7 @@ Vue.component('img-block', {
           <span class="img-block-title">数据归集示意图</span>
         </div>
 
-        <img src="/assets/img/sjzl/syt.png" />
+        <img src="../assets/img/sjzl/syt.png" />
       </div>
     </title-con>
   `,

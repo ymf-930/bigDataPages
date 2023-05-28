@@ -6,10 +6,10 @@ Vue.component("title-con", {
           <div class="title-con-line" />
           <div class="title-con-title">
             <div class="title-con-jt-con">
-              <img src="/assets/img/common/titleCon/jt.png" />
+              <img src="../assets/img/common/titleCon/jt.png" />
               <span>{{ title }}</span>
             </div>
-            <img class="title-con-icon" src="/assets/img/common/titleCon/icon.png" />
+            <img class="title-con-icon" src="../assets/img/common/titleCon/icon.png" />
           </div>
         </template>
 

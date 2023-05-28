@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="e6f83221-bb1c-4584-91c6-486c485dd8e7" name="Changes" comment="项目截图更新及去除关键字">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screenshot/img_7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Screenshot/img_7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData05/pages/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData05/pages/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ncloud-ui/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ncloud-ui/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData07/components/common/titleCon.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/components/common/titleCon.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData07/components/sjzl/gsxxBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/components/sjzl/gsxxBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData07/components/sjzl/imgBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/components/sjzl/imgBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData07/components/sjzl/tdxyxxBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/components/sjzl/tdxyxxBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData07/components/sjzl/xycnBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/components/sjzl/xycnBlock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData07/pages/htly.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/pages/htly.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData07/pages/sjzl.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/pages/sjzl.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData07/pages/sxzl.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/pages/sxzl.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData07/pages/xycn.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/pages/xycn.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,7 +22,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="master" />
+    <option name="BRANCH" value="develop" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -24,6 +33,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
     <option name="recentBranches">
       <RecentBranches>
         <option name="branchesForRepo">
@@ -33,7 +43,7 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="develop" />
-                    <option name="lastUsedInstant" value="1679673870" />
+                    <option name="lastUsedInstant" value="1685248636" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
@@ -48,18 +58,30 @@
       </RecentBranches>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2NQ871jNV6PQvAf9lUaxsiiHI72" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Screenshot" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/projects/静态页面/龙口信易贷平台数据分析页面/ncloud-ui&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\GiteeStore\big-data-pages\Screenshot" />
@@ -98,6 +120,9 @@
       <workItem from="1679642713005" duration="978000" />
       <workItem from="1679667366828" duration="4737000" />
       <workItem from="1680680790048" duration="341000" />
+      <workItem from="1684417505172" duration="783000" />
+      <workItem from="1685247774798" duration="1224000" />
+      <workItem from="1685249295277" duration="349000" />
     </task>
     <task id="LOCAL-00001" summary="新增bigData07大数据页面">
       <created>1679585208730</created>
@@ -129,7 +154,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="新增bigData07大数据页面" />

@@ -7,10 +7,10 @@ Vue.component('tdxyxx-block', {
             <div v-for="(item, index) in data.slice(0, 4)" class="tdxyxx-block-data-con">
               <div class="tdxyxx-block-data-title">{{ item.title }}</div>
               <div class="tdxyxx-block-data-num">{{ item.value }}</div>
-              <img :src="'/assets/img/sjzl/' + item.img" />
+              <img :src="'../assets/img/sjzl/' + item.img" />
             </div>
           </div>
-          <img class="tdxyxx-block-bottom" src="/assets/img/sjzl/xycn-bottom.png" />
+          <img class="tdxyxx-block-bottom" src="../assets/img/sjzl/xycn-bottom.png" />
         </div>
 
         <div>
@@ -18,10 +18,10 @@ Vue.component('tdxyxx-block', {
             <div v-for="(item, index) in data.slice(4, 7)" class="tdxyxx-block-data-con">
               <div class="tdxyxx-block-data-title">{{ item.title }}</div>
               <div class="tdxyxx-block-data-num">{{ item.value }}</div>
-              <img :src="'/assets/img/sjzl/' + item.img"  />
+              <img :src="'../assets/img/sjzl/' + item.img"  />
             </div>
           </div>
-          <img class="tdxyxx-block-bottom" src="/assets/img/sjzl/xycn-bottom.png" />
+          <img class="tdxyxx-block-bottom" src="../assets/img/sjzl/xycn-bottom.png" />
         </div>
       </div>
     </title-con>

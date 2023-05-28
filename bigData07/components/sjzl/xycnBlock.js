@@ -4,7 +4,7 @@ Vue.component('xycn-block', {
       <div class="xycn-block">
         <div id="xycnCharts" class="xycn-block-chart" />
 
-        <img class="xycn-block-bottom" src="/assets/img/sjzl/xycn-bottom.png" />
+        <img class="xycn-block-bottom" src="../assets/img/sjzl/xycn-bottom.png" />
       </div>    
     </title-con>
   `,
