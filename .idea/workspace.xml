@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6f83221-bb1c-4584-91c6-486c485dd8e7" name="Changes" comment="git忽略文件配置添加">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="e6f83221-bb1c-4584-91c6-486c485dd8e7" name="Changes" comment="新增bigData08大数据页面" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +20,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
@@ -43,6 +42,17 @@
                 </list>
               </option>
               <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1685537154" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$/bigData08" />
             </RecentBranchesForRepo>
           </list>
         </option>
@@ -120,7 +130,7 @@
       <workItem from="1685363680725" duration="1049000" />
       <workItem from="1685426657465" duration="1349000" />
       <workItem from="1685501565282" duration="4862000" />
-      <workItem from="1685533194221" duration="1011000" />
+      <workItem from="1685533194221" duration="1291000" />
     </task>
     <task id="LOCAL-00001" summary="新增bigData07大数据页面">
       <created>1679585208730</created>
@@ -150,7 +160,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685250327754</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="新增bigData08大数据页面">
+      <created>1685537202600</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1685537202600</updated>
+    </task>
+    <task id="LOCAL-00006" summary="新增bigData08大数据页面">
+      <created>1685537235456</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1685537235456</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,6 +197,7 @@
     <MESSAGE value="项目截图更新" />
     <MESSAGE value="项目截图更新及去除关键字" />
     <MESSAGE value="git忽略文件配置添加" />
-    <option name="LAST_COMMIT_MESSAGE" value="git忽略文件配置添加" />
+    <MESSAGE value="新增bigData08大数据页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增bigData08大数据页面" />
   </component>
 </project>
