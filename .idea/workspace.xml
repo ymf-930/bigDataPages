@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e6f83221-bb1c-4584-91c6-486c485dd8e7" name="Changes" comment="项目截图更新及去除关键字">
+    <list default="true" id="e6f83221-bb1c-4584-91c6-486c485dd8e7" name="Changes" comment="git忽略文件配置添加">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData07/components/common/titleCon.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/components/common/titleCon.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData07/components/sjzl/gsxxBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/components/sjzl/gsxxBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData07/components/sjzl/imgBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/components/sjzl/imgBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData07/components/sjzl/tdxyxxBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/components/sjzl/tdxyxxBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData07/components/sjzl/xycnBlock.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/components/sjzl/xycnBlock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData07/pages/htly.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/pages/htly.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData07/pages/sjzl.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/pages/sjzl.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData07/pages/sxzl.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/pages/sxzl.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData07/pages/xycn.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData07/pages/xycn.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +18,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,12 +33,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="develop" />
-                    <option name="lastUsedInstant" value="1685248636" />
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1685250343" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1679585228" />
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1685250231" />
                   </RecentBranch>
                 </list>
               </option>
@@ -72,8 +63,8 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/projects/静态页面/龙口信易贷平台数据分析页面/ncloud-ui&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/GiteeStore/webprojects&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -105,6 +96,8 @@
       <list>
         <item itemvalue="npm.serve" />
         <item itemvalue="npm.serve" />
+        <item itemvalue="npm.serve" />
+        <item itemvalue="npm.serve" />
       </list>
     </recent_temporary>
   </component>
@@ -123,6 +116,11 @@
       <workItem from="1684417505172" duration="783000" />
       <workItem from="1685247774798" duration="1224000" />
       <workItem from="1685249295277" duration="349000" />
+      <workItem from="1685319719763" duration="974000" />
+      <workItem from="1685363680725" duration="1049000" />
+      <workItem from="1685426657465" duration="1349000" />
+      <workItem from="1685501565282" duration="4862000" />
+      <workItem from="1685533194221" duration="1011000" />
     </task>
     <task id="LOCAL-00001" summary="新增bigData07大数据页面">
       <created>1679585208730</created>
@@ -138,7 +136,21 @@
       <option name="project" value="LOCAL" />
       <updated>1679673858310</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="git忽略文件配置添加">
+      <created>1685250211875</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1685250211875</updated>
+    </task>
+    <task id="LOCAL-00004" summary="git忽略文件配置添加">
+      <created>1685250327754</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1685250327754</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +172,7 @@
     <MESSAGE value="移除无用文件及解决信易贷平台数据丢失问题" />
     <MESSAGE value="项目截图更新" />
     <MESSAGE value="项目截图更新及去除关键字" />
-    <option name="LAST_COMMIT_MESSAGE" value="项目截图更新及去除关键字" />
+    <MESSAGE value="git忽略文件配置添加" />
+    <option name="LAST_COMMIT_MESSAGE" value="git忽略文件配置添加" />
   </component>
 </project>
