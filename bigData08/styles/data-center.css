@@ -1,0 +1,227 @@
+#app #pieChart1 {
+  width: 100%;
+  height: 224px;
+}
+#app #barChart1 {
+  width: 100%;
+  height: 224px;
+}
+#app #barChart2 {
+  width: 100%;
+  height: 164px;
+}
+#app #lineChart1 {
+  width: 100%;
+  height: 224px;
+}
+#app .center-box {
+  height: 100%;
+  padding: 0 20px;
+}
+#app .center-box .data-box-box {
+  padding-top: 80px;
+}
+#app .center-box .center-container {
+  height: calc(100% - 500px);
+  position: relative;
+  background-image: url("../images/center/container-bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+#app .center-box .center-container .depart {
+  background-image: url("../images/center/depart-bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 136px;
+  height: 51px;
+  line-height: 51px;
+  text-align: center;
+  vertical-align: middle;
+  color: #4cffff;
+  font-size: 24px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+}
+#app .center-box .center-container .center-bg {
+  display: block;
+  width: 60%;
+  height: auto;
+  object-fit: contain;
+}
+#app .center-box .center-container .bar-box {
+  width: 70%;
+  position: absolute;
+}
+#app .center-box .center-container .bar-box .bar-item {
+  background-image: url("../images/center/bar.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 118px;
+  height: 183px;
+}
+#app .center-box .center-container .bar-box .bar-item .text {
+  background-image: url("../images/center/bar-top.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 86px;
+  height: 41px;
+  line-height: 41px;
+  text-align: center;
+  color: #fff;
+  font-size: 12px;
+  margin-bottom: 100px;
+}
+#app .center-box .center-container .bar-box .bar-item:nth-child(1) {
+  position: absolute;
+  left: 0;
+  top: -140px;
+}
+#app .center-box .center-container .bar-box .bar-item:nth-child(2) {
+  position: absolute;
+  left: 100px;
+  top: -220px;
+}
+#app .center-box .center-container .bar-box .bar-item:nth-child(3) {
+  position: absolute;
+  right: 100px;
+  top: -220px;
+}
+#app .center-box .center-container .bar-box .bar-item:nth-child(4) {
+  position: absolute;
+  right: 0;
+  top: -140px;
+}
+#app .center-box .center-container .center-bottom .bottom-item {
+  position: relative;
+  min-width: 190px;
+  min-height: 120px;
+  padding: 0 14px;
+}
+#app .center-box .center-container .center-bottom .bottom-item .text {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  top: 35%;
+  left: 38%;
+}
+#app .center-box .center-container .center-bottom .bottom-item .value {
+  color: #4cffff;
+  font-size: 28px;
+  font-weight: bold;
+  font-style: italic;
+  position: absolute;
+  top: 52%;
+  left: 38%;
+}
+#app .bottom-box {
+  height: 224px;
+  padding-top: 27px;
+}
+#app .bottom-box .bottom-item {
+  width: 50%;
+  height: 100%;
+  background-image: url("../images/center/bottom-bg.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+#app .bottom-box .bottom-item .left {
+  width: 30%;
+}
+#app .bottom-box .bottom-item .left img {
+  width: 66px;
+  height: 91px;
+  display: block;
+}
+#app .bottom-box .bottom-item .left .text {
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+}
+#app .bottom-box .bottom-item .left .value {
+  color: #4cffff;
+  font-size: 28px;
+  line-height: 150%;
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+}
+#app .bottom-box .bottom-item .right {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+}
+#app .bottom-box .bottom-item .right .right-item {
+  width: 44%;
+  background-image: url("../images/center/right-item-bg.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 14px;
+  margin: 8px;
+}
+#app .bottom-box .bottom-item .right .right-item .text {
+  color: #fff;
+  font-size: 14px;
+  text-align: left;
+}
+#app .bottom-box .bottom-item .right .right-item .value {
+  color: #4cffff;
+  font-size: 20px;
+  line-height: 150%;
+  text-align: left;
+}
+#app .top-box {
+  width: 100%;
+  height: 60px;
+  background-image: url("../images/center/top-box-bg.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+#app .top-box .top-item {
+  flex: 1;
+  text-align: center;
+}
+#app .top-box .top-item .text {
+  color: #fff;
+  font-size: 14px;
+}
+#app .top-box .top-item .value {
+  color: #4cffff;
+  font-size: 20px;
+}
+#app .top-text {
+  color: #fff;
+  font-size: 16px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 60px;
+}
+#app .panel-content .level-wrapper {
+  padding: 12px 10px;
+}
+#app .panel-content .level-wrapper .level-item {
+  position: relative;
+  height: 20px;
+}
+#app .panel-content .level-wrapper .level-item .level-title {
+  width: 80px;
+  padding-right: 20px;
+  text-align: right;
+  font-size: 12px;
+  color: #fff;
+}
+#app .panel-content .level-wrapper .level-item .bin-progress {
+  flex: 1;
+}
+#app .panel-content .level-wrapper .level-item .bin-progress .bin-progress-bar {
+  padding-right: 0;
+}
+#app .panel-content .level-wrapper .level-item .level-num {
+  width: 70px;
+  padding-left: 15px;
+  font-size: 12px;
+  color: #fff;
+}

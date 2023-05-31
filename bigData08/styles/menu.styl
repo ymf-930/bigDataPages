@@ -1,0 +1,49 @@
+.main{
+  width 300px
+  background-color rgba(8, 27, 63, 1)
+  padding-top 50px
+  .bin-menu{
+    width 100% !important
+    background-color inherit
+    .bin-menu-item-selected{
+      background-color #08254e !important
+      color #0c74f4
+    }
+
+    &::after{
+      background-color inherit
+    }
+    li {
+      color white
+      .bin-menu-submenu-title{
+        .iconfont{
+          &::before {
+            color #595959
+          }
+        }
+      }
+      .bin-menu-submenu-title:hover{
+        color white
+        .icon-ios-arrow-down{
+          color #9eceff
+          &::before {
+            color white
+          }
+        }
+      }
+    }
+    span{
+      color white
+    }
+  }
+  //li {
+  //  color: #fff
+  //  height 40px
+  //  line-height 40px
+  //  cursor pointer
+  //}
+  //.isSelect{
+  //  color #0c74f4
+  //  background-color #092753
+  //}
+}

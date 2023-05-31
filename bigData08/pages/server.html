@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>知识产权信用服务</title>
+  <!--bin-ui-->
+  <link rel="stylesheet" href="../utils/lib/bin-ui@3.8.0/styles/index.css">
+
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/base-layout3.css">
+  <link rel="stylesheet" href="../styles/base-head-nav.css">
+  <link rel="stylesheet" href="../styles/base-panel-box.css">
+  <link rel="stylesheet" href="../styles/base-table.css">
+  <link rel="stylesheet" href="../styles/server.css">
+  <link rel="stylesheet" href="../utils/lib/swiper/swiper.min.css">
+
+  <script src="../utils/lib/vue.min.js"></script>
+  <script src="../utils/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+  <script src="../utils/lib/swiper/swiper.min.js"></script>
+  <script src="../utils/lib/vue-count-to/vue-count-to.min.js"></script>
+
+</head>
+<body>
+
+<div id="app" v-cloak>
+  <v-base-layout3 :title="title" show-nav>
+    <template v-slot:nav>
+      <v-base-head-nav :active-nav="activeNav"/>
+    </template>
+    <template v-slot:left>
+      <v-base-panel-box title="漯易服">
+        <div flex="main:justify" class="server-content">
+          <div class="count server-main" flex>
+            <div class="left">
+              <img src="../images/server/icon1.png" width="100%">
+            </div>
+            <div class="right" flex="dir:top main:center">
+              <div class="name">总用户量</div>
+              <span class="num">{{count}}</span>
+            </div>
+          </div>
+          <div class="add server-main" flex>
+            <div class="left">
+              <img src="../images/server/icon2.png" width="100%">
+            </div>
+            <div class="right" flex="dir:top main:center">
+              <div class="name">近一月新增用户</div>
+              <span class="num">{{add}}</span>
+            </div>
+          </div>
+        </div>
+      </v-base-panel-box>
+      <v-base-panel-box title="纠纷调解">
+        <div id="barChart"></div>
+      </v-base-panel-box>
+      <v-base-panel-box title="信用市场">
+        <v-base-table :columns="fxyjColumns" :table-data="fxyjData" :slides-num=6 ></v-base-table>
+      </v-base-panel-box>
+    </template>
+    <template v-slot:center>
+
+    </template>
+    <template v-slot:right>
+      <v-base-panel-box title="助企纾困">
+        <div class="help-content" flex="main:justify cross:center">
+          <div class="help-item" v-for="item in helpList" :style="{backgroundImage: 'url(' + item.img + ')'}" flex="dir:top cross:center">
+            <span class="help-name">{{item.name}}</span>
+            <span class="help-count">{{item.count}}</span>
+          </div>
+        </div>
+      </v-base-panel-box>
+      <v-base-panel-box title="信用市场">
+        <div class="market-content" flex="dir:top">
+          <div class="market-item" v-for="item in marketList" flex>
+            <img src="../images/server/head-pic.svg" width="110" height="90">
+            <div class="market-message">
+              <div flex>
+                <div class="lf">名称</div>
+                <div class="rt">{{item.name}}</div>
+              </div>
+              <div flex class="message">
+                <div class="lf">地址</div>
+                <div class="rt">{{item.address}}</div>
+              </div>
+              <div flex class="message">
+                <div class="lf">法人代表</div>
+                <div class="rt">{{item.person}}</div>
+              </div>
+              <div flex class="message">
+                <div class="lf">评价结果</div>
+                <div class="rt">{{item.result}}</div>
+              </div>
+              <div flex class="message">
+                <div class="lf">评价得分</div>
+                <div class="rt">{{item.score}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </v-base-panel-box>
+    </template>
+  </v-base-layout3>
+  <div class="bottom" flex="main:center cross:center">
+    <div
+            v-for="(item, index) in bottom"
+            :class="{'isActive': select === index}"
+            @click="handleClick(index)"
+            flex="main:center cross:center"
+    >{{item}}</div>
+  </div>
+</div>
+<script src="../js/components/base-layout3.js"></script>
+<script src="../js/components/base-head-nav.js"></script>
+<script src="../js/components/base-panel-box.js"></script>
+<script src="../js/components/base-table.js"></script>
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        title: '知识产权信用服务',
+        activeNav: 'server',
+        count: 406571,
+        add: 406571,
+        select: 0,
+        bottom:['服务机构', '食安地图'],
+        fxyjColumns: [
+          {
+            title: '企业名称',
+            key: 'name',
+            align: 'center',
+            minWidth: 150,
+            tooltip: true
+          },
+          {
+            title: '门牌号',
+            key: 'address',
+            align: 'center'
+          },
+          {
+            title: '主要经营品类',
+            key: 'type',
+            align: 'center'
+          },
+          {
+            title: '评级星级',
+            key: 'level',
+            align: 'center'
+          }
+        ],
+        fxyjData: [
+          {
+            name: '临颍县十产农业发展有限公司',
+            address: '湖北路7号',
+            type: '萧县凉皮',
+            level: 'D'
+          },
+          {
+            name: '漯河润民詈业有限公司',
+            address: '湖北路7号',
+            type: '萧县凉皮',
+            level: 'D'
+          },
+          {
+            name: '漯河润民詈业有限公司',
+            address: '湖北路7号',
+            type: '萧县凉皮',
+            level: 'D'
+          },
+          {
+            name: '漯河润民詈业有限公司',
+            address: '湖北路7号',
+            type: '萧县凉皮',
+            level: 'D'
+          },
+          {
+            name: '漯河润民詈业有限公司',
+            address: '湖北路7号',
+            type: '萧县凉皮',
+            level: 'D'
+          },
+          {
+            name: '漯河润民詈业有限公司',
+            address: '湖北路7号',
+            type: '萧县凉皮',
+            level: 'D'
+          },
+        ],
+        helpList: [
+          {name: '授信额度', count: '15亿', img: '../images/server/blue.svg'},
+          {name: '放贷额度', count: '5.5亿', img: '../images/server/half-blue.svg'},
+          {name: '放贷数目', count: '580笔', img: '../images/server/blue.svg'},
+        ],
+        marketList: [
+          {name: '临颍县十产农业发展有限公司',address: '湖北路7号', people: '张三',result: '', score: 4.5 },
+          {name: '临颍县十产农业发展有限公司',address: '湖北路7号', people: '张三',result: '', score: 4.5 },
+          {name: '临颍县十产农业发展有限公司',address: '湖北路7号', people: '张三',result: '', score: 4.5 },
+        ]
+      }
+    },
+    created: function () {
+
+    },
+    mounted: function () {
+
+    },
+    methods: {
+      handleClick(index) {
+        this.select = index
+      }
+    }
+  })
+</script>
+<script src="../utils/lib/echarts/echarts.min.js"></script>
+<script src="../js/charts/server.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+.nav-card-box {
+  width: 20%;
+  height: 380px;
+  background-image: url("../images/home/nav-card-bg.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin: 10px;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.8s ease;
+}
+.nav-card-box:hover {
+  transform: translateY(-20px);
+}
+.nav-card-box:hover .drop {
+  transition: all 0.8s ease;
+  opacity: 1;
+}
+.nav-card-box .icon-box {
+  height: 270px;
+  width: 100%;
+  position: relative;
+}
+.nav-card-box .icon-box img {
+  position: absolute;
+  left: 50%;
+  bottom: -45px;
+  transform: translateX(-50%);
+}
+.nav-card-box .icon-box .icon-img {
+  z-index: 2;
+}
+.nav-card-box .icon-box .icon-bottom {
+  z-index: 1;
+  bottom: -55px;
+}
+.nav-card-box .title-box {
+  margin-top: 20px;
+}
+.nav-card-box .drop {
+  padding-top: 15px;
+  opacity: 0;
+}

@@ -1,0 +1,117 @@
+.nav-circle-box {
+  flex: 1;
+  position: relative;
+  margin: 10px;
+}
+.nav-circle-box .circle-box {
+  width: 216px;
+  height: 216px;
+  position: relative;
+  cursor: pointer;
+}
+.nav-circle-box .circle-box .circle-img {
+  width: 216px;
+  height: 216px;
+  -webkit-animation: rotation 15s linear infinite;
+  animation: rotation 15s linear infinite;
+}
+.nav-circle-box .circle-box .text-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+.nav-circle-box .circle-box .text-box .num-img {
+  width: 81px;
+  height: 92px;
+  background-image: url("../images/course/hexagon.svg");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-circle-box .circle-box .text-box .num-img .num {
+  color: #bcf3ff;
+  font-size: 30px;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+}
+.nav-circle-box .circle-box .text-box .title {
+  color: #bcf3ff;
+  font-size: 30px;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+}
+.nav-circle-box .circle-box .text-box .active-title {
+  color: #fff;
+}
+.nav-circle-box .circle-box .text-box .date {
+  color: #bcf3ff;
+  font-size: 20px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+.nav-circle-box .arrow {
+  display: block;
+  width: 50px;
+  height: 19px;
+  position: absolute;
+  right: -20px;
+  bottom: 120px;
+}
+.nav-circle-box:last-child .arrow {
+  display: none;
+}
+.nav-circle-box .dotted-line {
+  display: block;
+  width: 8px;
+  height: 150px;
+}
+.nav-circle-box .dot-circle {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+@-moz-keyframes rotation {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rotation {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-o-keyframes rotation {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes rotation {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}

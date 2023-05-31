@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>知识产权数据中心</title>
+  <!--bin-ui-->
+  <link rel="stylesheet" href="../utils/lib/bin-ui@3.8.0/styles/index.css">
+
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/base-layout3.css">
+  <link rel="stylesheet" href="../styles/base-head-nav.css">
+  <link rel="stylesheet" href="../styles/base-panel-box.css">
+  <link rel="stylesheet" href="../styles/base-table.css">
+  <link rel="stylesheet" href="../styles/base-count-data.css">
+  <link rel="stylesheet" href="../styles/data-center.css">
+  <link rel="stylesheet" href="../utils/lib/swiper/swiper.min.css">
+
+  <script src="../utils/lib/vue.min.js"></script>
+  <script src="../utils/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+  <script src="../utils/lib/swiper/swiper.min.js"></script>
+  <script src="../utils/lib/vue-count-to/vue-count-to.min.js"></script>
+
+</head>
+<body>
+
+<div id="app" v-cloak>
+  <v-base-layout3 :title="title">
+    <template v-slot:nav>
+      <v-base-head-nav :active-nav="activeNav"/>
+    </template>
+    <template v-slot:left>
+      <v-base-panel-box title="归集来源对比">
+        <div flex>
+          <div id="pieChart1"></div>
+          <div id="pieChart2"></div>
+        </div>
+      </v-base-panel-box>
+      <v-base-panel-box title="月统计数据更新量">
+        <div id="barChart1"></div>
+      </v-base-panel-box>
+      <v-base-panel-box title="案件列表">
+        <v-base-table :columns="ajlbColumns" :table-data="ajlbData"></v-base-table>
+      </v-base-panel-box>
+    </template>
+    <template v-slot:center>
+      <div flex="dir:column main:justify" class="center-box">
+        <div class="data-box-box">
+          <v-base-count-data title="数据归集总数" :num="num"></v-base-count-data>
+        </div>
+        <div class="center-container" flex="dir:column main:center cross:center">
+          <div class="depart">市监局</div>
+          <img class="center-bg" src="../images/center/center-bg.png" alt="">
+          <div class="bar-box" flex="main:center cross:center">
+            <div class="bar-item" flex="dir:top main:center cross:center" v-for="item in centerDepartData">
+              <div class="text">{{item.name}}</div>
+            </div>
+          </div>
+          <div class="center-bottom" flex="main:center cross:center">
+            <div class="bottom-item" v-for="(item, index) in centerData" :key="index">
+              <img :src="getImgUrl(index)" alt="">
+              <div class="text">{{item.name}}</div>
+              <count-to class='value' :start-val="0" separator :end-val="item.value" :duration='2000'></count-to>
+            </div>
+          </div>
+        </div>
+        <v-base-panel-box title="全年数据统计分析">
+          <div class="bottom-box" flex="main:center">
+            <div class="bottom-item" flex="main:center">
+              <div class="left" flex="dir:column main:center cross:center">
+                <img src="../images/center/red-icon.png" alt="">
+                <div class="text">{{allYearData.redName}}</div>
+                <div class="value">
+                  <count-to :start-val="0" separator :end-val="allYearData.redValue" :duration='2000'></count-to>个
+                </div>
+              </div>
+              <div class="right">
+                <div class="right-item" flex="dir:column main:center" v-for="(item, index) in tjfxRedData" :key="index">
+                  <div class="text">{{item.text}}</div>
+                  <count-to class='value' :start-val="0" separator :end-val="item.value" :duration='2000'></count-to>
+                </div>
+              </div>
+            </div>
+            <div class="bottom-item" flex="main:center">
+              <div class="left" flex="dir:column main:center cross:center">
+                <img src="../images/center/black-icon.png" alt="">
+                <div class="text">{{allYearData.blackName}}</div>
+                <div class="value">
+                  <count-to :start-val="0" separator :end-val="allYearData.blackValue" :duration='2000'></count-to>个
+                </div>
+              </div>
+              <div class="right">
+                <div class="right-item" flex="dir:column main:center" v-for="(item, index) in tjfxRedData" :key="index">
+                  <div class="text">{{item.text}}</div>
+                  <count-to class='value' :start-val="0" separator :end-val="item.value" :duration='2000'></count-to>
+                </div>
+              </div>
+            </div>
+          </div>
+        </v-base-panel-box>
+      </div>
+    </template>
+    <template v-slot:right>
+      <v-base-panel-box title="资源信息分类统计">
+        <div class="top-box" flex="main:center cross:center">
+          <div class="top-item" v-for="(item, index) in fltjTopData" :key="index">
+            <div class="text">{{item.text}}</div>
+            <div class="value">
+              <count-to :start-val="0" separator :end-val="item.value" :duration='2000'></count-to>
+              {{item.unit}}
+            </div>
+          </div>
+        </div>
+        <div id="barChart2"></div>
+      </v-base-panel-box>
+      <v-base-panel-box title="信用报告查询趋势分析">
+        <div class="top-text">信用报告查询次数：{{qhfxData}}(次）</div>
+        <div id="lineChart1"></div>
+      </v-base-panel-box>
+      <v-base-panel-box title="数据提报部门TOP10">
+        <div class="panel-content">
+          <ul class="level-wrapper">
+            <li :key="index" class="level-item" flex=""
+                v-for="(item, index) in top10Data">
+              <div class="level-title">{{item.name}}</div>
+              <b-progress
+                  :color="item.color"
+                  :percent="item.percent"
+                  :show-text="false"
+                  :stroke-width="9"
+                  bg-color="rgba(24, 144, 255, 0.2)"
+              ></b-progress>
+              <div class="level-num">{{item.value}}条</div>
+            </li>
+          </ul>
+        </div>
+      </v-base-panel-box>
+    </template>
+  </v-base-layout3>
+</div>
+<script src="../js/components/base-layout3.js"></script>
+<script src="../js/components/base-head-nav.js"></script>
+<script src="../js/components/base-panel-box.js"></script>
+<script src="../js/components/base-table.js"></script>
+<script src="../js/components/base-count-data.js"></script>
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        title: '知识产权数据中心',
+        activeNav: 'center',
+        num: '45297',
+        // 案件列表
+        ajlbColumns: [
+          {
+            title: '被申请人名称',
+            key: 'name',
+            align: 'center',
+            minWidth: 80,
+            tooltip: true
+          },
+          {
+            title: '案件类型',
+            key: 'type',
+            align: 'center'
+          },
+          {
+            title: '申请时间',
+            minWidth: 120,
+            tooltip: true,
+            key: 'date',
+            align: 'center'
+          }
+        ],
+        // 案件列表表格数据
+        ajlbData: [
+          {
+            name: '张晓',
+            type: '市一中',
+            date: '2023.05.10 18:16:25'
+          },
+          {
+            name: '张晓',
+            type: '市一中',
+            date: '2023.05.10 18:16:25'
+          },
+          {
+            name: '张晓',
+            type: '市一中',
+            date: '2023.05.10 18:16:25'
+          },
+          {
+            name: '张晓',
+            type: '市一中',
+            date: '2023.05.10 18:16:25'
+          },
+          {
+            name: '张晓',
+            type: '市一中',
+            date: '2023.05.10 18:16:25'
+          },
+          {
+            name: '张晓',
+            type: '市一中',
+            date: '2023.05.10 18:16:25'
+          }
+        ],
+        centerDepartData:[
+          {name:'大数据局'},
+          {name:'第三方'},
+          {name:'发改委'},
+          {name:'区县部门'}
+        ],
+        centerData:[
+          {name:'市场主体基本信息',value:406571},
+          {name:'知识产权信息',value:382194},
+          {name:'信用承诺信息',value:2301382},
+          {name:'行政管理信息',value:680648}
+        ],
+        // 全年数据统计分析
+        allYearData:{
+          redName: '红名单',
+          redValue: 100,
+          blackName: '黑名单',
+          blackValue: 100
+        },
+        tjfxRedData: [
+          {
+            text: '小标题',
+            value: 382194,
+          },
+          {
+            text: '小标题',
+            value: 382194,
+          },
+          {
+            text: '小标题',
+            value: 382194,
+          },
+          {
+            text: '小标题',
+            value: 382194,
+          },
+        ],
+        tjfxBlackData: [
+          {
+            text: '小标题',
+            value: 382194,
+          },
+          {
+            text: '小标题',
+            value: 382194,
+          },
+          {
+            text: '小标题',
+            value: 382194,
+          },
+          {
+            text: '小标题',
+            value: 382194,
+          },
+        ],
+        // 分类统计top数据
+        fltjTopData: [
+          {
+            text: '一级分类',
+            value: '6',
+            unit: '条'
+          },
+          {
+            text: '二级分类',
+            value: '102',
+            unit: '条'
+          },
+          {
+            text: '三级分类',
+            value: '28',
+            unit: '个'
+          },
+        ],
+        qhfxData: 2156,
+        // 数据提报部门TOP10数据
+        top10Data: [
+          {
+            name: '行政审批局',
+            color: '#ff5a67',
+            percent: 90,
+            value: 10518
+          },
+          {
+            name: '公安局',
+            color: '#ffc300',
+            percent: 80,
+            value: 10518
+          },
+          {
+            name: '教育局',
+            color: '#00baad',
+            percent: 70,
+            value: 10518
+          },
+          {
+            name: '检查院',
+            color: '#1890ff',
+            percent: 60,
+            value: 10518
+          },
+          {
+            name: '人民法院',
+            color: '#1890ff',
+            percent: 50,
+            value: 10518
+          },
+          {
+            name: '气象局',
+            color: '#1890ff',
+            percent: 40,
+            value: 10518
+          },
+          {
+            name: '司法局',
+            color: '#1890ff',
+            percent: 30,
+            value: 10518
+          },
+          {
+            name: '安监局',
+            color: '#1890ff',
+            percent: 25,
+            value: 10518
+          },
+          {
+            name: '民政局',
+            color: '#1890ff',
+            percent: 20,
+            value: 10518
+          },
+          {
+            name: '住建局',
+            color: '#1890ff',
+            percent: 10,
+            value: 10518
+          }
+        ],
+      }
+    },
+    created: function () {
+
+    },
+    mounted: function () {
+
+    },
+    methods: {
+      getImgUrl(index) {
+        return '../images/center/center-bottom-item' + (index+1) + '.png';
+      }
+    }
+  })
+</script>
+<script src="../utils/lib/echarts/echarts.min.js"></script>
+<script src="../utils/lib/echarts/echarts-wordcloud.min.js"></script>
+<script src="../js/charts/data-center.js"></script>
+</body>
+</html>

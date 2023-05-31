@@ -1,0 +1,72 @@
+.page-content {
+  height: 100%;
+  position: relative;
+}
+.page-content .header {
+  width: 100%;
+  height: 260px;
+  background-image: url("../images/home/head-bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.page-content .header .header-box {
+  width: 1158px;
+  height: 135px;
+  margin-top: 17px;
+}
+.page-content .header .show-nav {
+  background-image: url("../images/course/nav-title-bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.page-content .header .header-tab {
+  width: 167px;
+  height: 33px;
+  text-align: center;
+  line-height: 33px;
+  font-size: 14px;
+  color: #01bee8;
+  font-weight: bold;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin-top: 54px;
+}
+.page-content .header .tab-center {
+  font-size: 32px;
+  letter-spacing: 4px;
+  height: 48px;
+  line-height: 150%;
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+  color: #fff;
+}
+.page-content .center {
+  width: 100%;
+  height: calc(100% - 400px);
+}
+.page-content .bottom {
+  width: 100%;
+  height: 140px;
+  background-image: url("../images/home/bottom-bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.page-content .side-box {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.page-content .side-box img {
+  display: block;
+  height: 100%;
+}
+.has-bg {
+  background-image: url("../images/home/home-bg.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+}

@@ -1,0 +1,183 @@
+#app {
+  #pieChart1 {
+    width: 50%;
+    height: 224px;
+  }
+
+  #pieChart2 {
+    width: 50%;
+    height: 224px;
+  }
+
+  .pie-item {
+    flex 1;
+    position relative;
+
+    img {
+      position absolute;
+      left 50%
+      bottom 0;
+      transform translateX(-50%)
+    }
+  }
+
+  #pieChart3, #pieChart4, #pieChart5, #pieChart6, #pieChart7, #pieChart8 {
+    height: 224px;
+  }
+
+  #wordCloudChart1 {
+    width 100%;
+    height: 182px;
+  }
+
+  .center-box {
+    height 100%;
+
+    .data-box-box {
+      padding-top: 80px;
+    }
+
+    .center-bottom {
+      position relative;
+      height calc(100% - 180px)
+
+      .bar-box {
+        width 85%;
+        height 100%;
+        margin 0 auto;
+        position relative;
+
+        .bar-item {
+          width 137px;
+          display inline-block;
+
+          .text-box {
+            color #fff;
+
+            .level {
+              font-size: 14px;
+              height 32px;
+              line-height: 32px;
+            }
+
+            span {
+              color: rgba(0, 255, 255, 1);
+              font-size: 20px;
+              padding-right: 8px;
+            }
+          }
+
+          .bar-top {
+            display block;
+            width 125px;
+            height 43px;
+            margin 0 auto;
+            margin-top -25px;
+          }
+
+          .bar {
+            display block;
+            width 137px;
+            height 176px;
+            margin-top -10px;
+          }
+
+          &:nth-child(1) {
+            position absolute;
+            left 40px;
+            top 120px;
+          }
+
+          &:nth-child(2) {
+            position absolute;
+            left 190px;
+            top 20px;
+          }
+
+          &:nth-child(3) {
+            position absolute;
+            left 340px;
+            top 120px;
+          }
+
+          &:nth-child(4) {
+            position absolute;
+            left 490px;
+            top 45px;
+          }
+
+          &:nth-child(5) {
+            position absolute;
+            left 640px;
+            top 120px;
+          }
+        }
+      }
+
+      .circle1, .circle2 {
+        display block;
+        width 100%;
+        height auto;
+      }
+
+      .circle1 {
+        height 177px;
+        position absolute;
+        bottom 10px;
+      }
+
+      .circle2 {
+        width 85%;
+        position absolute;
+        left 50%;
+        transform translateX(-50%)
+        bottom 90px;
+      }
+
+      .dot-box {
+        position absolute;
+        left 50%;
+        transform translateX(-50%)
+        bottom 115px;
+
+        .dot-item {
+          padding 0 5px;
+
+          .rect {
+            width 8px;
+            height 8px;
+            margin-right: 5px;
+          }
+
+          .value {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 12px;
+          }
+        }
+      }
+
+      .center-arrow {
+        position absolute;
+        left 50%;
+        transform translateX(-50%)
+        bottom 60px;
+        width 390px;
+        height auto;
+      }
+
+      .center-text {
+        position absolute;
+        left 50%;
+        transform translateX(-50%)
+        bottom 60px;
+        color: rgba(93, 133, 227, 1);
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;
+        height 40px;
+        line-height 40px;
+      }
+    }
+  }
+
+}

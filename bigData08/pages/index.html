@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>漯河市市场主体知识产权分级分类监管系统</title>
+  <!--bin-ui-->
+  <link rel="stylesheet" href="../utils/lib/bin-ui@3.8.0/styles/index.css">
+
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/base-layout.css">
+  <link rel="stylesheet" href="../styles/base-nav-card.css">
+  <link rel="stylesheet" href="../styles/index.css">
+
+  <script src="../utils/lib/vue.min.js"></script>
+  <script src="../utils/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../utils/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+
+</head>
+<body>
+
+<div id="app" v-cloak>
+  <v-base-layout :title="title">
+    <template v-slot:center>
+      <div class="nav-card-content">
+        <v-base-nav-card
+            v-for="(item, index) in linkList"
+            :img-url="getImgUrl('icon', index+1)"
+            :title-url="getImgUrl('title', index+1)"
+            :link-url="item.navLink"
+        >
+        </v-base-nav-card>
+      </div>
+    </template>
+    <template v-slot:side>
+      <div flex="main:justify" class="side-box">
+        <img src="../images/home/left-side-bg.png" alt="">
+        <img src="../images/home/right-side-bg.png" alt="">
+      </div>
+    </template>
+  </v-base-layout>
+</div>
+<script src="../js/components/base-layout.js"></script>
+<script src="../js/components/base-nav-card.js"></script>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                title: '漯河市市场主体知识产权分级分类监管系统',
+                linkList: [
+                    {key: 'supervision', value: '信用监管', navLink: 'supervision.html'},
+                    {key: 'course', value: '建设历程', navLink: 'course.html'},
+                    {key: 'center', value: '数据中心', navLink: 'center.html'},
+                    {key: 'job', value: '试点工作', navLink: 'job.html'},
+                    {key: 'server', value: '信用服务', navLink: 'server.html'},
+                ],
+            }
+        },
+        created: function () {
+
+        },
+        mounted: function () {
+
+        },
+        methods: {
+            getImgUrl(key, index) {
+                return '../../images/home/nav-card-' + key + index + '.png';
+            }
+        }
+    })
+</script>
+
+
+</body>
+
+</html>

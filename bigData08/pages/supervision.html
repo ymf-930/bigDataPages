@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>知识产权信用监管</title>
+  <!--bin-ui-->
+  <link rel="stylesheet" href="../utils/lib/bin-ui@3.8.0/styles/index.css">
+
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/base-layout2.css">
+  <link rel="stylesheet" href="../styles/base-head-nav.css">
+  <link rel="stylesheet" href="../styles/base-panel-box.css">
+  <link rel="stylesheet" href="../styles/base-table.css">
+  <link rel="stylesheet" href="../styles/base-count-data.css">
+  <link rel="stylesheet" href="../styles/supervision.css">
+  <link rel="stylesheet" href="../utils/lib/swiper/swiper.min.css">
+
+  <script src="../utils/lib/vue.min.js"></script>
+  <script src="../utils/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+  <script src="../utils/lib/swiper/swiper.min.js"></script>
+  <script src="../utils/lib/vue-count-to/vue-count-to.min.js"></script>
+
+</head>
+<body>
+
+<div id="app" v-cloak>
+  <v-base-layout2 :title="title">
+    <template v-slot:nav>
+      <v-base-head-nav :active-nav="activeNav"/>
+    </template>
+    <template v-slot:left>
+      <v-base-panel-box title="重点领域行业评价结果">
+        <div flex>
+          <div id="pieChart1"></div>
+          <div id="pieChart2"></div>
+        </div>
+      </v-base-panel-box>
+      <v-base-panel-box title="企业风险预警">
+        <v-base-table :columns="fxyjColumns" :table-data="fxyjData"></v-base-table>
+      </v-base-panel-box>
+    </template>
+    <template v-slot:center>
+      <div flex="dir:column main:justify" class="center-box">
+        <div class="data-box-box">
+          <v-base-count-data title="市场主体总数" :num="num"></v-base-count-data>
+        </div>
+        <div class="center-bottom">
+          <div class="bar-box" flex="main:center cross:center">
+            <div class="bar-item" flex="dir:top main:center cross:center" v-for="item in centerLevelData">
+              <div class="text-box" flex="dir:top main:center cross:center">
+                <div class="level">{{item.level}}</div>
+                <div>
+                  <count-to class="value" :start-val="0" separator :end-val="item.value" :duration='2000'></count-to>个
+                </div>
+              </div>
+              <img class="bar-top" src="../images/supervision/bar-top.svg" alt="">
+              <img class="bar" src="../images/supervision/bar.png" alt="">
+            </div>
+          </div>
+          <img class="circle2" src="../images/supervision/center-bottom-circle2.png" alt="">
+          <img class="circle1" src="../images/supervision/center-bottom-circle.png" alt="">
+          <div class="dot-box" flex="main:center cross:center">
+            <div class="dot-item" flex="main:center cross:center" v-for="item in centerLevelData">
+              <div class="rect" :style="{backgroundColor:item.color}"></div>
+              <div class="value">{{item.level}} {{item.present}}</div>
+            </div>
+          </div>
+          <img class="center-arrow" src="../images/supervision/center-arrow.png" alt="">
+          <div class="center-text">市场主体知识产权评价</div>
+        </div>
+      </div>
+    </template>
+    <template v-slot:right>
+      <v-base-panel-box title="联动部门">
+        <div id="wordCloudChart1"></div>
+      </v-base-panel-box>
+      <v-base-panel-box title="协同执法">
+        <v-base-table :columns="xtzfColumns" :table-data="xtzfData" :slides-num="5" :line-height="42"></v-base-table>
+      </v-base-panel-box>
+    </template>
+    <template v-slot:bottom>
+      <v-base-panel-box title="联动部门">
+        <div flex>
+          <div class="pie-item" v-for="(item,index) in 6">
+            <div :id="'pieChart'+(index+3)"></div>
+            <img src="../images/supervision/pie-bottom.png" alt="">
+          </div>
+        </div>
+      </v-base-panel-box>
+    </template>
+  </v-base-layout2>
+</div>
+<script src="../js/components/base-layout2.js"></script>
+<script src="../js/components/base-head-nav.js"></script>
+<script src="../js/components/base-panel-box.js"></script>
+<script src="../js/components/base-table.js"></script>
+<script src="../js/components/base-count-data.js"></script>
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        title: '知识产权信用监管',
+        activeNav: 'supervision',
+        num: '5209090',
+        // 企业风险预警
+        fxyjColumns: [
+          {
+            title: '企业名称',
+            key: 'name',
+            align: 'left',
+            minWidth: 200,
+            tooltip: true
+          },
+          {
+            title: '评级得分',
+            key: 'value',
+            align: 'center'
+          },
+          {
+            title: '评级',
+            key: 'level',
+            align: 'center'
+          }
+        ],
+        // 企业风险预警表格数据
+        fxyjData: [
+          {
+            name: '临颍县十产农业发展有限公司',
+            value: 25.59,
+            level: 'D'
+          },
+          {
+            name: '费河润民詈业有限公司',
+            value: 25.59,
+            level: 'D'
+          },
+          {
+            name: '费河鑫条调味品有限公司',
+            value: 25.59,
+            level: 'D'
+          },
+          {
+            name: '费河市锦汇汽车贸易有限公司',
+            value: 25.59,
+            level: 'D'
+          },
+          {
+            name: '临颍县十产农业发展有限公司',
+            value: 25.59,
+            level: 'D'
+          },
+          {
+            name: '费河鑫条调味品有限公司',
+            value: 25.59,
+            level: 'D'
+          }
+        ],
+        // 协同执法
+        xtzfColumns: [
+          {
+            title: '企业名称',
+            key: 'name',
+            align: 'left',
+            minWidth: 200,
+            tooltip: true
+          },
+          {
+            title: '违法类型',
+            key: 'type',
+            align: 'center'
+          },
+          {
+            title: '时间',
+            key: 'date',
+            align: 'center'
+          }
+        ],
+        // 协同执法表格数据
+        xtzfData: [
+          {
+            name: '临颍县十产农业发展有限公司',
+            type: '商标侵权',
+            date: '2023.05.10'
+          },
+          {
+            name: '费河润民詈业有限公司',
+            type: '商标侵权',
+            date: '2023.05.10'
+          },
+          {
+            name: '费河鑫条调味品有限公司',
+            type: '商标侵权',
+            date: '2023.05.10'
+          },
+          {
+            name: '费河市锦汇汽车贸易有限公司',
+            type: '商标侵权',
+            date: '2023.05.10'
+          },
+          {
+            name: '临颍县十产农业发展有限公司',
+            type: '商标侵权',
+            date: '2023.05.10'
+          },
+          {
+            name: '费河鑫条调味品有限公司',
+            type: '商标侵权',
+            date: '2023.05.10'
+          }
+        ],
+        centerLevelData: [
+          {level: 'A级', value: 231, present: '26%', color: '#1890ff'},
+          {level: 'B级', value: 231, present: '26%', color: '#18e5e6'},
+          {level: 'C级', value: 131, present: '26%', color: '#02d1ac'},
+          {level: 'D级', value: 31, present: '26%', color: '#ffd240'},
+          {level: 'E级', value: 1, present: '26%', color: '#a5d63f'},
+        ]
+      }
+    },
+    created: function () {
+
+    },
+    mounted: function () {
+
+    },
+    methods: {}
+  })
+</script>
+<script src="../utils/lib/echarts/echarts.min.js"></script>
+<script src="../utils/lib/echarts/echarts-wordcloud.min.js"></script>
+<script src="../js/charts/supervision.js"></script>
+</body>
+</html>

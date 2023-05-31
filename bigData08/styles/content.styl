@@ -1,0 +1,155 @@
+.content{
+  padding 50px
+  height 100%
+  .title{
+    width 404px
+    height 40px
+    background-image url("../images/work/collaboration/line.png")
+    background-position-x 15px
+    background-repeat no-repeat
+    position relative
+    .dot{
+      width: 13px;
+      height: 13px;
+      border-radius 50%
+      background-color rgba(41, 152, 255, 1)
+    }
+    .name{
+      position absolute
+      left 60px
+      top: -14px;
+      color: rgba(255, 255, 255, 1);
+      font-size: 30px;
+      line-height: 150%;
+    }
+  }
+  .choose{
+    height 100%
+    .all{
+      height 100%
+      padding-top 50px
+      .bin-col{
+        height 100%
+        .carousel{
+          height 100%
+          .bin-carousel-list{
+            background-color rgba(4, 18, 49, 0.6)
+          }
+          .bin-carousel-dots-outside{
+            background-image url("../images/work/back.png")
+            background-repeat no-repeat
+            background-position center
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .bin-carousel-active{
+              button.radius{
+                width: 20px;
+                border-radius 7px
+              }
+            }
+          }
+          .pic-main{
+            height 600px
+            max-width: 100%;
+          }
+          .bin-carousel-arrow{
+            background-color inherit
+          }
+          .bin-carousel-arrow.right{
+            width 60px
+            height 60px
+            .icon-ios-arrow-forward{
+              &::before{
+                content ''
+                width 60px
+                height 60px
+                display inline-block
+                background-image url("../images/work/right.png")
+                background-size cover
+              }
+            }
+          }
+          .bin-carousel-arrow.left{
+            width 60px
+            height 60px
+            .icon-ios-arrow-back{
+              &::before{
+                content ''
+                width 60px
+                height 60px
+                display inline-block
+                background-image url("../images/work/left.png")
+                background-size cover
+              }
+            }
+          }
+        }
+      }
+    }
+    .card{
+      .bin-col{
+        margin-bottom 24px
+      }
+      .card-item{
+        height 180px
+        cursor pointer
+        .pic{
+          background-color #1a2f55
+          .pic-right{
+            max-width 100%
+            height 120px
+          }
+        }
+        span{
+          color rgba(185, 232, 255, 1)
+          padding: 0 2px
+          text-align: center
+        }
+        .name{
+          padding-top 10px
+          height calc(100% - 120px)
+        }
+
+        .show-name{
+          padding-top 10px
+          height calc(100% - 120px)
+          background-color #1a2f55
+          span{
+            color white
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-height: 1150px) {
+  .content .choose .all .bin-col .carousel .pic-main{
+    height 700px
+  }
+  .content .choose .card .card-item {
+    height 200px
+  }
+  .content .choose .card .card-item .pic .pic-right{
+    height 140px
+  }
+  .content .choose .card .card-item .show-name {
+    height: calc(100% - 140px);
+  }
+}
+@media screen and (min-height: 1230px) {
+  .content .choose .all .bin-col .carousel .pic-main{
+    height 800px
+  }
+  .content .choose .card .card-item {
+    height 220px
+  }
+  .content .choose .card .card-item .pic .pic-right{
+    height 160px
+  }
+  .content .choose .card .card-item .show-name {
+    height: calc(100% - 160px);
+  }
+}
