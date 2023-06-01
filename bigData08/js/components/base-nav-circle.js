@@ -14,9 +14,9 @@ Vue.component('v-base-nav-circle', {
                <div class="date">{{date}}</div>
            </div>
         </div>
-        <img class="arrow" src="../../images/course/arrow.svg" alt="">
-        <img class="dotted-line" src="../../images/course/dotted-line.svg" alt="">
-        <img class="dot-circle" src="../../images/course/circle3.png" alt="">
+        <img class="arrow" src="../images/course/arrow.svg" alt="">
+        <img class="dotted-line" src="../images/course/dotted-line.svg" alt="">
+        <img class="dot-circle" src="../images/course/circle3.png" alt="">
       </div>`,
     props: {
         num: {
@@ -38,8 +38,8 @@ Vue.component('v-base-nav-circle', {
     },
     data() {
         return {
-            iconSrc: "../../images/course/circle1.png",
-            iconSrc2: "../../images/course/circle2.png",
+            iconSrc: "../images/course/circle1.png",
+            iconSrc2: "../images/course/circle2.png",
         }
     },
     mounted() {
@@ -48,11 +48,10 @@ Vue.component('v-base-nav-circle', {
     methods: {
         changeImageSrc(way) {
             let tempStr = way === 'hover' ? 'circle2' : 'circle1'
-            this.iconSrc = `../../images/course/${tempStr}.png`
+            this.iconSrc = `../images/course/${tempStr}.png`
         },
         openModal(){
             this.$emit('open')
         }
     }
 })
-  

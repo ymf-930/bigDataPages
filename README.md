@@ -26,6 +26,13 @@
 ![img_12.png](./Screenshot/img_12.png)
 ![img_13.png](./Screenshot/img_13.png)
 ![img_14.png](./Screenshot/img_14.png)
+##### bigData07：
+![img_20.png](./Screenshot/img_20.png)
+![img_21.png](./Screenshot/img_21.png)
+![img_22.png](./Screenshot/img_22.png)
+![img_23.png](./Screenshot/img_23.png)
+![img_24.png](./Screenshot/img_24.png)
+![img_25.png](./Screenshot/img_25.png)
 ##### ncloud-ui：
 ![img_15.png](./Screenshot/img_15.png)
 ![img_16.png](./Screenshot/img_16.png)

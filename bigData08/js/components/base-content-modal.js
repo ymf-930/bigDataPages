@@ -9,7 +9,7 @@ Vue.component('v-base-content-modal', {
              </div>
              <img 
                class="back" 
-               src="../../images/course/back.png" 
+               src="../images/course/back.png" 
                @click="closeModal"
                alt="">
           </div>
@@ -39,7 +39,7 @@ Vue.component('v-base-content-modal', {
                   </div>
                </div>
             </div>
-            <img class="modal-bg" src="../../images/course/modal-bg.svg" alt="">
+            <img class="modal-bg" src="../images/course/modal-bg.svg" alt="">
           </div>
         </div>
     </div>

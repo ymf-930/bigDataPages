@@ -11,7 +11,7 @@ Vue.component('v-base-count-data', {
           >
           </div>
           <div class="num">
-            <count-to class='example1' :start-val='0' separator :end-val='num' :duration='2000'></count-to>
+            <count-to class='example1' :start-val='0' separator :end-val='parseInt(num)' :duration='2000'></count-to>
           </div>
         </div>
         <div class="data-dw">条</div>

@@ -12,7 +12,7 @@ Vue.component('v-base-nav-card', {
         <div class="title-box">
           <img :src="titleUrl" alt="">
         </div>
-        <img class="drop" src="../../images/home/drop.png" alt="">
+        <img class="drop" src="../images/home/drop.png" alt="">
       </div>`,
     props: {
         imgUrl: {
@@ -30,7 +30,7 @@ Vue.component('v-base-nav-card', {
     },
     data() {
         return {
-            iconSrc: "../../images/home/nav-icon-bottom1.png",
+            iconSrc: "../images/home/nav-icon-bottom1.png",
         }
     },
     mounted() {
@@ -39,11 +39,10 @@ Vue.component('v-base-nav-card', {
     methods: {
         changeImageSrc(way) {
             let tempStr = way === 'hover' ? 'bottom2' : 'bottom1'
-            this.iconSrc = `../../images/home/nav-icon-${tempStr}.png`
+            this.iconSrc = `../images/home/nav-icon-${tempStr}.png`
         },
         goPage(link) {
             window.open(link, '_blank')
         }
     }
 })
-  
