@@ -1,0 +1,165 @@
+#app .content .header {
+  position: relative;
+}
+#app .content .header .showtime {
+  color: #00deff;
+  position: absolute;
+  right: 16px;
+  top: 8px;
+  font-size: 18px;
+}
+#app .content .main {
+  height: 984px;
+  padding: 20px 25px;
+}
+#app .content .main .table-head {
+  margin-top: 13px;
+  border-bottom: none;
+  height: 40px;
+  line-height: 40px;
+  background-color: #052451;
+}
+#app .content .main .table-head span {
+  color: #fff;
+  font-weight: bold;
+}
+#app .content .main .table-container {
+  height: 360px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+#app .content .main .table-container .swiper-wrapper {
+  width: 100%;
+}
+#app .content .main .table-container .swiper-wrapper li {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background-color: #052451;
+}
+#app .content .main .table-container .swiper-wrapper li span {
+  color: #fff;
+  border-right: 1px solid #0a274d;
+  border-bottom: 1px solid #0a274d;
+}
+#app .content .main .table-container .swiper-wrapper li span:last-child {
+  border-right: none;
+}
+#app .content .main .table-container .swiper-wrapper li:nth-child(even) {
+  background-color: #071f43;
+}
+#app .content .main .center {
+  width: calc(100% - 900px);
+  padding: 0 25px;
+  background-image: url("../images/product/grid.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100%;
+}
+#app .content .main .center .cen-bottom {
+  height: 284px;
+  width: 100%;
+  background-image: url("../images/ptgk/back-blue.png");
+  background-size: 100% 100%;
+  padding: 0 40px 20px 40px;
+}
+#app .content .main .center .cen-bottom .bom-top {
+  height: 36px;
+  background-image: url("../images/ptgk/cen-top.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#app .content .main .center .cen-bottom .bom-top span {
+  color: #fff;
+  font-size: 18px;
+  line-height: 150%;
+  font-weight: bold;
+}
+#app .content .main .center .cen-bottom .pro-score {
+  width: 48%;
+}
+#app .content .main .center .cen-bottom .pro-score .pro-head {
+  margin-top: 13px;
+  border-bottom: none;
+  height: 40px;
+  line-height: 40px;
+  background-color: #052451;
+}
+#app .content .main .center .cen-bottom .pro-score .pro-head span {
+  color: #fff;
+  font-weight: bold;
+}
+#app .content .main .center .cen-bottom .pro-score .pro-container {
+  height: 160px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+#app .content .main .center .cen-bottom .pro-score .pro-container .swiper-wrapper {
+  width: 100%;
+}
+#app .content .main .center .cen-bottom .pro-score .pro-container .swiper-wrapper li {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background-color: #052451;
+}
+#app .content .main .center .cen-bottom .pro-score .pro-container .swiper-wrapper li span {
+  color: #fff;
+  border-right: 1px solid #0a274d;
+  border-bottom: 1px solid #0a274d;
+}
+#app .content .main .center .cen-bottom .pro-score .pro-container .swiper-wrapper li .score {
+  color: #ffaf00;
+}
+#app .content .main .center .cen-bottom .pro-score .pro-container .swiper-wrapper li span:last-child {
+  border-right: none;
+}
+#app .content .main .center .cen-bottom .pro-score .pro-container .swiper-wrapper li:nth-child(even) {
+  background-color: #071f43;
+}
+#app .content .main .center .count-map {
+  width: 100%;
+  height: calc(100% - 284px);
+}
+#app .content .main .center .count-map .count {
+  width: 86%;
+  margin-top: 15px;
+}
+#app .content .main .center .count-map .count .count-ev {
+  width: 166px;
+  height: 166px;
+  background-size: cover;
+}
+#app .content .main .center .count-map .count .count-ev .cont {
+  font-size: 20px;
+  line-height: 150%;
+}
+#app .content .main .center .count-map .count .count-ev span {
+  color: #fff;
+}
+#app .content .main .center .count-map .map-all {
+  height: calc(100% - 166px);
+  width: 100%;
+  background-image: url("../images/product/cicle.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 92%;
+}
+#app .content .main .center .count-map .map-all .map {
+  height: 91%;
+  width: 920px;
+  background-image: url("../images/product/map.png");
+  background-repeat: no-repeat;
+  background-size: 58% 100%;
+  background-position: 33% top;
+}
+#app .content .main .center .count-map .map-all .map .dot {
+  width: 14px;
+  height: 14px;
+  background-color: #ff8d1a;
+  border-radius: 7px;
+}
+#app .content .main .center .count-map .map-all .map .word {
+  color: #fff;
+  margin-left: 16px;
+}

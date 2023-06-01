@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>平台概况</title>
+
+    <!--bin-ui-->
+    <link rel="stylesheet" href="./js/lib/bin-ui/styles/index.css">
+    <link rel="stylesheet" href="./styles/base.css">
+    <link rel="stylesheet" href="./styles/header.css">
+    <link rel="stylesheet" href="./styles/platform-overview.css">
+    <!--js-->
+    <script src="./js/lib/vue.min.js"></script>
+    <script src="./js/lib/bin-ui/bin-ui.min.js"></script>
+
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="content" flex="dir:top">
+        <div class="header" flex="main:center cross:center">
+            <span>xx县公共信用信息平台概况</span>
+        </div>
+        <div class="main" flex="main:justify">
+            <div class="side left" flex="dir:top main:justify">
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>联合奖惩</span>
+                    </div>
+                    <div class="sp-main" flex="box:mean">
+                        <div flex="dir:top main:justify cross:center">
+                            <span class="sp-note">备忘录数量</span>
+                            <span class="sp-count">{{note}}</span>
+                        </div>
+                        <div flex="dir:top main:justify cross:center">
+                            <span class="sp-note">奖惩措施数量</span>
+                            <span class="sp-count">{{reward}}</span>
+                        </div>
+                        <div flex="dir:top main:justify cross:center">
+                            <span class="sp-note">奖惩执行数量</span>
+                            <span class="sp-count">{{perform}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>双公示</span>
+                    </div>
+                    <div class="sp-main" flex="box:mean">
+                        <div flex="dir:top main:justify cross:center">
+                            <span class="sp-note">总量</span>
+                            <span class="sp-count">{{count}}</span>
+                        </div>
+                        <div flex="dir:top main:justify cross:center">
+                            <span class="sp-note">许可数量</span>
+                            <span class="sp-count">{{license}}</span>
+                        </div>
+                        <div flex="dir:top main:justify cross:center">
+                            <span class="sp-note">处罚数量</span>
+                            <span class="sp-count">{{punish}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>数据日志</span>
+                    </div>
+                    <div id="lineChart1" style="height: 280px"></div>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+            <div class="center" flex="dir:top cross:center main:justify">
+                <div class="cen-top" flex="cross:center">
+                    <span class="cen-name">数据归集总量</span>
+                    <div class="num-box">
+                        <div class="num-list" flex="main:justify">
+                            <span v-for="(item, index) in numList" :class="'num-bg-'+item" :key="index"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cen-cen" flex="wrap:wrap main:justify">
+                    <div class="message mes01" flex="cross:center">
+                        <div class="color" flex="main:center cross:center">
+                            <img src="images/ptgk/icon03.svg" width="50%">
+                        </div>
+                        <div class="mes-data">
+                            <div class="data-top">
+                                <span class="gradient">{{villagers}}</span>
+                                <span>条</span>
+                            </div>
+                            <span style="padding-top: 10px;display: inline-block;">村居信息数量</span>
+                        </div>
+                    </div>
+                    <div class="message mes02" flex="cross:center">
+                        <div class="color" flex="main:center cross:center">
+                            <img src="images/ptgk/icon02.svg" width="50%">
+                        </div>
+                        <div class="mes-data">
+                            <div class="data-top">
+                                <span class="gradient">{{specific}}</span>
+                                <span>条</span>
+                            </div>
+                            <span style="padding-top: 10px;display: inline-block;">特定信息数量</span>
+                        </div>
+                    </div>
+                    <div class="message mes03" flex="cross:center">
+                        <div class="color" flex="main:center cross:center">
+                            <img src="images/ptgk/icon04.svg" width="50%">
+                        </div>
+                        <div class="mes-data">
+                            <div class="data-top">
+                                <span class="gradient">{{promise}}</span>
+                                <span>条</span>
+                            </div>
+                            <span style="padding-top: 10px;display: inline-block;">信用承诺数量</span>
+                        </div>
+                    </div>
+                    <div class="message mes04" flex="cross:center">
+                        <div class="color" flex="main:center cross:center">
+                            <img src="images/ptgk/icon01.svg" width="50%">
+                        </div>
+                        <div class="mes-data">
+                            <div class="data-top">
+                                <span class="gradient">{{administrative}}</span>
+                                <span>条</span>
+                            </div>
+                            <span style="padding-top: 10px;display: inline-block;">行政信息数量</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cen-bottom" flex="dir:top main:justify">
+                    <div class="bom-top" flex="cross:center main:center">
+                        <span>信易贷</span>
+                    </div>
+                    <div class="bom-main" flex="cross:center main:justify">
+                        <div class="main-chart" flex="dir:top main:center">
+                            <div flex="main:center">
+                                <div class="main-lef">
+                                    <div flex="dir:top cross:center" v-for="(item, index) in businessList" :key="index">
+                                        <span class="main-bot-name">{{item.name}}</span>
+                                        <span class="main-bot-count">{{item.count}}</span>
+                                    </div>
+                                </div>
+                                <div class="main-rig">
+                                    <div id="pie01" style="width: 100%;height: 100%;"></div>
+                                </div>
+                            </div>
+                            <img src="images/ptgk/seat.png">
+                        </div>
+                        <div class="main-chart" flex="dir:top">
+                            <div flex="main:center">
+                                <div class="main-lef">
+                                    <div flex="dir:top cross:center" v-for="(item, index) in amountList" :key="index">
+                                        <span class="main-bot-name">{{item.name}}</span>
+                                        <span class="main-bot-count">{{item.count}}</span>
+                                    </div>
+                                </div>
+                                <div class="main-rig">
+                                    <div id="pie02" style="width: 100%;height: 100%;"></div>
+                                </div>
+                            </div>
+                            <img src="images/ptgk/seat.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="side right" flex="dir:top main:justify">
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>信用评价</span>
+                    </div>
+                    <div class="sp-main" flex="box:mean">
+                        <div flex="dir:top main:justify cross:center">
+                            <span class="sp-note">评价方案数量</span>
+                            <span class="sp-count">{{schemeCount}}</span>
+                        </div>
+                        <div flex="dir:top main:justify cross:center">
+                            <span class="sp-note">评价指标数量</span>
+                            <span class="sp-count">{{indicatorsCount}}</span>
+                        </div>
+                        <div flex="dir:top main:justify cross:center">
+                            <span class="sp-note">评价结果数量</span>
+                            <span class="sp-count">{{resultCount}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>诚信宣传</span>
+                    </div>
+                    <div class="sp-main" flex="box:mean">
+                        <div flex="dir:top main:justify cross:center">
+                            <span class="sp-note">政府机关次数</span>
+                            <span class="sp-count">{{count}}</span>
+                        </div>
+                        <div flex="dir:top main:justify cross:center">
+                            <span class="sp-note">乡镇街道次数</span>
+                            <span class="sp-count">{{license}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>信用工作考核</span>
+                    </div>
+                    <div class="ri-stage">
+                        <span class="society">人社部</span>
+                        <span class="live">住建部</span>
+                        <span class="homeland">国土部</span>
+                        <img src="images/ptgk/stands.png" width="100%" class="stands">
+                        <img src="images/ptgk/seat.png" width="100%" class="seat">
+                    </div>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="specific-content">
+                <div class="sp-title">
+                    <span>联合奖惩</span>
+                </div>
+                <div class="scroll-content">
+                    <span class="scroll-text">供电公司一对一服务 ，建立3A级客户专员，对客户的用电需求</span>
+                    <span class="scroll-text word02">供电公司一对一服务 ，建立3A级客户专员，对客户的用电需求</span>
+                    <span class="scroll-text word03">在办理出入证时，可享受办证咨询，自助照相设备</span>
+                    <div class="scroll-text many">
+                        <span class="word04">供电公司一对一服务 ，建立3A级客户专员，对客户的用电需求</span>
+                        <span class="word05">供电公司一对一服务 ，建立3A级客户专员，对客户的用电需求</span>
+                        <span class="word06">在办理出入证时，可享受办证咨询，自助照相设备</span>
+                    </div>
+                    <span class="scroll-text word07">在办理出入证时，可享受办证咨询，自助照相设备</span>
+                    <div class="scroll-text many01">
+                        <span class="word08">在办理出入证时，可享受办证咨询，自助照相设备</span>
+                        <span class="word09">在办理出入证时，可享受办证咨询，自助照相设备</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                note: 23060,
+                reward: 2360,
+                perform: 32560,
+                count: 23060,
+                license: 2360,
+                punish: 32560,
+                villagers: 2041698,
+                specific: 98881,
+                promise: 153565,
+                administrative: 46435,
+                numList: [],
+                number: 39636050,
+                schemeCount: 23060,
+                indicatorsCount: 2306,
+                resultCount: 20156,
+                businessList: [
+                    {name: '注册营业额', count: 1022},
+                    {name: '在营企业数', count: 1022},
+                ],
+                amountList: [
+                    {name: '授信金额', count: 1022},
+                    {name: '放款金额', count: 1022},
+                ],
+
+            }
+        },
+        mounted: function () {
+            this.splitNumber(this.number)
+            this.numChange(this.numList)
+        },
+        methods: {
+            // 数字条动态方法
+            numChange(num) {
+                let copy = JSON.parse(JSON.stringify(num))
+                let change = setInterval(() => {
+                    let arr = []
+                    num.forEach(() => {
+                        arr.push(parseInt(Math.random() * 10))
+                    })
+                    num.splice(0, 8)
+                    num.push(...arr)
+                }, 100)
+                setTimeout(() => {
+                    window.clearInterval(change)
+                    num.splice(0, 8)
+                    num.push(...copy)
+                }, 1000)
+            },
+            splitNumber(num) {
+                let str = num.toString()
+                const length = str.length
+                let s = ''
+                if(length < 8){
+                    for(let i = 0;i < 8-length;i++){
+                        s += '0'
+                    }
+                    str= s + str
+                }
+                this.numList = str.split('')
+                return str.split('')
+            },
+        }
+    })
+</script>
+
+<!--echarts-->
+<script src="./js/lib/echarts/echarts.min.js"></script>
+<!--echarts相关配置数据-->
+<script src="js/platform-source.js"></script>
+</body>
+</html>

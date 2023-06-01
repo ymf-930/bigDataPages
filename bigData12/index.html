@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>系统概况专题</title>
+
+    <!--bin-ui-->
+    <link rel="stylesheet" href="./js/lib/bin-ui/styles/index.css">
+    <link rel="stylesheet" href="./styles/base.css">
+    <link rel="stylesheet" href="./styles/index.css">
+    <!--js-->
+    <script src="./js/lib/vue.min.js"></script>
+    <script src="./js/lib/bin-ui/bin-ui.min.js"></script>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="content" flex="dir:top">
+        <div class="header" flex="main:center cross:center">
+            <span>系统概况专题</span>
+        </div>
+        <div class="main" flex="main:justify">
+            <div class="left">
+                <div class="classification" flex="dir:top">
+                    <span class="name">资源信息分类统计</span>
+                    <div class="class-count" flex="main:justify">
+                        <div class="ev" flex="dir:top main:center cross:center">
+                            <span class="ev-title">一级分类(个)</span>
+                            <span class="ev-count">{{levelOne}}</span>
+                        </div>
+                        <div class="ev" flex="dir:top main:center cross:center">
+                            <span class="ev-title">二级分类(个)</span>
+                            <span class="ev-count">{{levelTwo}}</span>
+                        </div>
+                        <div class="ev" flex="dir:top main:center cross:center">
+                            <span class="ev-title">资源数(个)</span>
+                            <span class="ev-count">{{resources}}</span>
+                        </div>
+                        <div class="ev" flex="dir:top main:center cross:center">
+                            <span class="ev-title">部门数(个)</span>
+                            <span class="ev-count">{{depart}}</span>
+                        </div>
+                    </div>
+                    <div id="barChart" style="width: 100%;height: 230px;"></div>
+                </div>
+                <div class="flow" flex="dir:top">
+                    <div flex="main:justify">
+                        <span class="name">数据交换流向分析</span>
+                        <div class="date" flex="cross:bottom">
+                            <span
+                                    v-for="(item,index) in selectList"
+                                    @click="handleSelect(index)"
+                                    :class="{'isActive':index === selected}"
+                            >
+                                {{item}}</span>
+                        </div>
+                    </div>
+                    <div class="flow-main">
+                        <div class="count" flex="main:justify">
+                            <div class="all-count" flex="dir:top cross:center main:center">
+                                <img src="images/icon.png" width="36" height="36">
+                                <span class="word">交换数据总量</span>
+                                <div>
+                                    <span class="ev-count">{{dateAmount.exchange}}</span>
+                                    <span>(条)</span>
+                                </div>
+                            </div>
+                            <div class="current-count" flex="main:justify">
+                                <div class="count-ev" flex="dir:top main:justify">
+                                    <div>
+                                        <div>
+                                            <span class="ev-count">{{dateAmount.summarize}}</span>
+                                            <span class="word">（条）</span>
+                                        </div>
+                                        <span class="word">归集数据量</span>
+                                    </div>
+                                    <div>
+                                        <span class="word">正确率&nbsp;&nbsp;</span>
+                                        <span class="word-blue">{{dateAmount.exCorrect}}</span>
+                                    </div>
+                                </div>
+                                <div class="count-ev" flex="dir:top main:justify">
+                                    <div>
+                                        <div>
+                                            <span class="ev-count">{{dateAmount.output}}</span>
+                                            <span class="word">（条）</span>
+                                        </div>
+                                        <span class="word">归集数据量</span>
+                                    </div>
+                                    <div>
+                                        <span class="word">正确率&nbsp;&nbsp;</span>
+                                        <span class="word-blue">{{dateAmount.ouCorrect}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="depart" flex="main:justify">
+                            <div class="depart-count" flex="cross:center main:center">
+                                <div flex="dir:top">
+                                    <span class="word">已对接部门数</span>
+                                    <div>
+                                        <span class="ev-count">{{departAmount.count}}</span>
+                                        <span class="word unit">（个）</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="monitoring" flex="dir:top main:center">
+                                <span class="word">任务监控</span>
+                                <div flex="main:justify">
+                                    <div>
+                                        <span class="word unit">正常任务</span>
+                                        <span class="ev-count">{{departAmount.normal}}</span>
+                                        <span class="word unit">（个）</span>
+                                    </div>
+                                    <div>
+                                        <span class="word unit">异常</span>
+                                        <span class="ev-count">{{departAmount.abnormal}}</span>
+                                        <span class="word unit">（个）</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="barChart01" style="width: 100%;height: 300px;"></div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="type" flex="dir:top main:justify">
+                    <div flex="dir:top cross:center">
+                        <img src="images/icon1.png" width="77" height="77">
+                        <span>系统概况</span>
+                    </div>
+                    <div flex="dir:top cross:center">
+                        <img src="images/icon2.png" width="77" height="77">
+                        <span>系统概况</span>
+                    </div>
+                    <div flex="dir:top cross:center">
+                        <img src="images/icon3.png" width="77" height="77">
+                        <span>系统概况</span>
+                    </div>
+                    <div flex="dir:top cross:center">
+                        <img src="images/icon4.png" width="77" height="77">
+                        <span>系统概况</span>
+                    </div>
+                </div>
+            </div>
+            <div class="cen-top" flex="cross:center">
+                <span class="cen-name">数据归集总量</span>
+                <div class="num-box">
+                    <div class="num-list" flex="main:justify">
+                        <span v-for="(item, index) in numList" :class="'num-bg-'+item" :key="index"></span>
+                    </div>
+                </div>
+                <span class="cen-name top-unit">条</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                numList: [],
+                number: 39636058,
+                levelOne: 7,
+                levelTwo: 56,
+                resources: 365,
+                depart: 658,
+                selected:0,
+                selectList: ['本月', '本年', '请选择日期'],
+                dateAmount: {exchange:8846, summarize:5555, output:999, exCorrect:"80%", ouCorrect:"80%"},
+                departAmount: {count:25, normal:79, abnormal:1 }
+            }
+        },
+        mounted: function () {
+            this.splitNumber(this.number)
+            this.numChange(this.numList)
+        },
+        methods: {
+            // 数字条动态方法
+            numChange(num) {
+                let copy = JSON.parse(JSON.stringify(num))
+                let change = setInterval(() => {
+                    let arr = []
+                    num.forEach(() => {
+                        arr.push(parseInt(Math.random() * 10))
+                    })
+                    num.splice(0, 8)
+                    num.push(...arr)
+                }, 100)
+                setTimeout(() => {
+                    window.clearInterval(change)
+                    num.splice(0, 8)
+                    num.push(...copy)
+                }, 1000)
+            },
+            splitNumber(num) {
+                let str = num.toString()
+                const length = str.length
+                let s = ''
+                if(length < 8){
+                    for(let i = 0;i < 8-length;i++){
+                        s += '0'
+                    }
+                    str= s + str
+                }
+                this.numList = str.split('')
+                return str.split('')
+            },
+            handleSelect(index) {
+                this.selected = index
+            }
+        }
+    })
+</script>
+
+<!--echarts-->
+<script src="./js/lib/echarts/echarts.min.js"></script>
+<!--echarts相关配置数据-->
+<script src="js/data-echarts.js"></script>
+</body>
+</html>

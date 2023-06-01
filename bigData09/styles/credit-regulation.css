@@ -1,0 +1,209 @@
+#app .content .main {
+  height: 965px;
+  padding: 20px;
+}
+#app .content .main .left .promise {
+  margin-top: 26px;
+}
+#app .content .main .left .report-area {
+  height: 200px;
+  margin-top: 26px;
+}
+#app .content .main .left .report-area .scroll-content {
+  overflow: hidden;
+  flex: 1;
+  height: 100%;
+  line-height: 24px;
+  position: relative;
+}
+#app .content .main .left .report-area .scroll-content .scroll-text {
+  position: absolute;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: notice 20s 0s linear infinite both;
+  color: #43cf7c;
+  top: 0;
+}
+#app .content .main .left .report-area .scroll-content .word02 {
+  color: #0fbce0;
+  top: 30px;
+  animation: notice 15s 0s linear infinite both;
+}
+#app .content .main .left .report-area .scroll-content .word03 {
+  color: #ffc300;
+  top: 60px;
+  animation: notice 17s 0s linear infinite both;
+}
+#app .content .main .left .report-area .scroll-content .word04 {
+  color: #ff8d1a;
+  top: 90px;
+  animation: notice 13s 0s linear infinite both;
+}
+#app .content .main .left .report-area .scroll-content .word05 {
+  color: #1e79fb;
+  top: 110px;
+  animation: notice 14s 0s linear infinite both;
+}
+#app .content .main .left .report-area .scroll-content .word06 {
+  color: #d43030;
+  top: 140px;
+  animation: notice 11s 0s linear infinite both;
+}
+@-moz-keyframes notice {
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@-webkit-keyframes notice {
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@-o-keyframes notice {
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@keyframes notice {
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+#app .content .main .left .search-count {
+  height: 48px;
+  width: 100%;
+  background-color: #071f43;
+  padding: 0 13px;
+}
+#app .content .main .left .search-count span {
+  color: #fff;
+}
+#app .content .main .left .search-count .search-name {
+  font-size: 16px;
+  padding-left: 14px;
+}
+#app .content .main .left .search-count .sea-count {
+  color: #f5e5bc;
+  font-size: 22px;
+}
+#app .content .main .right .table-container {
+  height: 288px;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin-top: 15px;
+}
+#app .content .main .right .table-container .swiper-wrapper {
+  width: 100%;
+}
+#app .content .main .right .table-container .swiper-wrapper li {
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  background-color: #052451;
+}
+#app .content .main .right .table-container .swiper-wrapper li span {
+  color: #fff;
+  border-right: 1px solid #092751;
+  border-bottom: 1px solid #092751;
+}
+#app .content .main .right .table-container .swiper-wrapper li span:nth-child(1) {
+  padding-left: 16px;
+}
+#app .content .main .right .table-container .swiper-wrapper li span:nth-child(2) {
+  color: #0fbbdf;
+}
+#app .content .main .right .table-container .swiper-wrapper li span:last-child {
+  border-right: none;
+}
+#app .content .main .right .table-container .swiper-wrapper li:nth-child(even) {
+  background-color: #071f43;
+}
+#app .content .main .center {
+  width: calc(100% - 900px - 40px);
+  background-image: url("../images/ptgk/back-blue.png");
+  background-size: 100% 100%;
+  padding: 20px;
+}
+#app .content .main .center .center-content {
+  width: 100%;
+}
+#app .content .main .center .center-content .cen-top {
+  width: 100%;
+  height: 124px;
+}
+#app .content .main .center .center-content .cen-top .archives-count {
+  width: 298px;
+  padding: 0 34px;
+  background-color: #071f43;
+}
+#app .content .main .center .center-content .cen-top .archives-count .color {
+  height: 66px;
+  width: 66px;
+  border-radius: 33px;
+  background-color: #1089ff;
+}
+#app .content .main .center .center-content .cen-top .archives-count .color-word span {
+  color: #fff;
+  font-size: 14px;
+  line-height: 150%;
+  font-weight: normal;
+}
+#app .content .main .center .center-content .cen-top .archives-count .color-word .word {
+  font-size: 24px;
+  background-image: -webkit-linear-gradient(bottom, #43b6fc, #68c4fc, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#app .content .main .center .center-content .cen-top .normol .color {
+  background-color: #00baad;
+}
+#app .content .main .center .center-content .cen-top .people .color {
+  background-color: #7948ea;
+}
+#app .content .main .center .center-content span {
+  color: #fff;
+  font-size: 18px;
+  line-height: 150%;
+  font-weight: bold;
+  padding-bottom: 27px;
+}
+#app .content .main .center .center-content .result {
+  padding: 0;
+}
+#app .content .main .center .center-content .promise {
+  width: 100%;
+  position: relative;
+}
+#app .content .main .center .center-content .promise img {
+  position: absolute;
+  bottom: -18px;
+}
+#app .content .main .center .classification {
+  width: 100%;
+}
+#app .content .main .center .classification .promise .classification-main {
+  height: 203px;
+}
+#app .content .main .center .classification .promise .classification-main .classi .classi-name {
+  color: #fff;
+  font-size: 18px;
+  line-height: 150%;
+  font-weight: bold;
+  padding-top: 16px;
+}
+#app .content .main .center .classification .promise .classification-main .classi .classi-count span {
+  color: #fff;
+}
+#app .content .main .center .classification .promise .classification-main .classi .classi-count .word {
+  color: #ffe9b2;
+  font-size: 24px;
+  line-height: 150%;
+}
+#app .content .main .center .classification .promise .classification-main .classi .seat {
+  width: 153px;
+  height: 117px;
+  background-image: url("../images/ptgk/blue-stand.png");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信用监管</title>
+
+    <!--bin-ui-->
+    <link rel="stylesheet" href="./js/lib/bin-ui/styles/index.css">
+    <link rel="stylesheet" href="./styles/base.css">
+    <link rel="stylesheet" href="./styles/header.css">
+    <link rel="stylesheet" href="./styles/credit-regulation.css">
+    <!--js-->
+    <script src="./js/lib/vue.min.js"></script>
+    <script src="./js/lib/bin-ui/bin-ui.min.js"></script>
+    <script src="./js/lib/swiper/swiper.min.js"></script>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="content" flex="dir:top">
+        <div class="header" flex="main:center cross:center">
+            <span>xx县公共信用信息平台概况</span>
+        </div>
+        <div class="main" flex="main:justify">
+            <div class="side left" flex="dir:top main:justify">
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>承诺履行情况</span>
+                    </div>
+                    <div class="promise">
+                        <div id="pie01" style="width: 100%;height: 138px"></div>
+                        <img src="images/ptgk/seat.png" width="100%">
+                    </div>
+                </div>
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>信用承诺类型</span>
+                    </div>
+                    <div class="promise">
+                        <div id="pie02" style="width: 100%;height: 200px"></div>
+                        <img src="images/ptgk/seat.png" width="100%">
+                    </div>
+                </div>
+                <div class="search-count" flex="main:justify cross:center">
+                    <div flex="cross:center">
+                        <img src="images/xyjg/count.svg" width="24px" height="24px">
+                        <span class="search-name">信用报告查询使用次数</span>
+                    </div>
+                    <div>
+                        <span class="sea-count">{{searchCount}}</span>
+                        <span>次</span>
+                    </div>
+                </div>
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>应用信用报告场景</span>
+                    </div>
+                    <div class="report-area">
+                        <div class="scroll-content">
+                            <span class="scroll-text">供电公司一对一服务 ，建立3A级客户专员，对客户的用电需求</span>
+                            <span class="scroll-text word02">在办理出入证时，可享受办证咨询，自助照相设备</span>
+                            <span class="scroll-text word03">供电公司一对一服务 ，建立3A级客户专员，对客户的用电需求</span>
+                            <span class="scroll-text word04">在办理出入证时，可享受办证咨询</span>
+                            <span class="scroll-text word05">供电公司一对一服务 ，建立</span>
+                            <span class="scroll-text word06">信用AAA级用户银行贷款</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+            <div class="center" flex="dir:top cross:center main:justify">
+                <div class="center-content" flex="dir:top cross:center">
+                    <span>信用档案数量</span>
+                    <div class="cen-top" flex="main:justify">
+                        <div class="archives-count" flex="cross:center main:justify">
+                            <div class="color" flex="cross:center main:center">
+                                <img src="images/xyjg/icon04.svg" width="33px" height="33px">
+                            </div>
+                            <div class="color-word">
+                                <div>
+                                    <span class="word">{{archives}}</span>
+                                    <span>条</span>
+                                </div>
+                                <span>法人</span>
+                            </div>
+                        </div>
+                        <div class="archives-count normol" flex="cross:center main:justify">
+                            <div class="color" flex="cross:center main:center">
+                                <img src="images/xyjg/icon01.svg" width="33px" height="33px">
+                            </div>
+                            <div class="color-word">
+                                <div>
+                                    <span class="word">{{normal}}</span>
+                                    <span>条</span>
+                                </div>
+                                <span>自然人</span>
+                            </div>
+                        </div>
+                        <div class="archives-count people" flex="cross:center main:justify">
+                            <div class="color" flex="cross:center main:center">
+                                <img src="images/xyjg/icon02.svg" width="33px" height="33px">
+                            </div>
+                            <div class="color-word">
+                                <div>
+                                    <span class="word">{{people}}</span>
+                                    <span>条</span>
+                                </div>
+                                <span>板材</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="center-content" flex="dir:top cross:center">
+                    <span class="result">市场主体评价结果分布</span>
+                    <div class="promise">
+                        <div id="barChart" style="width: 98%;height: 240px;"></div>
+                        <img src="images/ptgk/seat.png" width="100%">
+                    </div>
+                </div>
+                <div class="classification">
+                    <div class="promise">
+                        <div class="classification-main" flex="box:mean">
+                            <div class="classi" flex="dir:top main:justify cross:center">
+                                <div class="classi-count" flex>
+                                    <img src="images/xyjg/cir-icon01.png" width="74" height="73">
+                                    <div flex="dir:top main:center" style="padding-left: 30px">
+                                        <span>协同部门数量</span>
+                                        <span class="word">{{departCount}}</span>
+                                    </div>
+                                </div>
+                                <div class="classi-count" flex>
+                                    <img src="images/xyjg/cir-icon02.png" width="74" height="73">
+                                    <div flex="dir:top main:center" style="padding-left: 30px">
+                                        <span>监管方案数量</span>
+                                        <span class="word">{{caseCount}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="classi" flex="dir:top main:justify cross:center">
+                                <span class="classi-name">分级分类监管</span>
+                                <div class="seat" flex="main:center">
+                                    <img src="images/xyjg/icon03.svg" width="59px" height="59px">
+
+                                </div>
+                            </div>
+                            <div class="classi" flex="dir:top main:justify cross:center">
+                                <div class="classi-count" flex>
+                                    <img src="images/xyjg/cir-icon01.png" width="74" height="73">
+                                    <div flex="dir:top main:center" style="padding-left: 30px">
+                                        <span>监管主体数量</span>
+                                        <span class="word">{{mainCount}}</span>
+                                    </div>
+                                </div>
+                                <div class="classi-count" flex>
+                                    <img src="images/xyjg/cir-icon02.png" width="74" height="73">
+                                    <div flex="dir:top main:center" style="padding-left: 30px">
+                                        <span>监管反馈数量</span>
+                                        <span class="word">{{feedbackCount}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="images/ptgk/seat.png" width="100%">
+                    </div>
+                </div>
+            </div>
+            <div class="side right" flex="dir:top main:justify">
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>联合奖惩备忘录</span>
+                    </div>
+                    <div class="sp-main" flex="box:mean">
+                        <div flex="dir:top main:justify cross:center">
+                            <span class="sp-note">奖惩措施</span>
+                            <span class="sp-count">{{note}}</span>
+                        </div>
+                        <div flex="dir:top main:justify cross:center">
+                            <span class="sp-note">实施部门</span>
+                            <span class="sp-count">{{reward}}</span>
+                        </div>
+                        <div flex="dir:top main:justify cross:center">
+                            <span class="sp-note">奖惩名单</span>
+                            <span class="sp-count">{{perform}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>奖惩反馈记录</span>
+                    </div>
+                    <div class="table-container">
+                        <ul class="swiper-wrapper">
+                            <li class="swiper-slide" v-for="(item,index) in comData" flex="box:mean">
+                                <span>{{ item.name }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>完成信用修复数量/行政处罚数量</span>
+                    </div>
+                    <div class="promise">
+                        <div id="pie03" style="width: 100%;height: 260px"></div>
+                        <img src="images/ptgk/seat.png" width="100%">
+                    </div>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                searchCount: 23531,
+                note: 23060,
+                reward: 2360,
+                perform: 32560,
+                archives: 2041698,
+                normal: 2041698,
+                people: 2041698,
+                departCount: 235,
+                caseCount: 235,
+                mainCount: 235,
+                feedbackCount: 235,
+                comData: [
+                    {
+                        name: '奖惩反馈测试名称滚动01',
+                        count: 555896
+                    },
+                    {
+                        name: '奖惩反馈测试名称滚动02',
+                        count: 555896
+                    },
+                    {
+                        name: '奖惩反馈测试名称滚动03',
+                        count: 555896
+                    },
+                    {
+                        name: '奖惩反馈测试名称滚动04',
+                        count: 555896
+                    },
+                    {
+                        name: '奖惩反馈测试名称滚动05',
+                        count: 555896
+                    },
+                    {
+                        name: '奖惩反馈测试名称滚动06',
+                        count: 555896
+                    },
+                ],
+
+            }
+        },
+        mounted: function () {
+            // 列表滚动
+            var swiper = new Swiper('.table-container', {
+                direction: 'vertical',//滚动方向，垂直滚动
+                slidesPerView: 6,//设置slider容器能够同时显示的slides数量,显示5行
+                spaceBetween: 0,//间距为0
+                loop: true,//循环滚动
+                autoplay: {//匀速滚动
+                    delay: 1000//间隔时间1000毫秒
+                }
+            })
+        },
+        methods: {
+
+        }
+    })
+</script>
+
+<!--echarts-->
+<script src="./js/lib/echarts/echarts.min.js"></script>
+<!--echarts相关配置数据-->
+<script src="js/credit-echarts.js"></script>
+</body>
+</html>

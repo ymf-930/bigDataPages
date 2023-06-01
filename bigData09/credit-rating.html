@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信用评级</title>
+
+    <!--bin-ui-->
+    <link rel="stylesheet" href="./js/lib/bin-ui/styles/index.css">
+    <link rel="stylesheet" href="./styles/base.css">
+    <link rel="stylesheet" href="./styles/header.css">
+    <link rel="stylesheet" href="./styles/credit-rating.css">
+    <!--js-->
+    <script src="./js/lib/vue.min.js"></script>
+    <script src="./js/lib/bin-ui/bin-ui.min.js"></script>
+    <script src="./js/lib/swiper/swiper.min.js"></script>
+</head>
+<body>
+<div id="app" v-cloak>
+    <div class="content" flex="dir:top">
+        <div class="header" flex="main:center cross:center">
+            <span>xx县公共信用信息平台概况</span>
+        </div>
+        <div class="main" flex="main:justify">
+            <div class="side left" flex="dir:top main:justify">
+                <div class="specific-content">
+                    <div class="promise">
+                        <div class="indicators-count" flex="main:justify">
+                            <div class="count" flex="dir:top cross:center">
+                                <span class="ind-name">自然人评价指标数量</span>
+                                <span class="ind-count">{{naturalCount}}</span>
+                            </div>
+                            <div class="count" flex="dir:top cross:center">
+                                <span class="ind-name">市场主体评价指标数量</span>
+                                <span class="ind-count">{{marketCount}}</span>
+                            </div>
+                        </div>
+                        <img src="images/ptgk/seat.png" width="100%">
+                    </div>
+                </div>
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>自然人评价指标分析</span>
+                    </div>
+                    <div class="promise">
+                        <div id="pie-natural" style="width: 100%;height: 250px"></div>
+                        <img src="images/ptgk/seat.png" width="100%">
+                    </div>
+                </div>
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>自然人评价指标分析</span>
+                    </div>
+                    <div class="promise">
+                        <div id="pie-market" style="width: 100%;height: 250px"></div>
+                        <img src="images/ptgk/seat.png" width="100%">
+                    </div>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+            <div class="center" flex="dir:top main:justify">
+                <div class="distribution">
+                    <div class="distrib" flex="main:justify">
+                        <div class="distrib-detail" flex="dir:top cross:center">
+                            <span class="dis-title">自然人等级分布</span>
+                            <div class="dis-main">
+                                <img src="images/xypj/pj-top.png" width="100%">
+                                <ul>
+                                    <li v-for="(item, index) in naturalList" :key="index" flex="box:mean">
+                                        <span>{{item.level}}</span>
+                                        <span class="main-center">{{item.count}}</span>
+                                        <span>{{item.percent}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="distrib-detail" flex="dir:top cross:center">
+                            <span class="dis-title">村居人员等级分布</span>
+                            <div class="dis-main">
+                                <img src="images/xypj/pj-top.png" width="100%">
+                                <ul>
+                                    <li v-for="(item, index) in villageList" :key="index" flex="box:mean">
+                                        <span>{{item.level}}</span>
+                                        <span class="main-center">{{item.count}}</span>
+                                        <span>{{item.percent}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="distribution down">
+                    <div class="distrib" flex="main:justify">
+                        <div class="distrib-detail" flex="dir:top cross:center">
+                            <span class="dis-title">市场主体等级分布</span>
+                            <div class="dis-main">
+                                <img src="images/xypj/pj-top.png" width="100%">
+                                <ul>
+                                    <li v-for="(item, index) in marketList" :key="index" flex="box:mean">
+                                        <span>{{item.level}}</span>
+                                        <span class="main-center">{{item.count}}</span>
+                                        <span>{{item.percent}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="distrib-detail" flex="dir:top cross:center">
+                            <span class="dis-title">板材企业等级分布</span>
+                            <div class="dis-main">
+                                <img src="images/xypj/pj-top.png" width="100%">
+                                <ul>
+                                    <li v-for="(item, index) in plankList" :key="index" flex="box:mean">
+                                        <span>{{item.level}}</span>
+                                        <span class="main-center">{{item.count}}</span>
+                                        <span>{{item.percent}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <img src="images/ptgk/seat.png" width="100%" class="seat">
+                </div>
+            </div>
+            <div class="side right" flex="dir:top main:justify">
+                <div class="specific-content">
+                    <div class="promise">
+                        <div class="indicators-count" flex="main:justify">
+                            <div class="count" flex="dir:top cross:center">
+                                <span class="ind-name">村居评价指标分析</span>
+                                <span class="ind-count">{{villageCount}}</span>
+                            </div>
+                            <div class="count" flex="dir:top cross:center">
+                                <span class="ind-name">板材企业评价指标分析</span>
+                                <span class="ind-count">{{plankCount}}</span>
+                            </div>
+                        </div>
+                        <img src="images/ptgk/seat.png" width="100%">
+                    </div>
+                </div>
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>村居评价指标分析</span>
+                    </div>
+                    <div class="promise">
+                        <div id="pie-village" style="width: 100%;height: 250px"></div>
+                        <img src="images/ptgk/seat.png" width="100%">
+                    </div>
+                </div>
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>板材企业评价指标分析</span>
+                    </div>
+                    <div class="promise">
+                        <div id="pie-plank" style="width: 100%;height: 250px"></div>
+                        <img src="images/ptgk/seat.png" width="100%">
+                    </div>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                naturalCount: 1022,
+                marketCount: 3654,
+                villageCount: 2036,
+                plankCount: 10652,
+                naturalList:[
+                    {level: 'AAA', count: 27, percent: '0.03%'},
+                    {level: 'AA', count: 41, percent: '0.04%'},
+                    {level: 'A+', count: 6811, percent: '6.85%'},
+                    {level: 'A', count: 9535, percent: '92.04%'},
+                    {level: 'A-', count: 1296, percent: '1.25%'},
+                    {level: 'B', count: 57, percent: '0.06%'},
+                    {level: 'C', count: 14, percent: '0.01%'},
+                    {level: 'D', count: 0, percent: '0.00%'},
+                ],
+                villageList:[
+                    {level: 'AAA', count: 27, percent: '0.03%'},
+                    {level: 'AA', count: 41, percent: '0.04%'},
+                    {level: 'A+', count: 6811, percent: '6.85%'},
+                    {level: 'A', count: 9535, percent: '92.04%'},
+                    {level: 'A-', count: 1296, percent: '1.25%'},
+                    {level: 'B', count: 57, percent: '0.06%'},
+                    {level: 'C', count: 14, percent: '0.01%'},
+                    {level: 'D', count: 0, percent: '0.00%'},
+                ],
+                marketList:[
+                    {level: 'AAA', count: 27, percent: '0.03%'},
+                    {level: 'AA', count: 41, percent: '0.04%'},
+                    {level: 'A+', count: 6811, percent: '6.85%'},
+                    {level: 'A', count: 9535, percent: '92.04%'},
+                    {level: 'A-', count: 1296, percent: '1.25%'},
+                    {level: 'B', count: 57, percent: '0.06%'},
+                    {level: 'C', count: 14, percent: '0.01%'},
+                    {level: 'D', count: 0, percent: '0.00%'},
+                ],
+                plankList:[
+                    {level: 'AAA', count: 27, percent: '0.03%'},
+                    {level: 'AA', count: 41, percent: '0.04%'},
+                    {level: 'A+', count: 6811, percent: '6.85%'},
+                    {level: 'A', count: 9535, percent: '92.04%'},
+                    {level: 'A-', count: 1296, percent: '1.25%'},
+                    {level: 'B', count: 57, percent: '0.06%'},
+                    {level: 'C', count: 14, percent: '0.01%'},
+                    {level: 'D', count: 0, percent: '0.00%'},
+                ],
+            }
+        },
+        mounted: function () {
+        },
+        methods: {
+        }
+    })
+</script>
+
+<!--echarts-->
+<script src="./js/lib/echarts/echarts.min.js"></script>
+<!--echarts相关配置数据-->
+<script src="js/credit-rating.js"></script>
+</body>
+</html>

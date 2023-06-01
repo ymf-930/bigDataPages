@@ -1,0 +1,144 @@
+#app .content .main {
+  height: 965px;
+  padding: 20px;
+}
+#app .content .main .left .specific-content .table-head {
+  margin-top: 13px;
+  border-bottom: none;
+  height: 48px;
+  line-height: 48px;
+  background-color: #052451;
+}
+#app .content .main .left .specific-content .table-head span {
+  color: #fff;
+}
+#app .content .main .left .specific-content .table-head .name {
+  padding-left: 16px;
+  border-right: #c6c6c6 solid 0px;
+  border-right: 1px solid #092751;
+}
+#app .content .main .left .specific-content .table-container {
+  height: 480px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+#app .content .main .left .specific-content .table-container .swiper-wrapper {
+  width: 100%;
+}
+#app .content .main .left .specific-content .table-container .swiper-wrapper li {
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  background-color: #052451;
+}
+#app .content .main .left .specific-content .table-container .swiper-wrapper li span {
+  color: #fff;
+  border-right: 1px solid #092751;
+  border-bottom: 1px solid #092751;
+}
+#app .content .main .left .specific-content .table-container .swiper-wrapper li span:nth-child(1) {
+  padding-left: 16px;
+}
+#app .content .main .left .specific-content .table-container .swiper-wrapper li span:nth-child(2) {
+  color: #0fbbdf;
+}
+#app .content .main .left .specific-content .table-container .swiper-wrapper li span:last-child {
+  border-right: none;
+}
+#app .content .main .left .specific-content .table-container .swiper-wrapper li:nth-child(even) {
+  background-color: #071f43;
+}
+#app .content .main .right .specific-content .report-head {
+  margin-top: 13px;
+  border-bottom: none;
+  height: 48px;
+  line-height: 48px;
+  background-color: #052451;
+}
+#app .content .main .right .specific-content .report-head span {
+  color: #fff;
+}
+#app .content .main .right .specific-content .report-head .name {
+  padding-left: 16px;
+  border-right: #c6c6c6 solid 0px;
+  border-right: 1px solid #092751;
+}
+#app .content .main .right .specific-content .report-container {
+  height: 240px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+#app .content .main .right .specific-content .report-container .swiper-wrapper {
+  width: 100%;
+}
+#app .content .main .right .specific-content .report-container .swiper-wrapper li {
+  width: 100%;
+  height: 48px;
+  line-height: 48px;
+  background-color: #052451;
+}
+#app .content .main .right .specific-content .report-container .swiper-wrapper li span {
+  color: #fff;
+  border-right: 1px solid #092751;
+  border-bottom: 1px solid #092751;
+}
+#app .content .main .right .specific-content .report-container .swiper-wrapper li span:nth-child(1) {
+  padding-left: 16px;
+}
+#app .content .main .right .specific-content .report-container .swiper-wrapper li span:nth-child(2) {
+  color: #0fbbdf;
+}
+#app .content .main .right .specific-content .report-container .swiper-wrapper li span:last-child {
+  border-right: none;
+}
+#app .content .main .right .specific-content .report-container .swiper-wrapper li:nth-child(even) {
+  background-color: #071f43;
+}
+#app .content .main .right .main-rig {
+  height: 200px;
+}
+#app .content .main .center {
+  width: calc(100% - 900px - 32px);
+}
+#app .content .main .center .cen-top {
+  width: 100%;
+  padding: 0 20px;
+}
+#app .content .main .center .cen-top .ev-count {
+  width: 297px;
+  height: 246px;
+  background-image: url("../images/sjgj/seat02.png");
+  margin-top: 34px;
+}
+#app .content .main .center .cen-top .ev-count span {
+  color: #fff;
+  font-size: 16px;
+}
+#app .content .main .center .cen-top .ev-count .number {
+  color: #ffe9b2;
+  font-size: 24px;
+  line-height: 150%;
+}
+#app .content .main .center .cen-bottom {
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/ptgk/back-blue.png");
+  background-size: 100% 100%;
+  padding: 20px 20px 0;
+}
+#app .content .main .center .cen-bottom .bottom-message {
+  height: 50%;
+}
+#app .content .main .center .cen-bottom .bottom-message .specific-content {
+  width: 49%;
+  position: relative;
+}
+#app .content .main .center .cen-bottom .bottom-message .specific-content .main-rig {
+  width: 100%;
+  position: absolute;
+  bottom: 50px;
+}
+#app .content .main .center .cen-bottom .bottom-message .specific-content img {
+  position: absolute;
+  bottom: 20px;
+}

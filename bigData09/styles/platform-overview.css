@@ -1,0 +1,237 @@
+#app .main {
+  padding: 0 20px;
+  height: 710px;
+  margin-top: 22px;
+}
+#app .main .center {
+  width: calc(100% - 900px - 40px);
+  padding-top: 10px;
+}
+#app .main .center .cen-top {
+  height: 50px;
+}
+#app .main .center .cen-top .cen-name {
+  color: #fff;
+  font-size: 20px;
+  line-height: 150%;
+  font-weight: bold;
+}
+#app .main .center .cen-cen {
+  width: 100%;
+}
+#app .main .center .cen-cen .message {
+  width: 49%;
+  height: 110px;
+  background-image: url("../images/ptgk/color-block0104.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+#app .main .center .cen-cen .message span {
+  color: #fff;
+}
+#app .main .center .cen-cen .message .color {
+  width: 66px;
+  height: 66px;
+  background-color: #1089ff;
+  border-radius: 33px;
+  margin-left: 55px;
+}
+#app .main .center .cen-cen .message .mes-data {
+  margin-left: 22px;
+}
+#app .main .center .cen-cen .message .mes-data .data-top .gradient {
+  font-size: 24px;
+  background-image: -webkit-linear-gradient(bottom, #43b6fc, #89d2fc, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#app .main .center .cen-cen .mes02 {
+  background-image: url("../images/ptgk/color-block03.png");
+}
+#app .main .center .cen-cen .mes02 .color {
+  background-color: #00baad;
+}
+#app .main .center .cen-cen .mes02 .mes-data .data-top .gradient {
+  background-image: -webkit-linear-gradient(bottom, #48beb0, #a3dfd8, #fff);
+}
+#app .main .center .cen-cen .mes03 {
+  background-image: url("../images/ptgk/color-block01.png");
+}
+#app .main .center .cen-cen .mes03 .color {
+  background-color: #00b8f8;
+}
+#app .main .center .cen-cen .mes03 .mes-data .data-top .gradient {
+  background-image: -webkit-linear-gradient(bottom, #4097fc, #9ecbfc, #fff);
+}
+#app .main .center .cen-cen .mes04 {
+  background-image: url("../images/ptgk/color-block02.png");
+}
+#app .main .center .cen-cen .mes04 .color {
+  background-color: #7948ea;
+}
+#app .main .center .cen-cen .mes04 .mes-data .data-top .gradient {
+  background-image: -webkit-linear-gradient(bottom, #8f42dc, #d4bcf4, #fff);
+}
+#app .main .center .cen-bottom {
+  height: 335px;
+  width: 100%;
+  background-image: url("../images/ptgk/back-blue.png");
+  background-size: 100% 100%;
+  padding: 0 40px 20px 40px;
+}
+#app .main .center .cen-bottom .bom-top {
+  height: 36px;
+  background-image: url("../images/ptgk/cen-top.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#app .main .center .cen-bottom .bom-top span {
+  color: #fff;
+  font-size: 18px;
+  line-height: 150%;
+  font-weight: bold;
+}
+#app .main .center .cen-bottom .bom-main .main-chart {
+  width: 47%;
+}
+#app .main .center .cen-bottom .bom-main .main-chart .main-lef {
+  width: 98px;
+}
+#app .main .center .cen-bottom .bom-main .main-chart .main-lef div {
+  height: 116px;
+  background-image: url("../images/ptgk/blue-stand.png");
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+#app .main .center .cen-bottom .bom-main .main-chart .main-lef div .main-bot-name {
+  color: #fff;
+  margin-top: 20px;
+}
+#app .main .center .cen-bottom .bom-main .main-chart .main-lef div .main-bot-count {
+  color: #f3dfad;
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 16px;
+}
+#app .main .center .cen-bottom .bom-main .main-chart .main-rig {
+  width: 306px;
+}
+#app .main .ri-stage {
+  height: 280px;
+  position: relative;
+}
+#app .main .ri-stage .stands {
+  position: absolute;
+  bottom: 23px;
+}
+#app .main .ri-stage .seat {
+  position: absolute;
+  bottom: 0;
+  opacity: 0.7;
+}
+#app .main .ri-stage span {
+  position: absolute;
+  color: #fff;
+  font-size: 18px;
+}
+#app .main .ri-stage .society {
+  left: 43px;
+  bottom: 148px;
+}
+#app .main .ri-stage .live {
+  left: 50%;
+  transform: translate(-50%);
+  top: 50px;
+}
+#app .main .ri-stage .homeland {
+  right: 43px;
+  bottom: 130px;
+}
+#app .bottom {
+  height: 235px;
+  padding: 0 20px;
+  margin-top: 16px;
+}
+#app .bottom .specific-content {
+  background-image: url("../images/ptgk/back-blue.png");
+  background-size: 100% 100%;
+  height: 100%;
+  padding: 10px 20px 0;
+}
+#app .bottom .specific-content .scroll-content {
+  overflow: hidden;
+  flex: 1;
+  height: 100%;
+  line-height: 24px;
+  position: relative;
+}
+#app .bottom .specific-content .scroll-content .scroll-text {
+  position: absolute;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: notice 30s 0s linear infinite both;
+  color: #00baad;
+  top: 25px;
+}
+#app .bottom .specific-content .scroll-content .word02 {
+  color: #43cf7c;
+  top: 50px;
+  animation: notice 20s 0s linear infinite both;
+}
+#app .bottom .specific-content .scroll-content .word03 {
+  color: #0fbce0;
+  top: 75px;
+  animation: notice 17s 0s linear infinite both;
+}
+#app .bottom .specific-content .scroll-content .many {
+  top: 100px;
+  animation: notice 22s 0s linear infinite both;
+}
+#app .bottom .specific-content .scroll-content .many .word04 {
+  color: #ffc300;
+  margin-right: 110px;
+}
+#app .bottom .specific-content .scroll-content .many .word05 {
+  color: #1e79fb;
+  margin-right: 110px;
+}
+#app .bottom .specific-content .scroll-content .many .word06 {
+  color: #43cf7c;
+}
+#app .bottom .specific-content .scroll-content .word07 {
+  animation: notice 18s 0s linear infinite both;
+  color: #ff8d1a;
+  top: 125px;
+}
+#app .bottom .specific-content .scroll-content .many01 {
+  top: 150px;
+  animation: notice 25s 0s linear infinite both;
+}
+#app .bottom .specific-content .scroll-content .many01 .word08 {
+  color: #43cf7c;
+  margin-right: 300px;
+}
+#app .bottom .specific-content .scroll-content .many01 .word09 {
+  color: #d43030;
+}
+@-moz-keyframes notice {
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@-webkit-keyframes notice {
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@-o-keyframes notice {
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+@keyframes notice {
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}

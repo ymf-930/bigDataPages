@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>产业贷专题</title>
+
+    <!--bin-ui-->
+    <link rel="stylesheet" href="./js/lib/bin-ui/styles/index.css">
+    <link rel="stylesheet" href="./styles/base.css">
+    <link rel="stylesheet" href="./styles/header.css">
+    <link rel="stylesheet" href="./styles/product.css">
+
+    <!--js-->
+    <script src="./js/lib/vue.min.js"></script>
+    <script src="./js/lib/bin-ui/bin-ui.min.js"></script>
+    <script src="./js/lib/swiper/swiper.min.js"></script>
+
+</head>
+
+<body>
+<div id="app" v-cloak>
+    <div class="content" flex="dir:top">
+        <div class="header" flex="main:center cross:center">
+            <span>产业贷专题</span>
+            <div class="showtime">{{showTime}}</div>
+        </div>
+        <div class="main" flex="main:justify">
+            <div class="side left" flex="dir:top main:justify">
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>蜜桔产业贷</span>
+                    </div>
+                    <div class="table-head" flex="box:mean">
+                        <span flex="main:center">贷款产品</span>
+                        <span flex="main:center">贷款余额</span>
+                        <span flex="main:center">贷款户数</span>
+                    </div>
+                    <div class="table-container">
+                        <ul class="swiper-wrapper">
+                            <li class="swiper-slide" v-for="(item,index) in orgData" :key="index" flex="box:mean">
+                                <span flex="main:center">{{ item.name }}</span>
+                                <span flex="main:center">{{ item.balance }}</span>
+                                <span flex="main:center">{{ item.count }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="specific-content">
+                    <div class="table-head" flex="box:mean">
+                        <span flex="main:center">金融机构</span>
+                        <span flex="main:center">蜜桔贷产品</span>
+                    </div>
+                    <div class="table-container">
+                        <ul class="swiper-wrapper">
+                            <li class="swiper-slide" v-for="(item,index) in orgFinancial" :key="index" flex="box:mean">
+                                <span flex="main:center">{{ item.name }}</span>
+                                <span flex="main:center">{{ item.product }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+            <div class="center" flex="dir:top cross:center main:justify">
+                <div class="count-map" flex="dir:top cross:center">
+                    <div class="count" flex="main:justify">
+                        <div class="count-ev"
+                             v-for="(item, index) in cirList"
+                             :key="index"
+                             :style="{ 'background-image': 'url(' + item.img + ')'}"
+                             flex="dir:top main:center cross:center"
+                        >
+                            <span class="cont">{{item.count}}</span>
+                            <span>{{item.name}}</span>
+                        </div>
+                    </div>
+                    <div class="map-all" flex="main:center">
+                        <div class="map" flex="main:center cross:center">
+                            <div flex="cross:center">
+                                <div class="dot"></div>
+                                <span class="word">南丰县</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cen-bottom" flex="dir:top main:justify">
+                    <div class="bom-top" flex="cross:center main:center">
+                        <span>特色产业优质商户信息</span>
+                    </div>
+                    <div flex="main:justify">
+                        <div class="pro-score">
+                            <div class="pro-head" flex="box:mean">
+                                <span flex="main:center">蜜桔产业</span>
+                                <span flex="main:center">赣通分</span>
+                            </div>
+                            <div class="pro-container">
+                                <ul class="swiper-wrapper">
+                                    <li class="swiper-slide" v-for="(item,index) in orgScoreList" :key="index" flex="box:mean">
+                                        <span flex="main:center">{{ item.name }}</span>
+                                        <span flex="main:center" class="score">{{ item.score }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pro-score">
+                            <div class="pro-head" flex="box:mean">
+                                <span flex="main:center">甲鱼产业</span>
+                                <span flex="main:center">赣通分</span>
+                            </div>
+                            <div class="pro-container">
+                                <ul class="swiper-wrapper">
+                                    <li class="swiper-slide" v-for="(item,index) in turtleScoreList" :key="index" flex="box:mean">
+                                        <span flex="main:center">{{ item.name }}</span>
+                                        <span flex="main:center" class="score">{{ item.score }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="side right" flex="dir:top main:justify">
+                <div class="specific-content">
+                    <div class="sp-title">
+                        <span>甲鱼产业贷</span>
+                    </div>
+                    <div class="table-head" flex="box:mean">
+                        <span flex="main:center">贷款产品</span>
+                        <span flex="main:center">贷款余额</span>
+                        <span flex="main:center">贷款户数</span>
+                    </div>
+                    <div class="table-container">
+                        <ul class="swiper-wrapper">
+                            <li class="swiper-slide" v-for="(item,index) in turtleData" :key="index" flex="box:mean">
+                                <span flex="main:center">{{ item.name }}</span>
+                                <span flex="main:center">{{ item.balance }}</span>
+                                <span flex="main:center">{{ item.count }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="specific-content">
+                    <div class="table-head" flex="box:mean">
+                        <span flex="main:center">金融机构</span>
+                        <span flex="main:center">甲鱼贷产品</span>
+                    </div>
+                    <div class="table-container">
+                        <ul class="swiper-wrapper">
+                            <li class="swiper-slide" v-for="(item,index) in turtleFinancial" :key="index" flex="box:mean">
+                                <span flex="main:center">{{ item.name }}</span>
+                                <span flex="main:center">{{ item.product }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+
+        data: function () {
+            return {
+                orgData: [
+                    {
+                        name: '产品贷1号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷2号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷3号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷4号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷5号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷6号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷7号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷8号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷9号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+
+                ],
+                turtleData: [
+                    {
+                        name: '产品贷1号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷2号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷3号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷4号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷5号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷6号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷7号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷8号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+                    {
+                        name: '产品贷9号',
+                        balance: 1928367,
+                        count: 555896
+                    },
+
+                ],
+                orgFinancial: [
+                    {
+                        name: '建设银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '南方农村商业银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '工商银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '江苏银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '建设银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '建设银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '建设银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '建设银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '建设银行',
+                        product: '蜜桔贷产品',
+                    },
+                ],
+                turtleFinancial: [
+                    {
+                        name: '建设银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '南方农村商业银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '工商银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '江苏银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '建设银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '建设银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '建设银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '建设银行',
+                        product: '蜜桔贷产品',
+                    },
+                    {
+                        name: '建设银行',
+                        product: '蜜桔贷产品',
+                    },
+                ],
+                cirList: [
+                    {
+                        name: '贷款总户数',
+                        count: '325,123,02',
+                        img: 'images/product/cir-green.png'
+                    },
+                    {
+                        name: '贷款余额',
+                        count: '325,123,02',
+                        img: 'images/product/cir-blue.png'
+                    },
+                    {
+                        name: '平均贷款利率',
+                        count: '325,123,02',
+                        img: 'images/product/cir-pur.png'
+                    },
+                ],
+                orgScoreList: [
+                    {
+                        name: '蜜桔产业XX商户',
+                        score: 980,
+                    },
+                    {
+                        name: '蜜桔产业XX商户',
+                        score: 980,
+                    },
+                    {
+                        name: '蜜桔产业XX商户',
+                        score: 980,
+                    },
+                    {
+                        name: '蜜桔产业XX商户',
+                        score: 980,
+                    },
+                ],
+                turtleScoreList: [
+                    {
+                        name: '甲鱼产业XX商户',
+                        score: 980,
+                    },
+                    {
+                        name: '甲鱼产业XX商户',
+                        score: 980,
+                    },
+                    {
+                        name: '甲鱼产业XX商户',
+                        score: 980,
+                    },
+                    {
+                        name: '甲鱼产业XX商户',
+                        score: 980,
+                    },
+                ],
+                showTime: null,
+            }
+        },
+        created() {
+            this.nowtimer = setInterval(this.gettime, 1000);
+        },
+        mounted: function () {
+            var swiper = new Swiper('.table-container', {
+                direction: 'vertical', // 滚动方向，垂直滚动
+                slidesPerView: 9, // 设置slider容器能够同时显示的slides数量,显示5行
+                spaceBetween: 0, // 间距为0
+                loop: true, // 循环滚动
+                autoplay: { // 匀速滚动
+                    delay: 1000 // 间隔时间1000毫秒
+                }
+            })
+            var swiperPro = new Swiper('.pro-container', {
+                direction: 'vertical', //滚动方向，垂直滚动
+                slidesPerView: 4, //设置slider容器能够同时显示的slides数量,显示5行
+                spaceBetween: 0, //间距为0
+                loop: true, //循环滚动
+                autoplay: { //匀速滚动
+                    delay: 1000 //间隔时间1000毫秒
+                }
+            })
+        },
+        methods: {
+            gettime() {
+                let date = new Date();
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1;
+                let day = date.getDate();
+                let house = date.getHours();
+                let minutes = date.getMinutes();
+                let second = date.getSeconds();
+                this.showTime = year + "年" + month + "月" + day + "日" + " " + house + ":" + minutes + ":" + second;
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

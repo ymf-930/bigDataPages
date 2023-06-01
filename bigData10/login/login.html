@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>xx</title>
+    <link rel="stylesheet" href="./styles/base.css">
+    <link rel="stylesheet" href="./js/bin-ui@3.7.5/styles/base.css">
+    <link rel="stylesheet" href="./styles/index.css">
+
+    <script src="./js/vue.min.js"></script>
+    <script src="./js/three.min.js"></script>
+    <script src="./js/bin-ui@3.7.5/bin-ui.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="main" flex="cross:center main:center">
+        <img src="image/luohe/top.png" class="title" width="100%">
+        <div class="cir-container" flex="main:center cross:center">
+            <img src="image/luohe/guang.png" class="light">
+            <div class="earth-bg">
+                <div ref="modelContainer" class="model-container">
+                </div>
+            </div>
+        </div>
+        <div class="tip">
+            <div class="item top-left" flex="dir:top cross:center main:justify">
+                <div class="all" flex="cross:center main:center">
+                    <img src="image/luohe/earth.png" class="circle-light">
+                    <img src="image/luohe/icon02.png" class="circle-icon">
+                </div>
+                <span>食安地图</span>
+            </div>
+            <div class="item top-right" flex="dir:top cross:center main:justify">
+                <div class="all" flex="cross:center main:center">
+                    <img src="image/luohe/earth.png" class="circle-light">
+                    <img src="image/luohe/icon03.png" class="circle-icon">
+                </div>
+                <span>风险预警</span>
+            </div>
+            <div class="item bottom-left" flex="dir:top cross:center main:justify">
+                <div class="all" flex="cross:center main:center">
+                    <img src="image/luohe/earth.png" class="circle-light">
+                    <img src="image/luohe/icon01.png" class="circle-icon">
+                </div>
+                <span>智慧分析</span>
+            </div>
+            <div class="item bottom-right" flex="dir:top cross:center main:justify">
+                <div class="all" flex="cross:center main:center">
+                    <img src="image/luohe/earth.png" class="circle-light">
+                    <img src="image/luohe/icon04.png" class="circle-icon">
+                </div>
+                <span>监管平台</span>
+            </div>
+        </div>
+        <div class="parcel" flex="main:center cross:center">
+            <div class="circle-01">
+                <img src="image/luohe/yuan02.png">
+            </div>
+        </div>
+        <div class="parcel" flex="main:center cross:center">
+            <div class="circle-01 soild">
+                <img src="image/luohe/yuan03.png">
+            </div>
+        </div>
+        <div class="parcel" flex="main:center cross:center">
+            <div class="circle-01 dot-cut">
+                <img src="image/yuan06.png">
+            </div>
+        </div>
+        <div class="parcel" flex="main:center cross:center">
+            <div class="circle-01 dot">
+                <img src="image/luohe/yuandian.png">
+            </div>
+        </div>
+        <div class="parcel" flex="main:center cross:center">
+            <div class="circle-01 dot-in">
+                <img src="image/luohe/yuandian.png">
+            </div>
+        </div>
+        <div class="bottom" flex="cross:center main:center">
+            <div class="input name">
+                <span>用户名:&nbsp;&nbsp;</span>
+                <input>
+            </div>
+            <div class="input password">
+                <span>密码:&nbsp;&nbsp;</span>
+                <input>
+            </div>
+            <div class="input code">
+                <span>验证码:&nbsp;&nbsp;</span>
+                <input>
+            </div>
+            <img src="image/yzm.jpg" height="36" width="100" class="yzm">
+            <button>登录</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                // canvas地球相关
+                scene: null,
+                camera: null,
+                renderer: null,
+                clock: null,
+                control: null,
+                axes: null,
+                earthParticles: null,
+                options: {
+                    CITY_RADIUS: 100,
+                    CITY_MARGIN: 1,
+                    BLINT_SPEED: 0.05,
+                    HEXAGON_RADIUS: 5,
+                    radius: 100
+                },
+            }
+        },
+        mounted: function () {
+            this.init()
+        },
+
+        methods: {
+            init() {
+                document.createElement('img')
+                var img = new Image()
+                img.src = 'image/earth.jpg'
+                var cvs = document.createElement('canvas')
+                var ctx = cvs.getContext('2d')
+                var _self = this
+                img.onload = function () {
+                    cvs.width = img.width
+                    cvs.height = img.height
+                    ctx.drawImage(img, 0, 0, cvs.width, cvs.height)
+                    var imgData = ctx.getImageData(0, 0, cvs.width, cvs.height)
+                    _self.createBasicScene() // 基本渲染容器
+                    _self.createEarthParticles(img, imgData) // 渲染地球粒子
+                    _self.animate()
+                }
+            },
+            createBasicScene() {
+                let width = this.$refs.modelContainer.offsetWidth
+                let height = this.$refs.modelContainer.offsetHeight
+                this.scene = new THREE.Scene()
+                this.camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 10000)
+                this.camera.position.z = 280
+                this.renderer = new THREE.WebGLRenderer({alpha: true})
+                this.renderer.setSize(width, height)
+                this.renderer.setClearColor(0xEEEEEE, 0.0)
+                this.renderer.autoClearColor = new THREE.Color(1, 0, 0, 0)
+                this.$refs.modelContainer.appendChild(this.renderer.domElement)
+                this.clock = new THREE.Clock()
+                this.axes = new THREE.AxesHelper(this.options.CITY_RADIUS + 10)
+                this.earthParticles = new THREE.Object3D()
+            },
+            createEarthParticles(img, imgData) {
+                let positions = []
+                let materials = []
+                let sizes = []
+                for (let i = 0; i < 2; i++) {
+                    positions[i] = {
+                        positions: []
+                    }
+                    sizes[i] = {
+                        sizes: []
+                    }
+                    let mat = new THREE.PointsMaterial()
+                    mat.size = 5
+                    mat.color = new THREE.Color('#007ee0')
+                    let img = 'image/dot.png'
+                    mat.map = new THREE.TextureLoader().load(img)
+                    mat.depthWrite = false
+                    mat.transparent = true
+                    mat.opacity = 0
+                    mat.side = THREE.FrontSide
+                    mat.blending = THREE.AdditiveBlending
+                    let n = i / 2
+                    mat.t_ = n * Math.PI * 2
+                    mat.speed_ = this.options.BLINT_SPEED
+                    mat.min_ = 0.2 * Math.random() + 0.5
+                    mat.delta_ = 0.1 * Math.random() + 0.1
+                    mat.opacity_coef_ = 1
+                    materials.push(mat)
+                }
+                var spherical = new THREE.Spherical()
+                spherical.radius = this.options.radius
+                var step = 250
+                for (let i = 0; i < step; i++) {
+                    let vec = new THREE.Vector3()
+                    let radians = step * (1 - Math.sin(i / step * Math.PI)) / step + 0.5
+                    for (let j = 0; j < step; j += radians) {
+                        let c = j / step
+                        let f = i / step
+                        let index = Math.floor(2 * Math.random())
+                        let pos = positions[index]
+                        let size = sizes[index]
+                        let n = parseInt(img.width * c) // 根据横纵百分比计算图象坐标系中的坐标
+                        let o = parseInt(img.height * f) // 根据横纵百分比计算图象坐标系中的坐标
+                        // 根据横纵百分比判断在底图中的像素值
+                        var isLandByUV = imgData.data[4 * (o * imgData.width + n)] === 0
+
+                        if (isLandByUV) {
+                            spherical.theta = c * Math.PI * 2 - Math.PI / 2 // 横纵百分比转换为theta和phi夹角
+                            spherical.phi = f * Math.PI // 横纵百分比转换为theta和phi夹角
+                            vec.setFromSpherical(spherical) // 夹角转换为世界坐标
+                            pos.positions.push(vec.x)
+                            pos.positions.push(vec.y)
+                            pos.positions.push(vec.z)
+                            if (j % 3 === 0) {
+                                size.sizes.push(6.0)
+                            }
+                        }
+                    }
+                }
+                for (let i = 0; i < positions.length; i++) {
+                    let pos = positions[i]
+                    let size = sizes[i]
+                    let bufferGeom = new THREE.BufferGeometry()
+                    let typedArr1 = new Float32Array(pos.positions.length)
+                    let typedArr2 = new Float32Array(size.sizes.length)
+                    for (let j = 0; j < pos.positions.length; j++) {
+                        typedArr1[j] = pos.positions[j]
+                    }
+                    for (let j = 0; j < size.sizes.length; j++) {
+                        typedArr2[j] = size.sizes[j]
+                    }
+                    bufferGeom.setAttribute('position', new THREE.BufferAttribute(typedArr1, 3))
+                    bufferGeom.setAttribute('size', new THREE.BufferAttribute(typedArr2, 1))
+                    bufferGeom.computeBoundingSphere()
+                    let particle = new THREE.Points(bufferGeom, materials[i])
+                    this.earthParticles.add(particle)
+                }
+                this.scene.add(this.earthParticles)
+            },
+            animate() {
+                requestAnimationFrame(this.animate)
+                // 球面粒子闪烁
+                let objects = this.earthParticles.children
+                objects.forEach(obj => {
+                    let material = obj.material
+                    material.t_ += material.speed_
+                    material.opacity = (Math.sin(material.t_) * material.delta_ + material.min_) * material.opacity_coef_
+                    material.needsUpdate = true
+                })
+                this.earthParticles.rotation.y += 0.005
+                this.renderer.render(this.scene, this.camera)
+            }
+        }
+    })
+</script>
+</body>
+</html>

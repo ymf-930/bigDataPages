@@ -1,0 +1,228 @@
+#app{
+  .content{
+    .header{
+      position relative
+    }
+    .main{
+      height 984px
+      padding 20px 25px
+      .table-head {
+        margin-top 20px
+        border-bottom: none;
+        height: 40px;
+        line-height: 40px;
+        background-color: #052451;
+        span {
+          color: #fff;
+          font-weight bold
+        }
+      }
+
+      .table-container {
+        height: 320px;
+        overflow: hidden;
+        box-sizing: border-box;
+
+        .swiper-wrapper {
+          width: 100%;
+
+          li {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            background-color #052451
+
+            span {
+              color: #fff;
+              border-right: 1px solid #0a274d;
+              border-bottom: 1px solid #0a274d;
+            }
+            .first{
+              background-color #071f43
+            }
+            .level{
+              color #ffaf00
+            }
+
+            span:last-child {
+              border-right: none;
+            }
+          }
+          li:nth-child(even) {
+            background-color #071f43
+          }
+        }
+      }
+      .center{
+        width calc(100% - 900px)
+        padding 0 25px
+        .cen-bottom{
+          height 284px
+          width 100%
+          background-image url("../images/ptgk/back-blue.png")
+          background-size 100% 100%
+          padding 0 40px 20px 40px
+          .bom-top{
+            height 36px
+            background-image url("../images/ptgk/cen-top.png")
+            background-repeat no-repeat
+            background-position center
+            span{
+              color: rgba(255, 255, 255, 1);
+              font-size: 18px;
+              line-height: 150%;
+              font-weight: bold;
+            }
+          }
+          .report-area {
+            height 220px
+            margin-top 9px
+            .scroll-content{
+              overflow: hidden;
+              flex: 1;
+              height: 100%;
+              line-height: 24px;
+              position: relative;
+              .scroll-text {
+                position: absolute;
+                white-space: nowrap;
+                padding-left: 100%;
+                animation: notice 20s 0s linear infinite both;
+                color: rgba(15, 188, 224, 1);
+                top 0
+              }
+              .word02{
+                color rgba(67, 207, 124, 1)
+                top 30px
+                animation: notice 15s 0s linear infinite both;
+              }
+              .word03{
+                color rgba(30, 121, 251, 1)
+                top 60px
+                animation: notice 17s 0s linear infinite both;
+              }
+              .word04{
+                color rgba(255, 141, 26, 1)
+                top 90px
+                animation: notice 12s 0s linear infinite both;
+              }
+              .word05{
+                color rgba(255, 195, 0, 1)
+                top 110px
+                animation: notice 14s 0s linear infinite both;
+              }
+              .word06{
+                color rgba(67, 207, 124, 1)
+                top 140px
+                animation: notice 11s 0s linear infinite both;
+              }
+              .word07{
+                color rgba(212, 48, 48, 1)
+                top 170px
+                animation: notice 15s 0s linear infinite both;
+              }
+              .word08{
+                top 200px
+                animation: notice 18s 0s linear infinite both;
+              }
+            }
+
+            @keyframes notice {
+              100% {
+                transform: translate3d(-100%, 0, 0);
+              }
+            }
+          }
+
+        }
+        .measures{
+          width 100%
+          height calc(100% - 284px)
+          background-image url("../images/round.png")
+          background-size 100% 65%
+          background-repeat no-repeat
+          background-position center
+          position relative
+          img{
+            position absolute
+            left 50%
+            transform translate(-50%)
+            top: 9%;
+          }
+          .circle-per{
+            position absolute
+            height 68%
+            width 80%
+            left 50%
+            top: 50%;
+            transform translate(-50%, -50%)
+            .circle{
+              width: 97px;
+              height: 97px;
+              box-shadow: 0 0 0 2px rgba(42, 130, 228, 1);
+              border-radius: 50%;
+              position absolute
+              .wa-word{
+                width 100%
+                height 100%
+                position absolute
+                top 34px
+                span{
+                  color rgba(255, 255, 255, 1)
+                  font-size 16px
+                }
+              }
+            }
+            .circle .wave{
+              display: block;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(24, 144, 255, 100));
+              border-radius: 50%;
+              position: relative;
+              overflow: hidden;
+              z-index: 0;
+            }
+            .circle .wave::before, .circle .wave::after{
+              content: "";
+              width: 200%;
+              height: 200%;
+              position: absolute;
+              top: 10px;
+              left: 50%;
+              transform: translate(-50%,-75%);
+            }
+            .circle .wave::before{
+              border-radius: 45%;
+              background-color: #0f1f3d;
+              animation: awave 8s linear infinite;
+            }
+            .circle .wave::after{
+              border-radius: 40%;
+              background-color: #0f1f3d;
+              animation: awave 8s linear infinite;
+            }
+            @keyframes awave{
+              0%{
+                transform: translate(-50%,-75%) rotate(0deg);
+              }
+              0%{
+                transform: translate(-50%,-75%) rotate(360deg);
+              }
+            }
+            .circle:nth-child(2){
+              right 0
+            }
+            .circle:nth-child(3){
+              bottom 0
+            }
+            .circle:nth-child(4){
+              bottom 0
+              right 0
+            }
+          }
+        }
+      }
+    }
+  }
+}

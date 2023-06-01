@@ -1,0 +1,223 @@
+#app {
+  .content {
+    .main {
+      height 965px
+      padding 20px
+      .left {
+        .promise {
+          margin-top 26px
+        }
+        .report-area {
+          height 200px
+          margin-top 26px
+          .scroll-content{
+            overflow: hidden;
+            flex: 1;
+            height: 100%;
+            line-height: 24px;
+            position: relative;
+            .scroll-text {
+              position: absolute;
+              white-space: nowrap;
+              padding-left: 100%;
+              animation: notice 20s 0s linear infinite both;
+              color: rgba(67, 207, 124, 1);
+              top 0
+            }
+            .word02{
+              color rgba(15, 188, 224, 1)
+              top 30px
+              animation: notice 15s 0s linear infinite both;
+            }
+            .word03{
+              color rgba(255, 195, 0, 1)
+              top 60px
+              animation: notice 17s 0s linear infinite both;
+            }
+            .word04{
+              color rgba(255, 141, 26, 1)
+              top 90px
+              animation: notice 13s 0s linear infinite both;
+            }
+            .word05{
+              color rgba(30, 121, 251, 1)
+              top 110px
+              animation: notice 14s 0s linear infinite both;
+            }
+            .word06{
+              color rgba(212, 48, 48, 1)
+              top 140px
+              animation: notice 11s 0s linear infinite both;
+            }
+          }
+
+          @keyframes notice {
+            100% {
+              transform: translate3d(-100%, 0, 0);
+            }
+          }
+        }
+
+        .search-count {
+          height 48px
+          width 100%
+          background-color rgba(7, 31, 67, 1)
+          padding 0 13px
+
+          span {
+            color rgba(255, 255, 255, 1)
+          }
+
+          .search-name {
+            font-size 16px
+            padding-left 14px
+          }
+
+          .sea-count {
+            color: rgba(245, 229, 188, 1);
+            font-size: 22px;
+          }
+        }
+      }
+      .right{
+        .table-container {
+          height: 288px;
+          overflow: hidden;
+          box-sizing: border-box;
+          margin-top 15px
+          .swiper-wrapper {
+            width: 100%;
+            li {
+              width: 100%;
+              height: 48px;
+              line-height: 48px;
+              background-color #052451
+
+              span {
+                color: #fff;
+                border-right: 1px solid #092751;
+                border-bottom: 1px solid #092751;
+              }
+
+              span:nth-child(1) {
+                padding-left 16px
+              }
+
+              span:nth-child(2) {
+                color #0fbbdf
+              }
+
+              span:last-child {
+                border-right: none;
+              }
+            }
+            li:nth-child(even) {
+              background-color #071f43
+            }
+          }
+        }
+      }
+      .center{
+        width: calc(100% - 900px - 40px);
+        background-image url("../images/ptgk/back-blue.png")
+        background-size 100% 100%
+        padding 20px
+        .center-content{
+          width 100%
+          .cen-top{
+            width 100%
+            height 124px
+            .archives-count{
+              width 298px
+              padding 0 34px
+              background-color rgba(7, 31, 67, 1)
+              .color{
+                height 66px
+                width 66px
+                border-radius 33px
+                background-color rgba(16, 137, 255, 1)
+              }
+              .color-word{
+                span{
+                  color white
+                  font-size: 14px;
+                  line-height: 150%;
+                  font-weight normal
+                }
+                .word{
+                  font-size: 24px;
+                  background-image: -webkit-linear-gradient(bottom, rgba(67, 182, 252, 1), rgba(104, 196, 252, 1), #fff);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                }
+              }
+            }
+            .normol{
+              .color{
+                background-color rgba(0, 186, 173, 1)
+              }
+            }
+            .people{
+              .color{
+                background-color rgba(121, 72, 234, 1)
+              }
+            }
+          }
+          span{
+            color: rgba(255, 255, 255, 1);
+            font-size: 18px;
+            line-height: 150%;
+            font-weight: bold;
+            padding-bottom 27px
+          }
+          .result{
+            padding 0
+          }
+          .promise{
+            width 100%
+            position relative
+            img{
+              position absolute
+              bottom -18px
+            }
+          }
+        }
+        .classification{
+          width 100%
+          .promise{
+            .classification-main{
+              height 203px
+              .classi{
+                .classi-name{
+                  color: rgba(255, 255, 255, 1);
+                  font-size: 18px;
+                  line-height: 150%;
+                  font-weight: bold;
+                  padding-top 16px
+                }
+                .classi-count{
+                  span{
+                    color white
+                  }
+                  .word{
+                    color: rgba(255, 233, 178, 1);
+                    font-size: 24px;
+                    line-height: 150%;
+                  }
+                }
+                .seat{
+                  width 153px
+                  height 117px
+                  background-image: url("../images/ptgk/blue-stand.png");
+                  background-size: 100% auto;
+                  background-repeat: no-repeat;
+                  background-position: center bottom;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

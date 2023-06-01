@@ -1,0 +1,153 @@
+#app{
+  min-width 1920px
+  height 100%
+  .content{
+    .ev-count{
+      color #15b4e7
+      font-size 22px
+      padding-top 4px
+    }
+    .header{
+      height 80px
+      background-image url("../images/top.png")
+      background-size 100% 100%
+      span{
+        letter-spacing: 40px;
+        font-size: 32px;
+        line-height: 150%;
+        font-weight: bold;
+        color #15b4e7
+      }
+    }
+    .main{
+      padding 0 32px
+      margin-top 20px
+      position relative
+      .left{
+        width 450px
+        background linear-gradient(to bottom, #0e1638, #0b2147);
+        border 1px solid #113c5f
+        padding 20px
+        .name{
+          font-weight bold
+          color #ebedef
+          font-size 18px
+        }
+        .classification{
+          .class-count{
+            margin-top 18px
+            .ev{
+              background-color #092d67
+              height 66px
+              width 24%
+              .ev-title{
+                color #ebedef
+                font-size 12px
+              }
+            }
+          }
+        }
+        .flow{
+          margin-top 16px
+          .date{
+            span{
+              padding: 5px 12px;
+              color: #fff;
+              border-radius: 18px;
+              cursor pointer
+            }
+            .isActive{
+              background-color #102259
+            }
+          }
+          .flow-main{
+            margin-top 20px
+            .count{
+              height 128px
+              .all-count{
+                width 36%
+                background-color #092d67
+                span{
+                  color white
+                }
+                .word{
+                  padding 10px 0 5px 0
+                }
+                .ev-count{
+                  color #15b4e7
+                }
+              }
+              .current-count{
+                width 63%
+                background-color #092d67
+                padding 18px 18px
+                .count-ev{
+                  .word{
+                    color #ebedef
+                  }
+                  .word-blue{
+                    color #15b4e7
+                  }
+                }
+              }
+            }
+            .depart{
+              height 90px
+              margin-top 5px
+              .word{
+                color #ebedef
+              }
+              .unit{
+                font-size 12px
+              }
+              .depart-count{
+                width 36%
+                background-color #092d67
+              }
+              .monitoring{
+                width 63%
+                background-color #092d67
+                padding 0 20px
+              }
+            }
+          }
+        }
+      }
+      .right{
+        width calc(100% - 446px - 20px)
+        background-image url("../images/main.gif")
+        background-repeat no-repeat
+        background-position center bottom
+        position relative
+        margin-top 30px
+        .type{
+          height 534px
+          position absolute
+          right 0
+          div{
+            span{
+              padding-top 8px
+              color #8698b2
+            }
+          }
+        }
+      }
+      .cen-top{
+        height 50px
+        position absolute
+        margin 0 auto
+        left 50%
+        top 20px
+        transform translate(-50%)
+        .cen-name{
+          color: #ffffff;
+          font-size: 18px;
+          line-height: 150%;
+        }
+        .top-unit{
+          margin-left 20px
+        }
+      }
+    }
+  }
+}

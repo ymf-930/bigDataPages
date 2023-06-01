@@ -1,0 +1,12 @@
+.header {
+  height: 80px;
+  background-image: url("../images/product/top.png");
+  background-size: 100% 100%;
+}
+.header span {
+  letter-spacing: 20px;
+  color: #00d3ff;
+  font-size: 28px;
+  line-height: 150%;
+  font-weight: bold;
+}

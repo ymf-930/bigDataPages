@@ -1,0 +1,143 @@
+#app {
+  min-width: 1920px;
+  height: 100%;
+}
+#app .content .ev-count {
+  color: #15b4e7;
+  font-size: 22px;
+  padding-top: 4px;
+}
+#app .content .header {
+  height: 80px;
+  background-image: url("../images/top.png");
+  background-size: 100% 100%;
+}
+#app .content .header span {
+  letter-spacing: 40px;
+  font-size: 32px;
+  line-height: 150%;
+  font-weight: bold;
+  color: #15b4e7;
+}
+#app .content .main {
+  padding: 0 32px;
+  margin-top: 20px;
+  position: relative;
+}
+#app .content .main .left {
+  width: 450px;
+  background: linear-gradient(to bottom, #0e1638, #0b2147);
+  border: 1px solid #113c5f;
+  padding: 20px;
+}
+#app .content .main .left .name {
+  font-weight: bold;
+  color: #ebedef;
+  font-size: 18px;
+}
+#app .content .main .left .classification .class-count {
+  margin-top: 18px;
+}
+#app .content .main .left .classification .class-count .ev {
+  background-color: #092d67;
+  height: 66px;
+  width: 24%;
+}
+#app .content .main .left .classification .class-count .ev .ev-title {
+  color: #ebedef;
+  font-size: 12px;
+}
+#app .content .main .left .flow {
+  margin-top: 16px;
+}
+#app .content .main .left .flow .date span {
+  padding: 5px 12px;
+  color: #fff;
+  border-radius: 18px;
+  cursor: pointer;
+}
+#app .content .main .left .flow .date .isActive {
+  background-color: #102259;
+}
+#app .content .main .left .flow .flow-main {
+  margin-top: 20px;
+}
+#app .content .main .left .flow .flow-main .count {
+  height: 128px;
+}
+#app .content .main .left .flow .flow-main .count .all-count {
+  width: 36%;
+  background-color: #092d67;
+}
+#app .content .main .left .flow .flow-main .count .all-count span {
+  color: #fff;
+}
+#app .content .main .left .flow .flow-main .count .all-count .word {
+  padding: 10px 0 5px 0;
+}
+#app .content .main .left .flow .flow-main .count .all-count .ev-count {
+  color: #15b4e7;
+}
+#app .content .main .left .flow .flow-main .count .current-count {
+  width: 63%;
+  background-color: #092d67;
+  padding: 18px 18px;
+}
+#app .content .main .left .flow .flow-main .count .current-count .count-ev .word {
+  color: #ebedef;
+}
+#app .content .main .left .flow .flow-main .count .current-count .count-ev .word-blue {
+  color: #15b4e7;
+}
+#app .content .main .left .flow .flow-main .depart {
+  height: 90px;
+  margin-top: 5px;
+}
+#app .content .main .left .flow .flow-main .depart .word {
+  color: #ebedef;
+}
+#app .content .main .left .flow .flow-main .depart .unit {
+  font-size: 12px;
+}
+#app .content .main .left .flow .flow-main .depart .depart-count {
+  width: 36%;
+  background-color: #092d67;
+}
+#app .content .main .left .flow .flow-main .depart .monitoring {
+  width: 63%;
+  background-color: #092d67;
+  padding: 0 20px;
+}
+#app .content .main .right {
+  width: calc(100% - 446px - 20px);
+  background-image: url("../images/main.gif");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  position: relative;
+  margin-top: 30px;
+}
+#app .content .main .right .type {
+  height: 534px;
+  position: absolute;
+  right: 0;
+}
+#app .content .main .right .type div span {
+  padding-top: 8px;
+  color: #8698b2;
+}
+#app .content .main .cen-top {
+  height: 50px;
+  position: absolute;
+  margin: 0 auto;
+  left: 50%;
+  top: 20px;
+  transform: translate(-50%);
+}
+#app .content .main .cen-top .cen-name {
+  color: #fff;
+  font-size: 18px;
+  line-height: 150%;
+}
+#app .content .main .cen-top .top-unit {
+  margin-left: 20px;
+}

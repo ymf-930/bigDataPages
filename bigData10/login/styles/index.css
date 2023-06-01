@@ -1,0 +1,230 @@
+#app {
+  width: 100%;
+  height: 100%;
+}
+#app .main {
+  width: 100%;
+  height: 100%;
+  background-image: url("../image/luohe/bg.jpg");
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+#app .main .title {
+  position: absolute;
+  top: 20px;
+}
+#app .main .cir-container {
+  height: 90%;
+  width: 90vh;
+  max-width: 1000px;
+  max-height: 1000px;
+  position: absolute;
+  bottom: 55px;
+  z-index: 5;
+}
+#app .main .cir-container .light {
+  position: absolute;
+  opacity: 0.2;
+  bottom: 0;
+  width: 120%;
+}
+#app .main .cir-container .earth-bg {
+  width: 85%;
+  height: 85%;
+  z-index: 0;
+  position: absolute;
+  bottom: 0;
+  opacity: 0.7;
+  overflow: hidden;
+}
+#app .main .cir-container .earth-bg .model-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: -10%;
+}
+#app .main .tip {
+  position: absolute;
+  width: 80%;
+  min-width: 1108px;
+  max-width: 1600px;
+  height: 61%;
+  max-height: 600px;
+  min-height: 460px;
+}
+#app .main .tip .item {
+  position: absolute;
+  width: 187px;
+  height: 240px;
+  cursor: pointer;
+}
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+#app .main .tip .item .all {
+  width: 191px;
+  height: 191px;
+  border: 4px solid #24aacc;
+  border-radius: 50%;
+  z-index: 5;
+  background-color: #0a4583;
+}
+#app .main .tip .item .all .circle-light {
+  z-index: 1;
+  -webkit-transform: rotate(360deg);
+  animation: rotation 30s linear infinite;
+  -moz-animation: rotation 30s linear infinite;
+  -webkit-animation: rotation 30s linear infinite;
+  -o-animation: rotation 30s linear infinite;
+}
+#app .main .tip .item .all .circle-icon {
+  position: absolute;
+}
+#app .main .tip .item span {
+  color: #faf7f4;
+  font-size: 22px;
+  letter-spacing: 2px;
+  z-index: 5;
+}
+#app .main .tip .top-left {
+  left: 11%;
+}
+#app .main .tip .top-right {
+  right: 11%;
+}
+#app .main .tip .bottom-left {
+  bottom: 0;
+}
+#app .main .tip .bottom-right {
+  bottom: 0;
+  right: 0;
+}
+#app .main .parcel {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: -39%;
+}
+#app .main .circle-01 {
+  position: absolute;
+  width: 80%;
+  height: 80vw;
+  opacity: 0.7;
+  transform: rotate3d(1, 0, 0, 75deg);
+}
+#app .main .circle-01 img {
+  width: 100%;
+  height: 100%;
+  transform: rotateX(90deg);
+  animation: rotate-reverse 40s linear 2s infinite normal;
+}
+#app .main .dot {
+  width: 95%;
+  height: 95vw;
+}
+#app .main .dot-cut {
+  width: 88%;
+  height: 88vw;
+  opacity: 1;
+}
+#app .main .dot-in {
+  width: 60%;
+  height: 60vw;
+}
+#app .main .soild {
+  width: 90%;
+  height: 90vw;
+}
+#app .main .triangle {
+  width: 20px;
+  height: 20px;
+}
+#app .main .bottom {
+  height: 110px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 2px solid #1197c6;
+  background-color: rgba(6,66,129,0.7);
+}
+#app .main .bottom color,
+#app .main .bottom .input {
+  margin-right: 20px;
+}
+#app .main .bottom color span,
+#app .main .bottom .input span {
+  color: #fff;
+  font-size: 16px;
+}
+#app .main .bottom color input,
+#app .main .bottom .input input {
+  outline: none;
+  background-color: transparent;
+  border: 1px solid #2687ba;
+  height: 36px;
+  width: 240px;
+  color: #fff;
+  text-indent: 5px;
+}
+#app .main .bottom .yzm {
+  margin-right: 20px;
+}
+#app .main .bottom button {
+  height: 36px;
+  width: 100px;
+  color: #fff;
+  border: none;
+  background-color: #039acf;
+}
+#app .main .bottom button:hover {
+  cursor: pointer;
+}
+#app .main .bottom::before {
+  content: '';
+  width: 500px;
+  height: 8px;
+  background-color: #1197c6;
+  display: inline-block;
+  position: absolute;
+  left: calc(50% - 250px);
+  top: -8px;
+  transform: perspective(125px) rotateX(50deg);
+}
+@-moz-keyframes rotate-reverse {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+@-webkit-keyframes rotate-reverse {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+@-o-keyframes rotate-reverse {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+@keyframes rotate-reverse {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}

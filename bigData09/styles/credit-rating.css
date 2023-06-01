@@ -1,0 +1,88 @@
+#app .content .main {
+  height: 965px;
+  padding: 20px;
+}
+#app .content .main .specific-content .promise .indicators-count {
+  height: 172px;
+  padding: 0 16px;
+}
+#app .content .main .specific-content .promise .indicators-count .count {
+  width: 165px;
+  background-image: url("../images/ptgk/blue-stand.png");
+  background-size: 94% auto;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  position: relative;
+}
+#app .content .main .specific-content .promise .indicators-count .count .ind-count {
+  color: #f3dfad;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  top: 64px;
+}
+#app .content .main .specific-content .promise .indicators-count .count span {
+  color: #fff;
+}
+#app .content .main .specific-content .promise .indicators-count .count .ind-name {
+  position: absolute;
+  top: 27px;
+}
+#app .content .main .center {
+  width: calc(100% - 900px - 40px);
+  background-image: url("../images/ptgk/back-blue.png");
+  background-size: 100% 100%;
+  padding: 20px;
+  position: relative;
+}
+#app .content .main .center .distribution {
+  width: 100%;
+  height: 413px;
+}
+#app .content .main .center .distribution .distrib {
+  height: 100%;
+}
+#app .content .main .center .distribution .distrib .distrib-detail {
+  width: 48%;
+  position: relative;
+}
+#app .content .main .center .distribution .distrib .distrib-detail .dis-title {
+  color: #fff;
+  font-size: 18px;
+  line-height: 150%;
+  font-weight: bold;
+  position: absolute;
+}
+#app .content .main .center .distribution .distrib .distrib-detail .dis-main {
+  position: relative;
+}
+#app .content .main .center .distribution .distrib .distrib-detail .dis-main ul {
+  width: 100%;
+  position: absolute;
+  top: 45px;
+}
+#app .content .main .center .distribution .distrib .distrib-detail .dis-main ul li {
+  height: 46px;
+  line-height: 46px;
+  background-color: #071f43;
+  border-top: 1px solid #14325f;
+}
+#app .content .main .center .distribution .distrib .distrib-detail .dis-main ul li span {
+  text-align: center;
+  color: #fff;
+}
+#app .content .main .center .distribution .distrib .distrib-detail .dis-main ul li .main-center {
+  border-left: 1px solid #14325f;
+  border-right: 1px solid #14325f;
+}
+#app .content .main .center .distribution .distrib .distrib-detail .dis-main ul li span:nth-child(2) {
+  color: #1089ff;
+}
+#app .content .main .center .seat {
+  position: absolute;
+  bottom: 0;
+}
+#app .content .main .center .down {
+  position: relative;
+  height: 433px;
+}

@@ -1,0 +1,240 @@
+#app{
+  .main{
+    padding 0 20px
+    height 710px
+    margin-top 22px
+    .center{
+      width calc(100% - 900px - 40px)
+      padding-top 10px
+      .cen-top{
+        height 50px
+        .cen-name{
+          color: rgba(255, 255, 255, 1);
+          font-size: 20px;
+          line-height: 150%;
+          font-weight: bold;
+        }
+      }
+      .cen-cen{
+        width 100%
+        .message{
+          width 49%
+          height 110px
+          background-image url("../images/ptgk/color-block0104.png")
+          background-repeat no-repeat
+          background-size 100% 100%
+          span{
+            color white
+          }
+          .color{
+            width 66px
+            height 66px
+            background-color #1089ff
+            border-radius 33px
+            margin-left 55px
+          }
+          .mes-data{
+            margin-left 22px
+            .data-top{
+              .gradient{
+                font-size 24px
+                background-image: -webkit-linear-gradient(bottom, rgba(67, 182, 252, 1), rgba(137, 210, 252, 1),white)
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+              }
+            }
+          }
+        }
+        .mes02{
+          background-image url("../images/ptgk/color-block03.png")
+          .color{
+            background-color #00baad
+          }
+          .mes-data{
+            .data-top{
+              .gradient{
+                background-image: -webkit-linear-gradient(bottom, rgba(72, 190, 176, 1), rgba(163, 223, 216, 1),white)
+              }
+            }
+          }
+        }
+        .mes03{
+          background-image url("../images/ptgk/color-block01.png")
+          .color{
+            background-color #00b8f8
+          }
+          .mes-data{
+            .data-top{
+              .gradient{
+                background-image: -webkit-linear-gradient(bottom, rgba(64, 151, 252, 1), rgba(158, 203, 252, 1),white)
+              }
+            }
+          }
+        }
+        .mes04{
+          background-image url("../images/ptgk/color-block02.png")
+          .color{
+            background-color rgba(121, 72, 234, 1)
+          }
+          .mes-data{
+            .data-top{
+              .gradient{
+                background-image: -webkit-linear-gradient(bottom, rgba(143, 66, 220, 1),rgba(212, 188, 244, 1),white)
+              }
+            }
+          }
+        }
+      }
+      .cen-bottom{
+        height 335px
+        width 100%
+        background-image url("../images/ptgk/back-blue.png")
+        background-size 100% 100%
+        padding 0 40px 20px 40px
+        .bom-top{
+          height 36px
+          background-image url("../images/ptgk/cen-top.png")
+          background-repeat no-repeat
+          background-position center
+          span{
+            color: rgba(255, 255, 255, 1);
+            font-size: 18px;
+            line-height: 150%;
+            font-weight: bold;
+          }
+        }
+        .bom-main{
+          .main-chart{
+            width 47%
+            .main-lef{
+              width 98px
+              div{
+                height 116px
+                background-image url("../images/ptgk/blue-stand.png")
+                background-size 100% auto
+                background-repeat no-repeat
+                background-position center bottom
+                .main-bot-name{
+                  color white
+                  margin-top 20px
+                }
+                .main-bot-count{
+                  color #f3dfad
+                  font-size 20px
+                  font-weight bold
+                  padding-top 16px
+                }
+              }
+            }
+            .main-rig{
+              width 306px
+            }
+          }
+        }
+      }
+    }
+    .ri-stage{
+      height 280px
+      position relative
+      .stands{
+        position absolute
+        bottom 23px
+      }
+      .seat{
+        position absolute
+        bottom 0
+        opacity 0.7
+      }
+      span{
+        position absolute
+        color: rgba(255, 255, 255, 1);
+        font-size: 18px;
+      }
+      .society{
+        left 43px
+        bottom 148px
+      }
+      .live{
+        left 50%
+        transform translate(-50%)
+        top 50px
+      }
+      .homeland{
+        right 43px
+        bottom 130px
+      }
+    }
+  }
+  .bottom{
+    height 235px
+    padding: 0 20px;
+    margin-top 16px
+    .specific-content{
+      background-image url("../images/ptgk/back-blue.png")
+      background-size 100% 100%
+      height 100%
+      padding 10px 20px 0
+      .scroll-content {
+        overflow: hidden;
+        flex: 1;
+        height: 100%;
+        line-height: 24px;
+        position: relative;
+        .scroll-text {
+          position: absolute;
+          white-space: nowrap;
+          padding-left: 100%;
+          animation: notice 30s 0s linear infinite both;
+          color: rgba(0, 186, 173, 1);
+          top 25px
+        }
+        .word02{
+          color rgba(67, 207, 124, 1)
+          top 50px
+          animation: notice 20s 0s linear infinite both;
+        }
+        .word03{
+          color rgba(15, 188, 224, 1)
+          top 75px
+          animation: notice 17s 0s linear infinite both;
+        }
+        .many{
+          top 100px
+          animation: notice 22s 0s linear infinite both;
+          .word04{
+            color rgba(255, 195, 0, 1)
+            margin-right 110px
+          }
+          .word05{
+            color rgba(30, 121, 251, 1)
+            margin-right 110px
+          }
+          .word06{
+            color rgba(67, 207, 124, 1)
+          }
+        }
+        .word07{
+          animation: notice 18s 0s linear infinite both;
+          color rgba(255, 141, 26, 1)
+          top 125px
+        }
+        .many01{
+          top 150px
+          animation: notice 25s 0s linear infinite both;
+          .word08{
+            color rgba(67, 207, 124, 1)
+            margin-right 300px
+          }
+          .word09{
+            color rgba(212, 48, 48, 1)
+          }
+        }
+      }
+      @keyframes notice {
+        100% {
+          transform: translate3d(-100%, 0, 0);
+        }
+      }
+    }
+  }
+}

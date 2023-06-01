@@ -1,0 +1,115 @@
+body {
+  font-size: 14px;
+  font-family: Microsoft YaHei, Arial, sans-serif, PingFang SC, Helvetica Neue, Helvetica, Hiragino Sans GB;
+  color: #333;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background-color: #0f1f3d;
+}
+p {
+  margin: 0;
+}
+ul {
+  padding: 0;
+  margin: 0;
+}
+ul li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+a,
+button {
+  transition: all 0.4s;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+div {
+  box-sizing: border-box;
+}
+#app {
+  min-width: 1920px;
+  height: 100%;
+}
+.side {
+  background-image: url("../images/ptgk/back-blue.png");
+  background-size: 100% 100%;
+  width: 450px;
+  position: relative;
+  padding: 20px 12px;
+}
+.side::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-left: 2px solid #3c56c6;
+  border-top: 2px solid #3c56c6;
+  content: '';
+}
+.side::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #3c56c6;
+  border-top: 2px solid #3c56c6;
+  content: '';
+}
+.side .panel-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.side .panel-footer::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-left: 2px solid #3c56c6;
+  border-bottom: 2px solid #3c56c6;
+  content: '';
+}
+.side .panel-footer::after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #3c56c6;
+  border-bottom: 2px solid #3c56c6;
+  content: '';
+}
+.specific-content {
+  background-image: url("../images/product/blue.png");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100%;
+  padding: 0px 11px 16px 11px;
+}
+.specific-content .sp-title {
+  height: 34px;
+  position: relative;
+  background-image: url("../images/ptgk/base.png");
+  background-repeat: no-repeat;
+  background-position: bottom left;
+}
+.specific-content .sp-title span {
+  position: absolute;
+  left: 20px;
+  bottom: 7px;
+  color: #fff;
+  font-size: 18px;
+  line-height: 150%;
+  font-weight: bold;
+}

@@ -1,0 +1,188 @@
+body {
+  font-size: 14px;
+  font-family: Microsoft YaHei, Arial, sans-serif, PingFang SC, Helvetica Neue, Helvetica, Hiragino Sans GB;
+  color: #333;
+}
+html,
+body {
+  height: 100%;
+  width 100%
+  margin: 0;
+  background-color #06132b
+}
+
+p {
+  margin 0
+}
+ul {
+  padding: 0;
+  margin: 0;
+}
+ul li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+a,
+button {
+  transition: all 0.4s;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+div{
+  box-sizing border-box
+}
+
+#app{
+  min-width 1920px
+  height 100%
+}
+
+//--------------------------------------大屏字体样式
+
+.num-box {
+  width 430px
+  margin-left 30px
+  .num-list {
+    padding: 0 6px;
+
+    span {
+      display: inline-block;
+      width: 70px;
+      height: 50px;
+      margin: 10px 0;
+      background-repeat: no-repeat;
+      -webkit-background-size: 100% 100%;
+      background-size: 100% 100%;
+    }
+
+    .num-bg-0 {
+      background-image: url(../images/num/0.png)
+    }
+
+    .num-bg-1 {
+      background-image: url(../images/num/1.png)
+    }
+
+    .num-bg-2 {
+      background-image: url(../images/num/2.png)
+    }
+
+    .num-bg-3 {
+      background-image: url(../images/num/3.png)
+    }
+
+    .num-bg-4 {
+      background-image: url(../images/num/4.png)
+    }
+
+    .num-bg-5 {
+      background-image: url(../images/num/5.png)
+    }
+
+    .num-bg-6 {
+      background-image: url(../images/num/6.png)
+    }
+
+    .num-bg-7 {
+      background-image: url(../images/num/7.png)
+    }
+
+    .num-bg-8 {
+      background-image: url(../images/num/8.png)
+    }
+
+    .num-bg-9 {
+      background-image: url(../images/num/9.png)
+    }
+  }
+
+}
+//---------------------------------边框
+.side {
+  background-image url("../images/ptgk/back-blue.png")
+  background-size 100% 100%
+  width 450px
+  position relative
+  padding 20px 20px
+  &::before{
+    position: absolute;
+    top: 0;
+    left 0
+    width: 8px;
+    height: 8px;
+    border-left: 2px solid #3c56c6;
+    border-top: 2px solid #3c56c6;
+    content: '';
+  }
+  &::after{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #3c56c6;
+    border-top: 2px solid #3c56c6;
+    content: '';
+  }
+  .panel-footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    &::before{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      border-left: 2px solid #3c56c6;
+      border-bottom: 2px solid #3c56c6;
+      content: '';
+    }
+    &::after{
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid #3c56c6;
+      border-bottom: 2px solid #3c56c6;
+      content: '';
+    }
+  }
+}
+.specific-content{
+  .sp-title{
+    height 34px
+    position relative
+    background-image url("../images/ptgk/base.png")
+    background-repeat no-repeat
+    background-position bottom left
+    span{
+      position absolute
+      left 20px
+      bottom 7px
+      color: rgba(255, 255, 255, 1);
+      font-size: 18px;
+      line-height: 150%;
+      font-weight: bold;
+    }
+  }
+  .sp-main{
+    background-color rgba(7, 31, 67, 1)
+    height 88px
+    padding 16px 0
+    margin 13px 2px 0 2px
+    .sp-note{
+      color white
+    }
+    .sp-count{
+      color #f2dfac
+      font-size 17px
+    }
+  }
+}
+
