@@ -9,7 +9,7 @@ export default {
   state: {
     subDepart: [
       {
-      'name': '龙口市',
+      'name': 'xx市',
       'count': 23234234,
       'percent': 10
     },

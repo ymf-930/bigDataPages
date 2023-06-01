@@ -49,7 +49,7 @@
                 'type': 'Feature',
                 'properties': {
                     'adcode': 370681,
-                    'name': '龙口市',
+                    'name': 'xx市',
                     'center': [
                         120.528328,
                         37.648446
