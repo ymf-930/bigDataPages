@@ -14,6 +14,9 @@
   letter-spacing: 2px;
   text-indent: 10px;
 }
+.data-box .num-box {
+  position: relative;
+}
 .data-box .num-box .num-item {
   width: 42px;
   height: 52px;
@@ -22,16 +25,20 @@
   background-repeat: no-repeat;
   font-size: 28px;
   color: #fff;
-  margin: 0 10px;
+  margin-right: 20px;
 }
 .data-box .num-box .num {
   position: absolute;
-  left: 63.6%;
-  transform: translate(-50%, 0);
-  top: 14px;
+  left: 53%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   color: #52feff;
   font-size: 39px;
-  letter-spacing: 41px;
+  width: 100%;
+}
+.data-box .num-box .num .example1 {
+  display: block;
+  letter-spacing: 1.04em;
 }
 .data-box .data-dw {
   color: #52feff;
