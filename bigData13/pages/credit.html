@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>美德信用进乡村</title>
+  <!--bin-ui-->
+  <link rel="stylesheet" href="../utils/lib/bin-ui@3.8.0/styles/index.css">
+
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/base-layout.css">
+  <link rel="stylesheet" href="../styles/base-title.css">
+  <link rel="stylesheet" href="../styles/credit/left.css">
+  <link rel="stylesheet" href="../styles/credit/center.css">
+  <link rel="stylesheet" href="../styles/credit/right.css">
+  <link rel="stylesheet" href="../styles/base-count1.css">
+  <link rel="stylesheet" href="../styles/base-count2.css">
+  <link rel="stylesheet" href="../styles/base-table.css">
+
+  <script src="../utils/lib/vue.min.js"></script>
+  <script src="../utils/lib/axios.min.js"></script>
+  <script src="../utils/lib/swiper/swiper.min.js"></script>
+  <script src="../utils/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../utils/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+  <script src="../utils/lib/vue-count-to/vue-count-to.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="app" v-cloak>
+  <v-base-layout title="XX村信用系统">
+    <template v-slot:left>
+      <div class="left-box" flex="dir:top main:justify">
+        <div flex="main:center cross:center" class="pt-15">
+          <v-base-count1 text="基本信息数量" :num="20153"></v-base-count1>
+          <v-base-count1 text="正面信息数量" :num="10235"></v-base-count1>
+          <v-base-count1 text="负面信息数量" :num="42365"></v-base-count1>
+        </div>
+        <img class="card-bottom" src="../images/panel-bottom.png" alt="">
+        <div flex="main:center cross:center" class="pt-15">
+          <v-base-count1 text="捐赠信息量" :num="2918"></v-base-count1>
+          <v-base-count1 text="志愿信息量" :num="3654"></v-base-count1>
+        </div>
+        <img class="card-bottom" src="../images/panel-bottom.png" alt="">
+        <v-base-title-box title="网格架构概览">
+          <div style="width: 100%;height: 228px;" id="pieChart"></div>
+        </v-base-title-box>
+        <v-base-title-box title="各部门统计分析(各镇+街区)">
+          <v-base-table :columns="zwlyColumns" :table-data="zwlyData"></v-base-table>
+        </v-base-title-box>
+      </div>
+    </template>
+    <template v-slot:center>
+      <div class="center-box" flex="dir:top main:justify">
+        <div flex="dir:top main:right" class="center-top">
+          <div class="card-list-box" flex="wrap:wrap">
+            <div class="card-item" v-for="(item,index) in centerTopList" :key="index">
+              <v-base-count2
+                  :img-url="item.imgUrl"
+                  :text="item.text"
+                  :num="item.num"
+                  :color="item.color"
+              >
+              </v-base-count2>
+            </div>
+          </div>
+          <img src="../images/credit/map-bottom.png" alt="">
+        </div>
+        <div class="map-container">
+          <img src="../images/credit/map.png" alt="">
+          <img src="../images/credit/map-bottom.png" alt="">
+        </div>
+      </div>
+    </template>
+    <template v-slot:right>
+      <div class="right-box">
+        <v-base-title-box title="网格统计">
+          <v-base-table :columns="zwlyColumns" :table-data="zwlyData"></v-base-table>
+        </v-base-title-box>
+        <v-base-title-box title="桓台县社会成员信用等级">
+          <v-base-table :columns="zwlyColumns" :table-data="zwlyData"></v-base-table>
+        </v-base-title-box>
+        <v-base-title-box title="信用等级分布情况">
+          <div style="width: 100%;height: 260px;" id="barChart4"></div>
+        </v-base-title-box>
+      </div>
+    </template>
+  </v-base-layout>
+</div>
+<script src="../js/components/base-layout.js"></script>
+<script src="../js/components/base-title-box.js"></script>
+<script src="../js/components/base-count1.js"></script>
+<script src="../js/components/base-count2.js"></script>
+<script src="../js/components/base-table.js"></script>
+
+<script src="../js/time.js"></script>
+<script>
+  var vm = new Vue({
+    // mixins: [mixin],
+    el: '#app',
+    data: function () {
+      return {
+        centerTopList: [
+          { imgUrl: '../images/credit/center-img1.png', color: '#479ffe', text: '镇街数量', num: '6850' },
+          { imgUrl: '../images/credit/center-img2.png', color: '#85b1ff', text: '网格数量', num: '6850' },
+          { imgUrl: '../images/credit/center-img3.png', color: '#89f3a6', text: '网格员数量', num: '6850' },
+          { imgUrl: '../images/credit/center-img4.png', color: '#e5b55b', text: '户数', num: '6850' },
+          { imgUrl: '../images/credit/center-img4.png', color: '#0fbce0', text: '人数', num: '6850' },
+        ],
+        // 信用+政务领域列表
+        zwlyColumns: [
+          {
+            title: '组织名称',
+            key: 'name',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: 'A+以上',
+            key: 'value',
+            align: 'center'
+          },
+          {
+            title: '数据总量',
+            key: 'count',
+            align: 'center'
+          }
+        ],
+        // 信用+政务领域表格数据
+        zwlyData: [
+          {
+            name: '古楼街道下辖社区1',
+            value: 12564,
+            count: 78513
+          },
+          {
+            name: '古楼街道下辖社区2',
+            value: 12564,
+            count: 78513
+          },
+          {
+            name: '古楼街道下辖社区3',
+            value: 12564,
+            count: 78513
+          },
+          {
+            name: '古楼街道下辖社区4',
+            value: 12564,
+            count: 78513
+          },
+          {
+            name: '古楼街道下辖社区3',
+            value: 12564,
+            count: 78513
+          },
+          {
+            name: '古楼街道下辖社区4',
+            value: 12564,
+            count: 78513
+          }
+        ],
+      }
+    },
+    created: function () {
+
+    },
+    mounted: function () {
+
+
+    },
+    methods: {
+
+    }
+  })
+  // 浏览器尺寸发生变化刷新页面（会重新加载所有数据，页面会卡）
+  // window.onresize = function(){
+  //   location.reload(true);
+  // }
+</script>
+<!--echarts-->
+<script src="../utils/lib/echarts/echarts.min.js"></script>
+
+<!-- 图表 -->
+<!--<script src="../js/charts/systemCity.js"></script>-->
+<script src="../js/charts/creditCharts.js"></script>
+
+</body>
+
+</html>

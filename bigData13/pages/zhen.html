@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>镇级页面</title>
+  <!--bin-ui-->
+  <link rel="stylesheet" href="../utils/lib/bin-ui@3.8.0/styles/index.css">
+
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/base-layout.css">
+  <link rel="stylesheet" href="../styles/base-title.css">
+  <link rel="stylesheet" href="../styles/zhen/left.css">
+  <link rel="stylesheet" href="../styles/zhen/center.css">
+  <link rel="stylesheet" href="../styles/zhen/right.css">
+  <link rel="stylesheet" href="../styles/base-count1.css">
+  <link rel="stylesheet" href="../styles/base-count2.css">
+  <link rel="stylesheet" href="../styles/base-count3.css">
+  <link rel="stylesheet" href="../styles/base-table.css">
+
+  <script src="../utils/lib/vue.min.js"></script>
+  <script src="../utils/lib/axios.min.js"></script>
+  <script src="../utils/lib/swiper/swiper.min.js"></script>
+  <script src="../utils/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../utils/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+  <script src="../utils/lib/vue-count-to/vue-count-to.min.js"></script>
+</head>
+
+<body>
+
+<div id="app" v-cloak>
+  <v-base-layout title="XX镇（街道）信用管理" is-zhen-page>
+    <template v-slot:left>
+      <div class="left-box" flex="dir:top main:justify">
+        <v-base-title-box title="网格架构概览">
+          <div flex="main:center cross:center box:mean" class="pt-20">
+            <v-base-count3 text="社区数" :num="2258">
+              <img class="left-img" src="../images/zhen/left-img1.png" alt="">
+            </v-base-count3>
+            <v-base-count3 text="网格数" :num="289">
+              <img class="left-img" src="../images/zhen/left-img2.png" alt="">
+            </v-base-count3>
+            <v-base-count3 text="网格员数" :num="28">
+              <img class="left-img" src="../images/zhen/left-img4.png" alt="">
+            </v-base-count3>
+          </div>
+          <div flex="main:center cross:center box:mean" class="pt-20">
+            <v-base-count3 text="户数" :num="1328">
+              <img class="left-img" src="../images/zhen/left-img3.png" alt="">
+            </v-base-count3>
+            <v-base-count3 text="人数" :num="2258">
+              <img class="left-img" src="../images/zhen/left-img4.png" alt="">
+            </v-base-count3>
+          </div>
+          <img class="card-bottom" src="../images/panel-bottom.png" alt="">
+        </v-base-title-box>
+        <v-base-title-box title="网格统计">
+          <v-base-table :columns="wgtjColumns" :table-data="wgtjData" :slides-num="12"></v-base-table>
+        </v-base-title-box>
+      </div>
+    </template>
+    <template v-slot:center>
+      <div class="center-box" flex="dir:top main:justify">
+        <div class="center-con-bg">
+          <v-base-title-box title="数据总览">
+            <div flex="main:center cross:center" class="p5">
+              <div class="left-content">
+                <div style="width: 100%;height: 220px" id="pieChart"></div>
+              </div>
+              <div class="right-content" flex="dir:top main:center">
+                <div class="right-item">
+                  <img src="../images/zhen/zmxx.png" alt="">
+                  <div class="count-box">
+                    <count-to class='count' :start-val='0' separator :end-val='3625' :duration='2000'></count-to>条
+                  </div>
+                </div>
+                <div class="right-item">
+                  <img src="../images/zhen/fmxx.png" alt="">
+                  <div class="count-box">
+                    <count-to class='count' :start-val='0' separator :end-val='3625' :duration='2000'></count-to>条
+                  </div>
+                </div>
+                <div class="right-item">
+                  <img src="../images/zhen/lqxx.png" alt="">
+                  <div class="count-box">
+                    <count-to class='count' :start-val='0' separator :end-val='3625' :duration='2000'></count-to>条
+                  </div>
+                </div>
+              </div>
+            </div>
+          </v-base-title-box>
+        </div>
+        <div class="center-con-bg">
+          <v-base-title-box title="清廉指数排行">
+            <div flex="dir:top main:center">
+              <div style="width: 100%;height: 480px;margin-top: 20px" id="barChart"></div>
+              <img class="card-bottom" src="../images/panel-bottom.png" alt="">
+            </div>
+          </v-base-title-box>
+        </div>
+      </div>
+    </template>
+    <template v-slot:right>
+      <div class="right-box" flex="dir:top main:justify">
+        <v-base-title-box title="干部联网格">
+          <v-base-table :columns="gblwgColumns" :table-data="gblwgData" show-colors></v-base-table>
+        </v-base-title-box>
+        <v-base-title-box title="XX镇居民信用排名">
+          <v-base-table :columns="jmxypmColumns" :table-data="jmxypmData" show-colors></v-base-table>
+        </v-base-title-box>
+        <v-base-title-box title="网格信用分排名">
+          <v-base-table :columns="wgxypmColumns" :table-data="wgxypmData" show-colors></v-base-table>
+        </v-base-title-box>
+      </div>
+    </template>
+  </v-base-layout>
+</div>
+<script src="../js/components/base-layout.js"></script>
+<script src="../js/components/base-title-box.js"></script>
+<script src="../js/components/base-count1.js"></script>
+<script src="../js/components/base-count2.js"></script>
+<script src="../js/components/base-count3.js"></script>
+<script src="../js/components/base-table.js"></script>
+
+<script src="../js/time.js"></script>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        // 网格统计列表
+        wgtjColumns: [
+          {
+            title: '部门名称',
+            key: 'name',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: '网格数',
+            key: 'wgnum',
+            align: 'center'
+          },
+          {
+            title: '网格员数量',
+            key: 'wgynum',
+            align: 'center'
+          },
+          {
+            title: '网格分数排名',
+            key: 'rank',
+            align: 'center'
+          },
+          {
+            title: '正面信息',
+            key: 'zmInfo',
+            align: 'center'
+          },
+          {
+            title: '负面信息',
+            key: 'fmInfo',
+            align: 'center'
+          },
+          {
+            title: '志愿信息',
+            key: 'zyInfo',
+            align: 'center'
+          },
+          {
+            title: '捐赠信息',
+            key: 'jzInfo',
+            align: 'center'
+          }
+        ],
+        // 网格统计表格数据
+        wgtjData: [
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgynum: 78513,
+            rank: 78513,
+            zmInfo: 100,
+            fmInfo: 800,
+            zyInfo: 900,
+            jzInfo: 1000,
+          },
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgynum: 78513,
+            rank: 78513,
+            zmInfo: 100,
+            fmInfo: 800,
+            zyInfo: 900,
+            jzInfo: 1000,
+          },
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgynum: 78513,
+            rank: 78513,
+            zmInfo: 100,
+            fmInfo: 800,
+            zyInfo: 900,
+            jzInfo: 1000,
+          },
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgynum: 78513,
+            rank: 78513,
+            zmInfo: 100,
+            fmInfo: 800,
+            zyInfo: 900,
+            jzInfo: 1000,
+          },
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgynum: 78513,
+            rank: 78513,
+            zmInfo: 100,
+            fmInfo: 800,
+            zyInfo: 900,
+            jzInfo: 1000,
+          },
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgynum: 78513,
+            rank: 78513,
+            zmInfo: 100,
+            fmInfo: 800,
+            zyInfo: 900,
+            jzInfo: 1000,
+          },
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgynum: 78513,
+            rank: 78513,
+            zmInfo: 100,
+            fmInfo: 800,
+            zyInfo: 900,
+            jzInfo: 1000,
+          },
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgynum: 78513,
+            rank: 78513,
+            zmInfo: 100,
+            fmInfo: 800,
+            zyInfo: 900,
+            jzInfo: 1000,
+          },
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgynum: 78513,
+            rank: 78513,
+            zmInfo: 100,
+            fmInfo: 800,
+            zyInfo: 900,
+            jzInfo: 1000,
+          },
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgynum: 78513,
+            rank: 78513,
+            zmInfo: 100,
+            fmInfo: 800,
+            zyInfo: 900,
+            jzInfo: 1000,
+          }
+        ],
+        // 干部联网格列表
+        gblwgColumns: [
+          {
+            title: '排名',
+            key: 'rank',
+            align: 'center'
+          },
+          {
+            title: '姓名',
+            key: 'name',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: '分管网格',
+            key: 'fgwg',
+            align: 'center',
+            tooltip: true
+          },
+          {
+            title: '所属镇街',
+            key: 'sszj',
+            align: 'center',
+            tooltip: true
+          },
+          {
+            title: '所属村',
+            key: 'ssc',
+            align: 'center',
+            tooltip: true
+          },
+          {
+            title: '网格人数',
+            key: 'wgrs',
+            align: 'center',
+            tooltip: true
+          }
+        ],
+        // 干部联网格表格数据
+        gblwgData: [
+          {
+            rank: 1,
+            name: 'xx村',
+            fgwg: 'xx网格',
+            sszj: 'xx镇',
+            ssc: 'xx村',
+            wgrs: 800
+          },
+          {
+            rank: 2,
+            name: 'xx村',
+            fgwg: 'xx网格',
+            sszj: 'xx镇',
+            ssc: 'xx村',
+            wgrs: 800
+          },
+          {
+            rank: 3,
+            name: 'xx村',
+            fgwg: 'xx网格',
+            sszj: 'xx镇',
+            ssc: 'xx村',
+            wgrs: 800
+          },
+          {
+            rank: 4,
+            name: 'xx村',
+            fgwg: 'xx网格',
+            sszj: 'xx镇',
+            ssc: 'xx村',
+            wgrs: 800
+          },
+          {
+            rank: 5,
+            name: 'xx村',
+            fgwg: 'xx网格',
+            sszj: 'xx镇',
+            ssc: 'xx村',
+            wgrs: 800
+          },
+          {
+            rank: 6,
+            name: 'xx村',
+            fgwg: 'xx网格',
+            sszj: 'xx镇',
+            ssc: 'xx村',
+            wgrs: 800
+          },
+          {
+            rank: 7,
+            name: 'xx村',
+            fgwg: 'xx网格',
+            sszj: 'xx镇',
+            ssc: 'xx村',
+            wgrs: 800
+          },
+          {
+            rank: 8,
+            name: 'xx村',
+            fgwg: 'xx网格',
+            sszj: 'xx镇',
+            ssc: 'xx村',
+            wgrs: 800
+          }
+        ],
+        // XX镇居民信用排名列表
+        jmxypmColumns: [
+          {
+            title: '排名',
+            key: 'rank',
+            align: 'center'
+          },
+          {
+            title: '姓名',
+            key: 'name',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: '身份证号',
+            key: 'sfzh',
+            align: 'center',
+            tooltip: true
+          },
+          {
+            title: 'xx村',
+            key: 'cun',
+            align: 'center',
+            tooltip: true
+          },
+          {
+            title: 'xx网格',
+            key: 'grid',
+            align: 'center',
+            tooltip: true
+          },
+          {
+            title: '信用等级',
+            key: 'xydj',
+            align: 'center',
+            tooltip: true
+          },
+          {
+            title: '信用分',
+            key: 'xyf',
+            align: 'center',
+            tooltip: true
+          }
+        ],
+        // XX镇居民信用排名表格数据
+        jmxypmData: [
+          {
+            rank: 1,
+            name: '张三',
+            sfzh: 'xxxx',
+            cun: 'xxx',
+            grid: 'xxx',
+            xydj: 'xxx',
+            xyf: '100'
+          },
+          {
+            rank: 2,
+            name: '张三',
+            sfzh: 'xxxx',
+            cun: 'xxx',
+            grid: 'xxx',
+            xydj: 'xxx',
+            xyf: '100'
+          },
+          {
+            rank: 3,
+            name: '张三',
+            sfzh: 'xxxx',
+            cun: 'xxx',
+            grid: 'xxx',
+            xydj: 'xxx',
+            xyf: '100'
+          },
+          {
+            rank: 4,
+            name: '张三',
+            sfzh: 'xxxx',
+            cun: 'xxx',
+            grid: 'xxx',
+            xydj: 'xxx',
+            xyf: '100'
+          },
+          {
+            rank: 5,
+            name: '张三',
+            sfzh: 'xxxx',
+            cun: 'xxx',
+            grid: 'xxx',
+            xydj: 'xxx',
+            xyf: '100'
+          },
+          {
+            rank: 6,
+            name: '张三',
+            sfzh: 'xxxx',
+            cun: 'xxx',
+            grid: 'xxx',
+            xydj: 'xxx',
+            xyf: '100'
+          },
+          {
+            rank: 7,
+            name: '张三',
+            sfzh: 'xxxx',
+            cun: 'xxx',
+            grid: 'xxx',
+            xydj: 'xxx',
+            xyf: '100'
+          },
+          {
+            rank: 8,
+            name: '张三',
+            sfzh: 'xxxx',
+            cun: 'xxx',
+            grid: 'xxx',
+            xydj: 'xxx',
+            xyf: '100'
+          }
+        ],
+        // 网格信用分排名列表
+        wgxypmColumns: [
+          {
+            title: '排名',
+            key: 'rank',
+            align: 'center'
+          },
+          {
+            title: '所属街道',
+            key: 'ssjd',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: '所属网格',
+            key: 'sswg',
+            align: 'center',
+            tooltip: true
+          },
+          {
+            title: '网格人数',
+            key: 'wgrs',
+            align: 'center',
+            tooltip: true
+          },
+          {
+            title: '网格信用分',
+            key: 'xyf',
+            align: 'center',
+            tooltip: true
+          },
+          {
+            title: '网格分',
+            key: 'wgf',
+            align: 'center',
+            tooltip: true
+          }
+        ],
+        // 网格信用分排名表格数据
+        wgxypmData: [
+          {
+            rank: 1,
+            ssjd: 'xxx',
+            sswg: 'xxxx',
+            wgrs: '86',
+            xyf: '100',
+            wgf: '80'
+          },
+          {
+            rank: 2,
+            ssjd: 'xxx',
+            sswg: 'xxxx',
+            wgrs: '86',
+            xyf: '100',
+            wgf: '80'
+          },
+          {
+            rank: 3,
+            ssjd: 'xxx',
+            sswg: 'xxxx',
+            wgrs: '86',
+            xyf: '100',
+            wgf: '80'
+          },
+          {
+            rank: 4,
+            ssjd: 'xxx',
+            sswg: 'xxxx',
+            wgrs: '86',
+            xyf: '100',
+            wgf: '80'
+          },
+          {
+            rank: 5,
+            ssjd: 'xxx',
+            sswg: 'xxxx',
+            wgrs: '86',
+            xyf: '100',
+            wgf: '80'
+          },
+          {
+            rank: 6,
+            ssjd: 'xxx',
+            sswg: 'xxxx',
+            wgrs: '86',
+            xyf: '100',
+            wgf: '80'
+          },
+          {
+            rank: 7,
+            ssjd: 'xxx',
+            sswg: 'xxxx',
+            wgrs: '86',
+            xyf: '100',
+            wgf: '80'
+          },
+          {
+            rank: 8,
+            ssjd: 'xxx',
+            sswg: 'xxxx',
+            wgrs: '86',
+            xyf: '100',
+            wgf: '80'
+          }
+        ],
+      }
+    },
+    created: function () {
+
+    },
+    mounted: function () {
+
+
+    },
+    methods: {
+
+    }
+  })
+  // 浏览器尺寸发生变化刷新页面（会重新加载所有数据，页面会卡）
+  // window.onresize = function(){
+  //   location.reload(true);
+  // }
+</script>
+<!--echarts-->
+<script src="../utils/lib/echarts/echarts.min.js"></script>
+
+<!-- 图表 -->
+<script src="../js/charts/zhenCharts.js"></script>
+
+</body>
+
+</html>

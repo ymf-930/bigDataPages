@@ -1,0 +1,109 @@
+.center-box {
+  width: 100%;
+  height: 100%;
+  /* padding-top: 20px; */
+}
+
+.center-box .center-con-bg {
+  width: 100%;
+  height: auto;
+  background-image: url("../../images/border-bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 20px;
+}
+
+.left-content {
+  width: 40%;
+  height: auto;
+  /*background-image: url("../../images/zhen/pie-bg.png");*/
+  /*background-size: 100%;*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: center;*/
+}
+
+.right-content {
+  width: 60%;
+}
+
+.right-content .right-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px 0;
+  position: relative;
+  width: 100%;
+  height: 48px;
+}
+
+.right-content .right-item:nth-child(1) {
+  background-image: url("../../images/zhen/center-top-bg1.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.right-content .right-item:nth-child(2) {
+  background-image: url("../../images/zhen/center-top-bg1.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.right-content .right-item:nth-child(3) {
+  background-image: url("../../images/zhen/center-top-bg1.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.right-content .right-item img {
+  display: inline-block;
+  width: 67px;
+  height: 14px;
+  position: absolute;
+  left: 75px;
+}
+
+.right-content .right-item .count-box {
+  /*width: 60%;*/
+  color: #14dcfc;
+  text-align: right;
+  position: absolute;
+  right: 25px;
+  font-size: 24px;
+  font-family: YouSheBiaoTiHei,sans-serif;
+}
+
+.right-content .right-item .count-box .count{
+  color: #14dcfc;
+}
+
+.center-box .btn-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 15px 0;
+}
+
+.center-box .btn-box .btn {
+  width: 160px;
+  height: 36px;
+  background-color: rgba(0, 119, 205, 0.5);
+  border-radius: 20px;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.center-box .btn-box .btn img {
+  width: 24px;
+  height: 24px;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg);
+  font-size: 24px;
+  color: rgba(236, 206, 107, 1);
+}

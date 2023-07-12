@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>诚信街区</title>
+  <!--bin-ui-->
+  <link rel="stylesheet" href="../utils/lib/bin-ui@3.8.0/styles/index.css">
+
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/base-layout.css">
+  <link rel="stylesheet" href="../styles/base-title.css">
+  <link rel="stylesheet" href="../styles/jiequ/left.css">
+  <link rel="stylesheet" href="../styles/jiequ/center.css">
+  <link rel="stylesheet" href="../styles/jiequ/right.css">
+  <link rel="stylesheet" href="../styles/base-count1.css">
+  <link rel="stylesheet" href="../styles/base-count2.css">
+  <link rel="stylesheet" href="../styles/base-table.css">
+  <link rel="stylesheet" href="../styles/base-rank.css">
+
+  <script src="../utils/lib/vue.min.js"></script>
+  <script src="../utils/lib/axios.min.js"></script>
+  <script src="../utils/lib/swiper/swiper.min.js"></script>
+  <script src="../utils/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../utils/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+  <script src="../utils/lib/vue-count-to/vue-count-to.min.js"></script>
+
+</head>
+
+<body>
+
+<div id="app" v-cloak>
+  <v-base-layout title="XX村信用系统">
+    <template v-slot:left>
+      <div class="left-box" flex="dir:top main:justify">
+        <v-base-title-box title="网格架构概览">
+          <div flex="main:center cross:center" class="pt-20">
+            <div class="card-first">
+              <div class="top-text">商家入驻情况</div>
+              <div class="count-box">
+                <count-to class='count' :start-val='0' separator :end-val='3625' :duration='2000'></count-to>条
+              </div>
+              <div class="bottom-text">总入住商家数</div>
+            </div>
+            <div flex="main:center cross:baseline" style="margin-bottom: -30px;">
+              <v-base-count1 text="抽检信息" :num="289"></v-base-count1>
+              <v-base-count1 text="投诉信息" :num="289"></v-base-count1>
+              <v-base-count1 text="监督信息" :num="289"></v-base-count1>
+            </div>
+          </div>
+          <img class="card-bottom" src="../images/panel-bottom.png" alt="">
+        </v-base-title-box>
+        <v-base-title-box title="归集信息种类">
+          <div style="width: 100%;height: 228px; margin-top: 30px;" id="pieChart"></div>
+        </v-base-title-box>
+        <v-base-title-box title="评价等级分布情况">
+          <div style="width: 100%;height: 320px;" id="barChart"></div>
+        </v-base-title-box>
+      </div>
+    </template>
+    <template v-slot:center>
+      <div class="center-box" flex="dir:top main:justify">
+        <div class="center-top" flex="main:justify cross:center">
+          <img class="left-icon" src="../images/btn-icon.svg" alt="">
+          <div class="title">张三使用1260积分兑换1652小时时长</div>
+          <img class="right-icon" src="../images/btn-icon.svg" alt="">
+        </div>
+        <div class="bottom-table-container">
+          <img src="../images/jiequ/table-title-bg.png" alt="">
+          <div class="title">桓台信用商区</div>
+          <v-base-table :columns="xysqColumns" :table-data="xysqData" :slides-num="6"></v-base-table>
+        </div>
+      </div>
+    </template>
+    <template v-slot:right>
+      <div class="right-box" flex="dir:top main:justify">
+        <v-base-title-box title="信用排行">
+          <v-base-rank rank-name="rankBox" :rank-data="xyclList" :slides-num="6"></v-base-rank>
+        </v-base-title-box>
+        <v-base-title-box title="信易+应用">
+          <div flex="main:center cross:center" class="p20">
+            <img src="../images/jiequ/xyj-img.png" alt="">
+          </div>
+        </v-base-title-box>
+      </div>
+    </template>
+  </v-base-layout>
+</div>
+<script src="../js/components/base-layout.js"></script>
+<script src="../js/components/base-title-box.js"></script>
+<script src="../js/components/base-count1.js"></script>
+<script src="../js/components/base-count2.js"></script>
+<script src="../js/components/base-table.js"></script>
+<script src="../js/components/base-rank.js"></script>
+
+<script src="../js/time.js"></script>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        // 桓台信用商区列表
+        xysqColumns: [
+          {
+            title: '商区名称',
+            key: 'name',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: '商户数量',
+            key: 'shsl',
+            align: 'center'
+          },
+          {
+            title: '物业公司',
+            key: 'wygs',
+            align: 'center'
+          },
+          {
+            title: '所属市',
+            key: 'sss',
+            align: 'center'
+          },
+          {
+            title: '营业额',
+            key: 'yye',
+            align: 'center'
+          },
+          {
+            title: '网格分数排名',
+            key: 'rank',
+            align: 'center'
+          }
+        ],
+        // 桓台信用商区表格数据
+        xysqData: [
+          {
+            name: 'xx村',
+            shsl: 12564,
+            wygs: 'xx物业',
+            sss: 'xx市',
+            yye: 1000,
+            rank: 100,
+          },
+          {
+            name: 'xx村',
+            shsl: 12564,
+            wygs: 'xx物业',
+            sss: 'xx市',
+            yye: 1000,
+            rank: 100,
+          },
+          {
+            name: 'xx村',
+            shsl: 12564,
+            wygs: 'xx物业',
+            sss: 'xx市',
+            yye: 1000,
+            rank: 100,
+          },
+          {
+            name: 'xx村',
+            shsl: 12564,
+            wygs: 'xx物业',
+            sss: 'xx市',
+            yye: 1000,
+            rank: 100,
+          },
+          {
+            name: 'xx村',
+            shsl: 12564,
+            wygs: 'xx物业',
+            sss: 'xx市',
+            yye: 1000,
+            rank: 100,
+          },
+          {
+            name: 'xx村',
+            shsl: 12564,
+            wygs: 'xx物业',
+            sss: 'xx市',
+            yye: 1000,
+            rank: 100,
+          }
+        ],
+        xyclList: [
+          {
+            title: '桓台韩熙山炭火烤肉店',
+            num: 3787
+          },
+          {
+            title: '桓台县东岳火锅店',
+            num: 32435
+          },
+          {
+            title: '淄博齐硕餐饮管理服务有限公司',
+            num: 6767856
+          },
+          {
+            title: '桓台县城区南桓食品销售店',
+            num: 1323
+          },
+          {
+            title: '桓台县真是美运动服饰商行',
+            num: 8577
+          },
+          {
+            title: '桓台欣怡龙虾店',
+            num: 37667
+          },
+          {
+            title: '桓台韩熙山炭火烤肉店',
+            num: 3787
+          },
+          {
+            title: '桓台县东岳火锅店',
+            num: 32435
+          },
+          {
+            title: '淄博齐硕餐饮管理服务有限公司',
+            num: 6767856
+          },
+          {
+            title: '桓台县城区南桓食品销售店',
+            num: 1323
+          },
+          {
+            title: '桓台欣怡龙虾店',
+            num: 37667
+          },
+          {
+            title: '桓台韩熙山炭火烤肉店',
+            num: 3787
+          },
+        ],
+      }
+    },
+    created: function () {
+
+    },
+    mounted: function () {
+
+    },
+    methods: {
+
+    }
+  })
+  // 浏览器尺寸发生变化刷新页面（会重新加载所有数据，页面会卡）
+  // window.onresize = function(){
+  //   location.reload(true);
+  // }
+</script>
+<!--echarts-->
+<script src="../utils/lib/echarts/echarts.min.js"></script>
+
+<!-- 图表 -->
+<script src="../js/charts/jiequCharts.js"></script>
+
+</body>
+
+</html>

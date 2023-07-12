@@ -1,0 +1,72 @@
+.center-box {
+  width: 100%;
+  height: 100%;
+  /* padding-top: 20px; */
+}
+
+
+.center-box .card-list-box {
+  width: 100%;
+}
+
+.center-box .card-list-box .card-item {
+  width: 20%;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-container {
+  width: 100%;
+  height: 530px;
+  padding: 20px;
+  text-align: center;
+  background-image: url("../../images/center-bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.map-container img{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.center-box .center-con-bg{
+  width: 100%;
+  min-height: 100%;
+  background-image: url("../../images/border-bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 20px;
+}
+
+.center-box .btn-box{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 15px 0;
+}
+.center-box .btn-box .btn{
+  width: 160px;
+  height: 36px;
+  background-color: rgba(0, 119, 205, 0.5);
+  border-radius: 20px;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.center-box .btn-box .btn img{
+  width: 24px;
+  height: 24px;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg);
+  font-size: 24px;
+  color: rgba(236, 206, 107, 1);
+}

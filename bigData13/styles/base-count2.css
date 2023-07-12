@@ -1,0 +1,15 @@
+.img-icon{
+  display: block;
+  width: 94px;
+  height: 94px;
+}
+.count2-name {
+  color: #fff;
+  font-size: 14px;
+}
+
+.count2-count {
+  font-size: 24px;
+  font-weight: bold;
+}
+
