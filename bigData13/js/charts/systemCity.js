@@ -6,15 +6,15 @@ var uploadedDataURL = "../js/map/huantai.json";
 $.getJSON(uploadedDataURL, function (geoJson) {
   echarts.registerMap('马桥镇', geoJson);
   var chinaGeoCoordMap = {
-    "邢家镇": [118.068845,37.013209],
-    "起凤镇": [118.11364,37.071468],
-    "田庄镇": [118.005308,36.99594],
-    "新城镇": [117.958265,36.962511],
-    "唐山镇": [118.055986,36.969241],
-    "索镇街道": [118.116208,36.955022],
-    "少海街道": [118.101422,36.959394],
-    "果里镇": [118.094954,36.912837],
-    "马桥镇": [117.922847,37.045612],
+    "邢家镇": [118.068845, 37.013209],
+    "起凤镇": [118.11364, 37.071468],
+    "田庄镇": [118.005308, 36.99594],
+    "新城镇": [117.958265, 36.962511],
+    "唐山镇": [118.055986, 36.969241],
+    "索镇街道": [118.116208, 36.955022],
+    "少海街道": [118.101422, 36.959394],
+    "果里镇": [118.094954, 36.912837],
+    "马桥镇": [117.922847, 37.045612],
   };
   var chinaDatas = [
     [{name: '邢家镇', value: 0}],
@@ -28,46 +28,46 @@ $.getJSON(uploadedDataURL, function (geoJson) {
     [{name: '马桥镇', value: 0}],
   ];
 
-/*  var convertData = function (data) {
-    var res = [];
-    for (var i = 0; i < data.length; i++) {
-      var dataItem = data[i];
-      var fromCoord = chinaGeoCoordMap[dataItem[0].name];
-      var toCoord = [117.922847,37.045612];
-      if (fromCoord && toCoord) {
-        res.push([{
-          coord: fromCoord,
-          value: dataItem[0].value
-        }, {
-          coord: toCoord,
-        }]);
+  /*  var convertData = function (data) {
+      var res = [];
+      for (var i = 0; i < data.length; i++) {
+        var dataItem = data[i];
+        var fromCoord = chinaGeoCoordMap[dataItem[0].name];
+        var toCoord = [117.922847,37.045612];
+        if (fromCoord && toCoord) {
+          res.push([{
+            coord: fromCoord,
+            value: dataItem[0].value
+          }, {
+            coord: toCoord,
+          }]);
+        }
       }
-    }
-    return res;
-  };*/
+      return res;
+    };*/
 
   var series = [];
   [['马桥镇', chinaDatas]].forEach(function (item, i) {
     series.push(
-/*      {
-        type: 'lines',
-        zlevel: 2,
-        effect: {
-          show: true,
-          period: 4, //箭头指向速度，值越小速度越快
-          trailLength: 0.02, //特效尾迹长度[0,1]值越大，尾迹越长重
-          symbol: 'arrow', //箭头图标
-          symbolSize: 5, //图标大小
-        },
-        lineStyle: {
-          normal: {
-            width: 1, //尾迹线条宽度
-            opacity: 1, //尾迹线条透明度
-            curveness: .3 //尾迹线条曲直度
-          }
-        },
-        data: convertData(item[1])
-      }, */
+      /*      {
+              type: 'lines',
+              zlevel: 2,
+              effect: {
+                show: true,
+                period: 4, //箭头指向速度，值越小速度越快
+                trailLength: 0.02, //特效尾迹长度[0,1]值越大，尾迹越长重
+                symbol: 'arrow', //箭头图标
+                symbolSize: 5, //图标大小
+              },
+              lineStyle: {
+                normal: {
+                  width: 1, //尾迹线条宽度
+                  opacity: 1, //尾迹线条透明度
+                  curveness: .3 //尾迹线条曲直度
+                }
+              },
+              data: convertData(item[1])
+            }, */
       {
         type: 'effectScatter',
         coordinateSystem: 'geo',
@@ -78,16 +78,15 @@ $.getJSON(uploadedDataURL, function (geoJson) {
           scale: 4 //波纹圆环最大限制，值越大波纹越大
         },
         label: {
-          normal: {
-            show: true,
-            position: 'right', //显示位置
-            offset: [5, 0], //偏移设置
-            formatter: function (params) { //圆环显示文字
-              return params.data.name;
-            },
-            fontSize: 13,
-            color: '#fff'
+          show: true,
+          position: 'right', //显示位置
+          offset: [5, 0], //偏移设置
+          formatter: function (params) { //圆环显示文字
+            return params.data.name;
           },
+          fontSize: 13,
+          color: '#fff',
+
           emphasis: {
             show: true
           }
@@ -175,9 +174,8 @@ $.getJSON(uploadedDataURL, function (geoJson) {
         shadowBlur: 5
       },
       emphasis: {
-        itemStyle:{
-          // disabled: true,
-          borderWidth:1,
+        // disabled: true,
+        itemStyle: {
           areaColor: 'rgb(23,54,102)',
           borderColor: 'rgba(39, 106, 154, 1)',
         }

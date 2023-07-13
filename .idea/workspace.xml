@@ -4,18 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c529615e-fcfb-47d9-bbf8-af9565613994" name="更改" comment="新增桓台大数据页面">
-      <change afterPath="$PROJECT_DIR$/bigData13/styles/cun/cun.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bigData13/styles/reset-binui.css" afterDir="false" />
+    <list default="true" id="c529615e-fcfb-47d9-bbf8-af9565613994" name="更改" comment="桓台大数据代码优化">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData13/js/components/base-layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/js/components/base-layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/js/charts/creditCharts.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/js/charts/creditCharts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/js/charts/jiequCharts.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/js/charts/jiequCharts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/js/charts/systemCity.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/js/charts/systemCity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/js/charts/zhenCharts.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/js/charts/zhenCharts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bigData13/js/components/base-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/js/components/base-table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData13/pages/cun.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/pages/cun.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/pages/credit.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/pages/credit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/pages/jiequ.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/pages/jiequ.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/pages/zhen.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/pages/zhen.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bigData13/styles/base-table.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/styles/base-table.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData13/styles/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/styles/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData13/styles/cun/center.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData13/styles/cun/left.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData13/styles/cun/right.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/credit/center.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/credit/left.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/styles/credit/credit.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/credit/right.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/jiequ/center.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/styles/jiequ/jiequ.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/jiequ/left.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/jiequ/right.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/reset-binui.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/styles/reset-binui.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/zhen/center.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/zhen/left.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/styles/zhen/zhen.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/zhen/right.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +59,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/GiteeStore/big-data-pages&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/GiteeStore/big-data-pages/bigData13/js&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -60,6 +69,12 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\GiteeStore\big-data-pages\bigData13\js" />
+      <recent name="F:\GiteeStore\big-data-pages\bigData13\images\map" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -74,6 +89,8 @@
       <workItem from="1689146677765" duration="6162000" />
       <workItem from="1689167452163" duration="639000" />
       <workItem from="1689207775930" duration="5106000" />
+      <workItem from="1689217510807" duration="16855000" />
+      <workItem from="1689254062052" duration="968000" />
     </task>
     <task id="LOCAL-00001" summary="新增大数据页面">
       <created>1685537722023</created>
@@ -96,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689146599196</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="桓台大数据村级页面代码提交">
+      <created>1689230136689</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1689230136690</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,6 +141,8 @@
     <MESSAGE value="新增大数据页面" />
     <MESSAGE value="新增大数据页面及图片不显示问题处理" />
     <MESSAGE value="新增桓台大数据页面" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增桓台大数据页面" />
+    <MESSAGE value="桓台大数据村级页面代码提交" />
+    <MESSAGE value="桓台大数据代码优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="桓台大数据代码优化" />
   </component>
 </project>

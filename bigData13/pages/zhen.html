@@ -10,9 +10,7 @@
   <link rel="stylesheet" href="../styles/base.css">
   <link rel="stylesheet" href="../styles/base-layout.css">
   <link rel="stylesheet" href="../styles/base-title.css">
-  <link rel="stylesheet" href="../styles/zhen/left.css">
-  <link rel="stylesheet" href="../styles/zhen/center.css">
-  <link rel="stylesheet" href="../styles/zhen/right.css">
+  <link rel="stylesheet" href="../styles/zhen/zhen.css">
   <link rel="stylesheet" href="../styles/base-count1.css">
   <link rel="stylesheet" href="../styles/base-count2.css">
   <link rel="stylesheet" href="../styles/base-count3.css">
@@ -103,13 +101,13 @@
     <template v-slot:right>
       <div class="right-box" flex="dir:top main:justify">
         <v-base-title-box title="干部联网格">
-          <v-base-table :columns="gblwgColumns" :table-data="gblwgData" show-colors></v-base-table>
+          <v-base-table :columns="gblwgColumns" :table-data="gblwgData" :show-color-index="[0,1]" has-sort></v-base-table>
         </v-base-title-box>
         <v-base-title-box title="XX镇居民信用排名">
-          <v-base-table :columns="jmxypmColumns" :table-data="jmxypmData" show-colors></v-base-table>
+          <v-base-table :columns="jmxypmColumns" :table-data="jmxypmData" :show-color-index="[0,1]" has-sort></v-base-table>
         </v-base-title-box>
         <v-base-title-box title="网格信用分排名">
-          <v-base-table :columns="wgxypmColumns" :table-data="wgxypmData" show-colors></v-base-table>
+          <v-base-table :columns="wgxypmColumns" :table-data="wgxypmData" :show-color-index="[0,1]" has-sort></v-base-table>
         </v-base-title-box>
       </div>
     </template>

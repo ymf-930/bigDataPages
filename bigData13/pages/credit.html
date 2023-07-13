@@ -10,9 +10,7 @@
   <link rel="stylesheet" href="../styles/base.css">
   <link rel="stylesheet" href="../styles/base-layout.css">
   <link rel="stylesheet" href="../styles/base-title.css">
-  <link rel="stylesheet" href="../styles/credit/left.css">
-  <link rel="stylesheet" href="../styles/credit/center.css">
-  <link rel="stylesheet" href="../styles/credit/right.css">
+  <link rel="stylesheet" href="../styles/credit/credit.css">
   <link rel="stylesheet" href="../styles/base-count1.css">
   <link rel="stylesheet" href="../styles/base-count2.css">
   <link rel="stylesheet" href="../styles/base-table.css">
@@ -47,7 +45,7 @@
           <div style="width: 100%;height: 228px;" id="pieChart"></div>
         </v-base-title-box>
         <v-base-title-box title="各部门统计分析(各镇+街区)">
-          <v-base-table :columns="zwlyColumns" :table-data="zwlyData"></v-base-table>
+          <v-base-table :columns="tjfxColumns" :table-data="tjfxData"></v-base-table>
         </v-base-title-box>
       </div>
     </template>
@@ -77,10 +75,10 @@
     <template v-slot:right>
       <div class="right-box" flex="dir:top main:justify">
         <v-base-title-box title="网格统计">
-          <v-base-table :columns="zwlyColumns" :table-data="zwlyData"></v-base-table>
+          <v-base-table :columns="wgtjColumns" :table-data="wgtjData"></v-base-table>
         </v-base-title-box>
         <v-base-title-box title="桓台县社会成员信用等级">
-          <v-base-table :columns="zwlyColumns" :table-data="zwlyData"></v-base-table>
+          <v-base-table :columns="xydjColumns" :table-data="xydjData"></v-base-table>
         </v-base-title-box>
         <v-base-title-box title="信用等级分布情况">
           <div style="width: 100%;height: 260px;" id="barChart4"></div>
@@ -108,59 +106,214 @@
           { imgUrl: '../images/credit/center-img4.png', color: '#e5b55b', text: '户数', num: '6850' },
           { imgUrl: '../images/credit/center-img4.png', color: '#0fbce0', text: '人数', num: '6850' },
         ],
-        // 信用+政务领域列表
-        zwlyColumns: [
+        // 各部门统计分析(各镇+街区)列表
+        tjfxColumns: [
           {
-            title: '组织名称',
+            title: '部门名称',
             key: 'name',
             align: 'center',
             minWidth: 100,
             tooltip: true
           },
           {
-            title: 'A+以上',
+            title: '报送量',
             key: 'value',
             align: 'center'
           },
           {
-            title: '数据总量',
+            title: '信用指数',
             key: 'count',
             align: 'center'
           }
         ],
-        // 信用+政务领域表格数据
-        zwlyData: [
+        // 各部门统计分析(各镇+街区)表格数据
+        tjfxData: [
           {
-            name: '古楼街道下辖社区1',
+            name: '果里镇',
             value: 12564,
             count: 78513
           },
           {
-            name: '古楼街道下辖社区2',
+            name: '起凤镇',
             value: 12564,
             count: 78513
           },
           {
-            name: '古楼街道下辖社区3',
+            name: '果里镇',
             value: 12564,
             count: 78513
           },
           {
-            name: '古楼街道下辖社区4',
+            name: '起凤镇',
             value: 12564,
             count: 78513
           },
           {
-            name: '古楼街道下辖社区3',
+            name: '果里镇',
             value: 12564,
             count: 78513
           },
           {
-            name: '古楼街道下辖社区4',
+            name: '起凤镇',
             value: 12564,
             count: 78513
+          },
+        ],
+        // 网格统计列表
+        wgtjColumns: [
+          {
+            title: '部门名称',
+            key: 'name',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: '网格数',
+            key: 'wgnum',
+            align: 'center'
+          },
+          {
+            title: '网格长',
+            key: 'wgz',
+            align: 'center'
+          },
+          {
+            title: '副网格长',
+            key: 'fwgz',
+            align: 'center'
+          },
+          {
+            title: '网格员数量',
+            key: 'wgynum',
+            align: 'center'
+          },
+          {
+            title: '网格分数排名',
+            key: 'rank',
+            align: 'center'
           }
         ],
+        // 网格统计表格数据
+        wgtjData: [
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgz: 'xxx',
+            fwgz: 'xxx',
+            wgynum: 100,
+            rank: 800
+          },
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgz: 'xxx',
+            fwgz: 'xxx',
+            wgynum: 100,
+            rank: 800
+          },
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgz: 'xxx',
+            fwgz: 'xxx',
+            wgynum: 100,
+            rank: 800
+          },
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgz: 'xxx',
+            fwgz: 'xxx',
+            wgynum: 100,
+            rank: 800
+          },
+          {
+            name: 'xx村',
+            wgnum: 12564,
+            wgz: 'xxx',
+            fwgz: 'xxx',
+            wgynum: 100,
+            rank: 800
+          },
+        ],
+        // 桓台县社会成员信用等级列表
+        xydjColumns: [
+          {
+            title: '所属镇村网格',
+            key: 'zcwg',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: '姓名',
+            key: 'name',
+            align: 'center',
+            minWidth: 100,
+            tooltip: true
+          },
+          {
+            title: '身份证号',
+            key: 'num',
+            align: 'center'
+          },
+          {
+            title: '评级',
+            key: 'level',
+            align: 'center'
+          },
+          {
+            title: '分数',
+            key: 'score',
+            align: 'center'
+          }
+        ],
+        // 桓台县社会成员信用等级表格数据
+        xydjData: [
+          {
+            zcwg: 'xx镇',
+            name: 'xxx',
+            num: 12564,
+            level: 'AAA',
+            score: 100
+          },
+          {
+            zcwg: 'xx镇',
+            name: 'xxx',
+            num: 12564,
+            level: 'AAA',
+            score: 100
+          },
+          {
+            zcwg: 'xx镇',
+            name: 'xxx',
+            num: 12564,
+            level: 'AAA',
+            score: 100
+          },
+          {
+            zcwg: 'xx镇',
+            name: 'xxx',
+            num: 12564,
+            level: 'AAA',
+            score: 100
+          },
+          {
+            zcwg: 'xx镇',
+            name: 'xxx',
+            num: 12564,
+            level: 'AAA',
+            score: 100
+          },
+          {
+            zcwg: 'xx镇',
+            name: 'xxx',
+            num: 12564,
+            level: 'AAA',
+            score: 100
+          }
+        ]
       }
     },
     created: function () {

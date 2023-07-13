@@ -10,9 +10,7 @@
   <link rel="stylesheet" href="../styles/base.css">
   <link rel="stylesheet" href="../styles/base-layout.css">
   <link rel="stylesheet" href="../styles/base-title.css">
-  <link rel="stylesheet" href="../styles/jiequ/left.css">
-  <link rel="stylesheet" href="../styles/jiequ/center.css">
-  <link rel="stylesheet" href="../styles/jiequ/right.css">
+  <link rel="stylesheet" href="../styles/jiequ/jiequ.css">
   <link rel="stylesheet" href="../styles/base-count1.css">
   <link rel="stylesheet" href="../styles/base-count2.css">
   <link rel="stylesheet" href="../styles/base-table.css">
@@ -59,11 +57,15 @@
       </div>
     </template>
     <template v-slot:center>
-      <div class="center-box" flex="dir:top main:justify">
+      <div class="center-box" flex="dir:top main:justify cross:center">
         <div class="center-top" flex="main:justify cross:center">
           <img class="left-icon" src="../images/btn-icon.svg" alt="">
           <div class="title">张三使用1260积分兑换1652小时时长</div>
           <img class="right-icon" src="../images/btn-icon.svg" alt="">
+        </div>
+        <div class="center-container" flex="dir:top main:justify">
+          <div style="width: 100%;height: 360px;" id="barChart2"></div>
+          <img style="margin-top: -80px;" src="../images/jiequ/btm.png" alt="">
         </div>
         <div class="bottom-table-container">
           <img src="../images/jiequ/table-title-bg.png" alt="">

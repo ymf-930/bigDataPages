@@ -1,24 +1,30 @@
-// 系统概况专题
 // 柱状图
 var select = 'nat'
-// 资源信息分类统计
-var zyDom = document.getElementById("barChart");
-var zyChart = echarts.init(zyDom);
+// 评价等级分布情况
+var pjdjDom = document.getElementById("barChart");
+var pjdjChart = echarts.init(pjdjDom);
 
-/*网格架构概览*/
+var centerDom = document.getElementById("barChart2");
+var centerChart = echarts.init(centerDom);
+
+/*归集信息种类*/
 var pieDom = document.getElementById("pieChart")
 var pieChart = echarts.init(pieDom)
 
-var zyData = {
-  xData: ['1月', '2月', '3月', '4月', '5月', '6月'],
+var pjdjData = {
+  xData: ['AAA', 'AA', 'A+', 'A', 'A-', 'B', 'C'],
   yData: [
     {
-      name: "资源信息分类统计",
+      name: "评价等级分布情况",
       data: [
-        638, 300, 490, 1080, 210, 843
+        638, 300, 490, 1080, 210, 843, 500
       ]
     },
   ]
+}
+var centerData = {
+  xData: ['Top1', 'Top2', 'Top3', 'Top4', 'Top5', 'Top6'],
+  yData: [600, 500, 400, 300, 200, 100]
 }
 // 饼图数据
 var pieData = [
@@ -27,8 +33,9 @@ var pieData = [
   {name: '监督信息', percent: 20.28, value: 3113},
   {name: '处罚信息', percent: 20.28, value: 3113}
 ]
+
 // 加载Y轴数据
-function initSeries(data) {
+function initBar1Series(data) {
   return data.map((item, index) => {
     return {
       type: 'bar',
@@ -38,10 +45,75 @@ function initSeries(data) {
     }
   })
 }
+
+function initBar2Series(data) {
+/*  return data.map((item, index) => {
+    return {
+      type: 'bar',
+      name: item.name ?? `系列${index + 1}`,
+      barWidth: "40%",
+      data: item.data,
+    }
+  })*/
+  return [{
+    type: 'bar',
+    barWidth: 90,
+    itemStyle: {
+      color: function (params) {
+        console.log(params);
+        return colors[params.dataIndex];
+      },
+    },
+/*    label: {
+      show: true,
+      color: '#fff',
+      fontSize: 14,
+      position: 'insideBottom',
+      offset: [0, -20],
+    },*/
+    label: {
+      show: true,
+      position: 'top',
+      color: '#fff',
+      fontSize: 14,
+      offset: [0, -20]
+    },
+    data: centerData.yData,
+  },
+    {
+      z: 3,
+      type: 'pictorialBar',
+      data: centerData.yData,
+      symbol: 'diamond',
+      symbolOffset: [0, '50%'],
+      symbolSize: [90, 90 * 0.5],
+      itemStyle: {
+        color: function (params) {
+          return colors[params.dataIndex];
+        },
+      },
+    },
+    {
+      z: 4,
+      type: 'pictorialBar',
+      data: centerData.yData,
+      symbol: 'diamond',
+      symbolPosition: 'end',
+      symbolOffset: [0, '-50%'],
+      symbolSize: [90, 90 * 0.5],
+      itemStyle: {
+        borderWidth: 0,
+        color: function (params) {
+          return colors[params.dataIndex];
+        },
+      },
+    }]
+}
+
 // 构建图表信息
-function getData(chartData, type) {
+function getBar1Data(chartData) {
   return {
-    color: ['#3c90f7'],
+    color: ['#0fbce0'],
     tooltip: {},
     grid: {
       left: "10%",
@@ -51,7 +123,7 @@ function getData(chartData, type) {
     },
     xAxis: {
       type: 'category',
-      boundaryGap: type ? false : true,
+      boundaryGap: true,
       axisTick: {
         show: true,
         alignWithLabel: true
@@ -69,12 +141,75 @@ function getData(chartData, type) {
       splitLine: {
         show: true,
         lineStyle: {
-          color: type ? "rgba(255, 255, 255, 0.4)" : "rgba(255, 255, 255, 0.6)",
-          type: type ? "solid" : "dashed",
+          color: "rgba(255, 255, 255, 0.6)",
+          type: "dashed"
         }
       }
     },
-    series: initSeries(chartData.yData)
+    series: initBar1Series(chartData.yData)
+  }
+}
+
+const colors = [
+  {
+    type: 'linear',
+    x: 0,
+    y: 0,
+    x2: 1,
+    y2: 0,
+    colorStops: [
+      { offset: 0, color: 'rgba(251,203,65,0.2)' },
+      { offset: 0.5, color: 'rgba(251,203,65,0.5)' },
+      { offset: 0.5, color: 'rgba(251,203,65,0.8)' },
+      { offset: 1, color: '#fbcb41' },
+    ],
+  }
+];
+function getBar2Data(chartData) {
+  for (let i = 0; i < chartData.xData.length; i++) {
+    colors.push({
+      type: 'linear',
+      x: 0,
+      y: 0,
+      x2: 1,
+      y2: 0,
+      colorStops: [
+        { offset: 0, color: '#85cff8' },
+        { offset: 0.5, color: '#7bccf8' },
+        { offset: 0.5, color: '#76cbfa' },
+        { offset: 1, color: '#71cbfb' },
+      ],
+    });
+  }
+  return {
+    color: colors,
+    backgroundColor: 'transparent',
+    tooltip: {
+      trigger: 'axis',
+      formatter: '{b} : {c}',
+      axisPointer: {
+        type: 'shadow',
+      },
+    },
+    grid: {},
+    xAxis: {
+      data: chartData.xData,
+      axisLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
+      axisLabel: {
+        margin: 33,
+        color: '#fff',
+        fontSize: 14,
+      },
+    },
+    yAxis: {
+      show: false,
+    },
+    series: initBar2Series(chartData.yData)
   }
 }
 
@@ -142,13 +277,13 @@ function getPieData(chartData) {
   }
 }
 
-
-
 // 根据类型加载数据信息
 function initChartData() {
-  zyChart = echarts.init(zyDom);
+  pjdjChart = echarts.init(pjdjDom);
+  centerChart = echarts.init(centerDom);
   pieChart = echarts.init(pieDom);
-  zyChart.setOption(getData(zyData));
+  pjdjChart.setOption(getBar1Data(pjdjData));
+  centerChart.setOption(getBar2Data(centerData));
   pieChart.setOption(getPieData(pieData))
 }
 

@@ -1,19 +1,17 @@
-// 系统概况专题
 // 柱状图
-var select = 'nat'
-// 资源信息分类统计
-var zyDom = document.getElementById("barChart4");
-var zyChart = echarts.init(zyDom);
+// 信用等级分布情况
+var xydjDom = document.getElementById("barChart4");
+var xydjChart = echarts.init(xydjDom);
 
 /*网格架构概览*/
 var pieDom = document.getElementById("pieChart")
 var pieChart = echarts.init(pieDom)
 
-var zyData = {
+var xydjData = {
   xData: ['1月', '2月', '3月', '4月', '5月', '6月'],
   yData: [
     {
-      name: "资源信息分类统计",
+      name: "信用等级分布情况",
       data: [
         638, 300, 490, 1080, 210, 843
       ]
@@ -38,9 +36,9 @@ function initSeries(data) {
   })
 }
 // 构建图表信息
-function getData(chartData, type) {
+function getData(chartData) {
   return {
-    color: ['#3c90f7'],
+    color: ['#0fbce0'],
     tooltip: {},
     grid: {
       left: "10%",
@@ -50,7 +48,7 @@ function getData(chartData, type) {
     },
     xAxis: {
       type: 'category',
-      boundaryGap: type ? false : true,
+      boundaryGap: true,
       axisTick: {
         show: true,
         alignWithLabel: true
@@ -68,41 +66,21 @@ function getData(chartData, type) {
       splitLine: {
         show: true,
         lineStyle: {
-          color: type ? "rgba(255, 255, 255, 0.4)" : "rgba(255, 255, 255, 0.6)",
-          type: type ? "solid" : "dashed",
+          color: "rgba(255, 255, 255, 0.6)",
+          type: "dashed"
         }
       }
     },
-    series: !type ? initSeries(chartData.yData) : initLineSeries(chartData.yData)
+    series: initSeries(chartData.yData)
   }
 }
-
-function handleSelect(val) {
-  zyChart.dispose()
-  pieChart.dispose()
-  this.initChartData(val)
-}
-
-// 根据类型加载数据信息
-function initChartData(val) {
-  zyChart = echarts.init(zyDom);
-  pieChart = echarts.init(pieDom);
-  if (vm.select === 'let') {
-    zyChart.setOption(getData(zyData));
-  } else {
-    zyChart.setOption(getData(zyData));
-  }
-  pieChart.setOption(getPieData(pieData))
-}
-
-initChartData()
 
 // 饼图Series
 function initPieSeries(data) {
   return [
     {
       type: 'pie',
-      // radius: '60%',
+      radius: '65%',
       center: ['50%', '45%'],
       label: {
         normal: {
@@ -156,3 +134,12 @@ function getPieData(chartData) {
 }
 
 
+// 加载数据信息
+function initChartData(val) {
+  xydjChart = echarts.init(xydjDom);
+  pieChart = echarts.init(pieDom);
+  xydjChart.setOption(getData(xydjData));
+  pieChart.setOption(getPieData(pieData))
+}
+
+initChartData()

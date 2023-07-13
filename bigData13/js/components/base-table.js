@@ -15,7 +15,7 @@ Vue.component('v-base-table', {
             </div>
           </ul>
         </div>
-        <img class="panel-bottom" src="../../images/panel-bottom.png" alt="">
+        <img class="panel-bottom" src="../images/panel-bottom.png" alt="">
     </div>`,
   props: {
     tableName:{

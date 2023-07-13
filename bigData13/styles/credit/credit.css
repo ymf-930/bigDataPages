@@ -1,3 +1,74 @@
+.left-box{
+    width: 100%;
+    height: 100%;
+    padding: 10px 30px;
+}
+.left-box .card-bottom{
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: -15px;
+}
+.left-box .datas-box{
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+.left-box .datas-box .datas-item{
+    width: 48%;
+    height: 30px;
+    background-color: rgba(8, 38, 85, 1);
+    padding-left: 5px;
+    line-height: 30px;
+    font-size: 14px;
+    margin-top: 3px;
+    margin-right: 3px;
+}
+.left-box .datas-box .datas-item .data-title{
+    color: #fff;
+    letter-spacing: 2px;
+}
+.left-box .datas-box .datas-item .data-data{
+    color: rgba(0, 200, 255, 1);
+}
+
+.center-box {
+    width: 100%;
+    height: 100%;
+    /* padding-top: 20px; */
+}
+
+.center-box .center-top{
+    height: 200px;
+}
+
+.center-box .card-list-box {
+    width: 100%;
+}
+
+.center-box .card-list-box .card-item {
+    width: 20%;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-container {
+    width: 100%;
+    height: 750px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    background-image: url("../../images/center-bg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+
 .right-box{
     width: 100%;
     height: 100%;

@@ -1,5 +1,4 @@
 // 柱状图
-/*网格架构概览*/
 var pieDom = document.getElementById("pieChart")
 var pieChart = echarts.init(pieDom)
 var barDom = document.getElementById("barChart")
