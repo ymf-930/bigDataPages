@@ -2,8 +2,8 @@ Vue.component('v-base-rank', {
   template: `
   <div class="rank-wrapper">
     <div class="rank-box" :ref="rankName" :style="{height:height?height+'px':lineHeight*slidesNum+'px'}">
-      <div class="rank-item swiper-wrapper" v-for="(item,index) in rankData" :key="index">
-        <div class="swiper-slide" flex="main:justify cross:center">
+      <div class="swiper-wrapper">
+        <div class="rank-item swiper-slide" flex="main:justify cross:center" v-for="(item,index) in rankData" :key="index">
           <div class="rank-left" flex="cross:center">
             <div class="rank-num">{{index+1}}</div>
             <div class="rank-title">{{item.title}}</div>

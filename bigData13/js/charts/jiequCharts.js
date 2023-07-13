@@ -46,67 +46,198 @@ function initBar1Series(data) {
   })
 }
 
+const offsetX = 34.8;
+const offsetY = 17.4;
+// 绘制左侧面
+const CubeLeft = echarts.graphic.extendShape({
+  shape: {
+    x: 0,
+    y: 0,
+  },
+  buildPath: function (ctx, shape) {
+    // 会canvas的应该都能看得懂，shape是从custom传入的
+    const xAxisPoint = shape.xAxisPoint;
+    const c0 = [shape.x, shape.y];
+    const c1 = [shape.x - offsetX, shape.y - offsetY];
+    const c2 = [xAxisPoint[0] - offsetX, xAxisPoint[1] - offsetY];
+    const c3 = [xAxisPoint[0], xAxisPoint[1]];
+    ctx.moveTo(c0[0], c0[1]).lineTo(c1[0], c1[1]).lineTo(c2[0], c2[1]).lineTo(c3[0], c3[1]).closePath();
+  },
+});
+// 绘制右侧面
+const CubeRight = echarts.graphic.extendShape({
+  shape: {
+    x: 0,
+    y: 0,
+  },
+  buildPath: function (ctx, shape) {
+    const xAxisPoint = shape.xAxisPoint;
+    const c1 = [shape.x, shape.y];
+    const c2 = [xAxisPoint[0], xAxisPoint[1]];
+    const c3 = [xAxisPoint[0] + offsetX, xAxisPoint[1] - offsetY];
+    const c4 = [shape.x + offsetX, shape.y - offsetY];
+    ctx.moveTo(c1[0], c1[1]).lineTo(c2[0], c2[1]).lineTo(c3[0], c3[1]).lineTo(c4[0], c4[1]).closePath();
+  },
+});
+// 绘制顶面
+const CubeTop = echarts.graphic.extendShape({
+  shape: {
+    x: 0,
+    y: 0,
+  },
+  buildPath: function (ctx, shape) {
+    const c1 = [shape.x, shape.y];
+    const c2 = [shape.x + offsetX, shape.y - offsetY]; //右点
+    const c3 = [shape.x, shape.y - offsetX];
+    const c4 = [shape.x - offsetX, shape.y - offsetY];
+    ctx.moveTo(c1[0], c1[1]).lineTo(c2[0], c2[1]).lineTo(c3[0], c3[1]).lineTo(c4[0], c4[1]).closePath();
+  },
+});
+// 注册三个面图形
+echarts.graphic.registerShape('CubeLeft', CubeLeft);
+echarts.graphic.registerShape('CubeRight', CubeRight);
+echarts.graphic.registerShape('CubeTop', CubeTop);
+
+const MAX = [1000, 1000, 1000, 1000, 1000, 1000];
+
 function initBar2Series(data) {
-/*  return data.map((item, index) => {
-    return {
-      type: 'bar',
-      name: item.name ?? `系列${index + 1}`,
-      barWidth: "40%",
-      data: item.data,
-    }
-  })*/
   return [{
-    type: 'bar',
-    barWidth: 90,
-    itemStyle: {
-      color: function (params) {
-        console.log(params);
-        return colors[params.dataIndex];
-      },
+    type: 'custom',
+    renderItem: function (params, api) {
+      const location = api.coord([api.value(0), api.value(1)])
+      return {
+        type: 'group',
+        children: [{
+          type: 'CubeLeft',
+          shape: {
+            api,
+            x: location[0],
+            y: location[1],
+            xAxisPoint: api.coord([api.value(0), 0])
+          },
+          style: {
+            fill: 'rgba(47,102,192,.27)'
+          }
+        }, {
+          type: 'CubeRight',
+          shape: {
+            api,
+            x: location[0],
+            y: location[1],
+            xAxisPoint: api.coord([api.value(0), 0])
+          },
+          style: {
+            fill: 'rgba(59,128,226,.27)'
+          }
+        }, {
+          type: 'CubeTop',
+          shape: {
+            api,
+            x: location[0],
+            y: location[1],
+            xAxisPoint: api.coord([api.value(0), 0])
+          },
+          style: {
+            fill: 'rgba(72,156,221,.27)'
+          }
+        }]
+      }
     },
-/*    label: {
-      show: true,
-      color: '#fff',
-      fontSize: 14,
-      position: 'insideBottom',
-      offset: [0, -20],
-    },*/
-    label: {
-      show: true,
-      position: 'top',
-      color: '#fff',
-      fontSize: 14,
-      offset: [0, -20]
-    },
-    data: centerData.yData,
+    data: MAX
   },
     {
-      z: 3,
-      type: 'pictorialBar',
-      data: centerData.yData,
-      symbol: 'diamond',
-      symbolOffset: [0, '50%'],
-      symbolSize: [90, 90 * 0.5],
-      itemStyle: {
-        color: function (params) {
-          return colors[params.dataIndex];
-        },
+      type: 'custom',
+      renderItem: (params, api) => {
+        const location = api.coord([api.value(0), api.value(1)]);
+        return {
+          type: 'group',
+          children: [{
+            type: 'CubeLeft',
+            shape: {
+              api,
+              xValue: api.value(0),
+              yValue: api.value(1),
+              x: location[0],
+              y: location[1],
+              xAxisPoint: api.coord([api.value(0), 0]),
+            },
+            style: {
+              fill: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                offset: 0,
+                color: params.dataIndex===0?'#fbfb93':'#33BCEB',
+              },
+                {
+                  offset: 1,
+                  color: params.dataIndex===0?'#fbcb41':'#337CEB',
+                },
+              ]),
+            },
+          },
+            {
+              type: 'CubeRight',
+              shape: {
+                api,
+                xValue: api.value(0),
+                yValue: api.value(1),
+                x: location[0],
+                y: location[1],
+                xAxisPoint: api.coord([api.value(0), 0]),
+              },
+              style: {
+                fill: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: params.dataIndex===0?'#fbfb93':'#28A2CE',
+                },
+                  {
+                    offset: 1,
+                    color: params.dataIndex===0?'#fbcb41':'#1A57B7',
+                  },
+                ]),
+              },
+            },
+            {
+              type: 'CubeTop',
+              shape: {
+                api,
+                xValue: api.value(0),
+                yValue: api.value(1),
+                x: location[0],
+                y: location[1],
+                xAxisPoint: api.coord([api.value(0), 0]),
+              },
+              style: {
+                fill: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: params.dataIndex===0?'#fbfb93':'#43C4F1',
+                },
+                  {
+                    offset: 1,
+                    color: params.dataIndex===0?'#fbcb41':'#28A2CE',
+                  },
+                ]),
+              },
+            },
+          ],
+        };
       },
+      data: centerData.yData,
     },
     {
-      z: 4,
-      type: 'pictorialBar',
-      data: centerData.yData,
-      symbol: 'diamond',
-      symbolPosition: 'end',
-      symbolOffset: [0, '-50%'],
-      symbolSize: [90, 90 * 0.5],
-      itemStyle: {
-        borderWidth: 0,
-        color: function (params) {
-          return colors[params.dataIndex];
+      type: 'bar',
+      label: {
+        normal: {
+          show: true,
+          position: 'top',
+          fontSize: 16,
+          color: '#43C4F1',
+          offset: [0, -50],
         },
       },
+      itemStyle: {
+        color: 'transparent',
+      },
+      tooltip: {},
+      data: centerData.yData,
     }]
 }
 
@@ -150,50 +281,29 @@ function getBar1Data(chartData) {
   }
 }
 
-const colors = [
-  {
-    type: 'linear',
-    x: 0,
-    y: 0,
-    x2: 1,
-    y2: 0,
-    colorStops: [
-      { offset: 0, color: 'rgba(251,203,65,0.2)' },
-      { offset: 0.5, color: 'rgba(251,203,65,0.5)' },
-      { offset: 0.5, color: 'rgba(251,203,65,0.8)' },
-      { offset: 1, color: '#fbcb41' },
-    ],
-  }
-];
 function getBar2Data(chartData) {
-  for (let i = 0; i < chartData.xData.length; i++) {
-    colors.push({
-      type: 'linear',
-      x: 0,
-      y: 0,
-      x2: 1,
-      y2: 0,
-      colorStops: [
-        { offset: 0, color: '#85cff8' },
-        { offset: 0.5, color: '#7bccf8' },
-        { offset: 0.5, color: '#76cbfa' },
-        { offset: 1, color: '#71cbfb' },
-      ],
-    });
-  }
   return {
-    color: colors,
     backgroundColor: 'transparent',
     tooltip: {
       trigger: 'axis',
-      formatter: '{b} : {c}',
       axisPointer: {
         type: 'shadow',
       },
+      formatter: function (params, ticket, callback) {
+        const item = params[1];
+        return item.name + ' : ' + item.value;
+      },
     },
-    grid: {},
+    grid: {
+      left: '10%',
+      right: '10%',
+      top: '15%',
+      bottom: '10%',
+      containLabel: true,
+    },
     xAxis: {
-      data: chartData.xData,
+      type: 'category',
+      data: centerData.xData,
       axisLine: {
         show: false,
       },
@@ -201,13 +311,25 @@ function getBar2Data(chartData) {
         show: false,
       },
       axisLabel: {
-        margin: 33,
-        color: '#fff',
         fontSize: 14,
+        color: '#fff',
       },
     },
     yAxis: {
-      show: false,
+      type: 'value',
+      axisLine: {
+        show: false,
+      },
+      splitLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
+      axisLabel: {
+        show: false,
+      },
+      boundaryGap: ['0%', '0%'],
     },
     series: initBar2Series(chartData.yData)
   }
