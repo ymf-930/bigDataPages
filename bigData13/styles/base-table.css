@@ -52,7 +52,7 @@
     border-left: 1px solid rgba(8, 48, 91, 1);
     border-bottom: 1px solid rgba(8, 48, 91, 1);
 }
-.table-container .swiper-wrapper .li .color-span{
+.table-container .swiper-wrapper .li .rect{
     display: inline-block;
     width: 22px;
     height: 22px;
@@ -60,19 +60,19 @@
     text-align: center;
     color: #fff;
 }
-.table-container .swiper-wrapper .li .span0{
+.table-container .swiper-wrapper .li .color-span0{
     background-color: #00d6f9;
 }
-.table-container .swiper-wrapper .li .span1{
+.table-container .swiper-wrapper .li .color-span1{
     background-color: #33e86f;
 }
-.table-container .swiper-wrapper .li .span2{
+.table-container .swiper-wrapper .li .color-span2{
     background-color: #cec75f;
 }
-.table-container .swiper-wrapper .li .span3{
+.table-container .swiper-wrapper .li .color-span3{
     background-color: #e49c2d;
 }
-.table-container .swiper-wrapper .li .span4{
+.table-container .swiper-wrapper .li .color-span4{
     background-color: #c7938b;
 }
 

@@ -8,12 +8,9 @@ Vue.component('v-base-table', {
           <ul class="swiper-wrapper">
             <div class="swiper-slide li" :class="disabledHover?'noHover':''" v-for="(item,index) in tableData" :style="{height:lineHeight+'px',lineHeight:lineHeight+'px'}">
               <div class="span" v-for="(citem,cindex) in columns" :data-tiem="index">
-                <template v-if="showColors">
-                  <span v-if="hasSort" :class="['color-span','span'+index]">{{ item[citem.key] }}</span>
-                  <span v-if="showColorIndex.includes(cindex)" :class="'text'+index">{{ item[citem.key] }}</span>
+                  <span v-if="hasSort && showColorIndex" :class="[cindex===0 ? ['rect', 'color-span'+index] : showColorIndex.includes(cindex) ? 'text'+index : 'span']">{{ item[citem.key] }}</span>
+                  <span v-else-if="showColorIndex" :class="[showColorIndex.includes(cindex) ? 'text'+index : 'span']">{{ item[citem.key] }}</span>
                   <span v-else>{{ item[citem.key] }}</span>
-                </template>
-                <span v-else>{{ item[citem.key] }}</span>
               </div>
             </div>
           </ul>
@@ -30,7 +27,7 @@ Vue.component('v-base-table', {
     },
     showColorIndex: {
       type: Array,
-      default: [0,1]
+      default: []
     },
     // 表格列表
     columns: {
@@ -65,10 +62,6 @@ Vue.component('v-base-table', {
     disabledHover:{
       type: Boolean,
       default: true
-    },
-    // 多彩表格
-    showColors:{
-      type: Boolean
     }
   },
   data() {
@@ -84,10 +77,10 @@ Vue.component('v-base-table', {
       slidesPerView: _this.slidesNum,//设置slider容器能够同时显示的slides数量,显示2行
       spaceBetween: 0,//间距为0
       loop: true,//循环滚动
-    /*  autoplay: {//匀速滚动
+      autoplay: {//匀速滚动
         delay: _this.delay,//间隔时间1000毫秒
         pauseOnMouseEnter: true,
-      },*/
+      },
       preventLinksPropagation:false,
       on:{
         click: function(e){

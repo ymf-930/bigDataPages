@@ -1,0 +1,65 @@
+/*覆盖组件弹窗样式*/
+.bin-modal-content {
+  background-color: rgba(16, 22, 52, 1);
+  position: relative;
+}
+
+.bin-modal-header .bin-modal-header p, .bin-modal-header .bin-modal-header-inner {
+  color: #fff;
+}
+
+.bin-modal-close .icon-close {
+  color: #4c70ac;
+}
+
+.bin-modal-close .icon-close:hover {
+  color: #fff;
+}
+
+.bin-modal-header {
+  border-bottom: none;
+  width: 300px;
+  height: 40px;
+  line-height: 40px;
+  position: absolute;
+  left: 50%;
+  top: -20px;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(0, 189, 237, 1);
+  border-radius: 24px;
+  font-size: 18px;
+  text-align: center;
+  padding: 0;
+}
+
+.bin-modal-header .bin-modal-header-inner {
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+}
+
+.bin-modal-body {
+  padding-top: 60px;
+  text-align: center;
+}
+
+.bin-modal-inner {
+  top: 300px;
+}
+
+.bin-table{
+  background-color: #052451
+}
+
+.bin-table td, .bin-table th{
+  background-color: #052451
+}
+
+.bin-table-cell{
+  color: #fff;
+}
+
+tr.bin-table-row-hover td{
+  background-color: #052451
+}

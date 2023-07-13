@@ -4,11 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c529615e-fcfb-47d9-bbf8-af9565613994" name="更改" comment="" />
+    <list default="true" id="c529615e-fcfb-47d9-bbf8-af9565613994" name="更改" comment="新增桓台大数据页面">
+      <change afterPath="$PROJECT_DIR$/bigData13/styles/cun/cun.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData13/styles/reset-binui.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/js/components/base-layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/js/components/base-layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/js/components/base-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/js/components/base-table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/pages/cun.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/pages/cun.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/base-table.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/styles/base-table.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/styles/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/cun/center.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/cun/left.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bigData13/styles/cun/right.css" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -25,21 +44,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/YMF/Desktop/bigData08",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/GiteeStore/big-data-pages&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -51,6 +71,9 @@
       <workItem from="1685537685149" duration="511000" />
       <workItem from="1685578403606" duration="615000" />
       <workItem from="1685581643429" duration="2810000" />
+      <workItem from="1689146677765" duration="6162000" />
+      <workItem from="1689167452163" duration="639000" />
+      <workItem from="1689207775930" duration="5106000" />
     </task>
     <task id="LOCAL-00001" summary="新增大数据页面">
       <created>1685537722023</created>
@@ -66,15 +89,34 @@
       <option name="project" value="LOCAL" />
       <updated>1685583495331</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="新增桓台大数据页面">
+      <created>1689146599196</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1689146599196</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="新增大数据页面" />
     <MESSAGE value="新增大数据页面及图片不显示问题处理" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增大数据页面及图片不显示问题处理" />
+    <MESSAGE value="新增桓台大数据页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增桓台大数据页面" />
   </component>
 </project>

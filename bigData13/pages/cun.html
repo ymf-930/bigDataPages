@@ -8,11 +8,10 @@
   <link rel="stylesheet" href="../utils/lib/bin-ui@3.8.0/styles/index.css">
 
   <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/reset-binui.css">
   <link rel="stylesheet" href="../styles/base-layout.css">
   <link rel="stylesheet" href="../styles/base-title.css">
-  <link rel="stylesheet" href="../styles/cun/left.css">
-  <link rel="stylesheet" href="../styles/cun/center.css">
-  <link rel="stylesheet" href="../styles/cun/right.css">
+  <link rel="stylesheet" href="../styles/cun/cun.css">
   <link rel="stylesheet" href="../styles/base-count1.css">
   <link rel="stylesheet" href="../styles/base-count2.css">
   <link rel="stylesheet" href="../styles/base-count3.css">
@@ -87,12 +86,31 @@
         <div flex="main:justify">
           <div class="center-con-bg mr-10">
             <v-base-title-box title="村级监察站">
-              <v-base-table :columns="wgtjColumns" :table-data="wgtjData"></v-base-table>
+              <div class="jc-box">
+                <div class="list-box">
+                  <div class="list-item">
+                    <div class="first">站长</div>
+                    <div class="item" v-for="item in cjjcData[0].zz" @click="nameBtnClick(item)">{{item.name}}</div>
+                  </div>
+                  <div class="list-item">
+                    <div class="first">两委成员</div>
+                    <div class="item" v-for="item in cjjcData[1].lwcy" @click="nameBtnClick(item)">{{item.name}}</div>
+                  </div>
+                  <div class="list-item">
+                    <div class="first">站内成员</div>
+                    <div class="item" v-for="item in cjjcData[2].zncy" @click="nameBtnClick(item)">{{item.name}}</div>
+                  </div>
+                  <div class="list-item">
+                    <div class="first">村民代表</div>
+                    <div class="item" v-for="item in cjjcData[3].cmdb" @click="nameBtnClick(item)">{{item.name}}</div>
+                  </div>
+                </div>
+              </div>
             </v-base-title-box>
           </div>
           <div class="center-con-bg">
             <v-base-title-box title="居民廉情排名">
-              <v-base-table :columns="jmlqpmColumns" :table-data="jmlqpmData" show-colors></v-base-table>
+              <v-base-table :columns="jmlqpmColumns" :table-data="jmlqpmData" :show-color-index="[0]"></v-base-table>
             </v-base-title-box>
           </div>
         </div>
@@ -101,20 +119,27 @@
     <template v-slot:right>
       <div class="right-box" flex="dir:top main:justify">
         <v-base-title-box title="网格信用排名">
-          <v-base-table :columns="wgxypmColumns" :table-data="wgxypmData" show-colors :show-color-index="[0,1]" has-sort></v-base-table>
+          <v-base-table :columns="wgxypmColumns" :table-data="wgxypmData" :show-color-index="[0,1]"
+                        has-sort></v-base-table>
         </v-base-title-box>
         <v-base-title-box title="网格员月度信用分统计">
-          <v-base-table :columns="xyphColumns" :table-data="xyphData" show-colors :show-color-index="[0,1]" has-sort></v-base-table>
+          <v-base-table :columns="xyftjColumns" :table-data="xyftjData" :show-color-index="[0,1]"
+                        has-sort></v-base-table>
         </v-base-title-box>
         <v-base-title-box title="信用排行">
-          <v-base-table :columns="xyphColumns" :table-data="xyphData" show-colors :show-color-index="[0,1]" has-sort></v-base-table>
+          <v-base-table :columns="xyphColumns" :table-data="xyphData" :show-color-index="[0,1]" has-sort></v-base-table>
         </v-base-title-box>
       </div>
     </template>
   </v-base-layout>
-  <!-- 数据归集趋势-弹窗 -->
-  <b-modal v-model="showModal" :title="modalTitle" width="925" top="500px" footer-hide append-to-body>
-
+  <!-- 弹窗 -->
+  <b-modal v-model="showInfoModal" :title="modalTitle" width="925" top="600px" footer-hide append-to-body>
+    <img width="797" height="411" v-show="activeBtn === 'btn1'" src="../images/cun/liucheng01.png" alt="">
+    <img width="799" height="483" v-show="activeBtn === 'btn2'" src="../images/cun/liucheng02.png" alt="">
+    <img style="width:100%;height:80px;margin-top: -50px" src="../images/cun/modal-bottom.png" alt="">
+  </b-modal>
+  <b-modal v-model="showPeopleModal" title="详细信息" width="665" top="600px" footer-hide append-to-body>
+    <b-table :columns="columns" :data="data" border></b-table>
   </b-modal>
 </div>
 <script src="../js/components/base-layout.js"></script>
@@ -130,14 +155,56 @@
     el: '#app',
     data: function () {
       return {
-        showModal: false,
+        showInfoModal: false,
+        showPeopleModal: false,
         modalTitle: '标题', // 弹窗标题
-        centerTopList: [
-          { imgUrl: '../images/page1/center-img1.png', color: '#479ffe', text: '镇街数量', num: '6850' },
-          { imgUrl: '../images/page1/center-img2.png', color: '#85b1ff', text: '网格数量', num: '6850' },
-          { imgUrl: '../images/page1/center-img3.png', color: '#89f3a6', text: '网格员数量', num: '6850' },
-          { imgUrl: '../images/page1/center-img4.png', color: '#e5b55b', text: '户数', num: '6850' },
-          { imgUrl: '../images/page1/center-img4.png', color: '#0fbce0', text: '人数', num: '6850' },
+        activeBtn: '',
+        // 村级监察站相关数据列表
+        // 两委成员列表
+        cjjcData: [
+          {zz: [{id: 1, name: '张三', duty:'职责1', job:'职务1'}]},
+          {
+            lwcy: [
+            {id: 1, name: '李四1', duty:'职责1', job:'职务1'},
+            {id: 2, name: '李四2', duty:'职责122', job:'职务122'},
+            {id: 3, name: '李四3', duty:'职责1', job:'职务1'},
+            {id: 4, name: '李四4', duty:'职责1', job:'职务1'},
+            ]
+          },
+          {
+            zncy: [
+              {id: 1, name: '王五1', duty:'职责1', job:'职务1'},
+              {id: 2, name: '王五2', duty:'职责1', job:'职务1'},
+              {id: 3, name: '王五3', duty:'职责1', job:'职务1'},
+              {id: 4, name: '王五4', duty:'职责1', job:'职务1'},
+            ]
+          },
+          {
+            cmdb: [
+              {id: 1, name: '赵六1', duty:'职责1', job:'职务1'},
+              {id: 2, name: '赵六2', duty:'职责1', job:'职务1'},
+              {id: 3, name: '赵六3', duty:'职责1', job:'职务1'},
+              {id: 4, name: '赵六4', duty:'职责1', job:'职务1'},
+            ]
+          },
+        ],
+        columns: [
+          {
+            title: '职责',
+            key: 'duty',
+            align: 'center'
+          },
+          {
+            title: '职务',
+            key: 'job',
+            align: 'center'
+          },
+        ],
+        data: [
+          {
+            duty: '职责',
+            job: '职务',
+          },
         ],
         // 居民廉情排名列表
         jmlqpmColumns: [
@@ -216,154 +283,6 @@
             sswg: 'xxxx',
             lqfs: '86',
             lqdj: 'A',
-          }
-        ],
-        // 网格统计列表
-        wgtjColumns: [
-          {
-            title: '部门名称',
-            key: 'name',
-            align: 'center',
-            minWidth: 100,
-            tooltip: true
-          },
-          {
-            title: '网格数',
-            key: 'wgnum',
-            align: 'center'
-          },
-          {
-            title: '网格员数量',
-            key: 'wgynum',
-            align: 'center'
-          },
-          {
-            title: '网格分数排名',
-            key: 'rank',
-            align: 'center'
-          },
-          {
-            title: '正面信息',
-            key: 'zmInfo',
-            align: 'center'
-          },
-          {
-            title: '负面信息',
-            key: 'fmInfo',
-            align: 'center'
-          },
-          {
-            title: '志愿信息',
-            key: 'zyInfo',
-            align: 'center'
-          },
-          {
-            title: '捐赠信息',
-            key: 'jzInfo',
-            align: 'center'
-          }
-        ],
-        // 网格统计表格数据
-        wgtjData: [
-          {
-            name: 'xx村',
-            wgnum: 12564,
-            wgynum: 78513,
-            rank: 78513,
-            zmInfo: 100,
-            fmInfo: 800,
-            zyInfo: 900,
-            jzInfo: 1000,
-          },
-          {
-            name: 'xx村',
-            wgnum: 12564,
-            wgynum: 78513,
-            rank: 78513,
-            zmInfo: 100,
-            fmInfo: 800,
-            zyInfo: 900,
-            jzInfo: 1000,
-          },
-          {
-            name: 'xx村',
-            wgnum: 12564,
-            wgynum: 78513,
-            rank: 78513,
-            zmInfo: 100,
-            fmInfo: 800,
-            zyInfo: 900,
-            jzInfo: 1000,
-          },
-          {
-            name: 'xx村',
-            wgnum: 12564,
-            wgynum: 78513,
-            rank: 78513,
-            zmInfo: 100,
-            fmInfo: 800,
-            zyInfo: 900,
-            jzInfo: 1000,
-          },
-          {
-            name: 'xx村',
-            wgnum: 12564,
-            wgynum: 78513,
-            rank: 78513,
-            zmInfo: 100,
-            fmInfo: 800,
-            zyInfo: 900,
-            jzInfo: 1000,
-          },
-          {
-            name: 'xx村',
-            wgnum: 12564,
-            wgynum: 78513,
-            rank: 78513,
-            zmInfo: 100,
-            fmInfo: 800,
-            zyInfo: 900,
-            jzInfo: 1000,
-          },
-          {
-            name: 'xx村',
-            wgnum: 12564,
-            wgynum: 78513,
-            rank: 78513,
-            zmInfo: 100,
-            fmInfo: 800,
-            zyInfo: 900,
-            jzInfo: 1000,
-          },
-          {
-            name: 'xx村',
-            wgnum: 12564,
-            wgynum: 78513,
-            rank: 78513,
-            zmInfo: 100,
-            fmInfo: 800,
-            zyInfo: 900,
-            jzInfo: 1000,
-          },
-          {
-            name: 'xx村',
-            wgnum: 12564,
-            wgynum: 78513,
-            rank: 78513,
-            zmInfo: 100,
-            fmInfo: 800,
-            zyInfo: 900,
-            jzInfo: 1000,
-          },
-          {
-            name: 'xx村',
-            wgnum: 12564,
-            wgynum: 78513,
-            rank: 78513,
-            zmInfo: 100,
-            fmInfo: 800,
-            zyInfo: 900,
-            jzInfo: 1000,
           }
         ],
         // 网格信用排名列表
@@ -680,7 +599,27 @@
     methods: {
       btnClick(btn) {
         console.log(btn);
-        this.showModal = true
+        this.activeBtn = btn
+        switch (btn) {
+          case 'btn1':
+            this.modalTitle = '信息采集流程'
+            break
+          case 'btn2':
+            this.modalTitle = '信用分计算方法'
+            break
+          case 'btn3':
+            this.modalTitle = '指标信息'
+            break
+        }
+        this.showInfoModal = true
+      },
+      nameBtnClick(data){
+        console.log(data);
+        this.data = [{
+          duty: data.duty,
+          job: data.job
+        }]
+        this.showPeopleModal = true
       }
     }
   })
