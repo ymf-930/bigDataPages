@@ -32,7 +32,7 @@
     <template v-slot:left>
       <div class="left-box" flex="dir:top main:justify">
         <v-base-title-box title="网格架构概览">
-          <div flex="main:center cross:center wrap:wrap" class="pt-20" style="width: 100%">
+          <div flex="main:center cross:center wrap:wrap">
             <v-base-count3 text="网格员数" :num="28" style="width: 50%">
               <img class="left-img" src="../images/cun/left-img1.png" alt="">
             </v-base-count3>
@@ -48,7 +48,7 @@
           </div>
           <img class="card-bottom" src="../images/panel-bottom.png" alt="">
         </v-base-title-box>
-        <v-base-title-box title="数据总览" box-height="630px">
+        <v-base-title-box title="数据总览">
           <div flex="main:center cross:center" class="pt-20">
             <v-base-count1 text="基本信息数量" :num="20153"></v-base-count1>
             <v-base-count1 text="正面信息数量" :num="10235"></v-base-count1>
@@ -60,7 +60,8 @@
             <v-base-count1 text="志愿信息量" :num="3654"></v-base-count1>
           </div>
           <img class="card-bottom" src="../images/panel-bottom.png" alt="">
-          <div style="width: 100%;height: 260px;margin-top: 40px" id="pieChart"></div>
+          <div style="width: 100%;height: 260px;margin-top: 20px" id="pieChart"></div>
+          <img class="card-bottom" src="../images/panel-bottom.png" alt="">
         </v-base-title-box>
       </div>
     </template>

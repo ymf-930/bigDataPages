@@ -31,7 +31,7 @@
     <template v-slot:left>
       <div class="left-box" flex="dir:top main:justify">
         <v-base-title-box title="网格架构概览">
-          <div flex="main:center cross:center box:mean" class="pt-20">
+          <div flex="main:center cross:center box:mean" class="pt-20" style="width: 100%">
             <v-base-count3 text="社区数" :num="2258">
               <img class="left-img" src="../images/zhen/left-img1.png" alt="">
             </v-base-count3>
@@ -42,7 +42,7 @@
               <img class="left-img" src="../images/zhen/left-img4.png" alt="">
             </v-base-count3>
           </div>
-          <div flex="main:center cross:center box:mean" class="pt-20">
+          <div flex="main:center cross:center box:mean" class="pt-20" style="width: 100%">
             <v-base-count3 text="户数" :num="1328">
               <img class="left-img" src="../images/zhen/left-img3.png" alt="">
             </v-base-count3>
@@ -61,7 +61,7 @@
       <div class="center-box" flex="dir:top main:justify">
         <div class="center-con-bg">
           <v-base-title-box title="数据总览">
-            <div flex="main:center cross:center" class="p5">
+            <div flex="main:center cross:center" class="p20" style="width: 100%">
               <div class="left-content">
                 <div style="width: 100%;height: 220px" id="pieChart"></div>
               </div>
@@ -90,10 +90,8 @@
         </div>
         <div class="center-con-bg">
           <v-base-title-box title="清廉指数排行">
-            <div flex="dir:top main:center">
-              <div style="width: 100%;height: 480px;margin-top: 20px" id="barChart"></div>
-              <img class="card-bottom" src="../images/panel-bottom.png" alt="">
-            </div>
+            <div style="width: 100%;height: 480px;margin-top: 20px" id="barChart"></div>
+            <img class="card-bottom" src="../images/panel-bottom.png" alt="">
           </v-base-title-box>
         </div>
       </div>

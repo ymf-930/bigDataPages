@@ -10,6 +10,8 @@ var pieData = [
   {name: '正负面信息', percent: 21.63, value: 3321},
   {name: '志愿捐赠信息', percent: 20.28, value: 3113}
 ]
+const totalNum = 17520
+const imageUrl = '../images/zhen/pie-bg.png'
 // 柱状图数据
 var barData = {
   xData: ['xx村1', 'xx村2', 'xx村3', 'xx村4', 'xx村5', 'xx村6', 'xx村7', 'xx村8', 'xx村9'],
@@ -119,9 +121,20 @@ function initBarOptions(data) {
 function getPieData(chartData) {
   return {
     title: {
-      text: '',
-      subtext: '',
-      left: 'right'
+      text: totalNum,
+      subtext: '信息总数',
+      textStyle: {
+        fontSize: 18,
+        color: '#ef9c00'
+      },
+      subtextStyle: {
+        fontSize: 14,
+        color: '#fff',
+        lineHeight: 20
+      },
+      textAlign: 'center',
+      top: '38%',
+      left: '48%',
     },
     color: ['#2094f8', '#e59d0b', '#04dbfc'],
     tooltip: {
@@ -130,12 +143,24 @@ function getPieData(chartData) {
     legend: {
       show: false
     },
+    graphic: { // 这个属性可以在饼图内部填充图片,文字等
+      elements: [{
+        type: 'image',//需要填充图片,配置image,如果不需要图片可以配置其他的, text, circle, sector, ring, polygon, polyline, rect, line, bezierCurve, arc, group,
+        style: {
+          image: imageUrl, //这里添加图片地址
+          width: 226,
+          height: 230
+        },
+        left: 'center',
+        top: 'middle' //配置图片居中
+      }]
+    },
     series: initPieSeries(chartData)
   }
 }
 
 // 根据类型加载数据信息
-function initChartData(val) {
+function initChartData() {
   pieChart = echarts.init(pieDom);
   pieChart.setOption(getPieData(pieData))
   barChart = echarts.init(barDom);

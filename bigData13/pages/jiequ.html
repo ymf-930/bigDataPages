@@ -7,7 +7,7 @@
   <!--bin-ui-->
   <link rel="stylesheet" href="../utils/lib/bin-ui@3.8.0/styles/index.css">
 
-  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../utils/lib/swiper/swiper.min.css">
   <link rel="stylesheet" href="../styles/base-layout.css">
   <link rel="stylesheet" href="../styles/base-title.css">
   <link rel="stylesheet" href="../styles/jiequ/jiequ.css">
@@ -58,10 +58,16 @@
     </template>
     <template v-slot:center>
       <div class="center-box" flex="dir:top main:justify cross:center">
-        <div class="center-top" flex="main:justify cross:center">
-          <img class="left-icon" src="../images/btn-icon.svg" alt="">
-          <div class="title">张三使用1260积分兑换1652小时时长</div>
-          <img class="right-icon" src="../images/btn-icon.svg" alt="">
+        <div class="center-top" flex="cross:center">
+          <div class="swiper-container top-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide title">张三使用1260积分兑换1652小时时长1</div>
+              <div class="swiper-slide title">张三使用1260积分兑换1652小时时长2</div>
+              <div class="swiper-slide title">张三使用1260积分兑换1652小时时长3</div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
         </div>
         <div class="center-container" flex="dir:top main:justify cross:center">
           <div style="width: 70%;height: 360px;" id="barChart2"></div>
@@ -101,6 +107,7 @@
     el: '#app',
     data: function () {
       return {
+        value1:0,
         // 桓台信用商区列表
         xysqColumns: [
           {
@@ -243,6 +250,18 @@
 
     },
     mounted: function () {
+      var swiper = new Swiper('.swiper-container',{
+        slidesPerView: 1,//设置slider容器能够同时显示的slides数量,默认显示3行
+        spaceBetween: 0,//间距为0
+        // loop: true,//循环滚动
+        // autoplay: {//匀速滚动
+        //   delay: 2000,//间隔时间2000毫秒
+        // },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
 
     },
     methods: {

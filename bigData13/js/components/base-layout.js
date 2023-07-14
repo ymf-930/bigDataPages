@@ -1,6 +1,6 @@
 Vue.component('v-base-layout', {
   template: `
-    <div class="page-content" flex="dir:column">
+    <div class="page-content" flex="dir:top">
       <div class="header" flex="main:center">
           <div class="tab-center">{{title}}</div>
           <div id="time" class="time"></div>
@@ -24,6 +24,7 @@ Vue.component('v-base-layout', {
               <slot name="right"></slot>
           </div>
       </div>
+      <img class="bottom-img" src="../images/bottom-bg.png" alt="">
     </div>`,
   props: {
     title: {

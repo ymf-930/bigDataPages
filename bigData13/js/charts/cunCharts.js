@@ -1,4 +1,3 @@
-// 柱状图
 /*网格架构概览*/
 var pieDom = document.getElementById("pieChart")
 var pieChart = echarts.init(pieDom)
@@ -52,8 +51,8 @@ function getPieData(chartData) {
       trigger: 'item'
     },
     legend: {
-      x : 'center',
-      y : 'bottom',
+      left: 'center',
+      bottom: '20',
       itemGap: 20, // 间隔
       //设置icon的大小
       icon: 'roundRect',

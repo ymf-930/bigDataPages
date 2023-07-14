@@ -1,5 +1,3 @@
-// 柱状图
-var select = 'nat'
 // 评价等级分布情况
 var pjdjDom = document.getElementById("barChart");
 var pjdjChart = echarts.init(pjdjDom);
@@ -46,6 +44,7 @@ function initBar1Series(data) {
   })
 }
 
+// 中间3D柱状图相关配置
 const offsetX = 34.8;
 const offsetY = 17.4;
 // 绘制左侧面

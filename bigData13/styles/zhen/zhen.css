@@ -9,7 +9,7 @@
     height: 63px;
     margin-right: 10px;
 }
-.left-box .card-bottom{
+.card-bottom{
     display: block;
     width: 100%;
     height: auto;
@@ -84,14 +84,14 @@
 }
 
 .right-content .right-item:nth-child(2) {
-    background-image: url("../../images/zhen/center-top-bg1.png");
+    background-image: url("../../images/zhen/center-top-bg2.png");
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .right-content .right-item:nth-child(3) {
-    background-image: url("../../images/zhen/center-top-bg1.png");
+    background-image: url("../../images/zhen/center-top-bg3.png");
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;

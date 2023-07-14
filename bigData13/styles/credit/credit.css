@@ -43,7 +43,8 @@
 }
 
 .center-box .card-list-box {
-    width: 100%;
+    width: 95%;
+    margin: 0 auto;
 }
 
 .center-box .card-list-box .card-item {

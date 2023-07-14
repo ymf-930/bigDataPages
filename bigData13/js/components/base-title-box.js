@@ -5,7 +5,9 @@ Vue.component('v-base-title-box', {
            {{title}}
            <div class="button" v-if="showBtn" @click="getDetail">详情</div>
         </div>
-        <slot></slot>
+        <div class="content-box" flex="dir:top main:center cross:center">
+            <slot></slot>
+        </div>
     </div>`,
     props: {
         title: {
