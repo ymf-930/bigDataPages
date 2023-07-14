@@ -1,0 +1,32 @@
+.title-con {
+  width: 100%;
+  border-radius: 20px;
+  padding: 12px;
+}
+
+.title-con-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;;
+  height: 36px;
+  width: 100%;
+  background-image: url("../../img/title.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.title-con-jt-con {
+  margin-left: 20px;
+}
+
+.title-con-title span {
+  margin-left: 30px;
+  font-size: 18px;
+  font-family: YouSheBiaoTiHei,sans-serif;
+  color: #ffffff;
+}
+
+.title-con-icon {
+  margin-right: 20px;
+}

@@ -45,6 +45,13 @@
 ![img_32.png](./Screenshot/img_32.png)
 ##### bigData12：
 ![img_33.png](./Screenshot/img_33.png)
+##### bigData13：
+![img_34.png](./Screenshot/img_34.png)
+![img_35.png](./Screenshot/img_35.png)
+![img_36.png](./Screenshot/img_36.png)
+![img_37.png](./Screenshot/img_37.png)
+##### bigData14：
+![img_38.png](./Screenshot/img_38.png)
 ##### ncloud-ui：
 ![img_15.png](./Screenshot/img_15.png)
 ![img_16.png](./Screenshot/img_16.png)

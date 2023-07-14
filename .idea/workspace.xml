@@ -4,9 +4,90 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c529615e-fcfb-47d9-bbf8-af9565613994" name="更改" comment="桓台大数据完成代码提交">
+    <list default="true" id="c529615e-fcfb-47d9-bbf8-af9565613994" name="更改" comment="新增薛城大数据页面">
+      <change afterPath="$PROJECT_DIR$/Screenshot/img_34.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Screenshot/img_35.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Screenshot/img_36.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Screenshot/img_37.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Screenshot/img_38.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/css/common/count-data.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/css/common/countDataEvo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/css/common/layout.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/css/common/listSwiper.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/css/common/tableSwiper.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/css/common/titleCircle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/css/common/titleCon.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/css/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/fonts/YouSheBiaoTiHei-2.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/bg01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/dz01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/dz02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/five.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/four.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/list.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/list_title_bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/map02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/one.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/score.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/star1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/star2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/star3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/star4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/star5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/three.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/title.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/top.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/two.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/img/zero.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/axios.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/bin-ui@3.8.0/bin-ui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/bin-ui@3.8.0/styles/base.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/bin-ui@3.8.0/styles/fonts/iconfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/bin-ui@3.8.0/styles/fonts/iconfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/bin-ui@3.8.0/styles/fonts/iconfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/bin-ui@3.8.0/styles/fonts/iconfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/bin-ui@3.8.0/styles/fonts/iconfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/bin-ui@3.8.0/styles/icon.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/bin-ui@3.8.0/styles/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/echarts/echarts-wordcloud.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/echarts/echarts.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/echarts/extension/bmap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/echarts/geoCoordMap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/echarts/map/china.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/echarts/v-charts/index.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/echarts/v-charts/style.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/element-ui@2.9.1/fonts/element-icons.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/element-ui@2.9.1/fonts/element-icons.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/element-ui@2.9.1/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/element-ui@2.9.1/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/es6-promise.auto.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/jquery/jquery-3.2.1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/jquery/jquery-3.2.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/jquery/jquery-3.2.1.min.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/jquery/jquery-x.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/lodash.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/mixin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/mock.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/swiper/swiper.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/swiper/swiper.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/velocity.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/vue-count-to/vue-count-to.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/vue-count-to/vue-count-to.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/assets/lib/vue.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/components/common/count-data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/components/common/countDataEvo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/components/common/layout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/components/common/listSwiper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/components/common/tableSwiper.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/components/common/titleCircle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/components/common/titleCon.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/js/charts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/pages/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bigData14/效果图.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bigData13/pages/zhen.html" beforeDir="false" afterPath="$PROJECT_DIR$/bigData13/pages/zhen.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +154,7 @@
       <workItem from="1689207775930" duration="5106000" />
       <workItem from="1689217510807" duration="16855000" />
       <workItem from="1689254062052" duration="4835000" />
-      <workItem from="1689293685216" duration="13236000" />
+      <workItem from="1689293685216" duration="14057000" />
     </task>
     <task id="LOCAL-00001" summary="新增大数据页面">
       <created>1685537722023</created>
@@ -124,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689306128734</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="桓台大数据问题修复">
+      <created>1689312796021</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1689312796021</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +237,8 @@
     <MESSAGE value="桓台大数据代码优化" />
     <MESSAGE value="桓台大数据代码柱状图代码优化" />
     <MESSAGE value="桓台大数据完成代码提交" />
-    <option name="LAST_COMMIT_MESSAGE" value="桓台大数据完成代码提交" />
+    <MESSAGE value="桓台大数据问题修复" />
+    <MESSAGE value="新增薛城大数据页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增薛城大数据页面" />
   </component>
 </project>

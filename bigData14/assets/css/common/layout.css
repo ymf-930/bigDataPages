@@ -1,0 +1,27 @@
+.layout {
+  height: 1462px;
+  background-image: url('../../img/background.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.global-head {
+  position: relative;
+  height: 116px;
+  width: 100%;
+  background-image: url(../../img/top.png);
+  background-repeat: no-repeat;
+}
+.global-head .title{
+  font-size: 42px;
+  color: #fff;
+  padding-top: 20px;
+  text-align: center;
+  letter-spacing: 20px;
+  font-family: YouSheBiaoTiHei,sans-serif;
+}
+.content {
+  margin-top: 20px;
+  padding: 0 16px;
+  height: calc(100% - 118px);
+}

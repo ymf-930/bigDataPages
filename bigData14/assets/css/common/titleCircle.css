@@ -1,0 +1,24 @@
+.title-circle-box {
+    display: inline-block;
+    margin: 15px 0;
+}
+
+.title-circle {
+    width: 121px;
+    height: 123px;
+    display: flex;
+    flex-wrap: wrap;;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+span {
+    color: rgba(255, 255, 255, 1);
+    font-size: 14px;
+    line-height: 150%;
+    font-weight: bold;
+}

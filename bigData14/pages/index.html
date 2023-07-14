@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" type="text/css" href="../assets/lib/bin-ui@3.8.0/styles/index.css">
+
+  <link rel="icon" href="../favicon.ico"/>
+  <link rel="stylesheet" type="text/css" href="../assets/css/index.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/common/layout.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/common/titleCon.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/common/tableSwiper.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/common/listSwiper.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/common/count-data.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/common/countDataEvo.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/common/titleCircle.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/index.css">
+  <script src="../assets/lib/vue.min.js"></script>
+  <script src="../assets/lib/axios.min.js"></script>
+  <script src="../assets/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../assets/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+  <script src="../assets/lib/echarts/echarts.min.js"></script>
+  <script src="../assets/lib/swiper/swiper.min.js"></script>
+  <script src="../assets/lib/vue-count-to/vue-count-to.min.js"></script>
+
+
+  <title>薛城公共信用信息平台</title>
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <layout head-title="薛城公共信用信息平台">
+    <div flex="main:justify">
+      <div class="left-box">
+        <div flex="main:justify">
+          <title-con title="榴花·薛城分等级分布情况" style="margin-bottom: 20px;" :padding="'25px 0 10px 0'">
+            <table-swiper
+                :columns="fbColumns"
+                :table-data="fbData"
+                :show-colors="true"
+                :line-height="45"
+                :space-between="5"
+            ></table-swiper>
+          </title-con>
+          <title-con title="法人、非法人行业等级情况" style="margin-bottom: 20px;" :padding="'25px 0 10px 0'">
+            <table-swiper
+                :columns="fbColumns"
+                :table-data="fbData"
+                :show-colors="true"
+                :line-height="45"
+                :space-between="5"
+            ></table-swiper>
+          </title-con>
+        </div>
+        <div flex="main:justify">
+          <title-con title="自然人信用信息类型占比" style="margin-bottom: 20px;">
+            <div id="pieChart1"></div>
+          </title-con>
+          <title-con title="法人信用信息类型占比" style="margin-bottom: 20px;">
+            <div id="pieChart2"></div>
+          </title-con>
+        </div>
+        <div>
+          <title-con title="榴花·红黑各单统计" width="830px" style="margin-bottom: 20px;" :padding="'25px 0 10px 0'">
+            <div flex="main:justify">
+              <div flex="dir:top" class="tj-box">
+                <div flex="cross:center" class="pt-10 pb-10">
+                  <div class="left">
+                    <img src="../assets/img/list.png" alt="">
+                  </div>
+                  <div class="right" flex="dir:top">
+                    <div class="text-box">
+                      <div class="text">红名单</div>
+                    </div>
+                    <div class="num-box" flex="main:center cross:center">
+                      <count-to class='num' :start-val='0' separator :end-val='redNum' :duration='2000'></count-to>
+                      <div class="unit">（个）</div>
+                    </div>
+                  </div>
+                </div>
+                <div flex="wrap:wrap">
+                  <div class="item-box" v-for="(item,index) in redlList" :key="index">
+                    <div class="name">{{item.title}}</div>
+                    <div flex="cross:center">
+                      <count-to class='num' :start-val='0' separator :end-val='item.num' :duration='2000'></count-to>
+                      <div class="unit">（个）</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div flex="dir:top" class="tj-box">
+                <div flex="cross:center" class="pt-10 pb-10">
+                  <div class="left">
+                    <img src="../assets/img/list.png" alt="">
+                  </div>
+                  <div class="right" flex="dir:top">
+                    <div class="text-box">
+                      <div class="text">黑名单</div>
+                    </div>
+                    <div class="num-box" flex="main:center cross:center">
+                      <count-to class='num' :start-val='0' separator :end-val='blackNum' :duration='2000'></count-to>
+                      <div class="unit">（个）</div>
+                    </div>
+                  </div>
+                </div>
+                <div flex="wrap:wrap">
+                  <div class="item-box" v-for="(item,index) in blackList" :key="index">
+                    <div class="name">{{item.title}}</div>
+                    <div flex="cross:center">
+                      <count-to class='num' :start-val='0' separator :end-val='item.num' :duration='2000'></count-to>
+                      <div class="unit">（个）</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <img class="bottom-img" src="../assets/img/dz01.png" width="830" height="48" alt="">
+          </title-con>
+        </div>
+      </div>
+      <div class="center-box">
+        <div class="info-box" flex="main:justify">
+            <count-data-evo :num="589.15" count-title="榴花·薛城分平均分"></count-data-evo>
+            <count-data-evo :num="997.44" count-title="法人·非法人平均分"></count-data-evo>
+            <count-data-evo :num="1003.15" count-title="农村居民平均分"></count-data-evo>
+            <count-data-evo :num="1002.13" count-title="社区居民平均分"></count-data-evo>
+            <count-data-evo :num="1001.35" count-title="政务诚信平均分"></count-data-evo>
+        </div>
+        <div class="chart-box">
+          <img src="../assets/img/map02.png" class="map" alt="">
+          <count-data class="count-data1" :num="75993"></count-data>
+          <count-data class="count-data2" :num="52374"></count-data>
+          <count-data class="count-data3" :num="764661"></count-data>
+          <count-data class="count-data4" :num="103284"></count-data>
+          <count-data class="count-data5" :num="78602"></count-data>
+          <count-data class="count-data6" :num="71464"></count-data>
+          <count-data class="count-data7" :num="33065"></count-data>
+        </div>
+        <div class="card-box" flex="main:justify">
+          <div class="card">
+            <div class="title">榴花·薛城分注册情况</div>
+            <div class="list-content">
+              <list-swiper :columns="listColumns" :list-data="listData" :show-colors="true" :slides-num="8"
+                           :line-height="50"></list-swiper>
+            </div>
+          </div>
+          <div class="card">
+            <div class="title">榴花·薛城分平均分</div>
+            <div class="list-content">
+              <list-swiper :columns="listColumns" :list-data="listData" :show-colors="true" :slides-num="8"
+                           :line-height="50" unit="分"></list-swiper>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="right-box">
+        <div flex="main:justify">
+          <title-con title="居民信用等级分布情况" style="margin-bottom: 20px;" :padding="'25px 0 10px 0'">
+            <title-circle
+                v-for="item in starDataList1"
+                :circle-img="item.imgUrl"
+                :text="item.text"
+                :value="item.value"
+                :rate="item.rate"
+                :color="item.color"
+            ></title-circle>
+          </title-con>
+          <title-con title="公职人员信用等级分布情况" style="margin-bottom: 20px;" :padding="'25px 0 10px 0'">
+            <list-swiper
+                :columns="gzryColumns"
+                :list-data="gzryData"
+                :show-colors="true"
+                :line-height="56"
+                :space-between="10"
+                unit="分">
+            </list-swiper>
+          </title-con>
+        </div>
+        <div flex="main:justify">
+          <title-con title="居民信用等级分布情况" style="margin-bottom: 20px;" :padding="'25px 0 10px 0'">
+            <title-circle
+                v-for="item in starDataList1"
+                :circle-img="item.imgUrl"
+                :text="item.text"
+                :value="item.value"
+                :rate="item.rate"
+                :color="item.color"
+            ></title-circle>
+          </title-con>
+          <title-con title="信用指数排名" style="margin-bottom: 20px;">
+            <div id="barChart1"></div>
+          </title-con>
+        </div>
+        <div flex="main:justify">
+          <title-con title="居民信用积分事项分析" style="margin-bottom: 20px;">
+            <div id="barChart2"></div>
+            <img class="bottom-img" src="../assets/img/dz02.png" width="386" height="24" alt="">
+          </title-con>
+          <title-con title="公职人员积分事项分新" style="margin-bottom: 20px;">
+            <div id="barChart3"></div>
+            <img class="bottom-img" src="../assets/img/dz02.png" width="386" height="24" alt="">
+          </title-con>
+        </div>
+      </div>
+    </div>
+  </layout>
+</div>
+
+<script src="../components/common/layout.js"></script>
+<script src="../components/common/titleCon.js"></script>
+<script src="../components/common/tableSwiper.js"></script>
+<script src="../components/common/listSwiper.js"></script>
+<script src="../components/common/count-data.js"></script>
+<script src="../components/common/countDataEvo.js"></script>
+<script src="../components/common/titleCircle.js"></script>
+
+
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        redNum:14370,
+        blackNum:5495,
+        fbColumns: [
+          {title: '等级', key: 'level'},
+          {title: '数量', key: 'num'},
+          {title: '占比', key: 'rate'}
+        ],
+        fbData: [
+          {level: 'AAA级', num: 8, rate: '1%',},
+          {level: 'AA级', num: 10119, rate: '0.21%',},
+          {level: 'A级', num: 7795, rate: '1.65%',},
+          {level: 'B级', num: 452245, rate: '96.19%',},
+          {level: 'C级', num: 213, rate: '0.00%',},
+          {level: 'D级', num: 536, rate: '0.00%',}
+        ],
+        // 榴花·薛城分等级分布情况数据
+        // 法人、作法人行业等级情况数据
+        listColumns: [
+          {title: '名称', key: 'text'},
+          {title: '人数', key: 'num'}
+        ],
+        listData: [
+          {text: '陶庄镇', num: 4386,},
+          {text: '邹坞镇', num: 3645,},
+          {text: '临城街道', num: 7973,},
+          {text: '常庄街道', num: 29126,},
+          {text: '沙沟镇', num: 2779,},
+          {text: '周营镇', num: 2569,},
+          {text: '新城街道', num: 32927,},
+          {text: '其他', num: 21019,},
+        ],
+        // 公职人员信用等级分布情况数据
+        gzryColumns: [
+          {title: '等级', key: 'level'},
+          {title: '名称', key: 'text'},
+          {title: '人数', key: 'num'}
+        ],
+        gzryData: [
+          {level: '../assets/img/star5.png', text: '陶庄镇', num: 4386,},
+          {level: '../assets/img/star5.png', text: '邹坞镇', num: 3645,},
+          {level: '../assets/img/star3.png', text: '临城街道', num: 7973,},
+          {level: '../assets/img/star2.png', text: '常庄街道', num: 29126,},
+          {level: '../assets/img/star1.png', text: '沙沟镇', num: 2779,},
+        ],
+        //居民信用等级分布情况数据
+        starDataList1:[
+          {
+            text: '五星',
+            value: 11,
+            rate: '0%',
+            color:'#15f2ff',
+            imgUrl:'../assets/img/five.png'
+          },
+          {
+            text: '四星',
+            value: 425,
+            rate: '0.07%',
+            color:'#00fcba',
+            imgUrl:'../assets/img/four.png'
+          },
+          {
+            text: '三星',
+            value: 232352,
+            rate: '99.9%',
+            color:'#ff9400',
+            imgUrl:'../assets/img/three.png'
+          },
+          {
+            text: '二星',
+            value: 11,
+            rate: '0%',
+            color:'#ffde00',
+            imgUrl:'../assets/img/two.png'
+          },
+          {
+            text: '一星',
+            value: 11,
+            rate: '0%',
+            color:'#f72554',
+            imgUrl:'../assets/img/one.png'
+          },
+          {
+            text: '零星',
+            value: 0,
+            rate: '0%',
+            color:'#6471fd',
+            imgUrl:'../assets/img/zero.png'
+          },
+        ],
+        redlList: [
+          {
+            title: 'A级纳税人',
+            num: 3787
+          },
+          {
+            title: '物业企业红名单',
+            num: 32435
+          },
+          {
+            title: '自然人红名单',
+            num: 6767856
+          },
+          {
+            title: '法人红名单',
+            num: 1323
+          },
+        ],
+        blackList: [
+          {
+            title: '限制消费红名单',
+            num: 99493
+          },
+          {
+            title: '严重失信黑名单',
+            num: 99493
+          },
+          {
+            title: '经营异常名录信息',
+            num: 99493
+          },
+          {
+            title: '失信被执行人名单',
+            num: 99493
+          },
+        ]
+
+      }
+    },
+    created() {
+      console.log('in vue')
+    },
+    methods: {}
+  })
+</script>
+
+<!-- 图表 -->
+<script src="../js/charts.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+.count-data-box{
+    margin: 10px;
+}
+.count-data-box .text-box{
+    padding: 16px 0;
+}
+.count-data-box .text-box img{
+    display: block;
+    width: 32px;
+    height: 33px;
+}
+.count-data-box .text-box .title{
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    padding-left: 10px;
+}
+.count-data-box .count-data {
+    text-align: center;
+    padding: 5px 0;
+}
+
+.count-data-box .count-data .count-data-comp {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+}
+
+.count-data-box .count-data .unit {
+    font-size: 18px;
+    color: #fff;
+}
