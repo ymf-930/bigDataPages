@@ -6,11 +6,14 @@ Vue.component('v-base-table', {
         </div>
         <div :ref="tableName" class="table-container" :style="{height:height?height+'px':lineHeight*slidesNum+'px'}">
           <ul class="swiper-wrapper">
-            <div class="swiper-slide li" :class="disabledHover?'noHover':''" v-for="(item,index) in tableData" :style="{height:lineHeight+'px',lineHeight:lineHeight+'px'}">
-              <div class="span" v-for="(citem,cindex) in columns" :data-tiem="index">
-                  <span v-if="hasSort && showColorIndex" :class="[cindex===0 ? ['rect', 'color-span'+index] : showColorIndex.includes(cindex) ? 'text'+index : 'span']">{{ item[citem.key] }}</span>
-                  <span v-else-if="showColorIndex" :class="[showColorIndex.includes(cindex) ? 'text'+index : 'span']">{{ item[citem.key] }}</span>
-                  <span v-else>{{ item[citem.key] }}</span>
+            <div class="swiper-slide li"
+                 :class="disabledHover?'noHover':''" 
+                 v-for="(item,index) in tableData" 
+                 :style="{height:lineHeight+'px',lineHeight:lineHeight+'px'}">
+              <div class="span" v-for="(citem,cindex) in columns">
+                  <span v-if="hasSort && showColorIndex" :data-tiem="item[tiemKey]" :class="[cindex===0 ? ['rect', 'color-span'+index] : showColorIndex.includes(cindex) ? 'text'+index : 'span']">{{ item[citem.key] }}</span>
+                  <span v-else-if="showColorIndex" :data-tiem="item[tiemKey]" :class="[showColorIndex.includes(cindex) ? 'text'+index : 'span']">{{ item[citem.key] }}</span>
+                  <span v-else :data-tiem="item[tiemKey]">{{ item[citem.key] }}</span>
               </div>
             </div>
           </ul>
@@ -27,7 +30,7 @@ Vue.component('v-base-table', {
     },
     showColorIndex: {
       type: Array,
-      default: []
+      // default: []
     },
     // 表格列表
     columns: {
@@ -61,7 +64,11 @@ Vue.component('v-base-table', {
     },
     disabledHover:{
       type: Boolean,
-      default: true
+      default: false
+    },
+    tiemKey:{
+      type: String,
+      default: 'name'
     }
   },
   data() {
@@ -84,8 +91,9 @@ Vue.component('v-base-table', {
       preventLinksPropagation:false,
       on:{
         click: function(e){
-          const index = e.target.dataset.tiem
-          _this.SelectOne(index)
+          const code = e.target.dataset.tiem
+          console.log(code);
+          _this.SelectOne(code)
         },
       },
     })
@@ -94,6 +102,6 @@ Vue.component('v-base-table', {
   methods: {
     SelectOne(index) {
       this.$emit('select', this.tableData[index])
-    }
+    },
   }
 })

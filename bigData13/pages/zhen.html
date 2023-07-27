@@ -105,7 +105,13 @@
           <v-base-table :columns="jmxypmColumns" :table-data="jmxypmData" :show-color-index="[0,1]" has-sort></v-base-table>
         </v-base-title-box>
         <v-base-title-box title="网格信用分排名">
-          <v-base-table :columns="wgxypmColumns" :table-data="wgxypmData" :show-color-index="[0,1]" has-sort></v-base-table>
+          <v-base-table
+              :columns="wgxypmColumns"
+              :table-data="wgxypmData"
+              :show-color-index="[0,1]"
+              has-sort
+              tiem-key="ssjd">
+          </v-base-table>
         </v-base-title-box>
       </div>
     </template>
