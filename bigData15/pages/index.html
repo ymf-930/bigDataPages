@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>公共信用管理平台系统概况</title>
+  <!--bin-ui-->
+  <link rel="stylesheet" href="../assets/lib/bin-ui@3.8.0/styles/index.css">
+  <link rel="stylesheet" href="../assets/lib/swiper/swiper.min.css">
+
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/base-layout.css">
+  <link rel="stylesheet" href="../styles/base-panel-box.css">
+  <link rel="stylesheet" href="../styles/base-table.css">
+  <link rel="stylesheet" href="../styles/base-count-data.css">
+  <link rel="stylesheet" href="../styles/base-count-data2.css">
+  <link rel="stylesheet" href="../styles/index.css">
+
+  <script src="../assets/lib/vue.min.js"></script>
+  <script src="../assets/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script src="../assets/lib/bin-ui@3.8.0/bin-ui.min.js"></script>
+  <script src="../assets/lib/swiper/swiper.min.js"></script>
+  <script src="../assets/lib/vue-count-to/vue-count-to.min.js"></script>
+
+</head>
+<body>
+
+<div id="app" v-cloak>
+  <v-base-layout :title="title">
+    <template v-slot:left>
+      <div flex="dir:column main:justify" class="left-box">
+        <v-base-panel-box title="数据统计分析">
+          <div class="panel1-title gradient1">自然人数据归集统计</div>
+          <div flex="main:justify" class="panel-box1">
+            <div flex="cross:center">
+              <img src="../assets/images/sex-img.png" alt="">
+              <div class="pl-10">
+                <div class="text">男性</div>
+                <div class="value gradient2" :title="manValue">
+                  <count-to :start-val="0" separator :end-val="manValue" :duration='2000'></count-to>
+                </div>
+              </div>
+            </div>
+            <div flex="cross:center">
+              <img src="../assets/images/sex-img.png" alt="">
+              <div class="pl-10">
+                <div class="text">女性</div>
+                <div class="value gradient2" :title="womenValue">
+                  <count-to :start-val="0" separator :end-val="womenValue" :duration='2000'></count-to>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel1-title gradient1">法人数据归集统计</div>
+          <div class="top-box" flex="main:center cross:center">
+            <div class="top-item" v-for="(item, index) in gjtjData" :key="index">
+              <div class="text">{{item.text}}</div>
+              <div class="value gradient2" :title="item.value">
+                <count-to :start-val="0" separator :end-val="item.value" :duration='2000'></count-to>
+              </div>
+            </div>
+          </div>
+        </v-base-panel-box>
+        <v-base-panel-box title="资源信息分类统计">
+          <div id="barChart1"></div>
+        </v-base-panel-box>
+        <v-base-panel-box title="数据归集趋势分析">
+          <div id="lineChart1"></div>
+        </v-base-panel-box>
+      </div>
+    </template>
+    <template v-slot:center>
+      <div flex="dir:column main:justify" class="center-box">
+        <div class="data-box-box">
+          <v-base-count-data title="数据归集总量" :num="num"></v-base-count-data>
+        </div>
+        <div class="center-container" flex="dir:column main:center cross:center">
+          <div style="width: 90%;height: 90%" id="mapChart"></div>
+        </div>
+      </div>
+    </template>
+    <template v-slot:right>
+      <div flex="dir:column main:justify" class="right-box">
+        <v-base-panel-box title="双公示数据归集情况">
+          <v-base-count-data2 :num="num2"></v-base-count-data2>
+          <div class="panel-bottom" flex="main:center cross:center">
+            <div class="bottom-item" v-for="(item, index) in centerData" :key="index">
+              <img :src="getImgUrl(index)" alt="">
+              <div class="text">{{item.name}}</div>
+              <div class='value gradient2' :title="item.value">
+                <count-to :start-val="0" separator :end-val="item.value" :duration='2000'></count-to>
+              </div>
+            </div>
+          </div>
+        </v-base-panel-box>
+        <v-base-panel-box title="部门双公示上报统计">
+          <v-base-table :columns="sbtjColumns" :table-data="sbtjData" has-sort :show-color-index="[0,1]"></v-base-table>
+        </v-base-panel-box>
+        <v-base-panel-box title="重点领域信用监测">
+          <div id="barChart2"></div>
+        </v-base-panel-box>
+      </div>
+    </template>
+  </v-base-layout>
+</div>
+<script src="../js/components/base-layout.js"></script>
+<script src="../js/components/base-panel-box.js"></script>
+<script src="../js/components/base-table.js"></script>
+<script src="../js/components/base-count-data.js"></script>
+<script src="../js/components/base-count-data2.js"></script>
+
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        title: '海晏县公共信用管理平台系统概况',
+        num: '80369147',
+        num2: '45601239',
+        manValue: '1256', // 男性数据
+        womenValue: '1256', // 女性数据
+        // 法人数据归集统计
+        gjtjData: [
+          {
+            text: '企业法人',
+            value: '6',
+          },
+          {
+            text: '个体工商户',
+            value: '6',
+          },
+          {
+            text: '部门及事业单位',
+            value: '102',
+          },
+          {
+            text: '其他',
+            value: '28',
+          },
+        ],
+        centerData: [
+          {name: '市场主体基本信息', value: 406571},
+          {name: '知识产权信息', value: 382194},
+          {name: '信用承诺信息', value: 2301382},
+          {name: '行政管理信息', value: 680648}
+        ],
+        // 部门双公示上报统计
+        sbtjColumns: [
+          {
+            title: '排行',
+            key: 'rank',
+            align: 'center',
+            minWidth: 80,
+            tooltip: true
+          },
+          {
+            title: '部门名称',
+            key: 'name',
+            align: 'center',
+            minWidth: 80,
+            tooltip: true
+          },
+          {
+            title: '上报数据',
+            key: 'num',
+            align: 'center'
+          }
+        ],
+        // 部门双公示上报统计表格数据
+        sbtjData: [
+          {
+            rank: '1',
+            name: '部门名称1',
+            num: '1329',
+          },
+          {
+            rank: '2',
+            name: '部门名称2',
+            num: '1329',
+          },
+          {
+            rank: '3',
+            name: '部门名称3',
+            num: '1329',
+          },
+          {
+            rank: '4',
+            name: '部门名称4',
+            num: '1329',
+          },
+          {
+            rank: '5',
+            name: '部门名称5',
+            num: '1329',
+          },
+          {
+            rank: '6',
+            name: '部门名称6',
+            num: '1329',
+          }
+        ],
+      }
+    },
+    created: function () {
+
+    },
+    mounted: function () {
+
+    },
+    methods: {
+      getImgUrl(index) {
+        return '../assets/images/center-bottom-item' + (index + 1) + '.png';
+      }
+    }
+  })
+</script>
+<!--echarts-->
+<script src="../assets/lib/echarts/echarts.min.js"></script>
+<!-- 图表 -->
+<script src="../js/charts/charts.js"></script>
+<script src="../js/charts/city.js"></script>
+</body>
+</html>

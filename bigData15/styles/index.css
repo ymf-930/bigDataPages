@@ -1,0 +1,148 @@
+@font-face {
+  font-family: "YouSheBiaoTiHei";
+  src: url("../assets/fonts/YouSheBiaoTiHei-2.ttf") format('truetype');
+}
+#app #barChart1 {
+  width: 100%;
+  height: 235px;
+}
+#app #barChart2 {
+  width: 100%;
+  height: 230px;
+}
+#app #lineChart1 {
+  width: 100%;
+  height: 235px;
+}
+#app .left-box .panel1-title {
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
+  font-family: YouSheBiaoTiHei, sans-serif;
+}
+#app .left-box .panel-box1 {
+  margin-bottom: 9px;
+}
+#app .left-box .panel-box1 img {
+  display: block;
+  width: 113px;
+  height: 93px;
+}
+#app .left-box .panel-box1 .text {
+  color: #fff;
+  font-size: 16px;
+}
+#app .left-box .panel-box1 .value {
+  font-size: 22px;
+  font-weight: bold;
+  width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#app .left-box .top-box {
+  width: 100%;
+  height: 60px;
+  background-image: url("../assets/images/top-box-bg.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+#app .left-box .top-box .top-item {
+  flex: 1;
+  padding: 0 8px;
+  text-align: center;
+  border-right: 1px dashed rgba(255,255,255,0.4);
+}
+#app .left-box .top-box .top-item .text {
+  color: #fff;
+  font-size: 12px;
+}
+#app .left-box .top-box .top-item .value {
+  color: #4cffff;
+  font-size: 22px;
+  font-weight: bold;
+  width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#app .left-box .top-box .top-item:last-child {
+  border-right: none;
+}
+#app .center-box {
+  height: 100%;
+  padding: 0 20px;
+}
+#app .center-box .data-box-box {
+  padding-top: 80px;
+}
+#app .center-box .center-container {
+  height: calc(100% - 180px);
+  position: relative;
+}
+#app .center-box .center-container .depart-card {
+  background-image: url("../assets/images/map-card-bg.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+#app .center-box .center-container .depart-card .title {
+  font-size: 16px;
+  padding: 12px 10px 8px;
+}
+#app .center-box .center-container .depart-card .line {
+  width: 180px;
+  height: 1px;
+  margin: 0 auto;
+  background-color: rgba(255,255,255,0.66);
+}
+#app .center-box .center-container .depart-card .text {
+  color: #fff;
+  font-size: 14px;
+  padding: 12px 0;
+}
+#app .center-box .center-container .depart-card .value {
+  color: #4cffff;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  padding-bottom: 16px;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#app .right-box .panel-bottom {
+  flex-wrap: wrap;
+  width: 100%;
+}
+#app .right-box .panel-bottom .bottom-item {
+  display: inline-block;
+  width: 50%;
+  position: relative;
+  padding: 0 14px;
+}
+#app .right-box .panel-bottom .bottom-item img {
+  display: block;
+  width: 135px;
+  height: 86px;
+}
+#app .right-box .panel-bottom .bottom-item .text {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  top: 33%;
+  left: 35%;
+}
+#app .right-box .panel-bottom .bottom-item .value {
+  color: #4cffff;
+  font-size: 22px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
